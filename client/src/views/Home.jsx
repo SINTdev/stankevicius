@@ -211,7 +211,7 @@ export default function Home(props) {
                <div className="flex flex-wrap md:flex-nowrap justify-between space-y-3 md:space-y-0 md:space-x-2">
                   <input
                      type="search"
-                     className="block w-full p-3 text-sm text-gray-900 border-2 border-gray-300 rounded-sm bg-ray-50 outline-none"
+                     className="block w-full p-3 text-sm text-gray-900 border-2 border-gray-300  bg-ray-50 outline-none rounded-none"
                      placeholder="Search Product"
                      value={search}
                      onChange={(e) => {
@@ -275,7 +275,7 @@ export default function Home(props) {
                   onChange={(e) => {
                      setFilter(e.target.value);
                   }}
-                  className="bg-gray-50 border-2 lg:hidden  border-[#221f1f] text-gray-900 text-sm   block w-full p-2.5 mt-3"
+                  className="bg-gray-50 border-2 lg:hidden  border-[#221f1f] text-gray-900 text-sm   block w-full p-2.5 mt-3 rounded-none"
                >
                   <option value={""}>All Products</option>
                   {categories.map((category, one) => {
@@ -380,12 +380,13 @@ export default function Home(props) {
                         return (
                            <div className="flex flex-wrap" key={index}>
                               <div
-                                 className={`w-full flex-grow lg:w-1/2  lg:border-b-2  px-4 py-4  border-l-8 relative ${
+                                 className={`w-full flex-grow lg:w-1/2    px-4 py-4  border-l-8 relative ${
                                     product?.action?.name == "BUYING"
                                        ? "border-l-green-500"
                                        : "border-l-red-500"
                                  }`}
                               >
+                                 <div className="absolute w-[100%] h-[1px] bg-gray-300 -bottom-[0px] left-0 hidden lg:block"></div>
                                  <p className="text-xs mb-2 lg:mb-0 lg:float-right">
                                     <span className="uppercase font-extrabold mr-1">
                                        opened on
@@ -500,7 +501,7 @@ export default function Home(props) {
                                  </p>
                               </div>
                               <div
-                                 className={`w-full flex-grow lg:w-1/2 border-l-8 pt-6 pb-4 lg:py-4  mb-[1.7px] relative  ${
+                                 className={`w-full flex-grow lg:w-1/2 border-l-8 pt-6 pb-4 lg:py-4  mb-[1.7px] lg:mb-0 relative  ${
                                     product?.action?.name == "BUYING"
                                        ? "border-l-green-500"
                                        : "border-l-red-500"
