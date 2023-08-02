@@ -61,7 +61,7 @@ export default function Layout(props) {
           isMenuOpen={props.isMenuOpen}
           setIsMenuOpen={props.setIsMenuOpen}
         />
-        <div className="mx-10">{props.children}</div>
+        <div className="mx-4 lg:mx-10">{props.children}</div>
         {!props?.isMenuOpen && <Footer />}
       </UserData.Provider>
     </>
