@@ -500,14 +500,13 @@ export default function Home(props) {
                                  </p>
                               </div>
                               <div
-                                 className={`w-full flex-grow lg:w-1/2 border-l-8 pt-6 pb-4 lg:py-4 relative  ${
+                                 className={`w-full flex-grow lg:w-1/2 border-l-8 pt-6 pb-4 lg:py-4  mb-[1.7px] relative  ${
                                     product?.action?.name == "BUYING"
                                        ? "border-l-green-500"
                                        : "border-l-red-500"
                                  }  lg:border lg:border-gray-300 px-4  flex flex-col justify-between`}
                               >
-
-                                <div className="absolute w-full h-[1px] bg-gray-300 bottom-0 left-0 lg:hidden"></div>
+                                 <div className="absolute w-[99%] h-[1px] bg-gray-300 -bottom-[2px] left-1 lg:hidden"></div>
                                  <div className="gap-2 flex flex-wrap">
                                     <div className="">
                                        <span className="capitalize font-extrabold mr-1">
