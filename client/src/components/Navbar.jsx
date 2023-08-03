@@ -19,7 +19,11 @@ export default function Navbar(props) {
       <nav className="relative min-h-[4.5rem] flex items-center w-full bg-white border-gray-200 shadow-lg z-50">
         <div className="max-w-screen-xl w-full flex flex-wrap items-center justify-between mx-auto p-4">
           <Link to="/" className="flex items-center">
-            <img src="/logo.png" className="h-6 mr-3" alt="Stankevicius Logo" />
+            <img
+              src="/assets/logo.png"
+              className="h-6 mr-3"
+              alt="Stankevicius Logo"
+            />
             <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
               Stankevicius
             </span>
