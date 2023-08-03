@@ -66,5 +66,5 @@ def user(request, pk=None):
             return JsonResponse(SerializedData.data, status=status.HTTP_201_CREATED)
         print(serializer.errors)
         return JsonResponse(
-            {"message": "Email already exists!"}, status=status.HTTP_202_ACCEPTED
+            {"message": serializer.errors}, status=status.HTTP_202_ACCEPTED
         )

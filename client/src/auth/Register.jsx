@@ -6,6 +6,7 @@ import {
   setMessage,
   resetMessage,
   checkLoginFromLogin,
+  capitalizeFirstLetter
 } from "../CONSTANT";
 import InputBox from "../components/InputBox";
 import codes from "country-calling-code";
@@ -38,7 +39,8 @@ const Register = () => {
             .then((responce) => {
               let res = responce.data;
               if (res.message) {
-                setMessage(res.message, "red-500");
+                setMessage(getErrorMessage(res.message), "red-500");
+                // setMessage(res.message, "red-500");
               } else {
                 sessionStorage.setItem(
                   "loggedin",
@@ -83,6 +85,17 @@ const Register = () => {
       [e.target.name]: e.target.value,
     });
   };
+
+  const getErrorMessage = (message) => {
+    let toReturn = "";
+    for (const key in message) {
+      toReturn += `[${capitalizeFirstLetter(key.split("_").join(" "))}]: ${
+        message[key][0]
+      }\n`;
+    }
+    return toReturn;
+  };
+
   return (
     <section className="bg-gray-50">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
