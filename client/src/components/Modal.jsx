@@ -18,13 +18,13 @@ const Modal = (props) => {
             <p className="mb-4 max-w-md">{text}</p>
             <div className="flex justify-center space-x-4">
               <button
-                className="bg-black w-[7rem] text-white px-4 py-2 rounded"
+                className="bg-black w-[7rem] text-white px-4 py-2"
                 onClick={onYes}
               >
                 {isCancel ? "Agree" : "Ok"}
               </button>
               <button
-                className="bg-black w-[7rem] text-white px-4 py-2 rounded"
+                className="bg-black w-[7rem] text-white px-4 py-2"
                 onClick={onClose}
               >
                 {isCancel ? "Disagree" : "Cancel"}

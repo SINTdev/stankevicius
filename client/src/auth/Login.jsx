@@ -74,7 +74,7 @@ const Login = () => {
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <Link to="/">
               <h1 className="text-xl text-center font-bold leading-tight tracking-tight text-black md:text-2xl">
-                Novartis
+                Stankevicius
               </h1>
             </Link>
             <div className="space-y-4 md:space-y-6">
@@ -94,7 +94,7 @@ const Login = () => {
               />
               <button
                 onClick={login}
-                className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium  text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
                 Log In
               </button>

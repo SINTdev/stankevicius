@@ -4,7 +4,7 @@ import {
   CONSTANT,
   setMessage,
   resetMessage,
-  checkLoginFromLogin,
+  checkLoginFromNonLogin,
 } from "../CONSTANT";
 import InputBox from "../components/InputBox";
 import axios from "axios";
@@ -33,6 +33,12 @@ export default function AddProduct() {
       [e.target.name]: e.target.value,
     });
   };
+
+  useEffect(() => {
+    if (checkLoginFromNonLogin()) {
+      navigate("/login");
+    }
+  }, [session]);
 
   const [options, setOptions] = useState({
     actions: [],
@@ -267,7 +273,7 @@ export default function AddProduct() {
         <div className="flex flex-row justify-center items-center">
           <button
             onClick={addProduct}
-            className="mt-5 w-fit text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            className="mt-5 w-fit text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium  text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
             Add Product
           </button>

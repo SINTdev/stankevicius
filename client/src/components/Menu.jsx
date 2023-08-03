@@ -21,23 +21,23 @@ const Menu = () => {
                   links: [
                      {
                         label: "Cardiovascular and metabolic disease research at Novartis",
-                        url: "https://www.novartis.com/about/products?search_api_fulltext=&sort_by=title&sort_order=ASC&page",
+                        url: "https://e0.pxfuel.com/wallpapers/314/61/desktop-wallpaper-medical-science-laboratory-doctor-medicine-research-lab-test-tube-chemistry-best-high-quality.jpg",
                      },
                      {
                         label: "Cardiovascular and metabolic disease research at Novartis",
-                        url: "https://www.novartis.com/about/products?search_api_fulltext=&sort_by=title&sort_order=ASC&page",
+                        url: "https://e0.pxfuel.com/wallpapers/314/61/desktop-wallpaper-medical-science-laboratory-doctor-medicine-research-lab-test-tube-chemistry-best-high-quality.jpg",
                      },
                      {
                         label: "Cardiovascular and metabolic disease research at Novartis",
-                        url: "https://www.novartis.com/about/products?search_api_fulltext=&sort_by=title&sort_order=ASC&page",
+                        url: "https://e0.pxfuel.com/wallpapers/314/61/desktop-wallpaper-medical-science-laboratory-doctor-medicine-research-lab-test-tube-chemistry-best-high-quality.jpg",
                      },
                      {
                         label: "Cardiovascular and metabolic disease research at Novartis",
-                        url: "https://www.novartis.com/about/products?search_api_fulltext=&sort_by=title&sort_order=ASC&page",
+                        url: "https://e0.pxfuel.com/wallpapers/314/61/desktop-wallpaper-medical-science-laboratory-doctor-medicine-research-lab-test-tube-chemistry-best-high-quality.jpg",
                      },
                      {
                         label: "Cardiovascular and metabolic disease research at Novartis",
-                        url: "https://www.novartis.com/about/products?search_api_fulltext=&sort_by=title&sort_order=ASC&page",
+                        url: "https://e0.pxfuel.com/wallpapers/314/61/desktop-wallpaper-medical-science-laboratory-doctor-medicine-research-lab-test-tube-chemistry-best-high-quality.jpg",
                      },
                   ],
                },
@@ -62,23 +62,23 @@ const Menu = () => {
                   links: [
                      {
                         label: "Cardiovascular and metabolic disease research at Novartis",
-                        url: "https://www.novartis.com/about/products?search_api_fulltext=&sort_by=title&sort_order=ASC&page",
+                        url: "https://e0.pxfuel.com/wallpapers/314/61/desktop-wallpaper-medical-science-laboratory-doctor-medicine-research-lab-test-tube-chemistry-best-high-quality.jpg",
                      },
                      {
                         label: "Cardiovascular and metabolic disease research at Novartis",
-                        url: "https://www.novartis.com/about/products?search_api_fulltext=&sort_by=title&sort_order=ASC&page",
+                        url: "https://e0.pxfuel.com/wallpapers/314/61/desktop-wallpaper-medical-science-laboratory-doctor-medicine-research-lab-test-tube-chemistry-best-high-quality.jpg",
                      },
                      {
                         label: "Cardiovascular and metabolic disease research at Novartis",
-                        url: "https://www.novartis.com/about/products?search_api_fulltext=&sort_by=title&sort_order=ASC&page",
+                        url: "https://e0.pxfuel.com/wallpapers/314/61/desktop-wallpaper-medical-science-laboratory-doctor-medicine-research-lab-test-tube-chemistry-best-high-quality.jpg",
                      },
                      {
                         label: "Cardiovascular and metabolic disease research at Novartis",
-                        url: "https://www.novartis.com/about/products?search_api_fulltext=&sort_by=title&sort_order=ASC&page",
+                        url: "https://e0.pxfuel.com/wallpapers/314/61/desktop-wallpaper-medical-science-laboratory-doctor-medicine-research-lab-test-tube-chemistry-best-high-quality.jpg",
                      },
                      {
                         label: "Cardiovascular and metabolic disease research at Novartis",
-                        url: "https://www.novartis.com/about/products?search_api_fulltext=&sort_by=title&sort_order=ASC&page",
+                        url: "https://e0.pxfuel.com/wallpapers/314/61/desktop-wallpaper-medical-science-laboratory-doctor-medicine-research-lab-test-tube-chemistry-best-high-quality.jpg",
                      },
                   ],
                },
@@ -103,23 +103,23 @@ const Menu = () => {
                   links: [
                      {
                         label: "Cardiovascular and metabolic disease research at Novartis",
-                        url: "https://www.novartis.com/about/products?search_api_fulltext=&sort_by=title&sort_order=ASC&page",
+                        url: "https://e0.pxfuel.com/wallpapers/314/61/desktop-wallpaper-medical-science-laboratory-doctor-medicine-research-lab-test-tube-chemistry-best-high-quality.jpg",
                      },
                      {
                         label: "Cardiovascular and metabolic disease research at Novartis",
-                        url: "https://www.novartis.com/about/products?search_api_fulltext=&sort_by=title&sort_order=ASC&page",
+                        url: "https://e0.pxfuel.com/wallpapers/314/61/desktop-wallpaper-medical-science-laboratory-doctor-medicine-research-lab-test-tube-chemistry-best-high-quality.jpg",
                      },
                      {
                         label: "Cardiovascular and metabolic disease research at Novartis",
-                        url: "https://www.novartis.com/about/products?search_api_fulltext=&sort_by=title&sort_order=ASC&page",
+                        url: "https://e0.pxfuel.com/wallpapers/314/61/desktop-wallpaper-medical-science-laboratory-doctor-medicine-research-lab-test-tube-chemistry-best-high-quality.jpg",
                      },
                      {
                         label: "Cardiovascular and metabolic disease research at Novartis",
-                        url: "https://www.novartis.com/about/products?search_api_fulltext=&sort_by=title&sort_order=ASC&page",
+                        url: "https://e0.pxfuel.com/wallpapers/314/61/desktop-wallpaper-medical-science-laboratory-doctor-medicine-research-lab-test-tube-chemistry-best-high-quality.jpg",
                      },
                      {
                         label: "Cardiovascular and metabolic disease research at Novartis",
-                        url: "https://www.novartis.com/about/products?search_api_fulltext=&sort_by=title&sort_order=ASC&page",
+                        url: "https://e0.pxfuel.com/wallpapers/314/61/desktop-wallpaper-medical-science-laboratory-doctor-medicine-research-lab-test-tube-chemistry-best-high-quality.jpg",
                      },
                   ],
                },
@@ -144,23 +144,23 @@ const Menu = () => {
                   links: [
                      {
                         label: "Cardiovascular and metabolic disease research at Novartis",
-                        url: "https://www.novartis.com/about/products?search_api_fulltext=&sort_by=title&sort_order=ASC&page",
+                        url: "https://e0.pxfuel.com/wallpapers/314/61/desktop-wallpaper-medical-science-laboratory-doctor-medicine-research-lab-test-tube-chemistry-best-high-quality.jpg",
                      },
                      {
                         label: "Cardiovascular and metabolic disease research at Novartis",
-                        url: "https://www.novartis.com/about/products?search_api_fulltext=&sort_by=title&sort_order=ASC&page",
+                        url: "https://e0.pxfuel.com/wallpapers/314/61/desktop-wallpaper-medical-science-laboratory-doctor-medicine-research-lab-test-tube-chemistry-best-high-quality.jpg",
                      },
                      {
                         label: "Cardiovascular and metabolic disease research at Novartis",
-                        url: "https://www.novartis.com/about/products?search_api_fulltext=&sort_by=title&sort_order=ASC&page",
+                        url: "https://e0.pxfuel.com/wallpapers/314/61/desktop-wallpaper-medical-science-laboratory-doctor-medicine-research-lab-test-tube-chemistry-best-high-quality.jpg",
                      },
                      {
                         label: "Cardiovascular and metabolic disease research at Novartis",
-                        url: "https://www.novartis.com/about/products?search_api_fulltext=&sort_by=title&sort_order=ASC&page",
+                        url: "https://e0.pxfuel.com/wallpapers/314/61/desktop-wallpaper-medical-science-laboratory-doctor-medicine-research-lab-test-tube-chemistry-best-high-quality.jpg",
                      },
                      {
                         label: "Cardiovascular and metabolic disease research at Novartis",
-                        url: "https://www.novartis.com/about/products?search_api_fulltext=&sort_by=title&sort_order=ASC&page",
+                        url: "https://e0.pxfuel.com/wallpapers/314/61/desktop-wallpaper-medical-science-laboratory-doctor-medicine-research-lab-test-tube-chemistry-best-high-quality.jpg",
                      },
                   ],
                },

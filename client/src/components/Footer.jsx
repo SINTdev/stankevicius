@@ -4,7 +4,7 @@ const Footer = () => {
    const [activeLinkIndex, setActiveLinkIndex] = useState([]);
    const [footerItems, setfooterItems] = useState([
       {
-         link: "Navigate Novartis",
+         link: "Navigate Stankevicius",
          subLinks: [
             "Patients and Caregivers",
             "Healthcare Professionals",
@@ -23,7 +23,7 @@ const Footer = () => {
       {
          link: "Explore",
          subLinks: [
-            "Novartis",
+            "Stankevicius",
             "Products",
             "Therapeutic areas",
             "Diseases",
@@ -32,7 +32,7 @@ const Footer = () => {
          ],
       },
       {
-         link: "Novartis companies",
+         link: "Stankevicius companies",
          subLinks: [
             "Sandoz",
             "Advanced Accelerator Applications",
@@ -43,7 +43,7 @@ const Footer = () => {
    return (
       <footer class="bg-[#f1f1f1] px-4 py-6 md:p-10 mt-20">
          <div class="mx-auto w-full max-w-screen-xl">
-            <h1 className="text-3xl font-extrabold">Novartis</h1>
+            <h1 className="text-3xl font-extrabold">Stankevicius</h1>
 
             {/* Mobile View Setup */}
             <div className="w-full md:hidden py-5 space-y-3">
@@ -103,7 +103,7 @@ const Footer = () => {
             <div class="grid-cols-2 gap-8  py-6 lg:py-8 md:grid-cols-4 hidden md:grid">
                <div>
                   <h2 class="mb-6 text-sm font-bold text-gray-900 uppercase e">
-                     Navigate Novartis
+                     Navigate Stankevicius
                   </h2>
                   <ul class=" text-sm font-medium space-y-1 underline">
                      <li class="">
@@ -182,7 +182,7 @@ const Footer = () => {
                   <ul class=" text-sm font-medium space-y-1 underline">
                      <li class="">
                         <a href="#" class=" hover:underline">
-                           Novartis Pipeline
+                           Stankevicius Pipeline
                         </a>
                      </li>
                      <li class="">
@@ -214,7 +214,7 @@ const Footer = () => {
                </div>
                <div>
                   <h2 class="mb-6 text-sm font-bold text-gray-900 uppercase e">
-                     Novartis companies
+                     Stankevicius companies
                   </h2>
                   <ul class=" text-sm font-medium space-y-1 underline">
                      <li class="">
@@ -285,7 +285,7 @@ const Footer = () => {
                      />
                   </svg>
 
-                  <p className="text-sm">Novartis Site Directory</p>
+                  <p className="text-sm">Stankevicius Site Directory</p>
                </div>
             </div>
             <div class=" py-4 space-y-3 md:space-y-0 text-center md:text-left  md:flex md:items-center md:justify-between">

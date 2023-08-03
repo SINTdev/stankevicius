@@ -11,7 +11,7 @@ export default function InputBox(props) {
           name={props?.name}
           value={props?.value}
           onChange={props?.onChange}
-          className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5"
+          className="block w-full p-3 text-sm text-gray-900 border-2 border-gray-300  bg-ray-50 outline-none -none"
         >
           <option value={""} selected disabled>
             {props?.placeholder}
@@ -40,8 +40,24 @@ export default function InputBox(props) {
         value={props?.value}
         onChange={props?.onChange}
         placeholder={props.placeholder}
-        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5"
+        className="block w-full p-3 text-sm text-gray-900 border-2 border-gray-300  bg-ray-50 outline-none -none"
       />
     </div>
   );
+
+  // return (
+  //   <div className={`${props?.className}`}>
+  //     <label className="block mb-2 text-sm font-medium text-gray-900">
+  //       {props?.placeholder}
+  //     </label>
+  //     <input
+  //       type={props?.type ?? "text"}
+  //       name={props?.name}
+  //       value={props?.value}
+  //       onChange={props?.onChange}
+  //       placeholder={props.placeholder}
+  //       className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm  focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5"
+  //     />
+  //   </div>
+  // );
 }
