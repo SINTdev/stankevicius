@@ -24,6 +24,10 @@ export default function Layout(props) {
   const [session, setSession] = useState(__init_session);
 
   useEffect(() => {
+    updateSessionData();
+  }, []);
+
+  const updateSessionData = () => {
     let sessionData = JSON.parse(sessionStorage.getItem("loggedin"));
     if (sessionData) {
       setSession({
@@ -38,9 +42,9 @@ export default function Layout(props) {
         isLoaded: true,
       });
     }
-  }, []);
+  };
 
-  const value = { session, setSession };
+  const value = { session, setSession, updateSessionData };
 
   // ------------------
   // SESSION - END
@@ -60,6 +64,7 @@ export default function Layout(props) {
           setSession={setSession}
           isMenuOpen={props.isMenuOpen}
           setIsMenuOpen={props.setIsMenuOpen}
+          updateSessionData={updateSessionData}
         />
         <div className="mx-4 lg:mx-10">{props.children}</div>
         {!props?.isMenuOpen && <Footer />}

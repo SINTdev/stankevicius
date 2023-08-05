@@ -378,13 +378,13 @@ export default function Home(props) {
                     >
                       <div className="absolute w-[100%] h-[1px] bg-gray-300 -bottom-[0px] left-0 hidden lg:block"></div>
                       <p className="text-xs mb-2 lg:mb-0 lg:float-right">
-                        <span className="uppercase font-extrabold mr-1">
+                        <span className="uppercase _font-bold mr-1">
                           opened on
                         </span>
                         <span className="font-medium">
                           {formatDate(product?.timestamp)}
                         </span>
-                        <span className="uppercase font-extrabold ml-3 mr-1">
+                        <span className="uppercase _font-bold ml-3 mr-1">
                           Expiring on
                         </span>
                         <span className="font-medium">
@@ -397,7 +397,7 @@ export default function Home(props) {
                         </span>
                       </p>
                       <div className=" mb-5">
-                        <h1 className="font-extrabold text-2xl">
+                        <h1 className="_font-bold text-2xl tracking-tight">
                           {product?.name}
                         </h1>
                         <p className="uppercase text-sm leading-3 font-medium">
@@ -467,7 +467,7 @@ export default function Home(props) {
                             "Cancel"}
                         </button>
                       </div>
-                      <p className="uppercase text-xs text-gray-600 mt-4 lg:mt-1 font-medium lg:text-right ">
+                      <p className="mt-2 uppercase text-xs text-gray-600 font-medium lg:text-right h-[1rem]">
                         {product?.lastActivity &&
                           !product?.lastActivity?.isCancelled &&
                           !hasFiveMinutesPassed(
@@ -488,9 +488,9 @@ export default function Home(props) {
                       }  lg:border lg:border-gray-300 px-4  flex flex-col justify-between`}
                     >
                       <div className="absolute w-[99%] h-[1px] bg-gray-300 -bottom-[2px] left-1 lg:hidden"></div>
-                      <div className="gap-2 flex flex-wrap">
+                      <div className="gap-2 flex flex-wrap tracking-tight">
                         <div className="">
-                          <span className="capitalize font-extrabold mr-1">
+                          <span className="capitalize _font-bold mr-1">
                             Quantity:
                           </span>
                           <span className="font-medium text-gray-700">
@@ -499,7 +499,7 @@ export default function Home(props) {
                           </span>
                         </div>
                         <div className="">
-                          <span className="capitalize font-extrabold mr-1">
+                          <span className="capitalize _font-bold mr-1">
                             Contract:
                           </span>
                           <span className="font-medium text-gray-700">
@@ -507,7 +507,7 @@ export default function Home(props) {
                           </span>
                         </div>
                         <div className="">
-                          <span className="capitalize font-extrabold mr-1">
+                          <span className="capitalize _font-bold mr-1">
                             Delivery:
                           </span>
                           <span className="font-medium text-gray-700">
@@ -515,7 +515,7 @@ export default function Home(props) {
                           </span>
                         </div>
                         <div className="">
-                          <span className="capitalize font-extrabold mr-1">
+                          <span className="capitalize _font-bold mr-1">
                             Payment:
                           </span>
                           <span className="font-medium text-gray-700">
@@ -523,7 +523,7 @@ export default function Home(props) {
                           </span>
                         </div>
                         <div className="">
-                          <span className="capitalize font-extrabold mr-1">
+                          <span className="capitalize _font-bold mr-1">
                             Origin:
                           </span>
                           <span className="font-medium text-gray-700">
@@ -531,7 +531,7 @@ export default function Home(props) {
                           </span>
                         </div>
                         <div className="">
-                          <span className="capitalize font-extrabold mr-1">
+                          <span className="capitalize _font-bold mr-1">
                             Price:
                           </span>
                           <span className="font-medium text-gray-700">

@@ -15,6 +15,7 @@ const UserData = React.createContext({
     isLoggedIn: false,
   },
   setSession: () => {},
+  updateSessionData: () => {},
 });
 
 export default UserData;

@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import ModalWrapper from "./ModalWrapper";
+import Login from "./../auth/Login";
+import Register from "./../auth/Register";
 
 export default function Navbar(props) {
   const [isNavbarOpen, setIsNavbarOpen] = useState(true);
@@ -14,8 +17,41 @@ export default function Navbar(props) {
     });
   };
 
+  const __INIT__ = {
+    login: false,
+    register: false,
+  };
+
+  const [modalSetting, setModalSetting] = useState(__INIT__);
+
   return (
     <div className="">
+      {!props?.isLoggedIn && (
+        <>
+          <ModalWrapper
+            isOpen={modalSetting.login}
+            onClose={() => {
+              setModalSetting(__INIT__);
+            }}
+          >
+            <Login
+              setModalSetting={setModalSetting}
+              updateSessionData={props?.updateSessionData}
+            />
+          </ModalWrapper>
+          <ModalWrapper
+            isOpen={modalSetting.register}
+            onClose={() => {
+              setModalSetting(__INIT__);
+            }}
+          >
+            <Register
+              setModalSetting={setModalSetting}
+              updateSessionData={props?.updateSessionData}
+            />
+          </ModalWrapper>
+        </>
+      )}
       <nav className="relative min-h-[4.5rem] flex items-center w-full bg-white border-gray-200 shadow-lg z-50">
         <div className="max-w-screen-xl w-full flex flex-wrap items-center justify-between mx-auto p-4">
           <Link to="/" className="flex items-center">
@@ -88,12 +124,28 @@ export default function Navbar(props) {
                 </li>
               ) : (
                 <>
-                  <Link to="/register">
-                    <li className="cursor-pointer">Register</li>
-                  </Link>
-                  <Link to="/login">
+                  <span
+                    onClick={() => {
+                      setModalSetting({
+                        ...modalSetting,
+                        login: true,
+                        register: false,
+                      });
+                    }}
+                  >
                     <li className="cursor-pointer">Login</li>
-                  </Link>
+                  </span>
+                  <span
+                    onClick={() => {
+                      setModalSetting({
+                        ...modalSetting,
+                        register: true,
+                        login: false,
+                      });
+                    }}
+                  >
+                    <li className="cursor-pointer">Register</li>
+                  </span>
                 </>
               )}
 

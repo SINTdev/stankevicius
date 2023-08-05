@@ -9,12 +9,12 @@ const Modal = (props) => {
         <div className="fixed inset-0 flex items-center justify-center z-50">
           {/* Overlay */}
           <div
-            className="fixed inset-0 bg-black opacity-50"
+            className="fixed inset-0 bg-white opacity-70"
             onClick={onClose}
           ></div>
 
           {/* Modal Content */}
-          <div className="bg-white p-8 border-2 border-black z-10">
+          <div className="bg-white p-8 border-2 shadow-2xl z-10">
             <p className="mb-4 max-w-md">{text}</p>
             <div className="flex justify-center space-x-4">
               <button

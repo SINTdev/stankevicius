@@ -34,10 +34,10 @@ def validate(request):
                     )
                     return JsonResponse(SerializedData.data, safe=False)
                 else:
-                    return JsonResponse({"message": "Incorrect password!"}, safe=False)
+                    return JsonResponse({"message": "Incorrect password."}, safe=False)
             else:
                 return JsonResponse(
-                    {"message": "No account associated with this email!"},
+                    {"message": "No account found."},
                     status=status.HTTP_200_OK,
                 )
         return JsonResponse({"message": "empty"}, status=status.HTTP_200_OK)

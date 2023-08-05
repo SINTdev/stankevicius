@@ -9,7 +9,7 @@ import {
 } from "../CONSTANT";
 import InputBox from "../components/InputBox";
 
-const Login = () => {
+const Login = (props) => {
   const navigate = useNavigate();
   useEffect(() => {
     if (checkLoginFromLogin()) {
@@ -40,7 +40,11 @@ const Login = () => {
                   data: res,
                 })
               );
-              navigate("/");
+              props?.setModalSetting({
+                login: false,
+                register: false,
+              });
+              props?.updateSessionData();
             }
           })
           .catch((error) => {
@@ -68,46 +72,74 @@ const Login = () => {
     });
   };
   return (
-    <section className="bg-gray-50">
-      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-        <div className="w-full bg-white border-2 border-black md:mt-0 sm:max-w-md xl:p-0">
-          <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-            <Link to="/">
-              <h1 className="text-xl text-center font-bold leading-tight tracking-tight text-black md:text-2xl">
-                Stankevicius
-              </h1>
+    <div className="space-y-4 md:space-y-6">
+      <div className="flex mb-5">
+        <img
+          src="/assets/logo.png"
+          className="h-6 mr-3"
+          alt="Stankevicius Logo"
+        />
+      </div>
+
+      <div className="flex flex-col">
+        <span className="text-xl text-center _font-bold leading-tight tracking-tight text-black md:text-2xl">
+          Log In
+        </span>
+        <span className="text-center mt-2">
+          Please enter your email to log in.
+        </span>
+      </div>
+      <div className="flex justify-center items-center">
+        <div className="space-y-2 md:space-y-3 w-full md:w-3/5">
+          <InputBox
+            placeholder={"Email"}
+            type="email"
+            value={payload.email}
+            onChange={changePayload}
+            name="email"
+          />
+          <InputBox
+            placeholder={"Password"}
+            type="password"
+            value={payload.password}
+            onChange={changePayload}
+            name="password"
+          />
+          <div className="mt-2"></div>
+          <button
+            onClick={login}
+            className="w-full text-white tracking-wider bg-black text-sm px-5 py-2.5 text-center"
+          >
+            Log In
+          </button>
+          <div className="flex flex-row justify-between">
+            <Link to="#" className="text-xs underline font-medium">
+              Forgot Password
             </Link>
-            <div className="space-y-4 md:space-y-6">
-              <InputBox
-                placeholder={"Email"}
-                type="email"
-                value={payload.email}
-                onChange={changePayload}
-                name="email"
-              />
-              <InputBox
-                placeholder={"Password"}
-                type="password"
-                value={payload.password}
-                onChange={changePayload}
-                name="password"
-              />
-              <button
-                onClick={login}
-                className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium  text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            <span className="text-xs">
+              Don't have an account?{" "}
+              <span
+                onClick={() => {
+                  props?.setModalSetting({
+                    login: false,
+                    register: true,
+                  });
+                }}
+                className="text-xs underline font-medium cursor-pointer"
               >
-                Log In
-              </button>
-              <div
-                className="my-10"
-                id="error"
-                style={{ display: "none" }}
-              ></div>
-            </div>
+                Create one.
+              </span>
+            </span>
           </div>
+          <div className="mt-2"></div>
+          <div
+            id="error"
+            className="text-sm text-center"
+            style={{ display: "none" }}
+          ></div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

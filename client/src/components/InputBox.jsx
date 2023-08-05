@@ -4,14 +4,14 @@ export default function InputBox(props) {
   if (props?.select) {
     return (
       <div className={`${props?.className}`}>
-        <label className="block mb-2 text-sm font-medium text-gray-900">
+        {/* <label className="block mb-2 text-sm font-medium text-gray-900">
           {props?.placeholder}
-        </label>
+        </label> */}
         <select
           name={props?.name}
           value={props?.value}
           onChange={props?.onChange}
-          className="block w-full p-3 text-sm text-gray-900 border-2 border-gray-300  bg-ray-50 outline-none -none"
+          className="block w-full p-3 text-sm text-gray-900 border-2 border-gray-300  hover:bg-gray-50 outline-none -none"
         >
           <option value={""} selected disabled>
             {props?.placeholder}
@@ -31,16 +31,16 @@ export default function InputBox(props) {
 
   return (
     <div className={`${props?.className}`}>
-      <label className="block mb-2 text-sm font-medium text-gray-900">
+      {/* <label className="block mb-2 text-sm font-medium text-gray-900">
         {props?.placeholder}
-      </label>
+      </label> */}
       <input
         type={props?.type ?? "text"}
         name={props?.name}
         value={props?.value}
         onChange={props?.onChange}
         placeholder={props.placeholder}
-        className="block w-full p-3 text-sm text-gray-900 border-2 border-gray-300  bg-ray-50 outline-none -none"
+        className="block w-full p-3 text-sm text-gray-900 border-2 border-gray-300  hover:bg-gray-50 outline-none -none"
       />
     </div>
   );
