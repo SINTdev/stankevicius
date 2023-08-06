@@ -409,30 +409,58 @@ export default function Home(props) {
                           {product?.category?.name}
                         </p>
 
-                        <button
-                          onClick={() => {
-                            handleInteraction(
-                              product?.lastActivity &&
+                        {((session?.isLoggedIn &&
+                          product?.by?.id.toString() !==
+                            session?.personal?.id.toString()) ||
+                          !session?.isLoggedIn) && (
+                          <button
+                            onClick={() => {
+                              handleInteraction(
+                                product?.lastActivity &&
+                                  !product?.lastActivity?.isCancelled &&
+                                  !hasFiveMinutesPassed(
+                                    product?.lastActivity?.timestamp
+                                  ) &&
+                                  product?.lastActivity?.isWait
+                                  ? product?.lastActivity?.id
+                                  : product.id,
+                                product?.action,
+                                (product?.lastActivity &&
+                                  !product?.lastActivity?.isCancelled &&
+                                  !hasFiveMinutesPassed(
+                                    product?.lastActivity?.timestamp
+                                  ) &&
+                                  product?.lastActivity?.isWait) ??
+                                  false,
+                                !Boolean(product?.lastActivity)
+                              );
+                            }}
+                            className={`${
+                              ((product?.lastActivity &&
                                 !product?.lastActivity?.isCancelled &&
-                                !hasFiveMinutesPassed(
+                                hasFiveMinutesPassed(
                                   product?.lastActivity?.timestamp
-                                ) &&
-                                product?.lastActivity?.isWait
-                                ? product?.lastActivity?.id
-                                : product.id,
-                              product?.action,
+                                )) ||
+                                (product?.lastActivity &&
+                                  !product?.lastActivity?.isCancelled &&
+                                  !product?.lastActivity?.isWait)) &&
+                              "opacity-30 pointer-events-none"
+                            } uppercase font-semibold bg-[#221f1f] text-white min-w-[8rem] py-2`}
+                          >
+                            {(!product?.lastActivity ||
                               (product?.lastActivity &&
-                                !product?.lastActivity?.isCancelled &&
-                                !hasFiveMinutesPassed(
-                                  product?.lastActivity?.timestamp
-                                ) &&
-                                product?.lastActivity?.isWait) ??
-                                false,
-                              !Boolean(product?.lastActivity)
-                            );
-                          }}
-                          className={`${
-                            ((product?.lastActivity &&
+                                product?.lastActivity?.isCancelled)) &&
+                              (product?.action?.name !== "BUYING"
+                                ? "Buy"
+                                : "Sell")}
+                            {product?.lastActivity &&
+                              !product?.lastActivity?.isCancelled &&
+                              !hasFiveMinutesPassed(
+                                product?.lastActivity?.timestamp
+                              ) &&
+                              product?.lastActivity?.isWait &&
+                              "Cancel"}
+                            {((product?.lastActivity &&
                               !product?.lastActivity?.isCancelled &&
                               hasFiveMinutesPassed(
                                 product?.lastActivity?.timestamp
@@ -440,32 +468,9 @@ export default function Home(props) {
                               (product?.lastActivity &&
                                 !product?.lastActivity?.isCancelled &&
                                 !product?.lastActivity?.isWait)) &&
-                            "opacity-30 pointer-events-none"
-                          } uppercase font-semibold bg-[#221f1f] text-white min-w-[8rem] py-2`}
-                        >
-                          {(!product?.lastActivity ||
-                            (product?.lastActivity &&
-                              product?.lastActivity?.isCancelled)) &&
-                            (product?.action?.name !== "BUYING"
-                              ? "Buy"
-                              : "Sell")}
-                          {product?.lastActivity &&
-                            !product?.lastActivity?.isCancelled &&
-                            !hasFiveMinutesPassed(
-                              product?.lastActivity?.timestamp
-                            ) &&
-                            product?.lastActivity?.isWait &&
-                            "Cancel"}
-                          {((product?.lastActivity &&
-                            !product?.lastActivity?.isCancelled &&
-                            hasFiveMinutesPassed(
-                              product?.lastActivity?.timestamp
-                            )) ||
-                            (product?.lastActivity &&
-                              !product?.lastActivity?.isCancelled &&
-                              !product?.lastActivity?.isWait)) &&
-                            "Cancel"}
-                        </button>
+                              "Cancel"}
+                          </button>
+                        )}
                       </div>
                       <p className="mt-[4px] uppercase text-[.65rem] font-medium text-black lg:text-right h-[4px]">
                         {product?.lastActivity &&
