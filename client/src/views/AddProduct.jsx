@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   CONSTANT,
   setMessage,
@@ -151,18 +151,18 @@ export default function AddProduct() {
   };
 
   return (
-    <div>
-      <h1 className="text-5xl text-center font-bold leading-tight tracking-tight text-black">
-        Add Product
-      </h1>
-      <div className="">
+    <div className="flex justify-center items-center flex-col">
+      <div className="md:w-3/4 w-full">
+        <div className="w-full text-left mb-5 md:pl-1 text-4xl _font-bold leading-tight tracking-tight text-black">
+          Add new trade
+        </div>
         <div className="w-full flex flex-col md:flex-row">
           <InputBox
             placeholder={"Name"}
             value={payload.name}
             onChange={changePayload}
             name="name"
-            className="my-5 md:w-full md:mx-3"
+            className="my-1 md:w-full md:mx-1"
           />
           <InputBox
             placeholder={"Action"}
@@ -171,7 +171,7 @@ export default function AddProduct() {
             name="action"
             select={true}
             options={options.actions}
-            className="my-5 md:w-full md:mx-3"
+            className="my-1 md:w-full md:mx-1"
           />
           <InputBox
             placeholder={"Category"}
@@ -180,7 +180,7 @@ export default function AddProduct() {
             name="category"
             select={true}
             options={options.categories}
-            className="my-5 md:w-full md:mx-3"
+            className="my-1 md:w-full md:mx-1"
           />
         </div>
         <div className="w-full flex flex-col md:flex-row">
@@ -190,7 +190,7 @@ export default function AddProduct() {
             onChange={changePayload}
             name="quantity"
             type="number"
-            className="my-5 md:w-full md:mx-3"
+            className="my-1 md:w-full md:mx-1"
           />
           <InputBox
             placeholder={"Measurement"}
@@ -199,17 +199,15 @@ export default function AddProduct() {
             name="measurement"
             select={true}
             options={options.measurements}
-            className="my-5 md:w-full md:mx-3"
-          />
-        </div>
-        <div className="w-full flex flex-col md:flex-row">
+            className="my-1 md:w-full md:mx-1"
+          />{" "}
           <InputBox
             placeholder={"Price"}
             value={payload.price}
             onChange={changePayload}
             name="price"
             type="number"
-            className="my-5 md:w-full md:mx-3"
+            className="my-1 md:w-full md:mx-1"
           />
           <InputBox
             placeholder={"Currency"}
@@ -218,9 +216,10 @@ export default function AddProduct() {
             name="currency"
             select={true}
             options={options.currencies}
-            className="my-5 md:w-full md:mx-3"
+            className="my-1 md:w-full md:mx-1"
           />
         </div>
+        <div className="w-full flex flex-col md:flex-row"></div>
         <div className="w-full flex flex-col md:flex-row">
           <InputBox
             placeholder={"Payment"}
@@ -229,7 +228,7 @@ export default function AddProduct() {
             name="payment"
             select={true}
             options={options.payments}
-            className="my-5 md:w-full md:mx-3"
+            className="my-1 md:w-full md:mx-1"
           />
           <InputBox
             placeholder={"Delivery"}
@@ -238,7 +237,7 @@ export default function AddProduct() {
             name="delivery"
             select={true}
             options={options.deliveries}
-            className="my-5 md:w-full md:mx-3"
+            className="my-1 md:w-full md:mx-1"
           />
           <InputBox
             placeholder={"Contract"}
@@ -247,10 +246,8 @@ export default function AddProduct() {
             name="contract"
             select={true}
             options={options.contracts}
-            className="my-5 md:w-full md:mx-3"
+            className="my-1 md:w-full md:mx-1"
           />
-        </div>
-        <div className="w-full flex flex-col md:flex-row">
           <InputBox
             placeholder={"Origin"}
             value={payload.origin}
@@ -258,8 +255,14 @@ export default function AddProduct() {
             name="origin"
             select={true}
             options={options.origins}
-            className="my-5 md:w-full md:mx-3"
+            className="my-1 md:w-full md:mx-1"
           />
+        </div>
+        <span className="mt-10 block"></span>
+        <p className="text-sm mb-1">
+          For how long do you want this listing to be valid?
+        </p>
+        <div className="w-full flex flex-col md:flex-row">
           <InputBox
             placeholder={"Listing Duration"}
             value={payload.listingDuration}
@@ -267,19 +270,25 @@ export default function AddProduct() {
             name="listingDuration"
             select={true}
             options={options.listing_durations}
-            className="my-5 md:w-full md:mx-3"
+            className="my-1 md:w-[calc(25%-8px)] w-full md:mx-1"
           />
         </div>
-        <div className="flex flex-row justify-center items-center">
+        <div className="mt-5 flex flex-row justify-end items-center space-x-2">
           <button
             onClick={addProduct}
-            className="mt-5 w-fit text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium  text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            className="w-fit text-white tracking-wider _font-bold border border-black bg-black text-sm px-5 py-2.5 text-center"
           >
-            Add Product
+            Add new trade
           </button>
+          <Link
+            to="/"
+            className="w-fit text-black tracking-wider _font-bold border border-black bg-transparent text-sm px-5 py-2.5 text-center"
+          >
+            Cancel
+          </Link>
         </div>
         <div
-          className="my-10 text-center"
+          className="mt-10 text-center"
           id="error"
           style={{ display: "none" }}
         ></div>

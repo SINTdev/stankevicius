@@ -23,6 +23,8 @@ def evaluateInteractions():
         timestamp__lt=minutes_ago, isCancelled=False, isEmail=False
     )
 
+    print(recent_interactions)
+
     for interaction in recent_interactions:
         serializer = serializers.ViewProductInteractionsSerializer(interaction)
         s_data = serializer.data

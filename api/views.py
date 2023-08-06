@@ -197,6 +197,8 @@ def is_product_expired(activation_timestamp, expiration_days):
 def products(request, pk=None):
     if request.method == "GET":
         instance = models.Product.objects.all().order_by("-timestamp")
+        if pk is not None:
+            instance = instance.exclude(by__id=pk)
         final_data = serializers.ViewProductSerializer(instance, many=True).data
         output = []
         for data in final_data:

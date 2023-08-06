@@ -144,7 +144,7 @@ export default function Home(props) {
         isOpen: true,
         content: isCancel
           ? "You agree to cancel. Your request will be cancelled and you will not be contacted by our commercial sales team."
-          : action?.name === "BUYING"
+          : action?.name !== "BUYING"
           ? "You confirm that you can purchase the proposed product and agree to be contacted by our commercial sales team to discuss your offer."
           : "You confirm that you can supply the required product and agree to be contacted by our commercial sales team to discuss your proposal.",
         onYes: () => {
@@ -371,7 +371,7 @@ export default function Home(props) {
                   <div className="flex flex-wrap" key={index}>
                     <div
                       className={`w-full flex-grow lg:w-1/2    px-4 py-4  border-l-8 relative ${
-                        product?.action?.name == "BUYING"
+                        product?.action?.name !== "BUYING"
                           ? "border-l-green-500"
                           : "border-l-red-500"
                       }`}
@@ -446,7 +446,7 @@ export default function Home(props) {
                           {(!product?.lastActivity ||
                             (product?.lastActivity &&
                               product?.lastActivity?.isCancelled)) &&
-                            (product?.action?.name === "BUYING"
+                            (product?.action?.name !== "BUYING"
                               ? "Buy"
                               : "Sell")}
                           {product?.lastActivity &&
@@ -467,7 +467,7 @@ export default function Home(props) {
                             "Cancel"}
                         </button>
                       </div>
-                      <p className="mt-2 uppercase text-xs text-gray-600 font-medium lg:text-right h-[1rem]">
+                      <p className="mt-[4px] uppercase text-[.65rem] font-medium text-black lg:text-right h-[4px]">
                         {product?.lastActivity &&
                           !product?.lastActivity?.isCancelled &&
                           !hasFiveMinutesPassed(
@@ -482,7 +482,7 @@ export default function Home(props) {
                     </div>
                     <div
                       className={`w-full flex-grow lg:w-1/2 border-l-8 pt-6 pb-4 lg:py-4  mb-[1.7px] lg:mb-0 relative  ${
-                        product?.action?.name == "BUYING"
+                        product?.action?.name !== "BUYING"
                           ? "border-l-green-500"
                           : "border-l-red-500"
                       }  lg:border lg:border-gray-300 px-4  flex flex-col justify-between`}

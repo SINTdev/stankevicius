@@ -103,7 +103,10 @@ const Register = (props) => {
   const changePayload = (e) => {
     setPayload({
       ...payload,
-      [e.target.name]: e.target.value,
+      [e.target.name]:
+        e.target.name === "companyURL" && payload.companyURL.length === 0
+          ? `https://${e.target.value}`
+          : e.target.value,
     });
   };
 

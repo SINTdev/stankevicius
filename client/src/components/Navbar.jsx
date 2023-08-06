@@ -52,7 +52,7 @@ export default function Navbar(props) {
           </ModalWrapper>
         </>
       )}
-      <nav className="relative min-h-[4.5rem] flex items-center w-full bg-white border-gray-200 shadow-lg z-50">
+      <nav className="relative min-h-[4.5rem] flex items-center w-full bg-white border-gray-200 shadow-lg z-30">
         <div className="max-w-screen-xl w-full flex flex-wrap items-center justify-between mx-auto p-4">
           <Link to="/" className="flex items-center">
             <img
@@ -60,9 +60,9 @@ export default function Navbar(props) {
               className="h-6 mr-3"
               alt="Stankevicius Logo"
             />
-            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+            {/* <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
               Stankevicius
-            </span>
+            </span> */}
           </Link>
           <button
             data-collapse-toggle="navbar-default"

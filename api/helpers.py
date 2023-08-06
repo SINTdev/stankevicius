@@ -5,12 +5,12 @@ from django.conf import settings
 
 def email_interaction(data, user, action):
     print(f"INTERACTION TO {action['name']}")
-    subject = f"Interaction to {'BUY' if action['name'] == 'BUYING' else 'SELL'}"
-    message = f"""Interacted user to {"BUY" if action['name'] == "BUYING" else "SELL"}
+    subject = f"Interaction to {'BUY' if action['name'] != 'BUYING' else 'SELL'}"
+    message = f"""Interacted user to {"BUY" if action['name'] != "BUYING" else "SELL"}
 Company Name: {user['companyName']}
 Company Web: {user['companyURL']}
 Contact Person Full Name: {user['fullName']}
-Phone Number: +{user['countryCode']}{user['phoneNumber']}
+Phone Number: {user['countryCode']}{user['phoneNumber']}
 Email: {user['email']}
 
 {"BUYER" if action['name'] == "BUYING" else "SELLER"} request
@@ -27,7 +27,7 @@ Contract: {data['contract']['name']}
 Company Name: {data['by']['companyName']}
 Company Web: {data['by']['companyURL']}
 Contact Person Full Name: {data['by']['fullName']}
-Phone Number: +{data['by']['countryCode']}{data['by']['phoneNumber']}
+Phone Number: {data['by']['countryCode']}{data['by']['phoneNumber']}
 Email: {data['by']['email']}
 """
     email_from = settings.EMAIL_HOST_USER
