@@ -162,7 +162,7 @@ export default function AddProduct() {
             value={payload.name}
             onChange={changePayload}
             name="name"
-            className="my-1 md:w-full md:mx-1"
+            className="my-1 md:w-[calc(100%+20px)] md:mx-1"
           />
           <InputBox
             placeholder={"Action"}
@@ -171,7 +171,7 @@ export default function AddProduct() {
             name="action"
             select={true}
             options={options.actions}
-            className="my-1 md:w-full md:mx-1"
+            className="my-1 md:w-1/2 md:mx-1"
           />
           <InputBox
             placeholder={"Category"}
@@ -180,7 +180,7 @@ export default function AddProduct() {
             name="category"
             select={true}
             options={options.categories}
-            className="my-1 md:w-full md:mx-1"
+            className="my-1 md:w-1/2 md:mx-1"
           />
         </div>
         <div className="w-full flex flex-col md:flex-row">
