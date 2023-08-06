@@ -13,6 +13,8 @@ from django.contrib.auth.hashers import check_password, make_password
 
 
 @api_view(["POST"])
+@permission_classes([])
+@authentication_classes([])
 def validate(request):
     if request.method == "POST":
         # VALIDATE A USER
