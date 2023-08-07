@@ -187,25 +187,7 @@ export default function Home(props) {
         return "(After 5 minutes you won't be able to cancel)";
       }
     }
-    console.log(
-      product?.lastActivity &&
-        !product?.lastActivity?.isCancelled &&
-        hasFiveMinutesPassed(product?.lastActivity?.timestamp),
-      product?.lastActivity &&
-        !product?.lastActivity?.isCancelled &&
-        !product?.lastActivity?.isWait,
-      (product?.lastActivity &&
-        !product?.lastActivity?.isCancelled &&
-        hasFiveMinutesPassed(product?.lastActivity?.timestamp)) ||
-        (product?.lastActivity &&
-          !product?.lastActivity?.isCancelled &&
-          !product?.lastActivity?.isWait)
-    );
-    console.log(
-      product?.lastActivity,
-      !product?.lastActivity?.isCancelled,
-      hasFiveMinutesPassed(product?.lastActivity?.timestamp)
-    );
+
     return "";
   };
 
