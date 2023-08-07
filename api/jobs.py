@@ -48,20 +48,20 @@ def evaluateInteractions():
     # print(js_current_time)
     # print(js_minutes_ago)
 
-    print("I AM RUNNING")
+    recent_interactions = models.ProductInteractions.objects.filter(
+        isCancelled=False,
+        isEmail=False,
+    )
 
-    # recent_interactions = models.ProductInteractions.objects.filter(
-    #     isCancelled=False,
-    #     isEmail=False,
-    # )
+    print(recent_interactions)
 
-    # for interaction in recent_interactions:
-    #     serializer = serializers.ViewProductInteractionsSerializer(interaction)
-    #     s_data = serializer.data
-    #     print(has5MinPassed(s_data["timestamp"]), s_data["timestamp"], s_data["isWait"])
-    #     if has5MinPassed(s_data["timestamp"]) or not s_data["isWait"]:
-    #         email_interaction(s_data["product"], s_data["user"], s_data["action"])
-    #         updateOnEmail(interaction.pk)
+    for interaction in recent_interactions:
+        serializer = serializers.ViewProductInteractionsSerializer(interaction)
+        s_data = serializer.data
+        print(has5MinPassed(s_data["timestamp"]), s_data["timestamp"], s_data["isWait"])
+        if has5MinPassed(s_data["timestamp"]) or not s_data["isWait"]:
+            email_interaction(s_data["product"], s_data["user"], s_data["action"])
+            updateOnEmail(interaction.pk)
 
 
 def run_continuously(self, interval=1):
