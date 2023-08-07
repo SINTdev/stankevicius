@@ -3,6 +3,37 @@ from django.core.mail import send_mail
 from django.conf import settings
 
 
+def test_email():
+    print(f"TEST EMAIL")
+    subject = f"TEST EMAIL"
+    message = f"""<html>
+                    <head></head>
+                    <body>
+                        <p><strong>TEST EMAIL</strong></p>
+                        <p>TEST EMAIL</p>
+                        <p>Email: <a href="mailto:{settings.EMAIL_OF_ADMIN}">{settings.EMAIL_OF_ADMIN}</a></p>
+                    </body>
+                </html>"""
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = [
+        settings.EMAIL_OF_ADMIN
+    ]  # Assuming the recipient is the same as the seller's email
+    try:
+        send_mail(
+            subject,
+            "",
+            email_from,
+            recipient_list,
+            fail_silently=False,
+            html_message=message,
+        )
+        print("Sending mail... [SUCCESS]")
+    except Exception as e:
+        print("Sending mail... [ERROR]")
+        print("[ERROR]", e)
+    return True
+
+
 def email_interaction(data, user, action):
     print(f"INTERACTION TO {action['name']}")
     subject = f"Interaction to {'BUY' if action['name'] != 'BUYING' else 'SELL'}"

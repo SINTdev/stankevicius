@@ -304,7 +304,7 @@ export default function Home(props) {
           </select>
 
           <div>
-            <p className="tracking-tight font-medium text-gray-500">
+            <p className="tracking-tight font-thin text-gray-500">
               Showing{" "}
               {
                 productsList
@@ -400,13 +400,13 @@ export default function Home(props) {
                         <span className="uppercase _font-bold mr-1">
                           opened on
                         </span>
-                        <span className="font-medium">
+                        <span className="font-thin">
                           {formatDate(product?.timestamp)}
                         </span>
                         <span className="uppercase _font-bold ml-3 mr-1">
                           Expiring on
                         </span>
-                        <span className="font-medium">
+                        <span className="font-thin">
                           {formatDate(
                             addDaysToTimestamp(
                               product?.timestamp,
@@ -503,8 +503,8 @@ export default function Home(props) {
                       }  lg:border lg:border-gray-300 px-4  flex flex-col justify-between`}
                     >
                       <div className="absolute w-[99%] h-[1px] bg-gray-300 -bottom-[2px] left-1 lg:hidden"></div>
-                      <div className="gap-y-0 gap-x-2 text-[calc(1rem-1px)] flex flex-wrap tracking-tight">
-                        <div className="">
+                      <div className="text-[calc(1rem-1px)] flex flex-wrap tracking-tight">
+                        <div className="mr-2">
                           <span className="capitalize _font-bold mr-1">
                             Quantity:
                           </span>
@@ -513,7 +513,7 @@ export default function Home(props) {
                             {product?.measurement?.name}
                           </span>
                         </div>
-                        <div className="">
+                        <div className="mr-2">
                           <span className="capitalize _font-bold mr-1">
                             Contract:
                           </span>
@@ -521,7 +521,7 @@ export default function Home(props) {
                             {product?.contract?.name}
                           </span>
                         </div>
-                        <div className="">
+                        <div className="mr-2">
                           <span className="capitalize _font-bold mr-1">
                             Delivery:
                           </span>
@@ -529,7 +529,7 @@ export default function Home(props) {
                             {product?.delivery?.name}
                           </span>
                         </div>
-                        <div className="">
+                        <div className="mr-2">
                           <span className="capitalize _font-bold mr-1">
                             Payment:
                           </span>
@@ -537,7 +537,7 @@ export default function Home(props) {
                             {product?.payment?.name}
                           </span>
                         </div>
-                        <div className="">
+                        <div className="mr-2">
                           <span className="capitalize _font-bold mr-1">
                             Origin:
                           </span>
@@ -545,7 +545,7 @@ export default function Home(props) {
                             {product?.origin?.name}
                           </span>
                         </div>
-                        <div className="">
+                        <div className="mr-2">
                           <span className="capitalize _font-bold mr-1">
                             Price:
                           </span>

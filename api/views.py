@@ -13,7 +13,10 @@ from rest_framework.parsers import JSONParser
 from django.contrib.auth.hashers import make_password
 import base64
 from authentication.models import CustomUsers
-from .helpers import email_new_listing
+from .helpers import email_new_listing, test_email
+
+
+# test_email()
 
 
 def initialize_backend():
