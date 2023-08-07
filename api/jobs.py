@@ -50,18 +50,18 @@ def evaluateInteractions():
 
     print("I AM RUNNING")
 
-    recent_interactions = models.ProductInteractions.objects.filter(
-        isCancelled=False,
-        isEmail=False,
-    )
+    # recent_interactions = models.ProductInteractions.objects.filter(
+    #     isCancelled=False,
+    #     isEmail=False,
+    # )
 
-    for interaction in recent_interactions:
-        serializer = serializers.ViewProductInteractionsSerializer(interaction)
-        s_data = serializer.data
-        print(has5MinPassed(s_data["timestamp"]), s_data["timestamp"], s_data["isWait"])
-        if has5MinPassed(s_data["timestamp"]) or not s_data["isWait"]:
-            email_interaction(s_data["product"], s_data["user"], s_data["action"])
-            updateOnEmail(interaction.pk)
+    # for interaction in recent_interactions:
+    #     serializer = serializers.ViewProductInteractionsSerializer(interaction)
+    #     s_data = serializer.data
+    #     print(has5MinPassed(s_data["timestamp"]), s_data["timestamp"], s_data["isWait"])
+    #     if has5MinPassed(s_data["timestamp"]) or not s_data["isWait"]:
+    #         email_interaction(s_data["product"], s_data["user"], s_data["action"])
+    #         updateOnEmail(interaction.pk)
 
 
 def run_continuously(self, interval=1):
@@ -85,6 +85,7 @@ Scheduler.run_continuously = run_continuously
 
 def start_scheduler():
     scheduler = Scheduler()
-    scheduler.every(1).minutes.do(evaluateInteractions)  # Run every 5 minute
+    # scheduler.every(1).minutes.do(evaluateInteractions)  # Run every 5 minute
     # scheduler.every(10).seconds.do(evaluateInteractions)
+    scheduler.every().second.do(evaluateInteractions)
     scheduler.run_continuously()

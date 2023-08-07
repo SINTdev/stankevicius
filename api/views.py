@@ -16,7 +16,7 @@ from authentication.models import CustomUsers
 from .helpers import email_new_listing, test_email
 
 
-test_email()
+# test_email()
 
 
 def initialize_backend():
