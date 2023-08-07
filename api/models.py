@@ -134,7 +134,7 @@ class ProductInteractions(models.Model):
     isCancelled = models.BooleanField(default=False)
     isEmail = models.BooleanField(default=False)
     isWait = models.BooleanField(default=True)
-    timestamp = models.DateTimeField(auto_now_add=True)
+    timestamp = models.BigIntegerField(blank=False, null=False)
 
     def __str__(self):
         return f"{self.product.name} - {self.user.fullName}"

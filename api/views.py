@@ -267,6 +267,7 @@ def interactions(request, pk=None):
             return JsonResponse(
                 {"content": serializer.data}, status=status.HTTP_202_ACCEPTED
             )
+        print(serializer.errors)
         return JsonResponse(
             {"message": "Not valid data!"}, status=status.HTTP_202_ACCEPTED
         )

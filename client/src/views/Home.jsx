@@ -87,6 +87,7 @@ export default function Home(props) {
         user: user_id,
         product: product_id,
         action: action_id,
+        timestamp: Date.now(),
         ...toAdd,
       })
       .then((responce) => {
@@ -200,7 +201,11 @@ export default function Home(props) {
           !product?.lastActivity?.isCancelled &&
           !product?.lastActivity?.isWait)
     );
-    console.log(product?.lastActivity, !product?.lastActivity?.isCancelled, hasFiveMinutesPassed(product?.lastActivity?.timestamp))
+    console.log(
+      product?.lastActivity,
+      !product?.lastActivity?.isCancelled,
+      hasFiveMinutesPassed(product?.lastActivity?.timestamp)
+    );
     return "";
   };
 
