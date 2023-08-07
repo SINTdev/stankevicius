@@ -12,6 +12,7 @@ export default function Navbar(props) {
     sessionStorage.removeItem("refresh_token");
     sessionStorage.removeItem("loggedin");
     props?.setSession({
+      ...props?.session,
       personal: props?.__init_session.personal,
       isLoggedIn: false,
     });

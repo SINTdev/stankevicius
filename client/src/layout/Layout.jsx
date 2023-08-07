@@ -65,6 +65,7 @@ export default function Layout(props) {
           isMenuOpen={props.isMenuOpen}
           setIsMenuOpen={props.setIsMenuOpen}
           updateSessionData={updateSessionData}
+          session={session}
         />
         <div className="mx-4 lg:mx-10">{props.children}</div>
         {!props?.isMenuOpen && <Footer />}

@@ -172,6 +172,38 @@ export default function Home(props) {
       });
     }
   };
+
+  // Utils
+
+  const returnMessage = (product) => {
+    if (product?.lastActivity !== null) {
+      if (product?.lastActivity?.isCancelled) {
+        return "(YOU WON’T BE ABLE TO CANCEL NEXT TIME)";
+      } else if (
+        !hasFiveMinutesPassed(product?.lastActivity?.timestamp) &&
+        product?.lastActivity?.isWait
+      ) {
+        return "(After 5 minutes you won't be able to cancel)";
+      }
+    }
+    console.log(
+      product?.lastActivity &&
+        !product?.lastActivity?.isCancelled &&
+        hasFiveMinutesPassed(product?.lastActivity?.timestamp),
+      product?.lastActivity &&
+        !product?.lastActivity?.isCancelled &&
+        !product?.lastActivity?.isWait,
+      (product?.lastActivity &&
+        !product?.lastActivity?.isCancelled &&
+        hasFiveMinutesPassed(product?.lastActivity?.timestamp)) ||
+        (product?.lastActivity &&
+          !product?.lastActivity?.isCancelled &&
+          !product?.lastActivity?.isWait)
+    );
+    console.log(product?.lastActivity, !product?.lastActivity?.isCancelled, hasFiveMinutesPassed(product?.lastActivity?.timestamp))
+    return "";
+  };
+
   return (
     <div>
       <Modal
@@ -197,7 +229,7 @@ export default function Home(props) {
               </Link>
             )}
           </div>
-          <p className="my-3 text-md font-normal">
+          <p className="my-3 text-md font-normal text-gray-500">
             Below is a list of the treatments we currently offer via our
             Innovative Medicines Division. Visit{" "}
             <span className="text-sky-700 underline">Sandoz</span> and{" "}
@@ -285,7 +317,7 @@ export default function Home(props) {
           </select>
 
           <div>
-            <p className="text-sm tracking-tight">
+            <p className="tracking-tight font-medium text-gray-500">
               Showing{" "}
               {
                 productsList
@@ -473,16 +505,7 @@ export default function Home(props) {
                         )}
                       </div>
                       <p className="mt-[4px] uppercase text-[.65rem] font-medium text-black lg:text-right h-[4px]">
-                        {product?.lastActivity &&
-                          !product?.lastActivity?.isCancelled &&
-                          !hasFiveMinutesPassed(
-                            product?.lastActivity?.timestamp
-                          ) &&
-                          product?.lastActivity?.isWait &&
-                          "(After 5 minutes you won't be able to cancel)"}
-                        {product?.lastActivity &&
-                          product?.lastActivity?.isCancelled &&
-                          "(YOU WON’T BE ABLE TO CANCEL NEXT TIME)"}
+                        {returnMessage(product)}
                       </p>
                     </div>
                     <div
@@ -493,7 +516,7 @@ export default function Home(props) {
                       }  lg:border lg:border-gray-300 px-4  flex flex-col justify-between`}
                     >
                       <div className="absolute w-[99%] h-[1px] bg-gray-300 -bottom-[2px] left-1 lg:hidden"></div>
-                      <div className="gap-2 flex flex-wrap tracking-tight">
+                      <div className="gap-y-0 gap-x-2 flex flex-wrap tracking-tight">
                         <div className="">
                           <span className="capitalize _font-bold mr-1">
                             Quantity:
@@ -576,53 +599,6 @@ export default function Home(props) {
                 );
               })}
           </div>
-
-          {/* Pagination */}
-          {/* 
-          <div className="flex items-center">
-            <nav
-              aria-label="Pagination"
-              className="flex items-center text-gray-600 mx-auto "
-            >
-              <a
-                href="#"
-                className="px-4 py-2 border border-[#221f1f] hover:bg-gray-100 bg-gray-200 text-gray-900"
-              >
-                1
-              </a>
-              <a href="#" className="px-4 py-2    hover:bg-gray-100">
-                2
-              </a>
-              <a href="#" className="px-4 py-2  hover:bg-gray-100">
-                3
-              </a>
-              <a href="#" className="px-4 py-2  hover:bg-gray-100">
-                ...
-              </a>
-              <a href="#" className="px-4 py-2  hover:bg-gray-100">
-                9
-              </a>
-              <a
-                href="#"
-                className="p-2 ml-4 border border-[#221f1f]  hover:bg-gray-100"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </a>
-            </nav>
-          </div> */}
 
           {productsList.length > show && (
             <div className="flex flex-row items-center justify-center">
