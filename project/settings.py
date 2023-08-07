@@ -186,5 +186,5 @@ EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 EMAIL_TIMEOUT = 300  # in seconds
 
-EMAIL_OF_ADMIN = "muhammadrehanrasool@gmail.com"
-# EMAIL_OF_ADMIN = "business@stankeviciusinternational.com"
+# EMAIL_OF_ADMIN = "muhammadrehanrasool@gmail.com"
+EMAIL_OF_ADMIN = "business@stankeviciusinternational.com"
