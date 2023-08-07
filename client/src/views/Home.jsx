@@ -216,7 +216,7 @@ export default function Home(props) {
               </Link>
             )}
           </div>
-          <p className="my-3 text-md font-normal text-gray-500">
+          <p className="my-3 text-md font-thin text-gray-500">
             Below is a list of the treatments we currently offer via our
             Innovative Medicines Division. Visit{" "}
             <span className="text-sky-700 underline">Sandoz</span> and{" "}
@@ -503,12 +503,12 @@ export default function Home(props) {
                       }  lg:border lg:border-gray-300 px-4  flex flex-col justify-between`}
                     >
                       <div className="absolute w-[99%] h-[1px] bg-gray-300 -bottom-[2px] left-1 lg:hidden"></div>
-                      <div className="gap-y-0 gap-x-2 flex flex-wrap tracking-tight">
+                      <div className="gap-y-0 gap-x-2 text-[calc(1rem-1px)] flex flex-wrap tracking-tight">
                         <div className="">
                           <span className="capitalize _font-bold mr-1">
                             Quantity:
                           </span>
-                          <span className="font-medium text-gray-700">
+                          <span className="font-light text-gray-700">
                             {product?.quantity}
                             {product?.measurement?.name}
                           </span>
@@ -517,7 +517,7 @@ export default function Home(props) {
                           <span className="capitalize _font-bold mr-1">
                             Contract:
                           </span>
-                          <span className="font-medium text-gray-700">
+                          <span className="font-light text-gray-700">
                             {product?.contract?.name}
                           </span>
                         </div>
@@ -525,7 +525,7 @@ export default function Home(props) {
                           <span className="capitalize _font-bold mr-1">
                             Delivery:
                           </span>
-                          <span className="font-medium text-gray-700">
+                          <span className="font-light text-gray-700">
                             {product?.delivery?.name}
                           </span>
                         </div>
@@ -533,7 +533,7 @@ export default function Home(props) {
                           <span className="capitalize _font-bold mr-1">
                             Payment:
                           </span>
-                          <span className="font-medium text-gray-700">
+                          <span className="font-light text-gray-700">
                             {product?.payment?.name}
                           </span>
                         </div>
@@ -541,7 +541,7 @@ export default function Home(props) {
                           <span className="capitalize _font-bold mr-1">
                             Origin:
                           </span>
-                          <span className="font-medium text-gray-700">
+                          <span className="font-light text-gray-700">
                             {product?.origin?.name}
                           </span>
                         </div>
@@ -549,7 +549,7 @@ export default function Home(props) {
                           <span className="capitalize _font-bold mr-1">
                             Price:
                           </span>
-                          <span className="font-medium text-gray-700">
+                          <span className="font-light text-gray-700">
                             {product?.price}
                             {product?.currency?.name}
                           </span>
