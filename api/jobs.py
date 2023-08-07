@@ -48,6 +48,8 @@ def evaluateInteractions():
     # print(js_current_time)
     # print(js_minutes_ago)
 
+    print("I AM RUNNING")
+
     recent_interactions = models.ProductInteractions.objects.filter(
         isCancelled=False,
         isEmail=False,
