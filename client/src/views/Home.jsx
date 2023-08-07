@@ -273,7 +273,7 @@ export default function Home(props) {
             <p
               className={`${
                 filter === "" && "bg-gray-200"
-              } py-2 px-3 hover:bg-gray-200 transition-all duration-300 ease-in-out cursor-pointer`}
+              } py-2 px-3 text-[18px] hover:bg-gray-200 transition-all duration-300 ease-in-out cursor-pointer`}
               onClick={() => {
                 setFilter("");
               }}
