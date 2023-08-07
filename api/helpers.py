@@ -38,7 +38,13 @@ def email_interaction(data, user, action):
     print(f"INTERACTION TO {action['name']}")
     subject = f"Interaction to {'BUY' if action['name'] != 'BUYING' else 'SELL'}"
     message = f"""<html>
-                    <head></head>
+                    <head>
+                         <style>
+                            p {{
+                                margin: 0 !important;
+                            }}
+                        </style>
+                    </head>
                     <body>
                         <p><strong>Interacted user to {'BUY' if action['name'] != 'BUYING' else 'SELL'}</strong></p>
                         <p>Company Name: {user['companyName']}</p>
@@ -46,7 +52,7 @@ def email_interaction(data, user, action):
                         <p>Contact Person Full Name: {user['fullName']}</p>
                         <p>Phone Number: {user['countryCode']}{user['phoneNumber']}</p>
                         <p>Email: <a href="mailto:{user['email']}">{user['email']}</a></p>
-
+                        <br/>
                         <p><strong>{"BUYER" if action['name'] == "BUYING" else "SELLER"} request</strong></p>
                         <p>Product Name: {data['name']}</p>
                         <p>Action: {data['action']['name']}</p>
@@ -56,7 +62,7 @@ def email_interaction(data, user, action):
                         <p>Payment: {data['payment']['name']}</p>
                         <p>Delivery: {data['delivery']['name']}</p>
                         <p>Contract: {data['contract']['name']}</p>
-
+                        <br/>
                         <p><strong>{"BUYER" if data['action']['name'] == "BUYING" else "SELLER"}</strong></p>
                         <p>Company Name: {data['by']['companyName']}</p>
                         <p>Company Web: <a href="{data['by']['companyURL']}">{data['by']['companyURL']}</a></p>
@@ -89,7 +95,13 @@ def email_new_listing(data):
     print(f"NEW PRODUCT LISTED FOR {data['action']['name']}")
     subject = f"{data['action']['name']} New Product"
     message = f"""<html>
-                    <head></head>
+                    <head>
+                         <style>
+                            p {{
+                                margin: 0 !important;
+                            }}
+                        </style>
+                    </head>
                     <body>
                         <p><strong>{"BUYER" if data['action']['name'] == "BUYING" else "SELLER"} request</strong></p>
                         <p>Product Name: {data['name']}</p>
@@ -100,7 +112,7 @@ def email_new_listing(data):
                         <p>Payment: {data['payment']['name']}</p>
                         <p>Delivery: {data['delivery']['name']}</p>
                         <p>Contract: {data['contract']['name']}</p>
-
+<br/>
                         <p><strong>{"BUYER" if data['action']['name'] == "BUYING" else "SELLER"}</strong></p>
                         <p>Company Name: {data['by']['companyName']}</p>
                         <p>Company Web: <a href="{data['by']['companyURL']}">{data['by']['companyURL']}</a></p>

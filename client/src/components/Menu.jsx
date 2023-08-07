@@ -191,10 +191,10 @@ const Menu = () => {
       return (
          <div className="">
             <img src={data?.content?.img} alt="" />
-            <h1 className="font-extrabold text-xl mt-2 mb-1">
+            <h1 className="font-extrabold text-[24px] mt-2 mb-1">
                {data?.content?.title}
             </h1>
-            <p className="text-sm">{data?.content?.desc}</p>
+            <p className="text-[18px]">{data?.content?.desc}</p>
             <div className="space-y-4 mt-7">
                {data?.content?.links?.map((link, one) => {
                   return (

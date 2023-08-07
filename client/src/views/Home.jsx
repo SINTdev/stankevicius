@@ -102,6 +102,7 @@ export default function Home(props) {
         } else {
           setModal(EMPTY_MODAL);
           fetchProducts();
+          startTimerAndFetchProducts();
         }
       })
       .catch((error) => {
@@ -174,6 +175,12 @@ export default function Home(props) {
     }
   };
 
+  function startTimerAndFetchProducts() {
+    const timer = setTimeout(() => {
+      fetchProducts();
+    }, 5 * 60 * 1000);
+  }
+
   // Utils
 
   const returnMessage = (product) => {
@@ -206,7 +213,7 @@ export default function Home(props) {
       {!props?.isMenuOpen ? (
         <div className="max-w-screen-xl mx-auto p-0 md:p-4">
           <div className="flex space-x-8">
-            <h1 className="font-extrabold text-3xl">Products</h1>
+            <h1 className="font-extrabold text-[24px]">Products</h1>
             {session.isLoggedIn && (
               <Link
                 to="/addProduct"
@@ -216,7 +223,7 @@ export default function Home(props) {
               </Link>
             )}
           </div>
-          <p className="my-3 text-md font-thin text-gray-500">
+          <p className="my-3 text-[18px] font-thin text-gray-500">
             Below is a list of the treatments we currently offer via our
             Innovative Medicines Division. Visit{" "}
             <span className="text-sky-700 underline">Sandoz</span> and{" "}
@@ -278,7 +285,7 @@ export default function Home(props) {
                 <p
                   className={`${
                     filter === category.id && "bg-gray-200"
-                  } py-2 px-3 hover:bg-gray-200 transition-all duration-300 ease-in-out cursor-pointer`}
+                  } py-2 px-3 hover:bg-gray-200 text-[18px] transition-all duration-300 ease-in-out cursor-pointer`}
                   onClick={() => {
                     setFilter(category.id);
                   }}
@@ -416,15 +423,15 @@ export default function Home(props) {
                         </span>
                       </p>
                       <div className=" mb-5">
-                        <h1 className="_font-bold text-2xl tracking-tight">
+                        <h1 className="_font-bold text-[24px] tracking-tight">
                           {product?.name}
                         </h1>
-                        <p className="uppercase text-sm leading-3 font-medium">
+                        <p className="uppercase text-[14px] leading-3 font-medium">
                           {product?.action?.name}
                         </p>
                       </div>
                       <div className="flex justify-between items-center">
-                        <p className="capitalize font-medium text-gray-800">
+                        <p className="capitalize text-[18px] font-medium text-gray-800">
                           {product?.category?.name}
                         </p>
 
@@ -464,7 +471,7 @@ export default function Home(props) {
                                   !product?.lastActivity?.isCancelled &&
                                   !product?.lastActivity?.isWait)) &&
                               "opacity-30 pointer-events-none"
-                            } uppercase font-semibold bg-[#221f1f] text-white min-w-[8rem] py-2`}
+                            } text-[16px] uppercase font-semibold bg-[#221f1f] text-white min-w-[8rem] py-2`}
                           >
                             {(!product?.lastActivity ||
                               (product?.lastActivity &&
@@ -503,7 +510,7 @@ export default function Home(props) {
                       }  lg:border lg:border-gray-300 px-4  flex flex-col justify-between`}
                     >
                       <div className="absolute w-[99%] h-[1px] bg-gray-300 -bottom-[2px] left-1 lg:hidden"></div>
-                      <div className="text-[calc(1rem-1px)] flex flex-wrap tracking-tight">
+                      <div className="text-[14px] flex flex-wrap tracking-tight">
                         <div className="mr-2">
                           <span className="capitalize _font-bold mr-1">
                             Quantity:

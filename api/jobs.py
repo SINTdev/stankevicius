@@ -83,6 +83,6 @@ Scheduler.run_continuously = run_continuously
 
 def start_scheduler():
     scheduler = Scheduler()
-    scheduler.every(5).minutes.do(evaluateInteractions)  # Run every 5 minute
-    # scheduler.every().second.do(evaluateInteractions)
+    # scheduler.every(5).minutes.do(evaluateInteractions)  # Run every 5 minute
+    scheduler.every().second.do(evaluateInteractions)
     scheduler.run_continuously()
