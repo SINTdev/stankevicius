@@ -4,7 +4,6 @@ export default function InputBox(props) {
   if (props?.select) {
     return (
       <div className={`${props?.className} `}>
-    
         {/* <label className="block mb-2 text-sm font-medium text-gray-900">
           {props?.placeholder}
         </label> */}
@@ -15,9 +14,11 @@ export default function InputBox(props) {
           className=" dropdownSelect"
           // className="block w-full p-3 text-sm text-gray-900 border-2 border-gray-300  hover:bg-gray-50 outline-none -none dropdownSelect"
         >
-          <option value={""} selected disabled>
-            {props?.placeholder}
-          </option>
+          {!props?.removeDefaultFirst && (
+            <option value={""} selected disabled>
+              {props?.placeholder}
+            </option>
+          )}
           {props?.options.length > 1 &&
             props?.options.map((a, b) => {
               return (

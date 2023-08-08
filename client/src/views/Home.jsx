@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { CONSTANT } from "../CONSTANT";
 import UserData from "../contexts/UserData";
+import InputBox from "../components/InputBox";
 export default function Home(props) {
   const { session, setSession } = useContext(UserData);
   const [categories, setCategories] = useState([]);
@@ -297,7 +298,7 @@ export default function Home(props) {
           </div>
 
           {/* Mobile View Category Filter */}
-          <select
+          {/* <select
             value={filter}
             onChange={(e) => {
               setFilter(e.target.value);
@@ -308,7 +309,25 @@ export default function Home(props) {
             {categories.map((category, one) => {
               return <option value={category.id}>{category.name}</option>;
             })}
-          </select>
+          </select> */}
+          <InputBox
+            placeholder={"Products"}
+            className="lg:hidden mt-3"
+            value={filter}
+            onChange={(e) => {
+              setFilter(e.target.value);
+            }}
+            name="products"
+            select={true}
+            removeDefaultFirst={true}
+            options={[
+              {
+                id: "",
+                name: "All Products",
+              },
+              ...categories,
+            ]}
+          />
 
           <div>
             <p className="tracking-tight font-thin text-gray-500">

@@ -16,7 +16,8 @@ body {
   font-family: "arial", sans-serif;
 }
 .background_stripe {
-  background-image: url("./assets/pattern.webp");
+  /* background-image: url("./assets/pattern.webp"); */
+  background-image: url("./pattern.webp");
 }
 
 .background_stripe {

@@ -268,6 +268,14 @@ const MobileMenu = () => {
           </div>
         );
       })}
+      {/* <div className="w-full">
+        <div
+          className="flex items-center justify-between font-bold text-black mb-2 cursor-pointer"
+          onClick={null}
+        >
+          <p>Register</p>
+        </div>
+      </div> */}
     </div>
   );
 };
