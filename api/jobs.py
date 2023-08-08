@@ -53,6 +53,8 @@ def evaluateInteractions():
         isEmail=False,
     )
 
+    print("[CRON_JOB] I run after every 4 minutes!")
+
     for interaction in recent_interactions:
         serializer = serializers.ViewProductInteractionsSerializer(interaction)
         s_data = serializer.data

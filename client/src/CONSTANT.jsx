@@ -6,10 +6,15 @@ import axios from "axios";
 //   client: "http://localhost:3000/", // CHANGE WITH YOUR FRONTEND LINK (/ is MUST IN END)
 // };
 
+// export const CONSTANT = {
+//   server: "http://rehansathio.pythonanywhere.com/", // CHANGE WITH YOUR BACKEND LINK (/ is MUST IN END)
+//   admin: "http://rehansathio.pythonanywhere.com/admin", // CHANGE WITH YOUR BACKEND LINK (/ is MUST IN END)
+//   client: "http://rehansathio.pythonanywhere.com/", // CHANGE WITH YOUR FRONTEND LINK (/ is MUST IN END)
+// };
 export const CONSTANT = {
-  server: "http://rehansathio.pythonanywhere.com/", // CHANGE WITH YOUR BACKEND LINK (/ is MUST IN END)
-  admin: "http://rehansathio.pythonanywhere.com/admin", // CHANGE WITH YOUR BACKEND LINK (/ is MUST IN END)
-  client: "http://rehansathio.pythonanywhere.com/", // CHANGE WITH YOUR FRONTEND LINK (/ is MUST IN END)
+  server: "http://stankint.pythonanywhere.com/", // CHANGE WITH YOUR BACKEND LINK (/ is MUST IN END)
+  admin: "http://stankint.pythonanywhere.com/admin", // CHANGE WITH YOUR BACKEND LINK (/ is MUST IN END)
+  client: "http://stankint.pythonanywhere.com/", // CHANGE WITH YOUR FRONTEND LINK (/ is MUST IN END)
 };
 
 export const checkLoginFromLogin = () => {
