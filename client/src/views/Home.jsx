@@ -524,7 +524,7 @@ export default function Home(props) {
                           <span className="capitalize _font-bold mr-1">
                             Contract:
                           </span>
-                          <span className="font-light text-gray-700">
+                          <span className="font-light text-gray-700 whitespace-nowrap">
                             {product?.contract?.name}
                           </span>
                         </div>

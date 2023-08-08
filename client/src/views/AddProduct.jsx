@@ -36,7 +36,7 @@ export default function AddProduct() {
 
    useEffect(() => {
       if (checkLoginFromNonLogin()) {
-         navigate("/login");
+         navigate("/");
       }
    }, [session]);
 
