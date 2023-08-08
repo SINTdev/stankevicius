@@ -83,7 +83,7 @@ export default function AddProduct() {
                   setMessage(responce?.data?.message, "red-500");
                } else {
                   setPayload(init__payload);
-                  setMessage("Product added successfully.", "green-500");
+                  setMessage("Trade added successfully.", "green-500");
                   setTimeout(() => {
                      navigate("/");
                   }, 4000);
@@ -94,7 +94,7 @@ export default function AddProduct() {
             });
       }
       e.target.style.pointerEvents = "unset";
-      e.target.innerHTML = "Add Product";
+      e.target.innerHTML = "Add new trade";
    };
 
    const validate = () => {

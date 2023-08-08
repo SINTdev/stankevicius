@@ -220,11 +220,11 @@ export default function Home(props) {
                 to="/addProduct"
                 className="uppercase font-medium bg-[#221f1f] text-white px-5 min-w-[8rem] py-2.5"
               >
-                Add new product
+                Add new trade
               </Link>
             )}
           </div>
-          <p className="my-3 text-[18px] font-thin text-gray-500">
+          <p className="my-3 text-[18px] leading-[20px] font-thin text-gray-500">
             Below is a list of the treatments we currently offer via our
             Innovative Medicines Division. Visit{" "}
             <span className="text-sky-700 underline">Sandoz</span> and{" "}
@@ -416,7 +416,7 @@ export default function Home(props) {
                   <div className="flex flex-wrap" key={index}>
                     <div
                       className={`w-full flex-grow lg:w-1/2    px-4 py-4  border-l-8 relative ${
-                        product?.action?.name !== "BUYING"
+                        product?.action?.name === "BUYING"
                           ? "border-l-green-500"
                           : "border-l-red-500"
                       }`}
@@ -523,7 +523,7 @@ export default function Home(props) {
                     </div>
                     <div
                       className={`w-full flex-grow lg:w-1/2 border-l-8 pt-6 pb-4 lg:py-4  mb-[1.7px] lg:mb-0 relative  ${
-                        product?.action?.name !== "BUYING"
+                        product?.action?.name === "BUYING"
                           ? "border-l-green-500"
                           : "border-l-red-500"
                       }  lg:border lg:border-gray-300 px-4  flex flex-col justify-between`}
