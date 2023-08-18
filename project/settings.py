@@ -169,7 +169,7 @@ STATICFILES_DIRS = (
 
 # Simplified static file serving.
 # https://pypi.org/project/whitenoise/
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'url
 
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"

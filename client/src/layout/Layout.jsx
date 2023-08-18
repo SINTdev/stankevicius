@@ -67,7 +67,7 @@ export default function Layout(props) {
           updateSessionData={updateSessionData}
           session={session}
         />
-        <div className="mx-4 lg:mx-10">{props.children}</div>
+        <div className="mx-4 lg:mx-10 mt-24">{props.children}</div>
         {!props?.isMenuOpen && <Footer />}
       </UserData.Provider>
     </>

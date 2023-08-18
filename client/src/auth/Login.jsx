@@ -16,6 +16,47 @@ const Login = (props) => {
       navigate("/");
     }
   }, []);
+
+  const [isReset, setIsReset] = useState(false);
+
+  const reset = async (e) => {
+    e.target.style.pointerEvents = "none";
+    e.target.innerHTML =
+      '<div className="spinner-border custom-spin" role="status"><span className="visually-hidden">Loading...</span></div>';
+    e.preventDefault();
+    resetMessage();
+    if (
+      payload.email !== "" &&
+      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(payload.email)
+    ) {
+      await axios
+        .post(CONSTANT.server + "authentication/reset", {
+          identifier: payload.email,
+          client_url: CONSTANT.client,
+        })
+        .then((responce) => {
+          let res = responce.data;
+          if (res.message) {
+            setMessage(res.message, "red-500");
+          } else {
+            setMessage(
+              "Please check your email. Click on the reset link to change your password.",
+              "green-500"
+            );
+            setPayload(init__payload);
+            return;
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      setMessage("Please enter valid email.", "red-500");
+    }
+    e.target.style.pointerEvents = "unset";
+    e.target.innerHTML = "Reset";
+  };
+
   const login = async (e) => {
     e.target.style.pointerEvents = "none";
     e.target.innerHTML =
@@ -83,10 +124,12 @@ const Login = (props) => {
 
       <div className="flex flex-col">
         <span className="text-xl text-center _font-bold leading-tight tracking-tight text-black md:text-2xl">
-          Log In
+          {!isReset ? "Log In" : "Reset"}
         </span>
         <span className="text-center mt-2">
-          Please enter your email to log in.
+          {!isReset
+            ? "Please enter your email to log in."
+            : "Please enter your email to receive reset link."}
         </span>
       </div>
       <div className="flex justify-center items-center">
@@ -98,24 +141,32 @@ const Login = (props) => {
             onChange={changePayload}
             name="email"
           />
-          <InputBox
-            placeholder={"Password"}
-            type="password"
-            value={payload.password}
-            onChange={changePayload}
-            name="password"
-          />
+          {!isReset && (
+            <InputBox
+              placeholder={"Password"}
+              type="password"
+              value={payload.password}
+              onChange={changePayload}
+              name="password"
+            />
+          )}
           <div className="mt-2"></div>
           <button
-            onClick={login}
+            onClick={!isReset ? login : reset}
             className="w-full text-white tracking-wider bg-black text-sm px-5 py-2.5 text-center"
           >
-            Log In
+            {!isReset ? "Log In" : "Reset"}
           </button>
           <div className="flex flex-row justify-between">
-            <Link to="#" className="text-xs underline font-medium">
-              Forgot Password
-            </Link>
+            <span
+              role="button"
+              onClick={() => {
+                setIsReset(!isReset);
+              }}
+              className="text-xs underline font-medium"
+            >
+              {!isReset ? "Forgot Password" : "Back to Login"}
+            </span>
             <span className="text-xs">
               Don't have an account?{" "}
               <span

@@ -29,7 +29,31 @@ function App() {
               </Layout>
             }
           />
+          <Route
+            path="/reset/:token"
+            element={
+              <Layout isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen}>
+                <Home isMenuOpen={isMenuOpen} />
+              </Layout>
+            }
+          />
+          <Route
+            path="/verify/:emailToken"
+            element={
+              <Layout isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen}>
+                <Home isMenuOpen={isMenuOpen} />
+              </Layout>
+            }
+          />
           <Route path="/admin" element={<TakeMeToAdmin />} />
+          <Route
+            path="*"
+            element={
+              <Layout isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen}>
+                <Home isMenuOpen={isMenuOpen} />
+              </Layout>
+            }
+          />
           {/* <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} /> */}
         </Routes>

@@ -30,6 +30,9 @@ class CustomUsers(AbstractUser):
     password = models.CharField(max_length=2048)
     companyName = models.CharField(max_length=256, null=True, blank=True)
     companyURL = models.URLField(null=True, blank=True)
+    token = models.TextField(null=True, blank=True)
+    emailToken = models.TextField(null=True, blank=True)
+    isEmailVerified = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now_add=True)
 
     USERNAME_FIELD = "email"

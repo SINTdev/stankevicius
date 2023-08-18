@@ -1,11 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import ModalWrapper from "./ModalWrapper";
 import Login from "./../auth/Login";
 import Register from "./../auth/Register";
+import { useParams } from "react-router-dom";
+import Reset from "../auth/Reset";
+import Verify from "../auth/Verify";
 
 export default function Navbar(props) {
   const [isNavbarOpen, setIsNavbarOpen] = useState(true);
+  const { token: token, emailToken: emailToken } = useParams();
+
+  const [openReset, setOpenReset] = useState(false);
+  const [openVerify, setOpenVerify] = useState(false);
+
+  useEffect(() => {
+    if (token) {
+      setOpenReset(true);
+    }
+  }, [token]);
+
+  useEffect(() => {
+    if (emailToken) {
+      setOpenVerify(true);
+    }
+  }, [emailToken]);
 
   const logout = async () => {
     sessionStorage.removeItem("access_token");
@@ -24,9 +43,52 @@ export default function Navbar(props) {
   };
 
   const [modalSetting, setModalSetting] = useState(__INIT__);
-
   return (
     <div className="">
+      <ModalWrapper
+        isOpen={openVerify}
+        onClose={() => {
+          setOpenVerify(false);
+          setModalSetting({
+            ...modalSetting,
+            login: true,
+          });
+        }}
+      >
+        <Verify
+          emailToken={emailToken}
+          setOpenVerify={setOpenVerify}
+          onClose={() => {
+            setOpenVerify(false);
+            setModalSetting({
+              ...modalSetting,
+              login: true,
+            });
+          }}
+        />
+      </ModalWrapper>
+      <ModalWrapper
+        isOpen={openReset}
+        onClose={() => {
+          setOpenReset(false);
+          setModalSetting({
+            ...modalSetting,
+            login: true,
+          });
+        }}
+      >
+        <Reset
+          token={token}
+          setOpenReset={setOpenReset}
+          onClose={() => {
+            setOpenReset(false);
+            setModalSetting({
+              ...modalSetting,
+              login: true,
+            });
+          }}
+        />
+      </ModalWrapper>
       {!props?.isLoggedIn && (
         <>
           <ModalWrapper
@@ -53,7 +115,7 @@ export default function Navbar(props) {
           </ModalWrapper>
         </>
       )}
-      <nav className="relative min-h-[4.5rem] flex items-center w-full bg-white border-gray-200 shadow-lg z-30">
+      <nav className="fixed min-h-[4.5rem] flex items-center w-full bg-white border-gray-200 shadow-lg z-30">
         <div className="max-w-screen-xl w-full flex flex-wrap items-center justify-between mx-auto p-4">
           <Link to="/" className="flex items-center">
             <img
@@ -155,9 +217,9 @@ export default function Navbar(props) {
                       });
                     }}
                   >
-                    <li className="cursor-pointer">Login</li>
+                    <li className="cursor-pointer">Login/Create Account</li>
                   </span>
-                  <span
+                  {/* <span
                     onClick={() => {
                       setModalSetting({
                         ...modalSetting,
@@ -167,7 +229,7 @@ export default function Navbar(props) {
                     }}
                   >
                     <li className="cursor-pointer">Register</li>
-                  </span>
+                  </span> */}
                 </>
               )}
 

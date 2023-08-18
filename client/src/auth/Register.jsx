@@ -35,7 +35,7 @@ const Register = (props) => {
       payload.email !== "" &&
       /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(payload.email)
     ) {
-      if (payload.password !== "") {
+      if (payload.password !== "" && payload.password.length >= 8) {
         if (payload.fullName !== "") {
           if (value !== "") {
             if (isPossiblePhoneNumber(value)) {
@@ -46,6 +46,7 @@ const Register = (props) => {
                     formatPhoneNumberIntl(value)?.split(" ")[0] ?? "",
                   phoneNumber:
                     formatPhoneNumber(value)?.split(" ").join("") ?? "",
+                  client_url: CONSTANT.client,
                 })
                 .then((responce) => {
                   let res = responce.data;
@@ -53,17 +54,23 @@ const Register = (props) => {
                     setMessage(getErrorMessage(res.message), "red-500");
                     // setMessage(res.message, "red-500");
                   } else {
-                    sessionStorage.setItem(
-                      "loggedin",
-                      JSON.stringify({
-                        data: res,
-                      })
+                    setMessage(
+                      "Account created, please verify your email. Check mail.",
+                      "green-500"
                     );
-                    props?.setModalSetting({
-                      login: false,
-                      register: false,
-                    });
-                    props?.updateSessionData();
+                    // sessionStorage.setItem(
+                    //   "loggedin",
+                    //   JSON.stringify({
+                    //     data: res,
+                    //   })
+                    // );
+                    setTimeout(() => {
+                      props?.setModalSetting({
+                        login: false,
+                        register: false,
+                      });
+                    }, 5000);
+                    // props?.updateSessionData();
                   }
                 })
                 .catch((error) => {

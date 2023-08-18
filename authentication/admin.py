@@ -17,6 +17,8 @@ class UserAdmin(admin.ModelAdmin):
         "last_login",
         "date_joined",
         "username",
+        "token",
+        "emailToken",
     )
     list_display = ("email", "is_admin")
     list_filter = (

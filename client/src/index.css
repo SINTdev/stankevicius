@@ -17,13 +17,14 @@ body {
 }
 .background_stripe {
   /* background-image: url("./assets/pattern.webp"); */
-  background-image: url("./pattern.webp");
+  background-image: url("/assets/pattern.webp");
 }
 
 .background_stripe {
   background-repeat: repeat;
   height: 44px;
-  margin: auto auto 40px;
+  /* margin: auto auto 40px; */
+  transform: translateY(65px);
 }
 
 ._font-bold {
