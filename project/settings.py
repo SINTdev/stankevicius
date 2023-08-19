@@ -178,13 +178,15 @@ warnings.filterwarnings("ignore", message="No directory at", module="whitenoise.
 
 # Email Config
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_HOST_USER = "testing.purposes.0073@gmail.com"
-EMAIL_HOST_PASSWORD = "dcxpmhbzmklhtpik"
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_USE_SSL = False
-EMAIL_TIMEOUT = 300  # in seconds
+# EMAIL_HOST = "smtp.gmail.com"
+# EMAIL_HOST_USER = "testing.purposes.0073@gmail.com"
+# EMAIL_HOST_PASSWORD = "dcxpmhbzmklhtpik"
+EMAIL_HOST = "mail.stankeviciusinternational.com"
+EMAIL_USE_TLS = False
+EMAIL_PORT = 26
+EMAIL_HOST_USER = "noreply@stankeviciusinternational.com"
+EMAIL_HOST_PASSWORD = "kMsuYU(@4f0u"
+# EMAIL_TIMEOUT = 300  # in seconds
 
 # EMAIL_OF_ADMIN = "muhammadrehanrasool@gmail.com"
 EMAIL_OF_ADMIN = "business@stankeviciusinternational.com"
