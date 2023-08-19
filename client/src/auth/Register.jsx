@@ -33,7 +33,7 @@ const Register = (props) => {
     resetMessage();
     if (
       payload.email !== "" &&
-      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(payload.email)
+      /^\w+([\.-]?\w+)*@[\w-]+(\.\w+)+$/.test(payload.email)
     ) {
       if (payload.password !== "" && payload.password.length >= 8) {
         if (payload.fullName !== "") {
