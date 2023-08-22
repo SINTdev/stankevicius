@@ -264,7 +264,7 @@ export default function AddProduct(props) {
           />
         </div>
         <span className="mt-10 block"></span>
-        <p className="text-sm mb-1">
+        <p className="text-sm mb-1 md:w-[calc(25%-8px)]">
           For how long do you want this listing to be valid?
         </p>
         <div className="w-full flex flex-col md:flex-row">
