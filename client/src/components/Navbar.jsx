@@ -26,17 +26,6 @@ export default function Navbar(props) {
     }
   }, [emailToken]);
 
-  const logout = async () => {
-    sessionStorage.removeItem("access_token");
-    sessionStorage.removeItem("refresh_token");
-    sessionStorage.removeItem("loggedin");
-    props?.setSession({
-      ...props?.session,
-      personal: props?.__init_session.personal,
-      isLoggedIn: false,
-    });
-  };
-
   const __INIT__ = {
     login: false,
     register: false,
@@ -123,30 +112,8 @@ export default function Navbar(props) {
               className="h-6 mr-3"
               alt="Stankevicius Logo"
             />
-            {/* <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-              Stankevicius
-            </span> */}
           </Link>
           <span className="flex justify-center items-center space-x-4">
-            {/* {props?.isLoggedIn ? (
-              <span className="cursor-pointer" onClick={logout}>
-                Logout
-              </span>
-            ) : (
-              <>
-                <span
-                  onClick={() => {
-                    setModalSetting({
-                      ...modalSetting,
-                      login: true,
-                      register: false,
-                    });
-                  }}
-                >
-                  Login
-                </span>
-              </>
-            )} */}
             <button
               data-collapse-toggle="navbar-default"
               type="button"
@@ -203,8 +170,31 @@ export default function Navbar(props) {
               </li>
 
               {props?.isLoggedIn ? (
-                <li className="cursor-pointer" onClick={logout}>
-                  Logout
+                <li
+                  className="flex items-center space-x-1 cursor-pointer"
+                  onClick={() =>
+                    props.setIsAccountMenuOpen(!props.isAccountMenuOpen)
+                  }
+                >
+                  <span className="select-none mr-1">
+                    Account |{" "}
+                    <span className="font-bold">
+                      {props?.session?.personal?.is_staff
+                        ? "Corporate"
+                        : "Client"}
+                    </span>
+                  </span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 330 330"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className={`w-3 h-3 ${
+                      props?.isAccountMenuOpen ? "rotate-180" : ""
+                    }`}
+                  >
+                    <path d="M325.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001l-139.39,139.393L25.607,79.393  c-5.857-5.857-15.355-5.858-21.213,0.001c-5.858,5.858-5.858,15.355,0,21.213l150.004,150c2.813,2.813,6.628,4.393,10.606,4.393  s7.794-1.581,10.606-4.394l149.996-150C331.465,94.749,331.465,85.251,325.607,79.393z" />
+                  </svg>
                 </li>
               ) : (
                 <>
@@ -219,39 +209,48 @@ export default function Navbar(props) {
                   >
                     <li className="cursor-pointer">Login/Create Account</li>
                   </span>
-                  {/* <span
-                    onClick={() => {
-                      setModalSetting({
-                        ...modalSetting,
-                        register: true,
-                        login: false,
-                      });
-                    }}
-                  >
-                    <li className="cursor-pointer">Register</li>
-                  </span> */}
                 </>
               )}
-
+              {/* <li className="cursor-pointer" onClick={logout}>
+                Logout
+              </li> */}
               <li
                 className="flex items-center space-x-1 cursor-pointer"
                 onClick={() => props.setIsMenuOpen(!props.isMenuOpen)}
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                  />
-                </svg>
-                <span className="">Menu</span>
+                {props?.isMenuOpen ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-4 h-4"
+                  >
+                    <path
+                      d="M20 20L4 4.00003M20 4L4.00002 20"
+                      stroke="#000000"
+                      strokeWidth={2}
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-5 h-5"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                    />
+                  </svg>
+                )}
+
+                <span className="select-none">Menu</span>
               </li>
             </ul>
           </div>

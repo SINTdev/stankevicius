@@ -19,6 +19,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
             "password",
             "companyName",
             "companyURL",
+            "is_staff",
         )
         extra_kwargs = {"password": {"write_only": True}}
 
@@ -42,5 +43,6 @@ class ViewUserSerializer(serializers.ModelSerializer):
             "phoneNumber",
             "companyName",
             "companyURL",
+            "is_staff",
             "timestamp",
         )

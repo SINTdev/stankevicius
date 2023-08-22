@@ -4,6 +4,8 @@ import UserData from "../contexts/UserData";
 import Navbar from "../components/Navbar";
 import { checkLoginFromNonLogin } from "../CONSTANT";
 import Footer from "../components/Footer";
+import Menu from "../components/Menu";
+import AccountMenu from "../components/AccountMenu";
 export default function Layout(props) {
   let navigate = useNavigate();
   // ------------------
@@ -17,6 +19,7 @@ export default function Layout(props) {
       phoneNumber: "",
       companyName: "",
       companyURL: "",
+      is_staff: false,
     },
     isLoggedIn: false,
     isLoaded: false,
@@ -55,6 +58,18 @@ export default function Layout(props) {
   //   }
   // }, [session]);
 
+  const logout = async () => {
+    sessionStorage.removeItem("access_token");
+    sessionStorage.removeItem("refresh_token");
+    sessionStorage.removeItem("loggedin");
+    setSession({
+      ...session,
+      personal: __init_session.personal,
+      isLoggedIn: false,
+    });
+    props?.setIsAccountMenuOpen(false);
+  };
+
   return (
     <>
       <UserData.Provider value={value}>
@@ -62,13 +77,16 @@ export default function Layout(props) {
           isLoggedIn={session.isLoggedIn}
           __init_session={__init_session}
           setSession={setSession}
-          isMenuOpen={props.isMenuOpen}
-          setIsMenuOpen={props.setIsMenuOpen}
           updateSessionData={updateSessionData}
           session={session}
+          {...props}
         />
         <div className="mx-4 lg:mx-10 mt-24">{props.children}</div>
-        {!props?.isMenuOpen && <Footer />}
+        {props?.isMenuOpen && <Menu />}
+        {props?.isAccountMenuOpen && session?.isLoggedIn && (
+          <AccountMenu session={session} logout={logout} />
+        )}
+        {!props?.isMenuOpen && !props?.isAccountMenuOpen && <Footer />}
       </UserData.Provider>
     </>
   );

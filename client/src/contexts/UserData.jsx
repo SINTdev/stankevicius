@@ -10,6 +10,7 @@ const UserData = React.createContext({
       phoneNumber: "",
       companyName: "",
       companyURL: "",
+      is_staff: false,
     },
     isLoaded: false,
     isLoggedIn: false,
