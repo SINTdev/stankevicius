@@ -116,7 +116,7 @@ export default function Navbar(props) {
           <span className="flex justify-center items-center">
             {props?.isLoggedIn && (
               <li
-                className={`relative h-full flex items-center cursor-pointer mr-1`}
+                className={`md:hidden relative h-full flex items-center cursor-pointer mr-1`}
                 onClick={() =>
                   props.setIsAccountMenuOpen(!props.isAccountMenuOpen)
                 }
