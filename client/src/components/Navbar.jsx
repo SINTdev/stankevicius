@@ -109,11 +109,44 @@ export default function Navbar(props) {
           <Link to="/" className="flex items-center">
             <img
               src="/assets/logo.png"
-              className="h-6 mr-3"
+              className="h-5 mr-3"
               alt="Stankevicius Logo"
             />
           </Link>
-          <span className="flex justify-center items-center space-x-4">
+          <span className="flex justify-center items-center">
+            {props?.isLoggedIn && (
+              <li
+                className={`relative h-full flex items-center cursor-pointer mr-1`}
+                onClick={() =>
+                  props.setIsAccountMenuOpen(!props.isAccountMenuOpen)
+                }
+              >
+                <span
+                  className={`${
+                    props.isAccountMenuOpen && ""
+                  } absolute -translate-x-2 min-h-[4.5rem] w-[calc(100%+20px)] h-full -z-10`}
+                ></span>
+                <span className="select-none text-sm mr-1">
+                  Account |{" "}
+                  <span className="font-bold">
+                    {props?.session?.personal?.is_staff
+                      ? "Corporate"
+                      : "Client"}
+                  </span>
+                </span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 330 330"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className={`w-[9px] h-[9px] ${
+                    props?.isAccountMenuOpen ? "rotate-180" : ""
+                  }`}
+                >
+                  <path d="M325.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001l-139.39,139.393L25.607,79.393  c-5.857-5.857-15.355-5.858-21.213,0.001c-5.858,5.858-5.858,15.355,0,21.213l150.004,150c2.813,2.813,6.628,4.393,10.606,4.393  s7.794-1.581,10.606-4.394l149.996-150C331.465,94.749,331.465,85.251,325.607,79.393z" />
+                </svg>
+              </li>
+            )}
             <button
               data-collapse-toggle="navbar-default"
               type="button"
@@ -149,7 +182,7 @@ export default function Navbar(props) {
             } w-full hidden md:block md:w-auto`}
             id="navbar-default"
           >
-            <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border items-center  space-y-4 md:space-y-0 border-gray-100  bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white 0 text-sm">
+            <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border items-center  space-y-4 md:space-y-0 border-gray-100  bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-transparent 0 text-sm">
               <li className="flex items-center space-x-1 cursor-pointer">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -171,11 +204,16 @@ export default function Navbar(props) {
 
               {props?.isLoggedIn ? (
                 <li
-                  className="flex items-center space-x-1 cursor-pointer"
+                  className={`relative h-full flex items-center space-x-1 cursor-pointer`}
                   onClick={() =>
                     props.setIsAccountMenuOpen(!props.isAccountMenuOpen)
                   }
                 >
+                  <span
+                    className={`${
+                      props.isAccountMenuOpen && "bg-gray-100"
+                    } absolute -translate-x-2 min-h-[4.5rem] w-[calc(100%+20px)] h-full -z-10`}
+                  ></span>
                   <span className="select-none mr-1">
                     Account |{" "}
                     <span className="font-bold">
@@ -189,7 +227,7 @@ export default function Navbar(props) {
                     viewBox="0 0 330 330"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className={`w-3 h-3 ${
+                    className={`w-[9px] h-[9px] ${
                       props?.isAccountMenuOpen ? "rotate-180" : ""
                     }`}
                   >
