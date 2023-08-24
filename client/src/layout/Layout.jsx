@@ -84,7 +84,11 @@ export default function Layout(props) {
         <div className="mx-4 lg:mx-10 mt-24">{props.children}</div>
         {props?.isMenuOpen && <Menu />}
         {props?.isAccountMenuOpen && session?.isLoggedIn && (
-          <AccountMenu session={session} logout={logout} />
+          <AccountMenu
+            setIsAccountMenuOpen={props?.setIsAccountMenuOpen}
+            session={session}
+            logout={logout}
+          />
         )}
         {!props?.isMenuOpen && !props?.isAccountMenuOpen && <Footer />}
       </UserData.Provider>

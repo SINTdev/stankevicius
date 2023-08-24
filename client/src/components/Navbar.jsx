@@ -105,7 +105,7 @@ export default function Navbar(props) {
         </>
       )}
       <nav className="fixed min-h-[4.5rem] flex items-center w-full bg-white border-gray-200 shadow-lg z-30">
-        <div className="max-w-screen-xl w-full flex flex-wrap items-center justify-between mx-auto p-4">
+        <div className="max-w-screen-xl w-full flex flex-wrap items-center justify-between mx-auto">
           <Link to="/" className="flex items-center">
             <img
               src="/assets/logo.png"
@@ -182,8 +182,8 @@ export default function Navbar(props) {
             } w-full hidden md:block md:w-auto`}
             id="navbar-default"
           >
-            <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border items-center  space-y-4 md:space-y-0 border-gray-100  bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-transparent 0 text-sm">
-              <li className="flex items-center space-x-1 cursor-pointer">
+            <ul className="h-[4.5rem] font-medium flex flex-col p-4 md:p-0 mt-4 border items-center  space-y-4 md:space-y-0 border-gray-100  bg-gray-50 md:flex-row md:mt-0 md:border-0 md:bg-transparent 0 text-sm">
+              <li className="flex items-center space-x-1 cursor-pointer mr-3">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -204,16 +204,11 @@ export default function Navbar(props) {
 
               {props?.isLoggedIn ? (
                 <li
-                  className={`relative h-full flex items-center space-x-1 cursor-pointer`}
+                  className={`transition-all duration-300 ease-in-out ${props.isAccountMenuOpen && "bg-gray-100"} hover:bg-gray-100 px-3 h-full relative flex items-center space-x-1 cursor-pointer`}
                   onClick={() =>
                     props.setIsAccountMenuOpen(!props.isAccountMenuOpen)
                   }
                 >
-                  <span
-                    className={`${
-                      props.isAccountMenuOpen && "bg-gray-100"
-                    } absolute -translate-x-2 min-h-[4.5rem] w-[calc(100%+20px)] h-full -z-10`}
-                  ></span>
                   <span className="select-none mr-1">
                     Account |{" "}
                     <span className="font-bold">
@@ -253,7 +248,7 @@ export default function Navbar(props) {
                 Logout
               </li> */}
               <li
-                className="flex items-center space-x-1 cursor-pointer"
+                className={`transition-all duration-300 ease-in-out ${props.isMenuOpen && "bg-gray-100"} hover:bg-gray-100 px-3 h-full flex items-center space-x-1 cursor-pointer`}
                 onClick={() => props.setIsMenuOpen(!props.isMenuOpen)}
               >
                 {props?.isMenuOpen ? (
