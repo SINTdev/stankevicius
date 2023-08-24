@@ -117,9 +117,10 @@ export default function Navbar(props) {
             {props?.isLoggedIn && (
               <li
                 className={`md:hidden relative h-full flex items-center cursor-pointer mr-1`}
-                onClick={() =>
-                  props.setIsAccountMenuOpen(!props.isAccountMenuOpen)
-                }
+                onClick={() => {
+                  props.setIsAccountMenuOpen(!props.isAccountMenuOpen);
+                  props.setIsMenuOpen(false);
+                }}
               >
                 <span
                   className={`${
@@ -156,6 +157,7 @@ export default function Navbar(props) {
               onClick={() => {
                 setIsNavbarOpen(!isNavbarOpen);
                 props.setIsMenuOpen(!props.isMenuOpen);
+                props.setIsAccountMenuOpen(false);
               }}
             >
               <span className="sr-only">Open main menu</span>
@@ -204,10 +206,13 @@ export default function Navbar(props) {
 
               {props?.isLoggedIn ? (
                 <li
-                  className={`transition-all duration-300 ease-in-out ${props.isAccountMenuOpen && "bg-gray-100"} hover:bg-gray-100 px-3 h-full relative flex items-center space-x-1 cursor-pointer`}
-                  onClick={() =>
-                    props.setIsAccountMenuOpen(!props.isAccountMenuOpen)
-                  }
+                  className={`transition-all duration-300 ease-in-out ${
+                    props.isAccountMenuOpen && "bg-gray-100"
+                  } hover:bg-gray-100 px-3 h-full relative flex items-center space-x-1 cursor-pointer`}
+                  onClick={() => {
+                    props.setIsAccountMenuOpen(!props.isAccountMenuOpen);
+                    props.setIsMenuOpen(false);
+                  }}
                 >
                   <span className="select-none mr-1">
                     Account |{" "}
@@ -244,12 +249,14 @@ export default function Navbar(props) {
                   </span>
                 </>
               )}
-              {/* <li className="cursor-pointer" onClick={logout}>
-                Logout
-              </li> */}
               <li
-                className={`transition-all duration-300 ease-in-out ${props.isMenuOpen && "bg-gray-100"} hover:bg-gray-100 px-3 h-full flex items-center space-x-1 cursor-pointer`}
-                onClick={() => props.setIsMenuOpen(!props.isMenuOpen)}
+                className={`transition-all duration-300 ease-in-out ${
+                  props.isMenuOpen && "bg-gray-100"
+                } hover:bg-gray-100 px-3 h-full flex items-center space-x-1 cursor-pointer`}
+                onClick={() => {
+                  props.setIsMenuOpen(!props.isMenuOpen);
+                  props.setIsAccountMenuOpen(false);
+                }}
               >
                 {props?.isMenuOpen ? (
                   <svg
