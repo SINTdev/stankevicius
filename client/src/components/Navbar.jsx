@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ModalWrapper from "./ModalWrapper";
 import Login from "./../auth/Login";
 import Register from "./../auth/Register";
@@ -8,6 +8,7 @@ import Reset from "../auth/Reset";
 import Verify from "../auth/Verify";
 
 export default function Navbar(props) {
+  let navigate = useNavigate();
   const [isNavbarOpen, setIsNavbarOpen] = useState(true);
   const { token: token, emailToken: emailToken } = useParams();
 
@@ -118,6 +119,13 @@ export default function Navbar(props) {
               <li
                 className={`md:hidden relative h-full flex items-center cursor-pointer mr-1`}
                 onClick={() => {
+                  navigate(
+                    `/${
+                      props?.session?.personal?.is_staff
+                        ? "corporate"
+                        : "client"
+                    }`
+                  );
                   props.setIsAccountMenuOpen(!props.isAccountMenuOpen);
                   props.setIsMenuOpen(false);
                 }}
@@ -210,6 +218,13 @@ export default function Navbar(props) {
                     props.isAccountMenuOpen && "bg-gray-100"
                   } hover:bg-gray-100 px-3 h-full relative flex items-center space-x-1 cursor-pointer`}
                   onClick={() => {
+                    navigate(
+                      `/${
+                        props?.session?.personal?.is_staff
+                          ? "corporate"
+                          : "client"
+                      }`
+                    );
                     props.setIsAccountMenuOpen(!props.isAccountMenuOpen);
                     props.setIsMenuOpen(false);
                   }}
@@ -244,6 +259,9 @@ export default function Navbar(props) {
                         register: false,
                       });
                     }}
+                    className={`transition-all duration-300 ease-in-out ${
+                      modalSetting.login && "bg-gray-100"
+                    } hover:bg-gray-100 px-3 h-full relative flex items-center space-x-1 cursor-pointer`}
                   >
                     <li className="cursor-pointer">Login/Create Account</li>
                   </span>

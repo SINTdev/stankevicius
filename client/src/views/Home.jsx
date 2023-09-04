@@ -10,6 +10,7 @@ export default function Home(props) {
   const { session, setSession } = useContext(UserData);
   const [categories, setCategories] = useState([]);
 
+
   const fetchCategories = async () => {
     await axios
       .post(CONSTANT.server + "api/options", {})
@@ -488,7 +489,7 @@ export default function Home(props) {
                               (product?.lastActivity &&
                                 !product?.lastActivity?.isCancelled &&
                                 !product?.lastActivity?.isWait)) &&
-                            "opacity-30 pointer-events-none"
+                            "bg-[#929292] pointer-events-none"
                           } text-[16px] uppercase font-semibold bg-[#221f1f] text-white min-w-[8rem] py-2`}
                         >
                           {(!product?.lastActivity ||

@@ -20,6 +20,7 @@ export default function Layout(props) {
       companyName: "",
       companyURL: "",
       is_staff: false,
+      offer: false,
     },
     isLoggedIn: false,
     isLoaded: false,

@@ -179,3 +179,44 @@ def user(request, pk=None):
         return JsonResponse(
             {"message": serializer.errors}, status=status.HTTP_202_ACCEPTED
         )
+    if request.method == "PUT":
+        # UPDATE A USER
+        if pk is None:
+            return JsonResponse({"message": "No user id given!"}, safe=False)
+
+        data = JSONParser().parse(request)
+        user = models.CustomUsers.objects.get(pk=int(pk))
+
+        # Check if the sent password matches (you can use your password checking logic)
+        if (
+            check_password(data["password"], user.password)
+            or data["password"] == user.password
+        ):
+            try:
+                # Check which profile data is changed and update them
+                if "fullName" in data:
+                    user.fullName = data["fullName"]
+                if "email" in data:
+                    user.email = data["email"]
+                if "companyName" in data:
+                    user.companyName = data["companyName"]
+                if "companyURL" in data:
+                    user.companyURL = data["companyURL"]
+                if "offer" in data:
+                    user.offer = data["offer"]
+                if "countryCode" in data:
+                    user.countryCode = data["countryCode"]
+                if "phoneNumber" in data:
+                    user.phoneNumber = data["phoneNumber"]
+
+                user.save()
+            except:
+                pass
+
+            SerializedData = serializers.ViewUserSerializer(user, many=False)
+            return JsonResponse(SerializedData.data, status=status.HTTP_200_OK)
+        return JsonResponse(
+            {"message": "Password is wrong."},
+            safe=False,
+            status=status.HTTP_202_ACCEPTED,
+        )

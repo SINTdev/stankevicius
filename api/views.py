@@ -246,6 +246,25 @@ def products(request, pk=None):
         )
 
 
+@api_view(["POST", "GET"])
+@permission_classes([])
+@authentication_classes([])
+def myproducts(request, pk=None):
+    if request.method == "GET":
+        if pk is None:
+            return JsonResponse([], safe=False)
+        instance = models.Product.objects.filter(by__id=pk).order_by("-timestamp")
+        final_data = serializers.ViewProductSerializer(instance, many=True).data
+        output = []
+        for data in final_data:
+            data["isExpired"] = is_product_expired(
+                data["timestamp"], data["listingDuration"]["name"]
+            )
+            output.append(data)
+
+        return JsonResponse(output, safe=False)
+
+
 @api_view(["POST", "PUT", "GET"])
 @permission_classes([])
 @authentication_classes([])

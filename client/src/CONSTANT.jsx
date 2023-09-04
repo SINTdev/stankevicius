@@ -12,6 +12,26 @@ export const CONSTANT = {
   client: "http://stankint.pythonanywhere.com/", // CHANGE WITH YOUR FRONTEND LINK (/ is MUST IN END)
 };
 
+
+
+export const USER_DASHBOARD_MENU = [
+  {
+    label: "Trade History",
+    to: "/client",
+  },
+  {
+    label: "Profile",
+    to: "/client/profile",
+  },
+  {
+    label: "Credit",
+    to: "/client/credit",
+  },
+  {
+    label: "Security",
+    to: "/client/security",
+  },
+];
 export const checkLoginFromLogin = () => {
   return sessionStorage.getItem("loggedin") &&
     JSON.parse(sessionStorage.getItem("loggedin")).data

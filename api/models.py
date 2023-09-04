@@ -112,6 +112,8 @@ class Product(models.Model):
         on_delete=models.CASCADE,
     )
     isPaidPromoted = models.BooleanField(default=False)
+    isArchived = models.BooleanField(default=False)
+    isExtended = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

@@ -33,6 +33,7 @@ class CustomUsers(AbstractUser):
     companyName = models.CharField(max_length=256, null=True, blank=True)
     companyURL = models.URLField(null=True, blank=True)
     token = models.TextField(null=True, blank=True)
+    offer = models.BooleanField(default=False)
     emailToken = models.TextField(null=True, blank=True)
     isEmailVerified = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now_add=True)
