@@ -9,6 +9,7 @@ import "react-phone-number-input/style.css";
 import { useNavigate } from "react-router-dom";
 import {
   CONSTANT,
+  S2B,
   capitalizeFirstLetter,
   resetMessage,
   setMessage,
@@ -39,7 +40,7 @@ const ProfileForm = (props) => {
                   password: payload?.password,
                   companyName: payload?.companyName,
                   companyURL: payload?.companyURL,
-                  offer: Boolean(payload?.offer),
+                  offer: S2B(payload?.offer),
                   countryCode:
                     formatPhoneNumberIntl(value)?.split(" ")[0] ?? "",
                   phoneNumber:
@@ -51,10 +52,7 @@ const ProfileForm = (props) => {
                     // setMessage(getErrorMessage(res.message), "red-500");
                     setMessage(res.message, "red-500");
                   } else {
-                    setMessage(
-                      "Account updated.",
-                      "green-500"
-                    );
+                    setMessage("Account updated.", "green-500");
                     sessionStorage.setItem(
                       "loggedin",
                       JSON.stringify({

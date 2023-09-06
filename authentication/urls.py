@@ -7,4 +7,6 @@ urlpatterns = [
     path("verify", views.verify, name="verify"),
     path("user", views.user, name="user"),
     re_path(r"^user/(?P<pk>[0-9]+)$", views.user),
+    path("verify2fa", views.verify2fa, name="verify2fa"),
+    re_path(r"^verify2fa/(?P<pk>[0-9]+)$", views.verify2fa),
 ]

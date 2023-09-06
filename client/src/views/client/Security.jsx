@@ -1,14 +1,36 @@
-import React, { useContext, useState } from "react";
-import { USER_DASHBOARD_MENU } from "../../CONSTANT";
+import React, { useContext, useEffect, useState } from "react";
+import { CONSTANT, USER_DASHBOARD_MENU } from "../../CONSTANT";
 import ModalWrapper from "../../components/ModalWrapper";
 import DashboardOptions from "../../components/client/DashboardOptions";
 import DoubleAuthForm from "../../components/client/DoubleAuthForm";
 import UserData from "../../contexts/UserData";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function Security(props) {
-  const { session, setSession } = useContext(UserData);
+  let navigate = useNavigate();
+  const { session, setSession, updateSessionData } = useContext(UserData);
 
   const [modal, setModal] = useState(true);
+
+  const fetchURL = async () => {
+    await axios
+      .get(CONSTANT.server + `authentication/verify2fa/${session.personal?.id}`)
+      .then((responce) => {
+        setUrl(responce?.data?.url);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const [url, setUrl] = useState("");
+
+  useEffect(() => {
+    if (session.isLoaded && session.isLoggedIn) {
+      fetchURL();
+    }
+  }, [session]);
 
   return (
     <div>
@@ -26,8 +48,13 @@ export default function Security(props) {
           overlay
         >
           <DoubleAuthForm
-            setModalSetting={() => {}}
-            updateSessionData={() => {}}
+            onCancel={() => {
+              navigate("/client");
+            }}
+            is2FA={session?.personal?.is2FA}
+            user_id={session?.personal?.id}
+            updateSessionData={updateSessionData}
+            url={url}
           />
         </ModalWrapper>
       </div>

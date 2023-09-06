@@ -10,6 +10,7 @@ import Dashboard from "./views/client/Dashboard";
 import Profile from "./views/client/Profile";
 import Credit from "./views/client/Credit";
 import Security from "./views/client/Security";
+import VerifyOTP from "./auth/VerifyOTP";
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -38,7 +39,15 @@ function App() {
             path="/addProduct"
             element={
               <Layout {...paramater}>
-                <AddProduct />
+                <AddProduct edit={false} />
+              </Layout>
+            }
+          />
+          <Route
+            path="/edit/:id"
+            element={
+              <Layout {...paramater}>
+                <AddProduct edit={true} />
               </Layout>
             }
           />

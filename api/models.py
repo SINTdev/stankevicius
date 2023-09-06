@@ -1,5 +1,6 @@
 from django.db import models
 from authentication.models import CustomUsers
+from django.utils import timezone
 
 # Create your models here.
 
@@ -111,10 +112,13 @@ class Product(models.Model):
         ListingDuration,
         on_delete=models.CASCADE,
     )
-    isPaidPromoted = models.BooleanField(default=False)
-    isArchived = models.BooleanField(default=False)
+    isPaidPromoted = models.BooleanField(default=False)  # Imp
+    isArchived = models.BooleanField(default=False)  # Imp
+    archivedOn = models.DateTimeField(blank=True, null=True)  # Imp
     isExtended = models.BooleanField(default=False)
-    timestamp = models.DateTimeField(auto_now_add=True)
+    isExpired = models.BooleanField(default=False)  # Imp
+    timestamp = models.DateTimeField(default=timezone.now)  # Imp
+    openedOn = models.DateTimeField(default=timezone.now)  # Imp
 
     def __str__(self):
         return self.name

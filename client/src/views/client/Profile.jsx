@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Profile(props) {
   let navigate = useNavigate();
-  const { session, setSession ,updateSessionData} = useContext(UserData);
+  const { session, setSession, updateSessionData } = useContext(UserData);
 
   const [modal, setModal] = useState(true);
 

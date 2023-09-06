@@ -14,7 +14,7 @@ from django.contrib.auth.hashers import make_password
 import base64
 from authentication.models import CustomUsers
 from .helpers import email_new_listing, test_email
-
+from django.utils import timezone
 
 # test_email()
 
@@ -184,47 +184,34 @@ def options(request):
         return JsonResponse(categories_serializer.data, safe=False)
 
 
-from datetime import datetime, timedelta
-
-
-def is_product_expired(activation_timestamp, expiration_days):
-    activation_date = datetime.fromisoformat(activation_timestamp)
-    expiration_date = activation_date + timedelta(days=int(expiration_days.split()[0]))
-    current_date = datetime.now()
-    return current_date >= expiration_date
-
-
-@api_view(["POST", "GET"])
+@api_view(["POST", "GET", "PUT"])
 @permission_classes([])
 @authentication_classes([])
 def products(request, pk=None):
     if request.method == "GET":
-        instance = models.Product.objects.all().order_by("-timestamp")
+        instance = models.Product.objects.filter(isExpired=False).order_by("-timestamp")
         # if pk is not None:
         #     instance = instance.exclude(by__id=pk)
         final_data = serializers.ViewProductSerializer(instance, many=True).data
         output = []
         for data in final_data:
-            if not is_product_expired(
-                data["timestamp"], data["listingDuration"]["name"]
-            ):
-                if pk is not None:
-                    lastObject = (
-                        models.ProductInteractions.objects.filter(
-                            user__id=pk, product__id=data["id"]
-                        )
-                        .order_by("-timestamp")
-                        .first()
+            if pk is not None:
+                lastObject = (
+                    models.ProductInteractions.objects.filter(
+                        user__id=pk, product__id=data["id"]
                     )
-                else:
-                    lastObject = None
-
-                data["lastActivity"] = (
-                    serializers.HomeProductInteractionsSerializer(lastObject).data
-                    if lastObject is not None
-                    else None
+                    .order_by("-timestamp")
+                    .first()
                 )
-                output.append(data)
+            else:
+                lastObject = None
+
+            data["lastActivity"] = (
+                serializers.HomeProductInteractionsSerializer(lastObject).data
+                if lastObject is not None
+                else None
+            )
+            output.append(data)
 
         return JsonResponse(output, safe=False)
     if request.method == "POST":
@@ -244,6 +231,25 @@ def products(request, pk=None):
         return JsonResponse(
             {"message": "Not valid data!"}, status=status.HTTP_202_ACCEPTED
         )
+    if request.method == "PUT":
+        # Update the existing product
+        try:
+            instance = models.Product.objects.get(pk=pk)
+        except models.Product.DoesNotExist:
+            return JsonResponse(
+                {"message": "Product not found"}, status=status.HTTP_202_ACCEPTED
+            )
+        data = JSONParser().parse(request)
+        serializer = serializers.ProductSerializer(instance, data=data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(
+                {"content": serializer.data}, status=status.HTTP_202_ACCEPTED
+            )
+        print(serializer.errors)
+        return JsonResponse(
+            {"message": "Not valid data!"}, status=status.HTTP_202_ACCEPTED
+        )
 
 
 @api_view(["POST", "GET"])
@@ -255,14 +261,37 @@ def myproducts(request, pk=None):
             return JsonResponse([], safe=False)
         instance = models.Product.objects.filter(by__id=pk).order_by("-timestamp")
         final_data = serializers.ViewProductSerializer(instance, many=True).data
-        output = []
-        for data in final_data:
-            data["isExpired"] = is_product_expired(
-                data["timestamp"], data["listingDuration"]["name"]
-            )
-            output.append(data)
+        return JsonResponse(final_data, safe=False)
 
-        return JsonResponse(output, safe=False)
+
+@api_view(["POST", "GET"])
+@permission_classes([])
+@authentication_classes([])
+def product(request, pk=None):
+    if request.method == "GET":
+        if pk is None:
+            return JsonResponse({})
+        instance = models.Product.objects.get(pk=pk)
+        final_data = serializers.ViewProductSerializer(instance).data
+        return JsonResponse(final_data)
+    if request.method == "POST":
+        data = JSONParser().parse(request)
+        inr = models.Product.objects.get(pk=pk)
+        if data["type"] == "archive":
+            # Archive product
+            inr.isArchived = True
+            inr.archivedOn = timezone.now()
+        elif data["type"] == "expire":
+            # Expire product
+            inr.isExpired = True
+        elif data["type"] == "extend":
+            # Expire product
+            inr.isExpired = False
+            inr.isExtended = True
+            inr.listingDuration = models.ListingDuration.objects.get(name="7 days")
+            inr.timestamp = timezone.now()
+        inr.save()
+        return JsonResponse({})
 
 
 @api_view(["POST", "PUT", "GET"])

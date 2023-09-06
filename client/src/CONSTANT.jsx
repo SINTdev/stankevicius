@@ -12,8 +12,6 @@ export const CONSTANT = {
   client: "http://stankint.pythonanywhere.com/", // CHANGE WITH YOUR FRONTEND LINK (/ is MUST IN END)
 };
 
-
-
 export const USER_DASHBOARD_MENU = [
   {
     label: "Trade History",
@@ -85,6 +83,10 @@ export const getUserData = () => {
       isInterestedInDance: false,
     }
   );
+};
+
+export const S2B = (s) => {
+  return s === "true" ? true : false;
 };
 
 export const Loader = (extra = "") => {

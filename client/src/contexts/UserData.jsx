@@ -12,6 +12,7 @@ const UserData = React.createContext({
       companyURL: "",
       is_staff: false,
       offer: false,
+      is2FA: false,
     },
     isLoaded: false,
     isLoggedIn: false,

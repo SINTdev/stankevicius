@@ -12,9 +12,10 @@ from rest_framework.parsers import JSONParser
 from .helpers import send_forget_password_mail, send_email_verfication_mail
 from django.contrib.auth.hashers import check_password, make_password
 import uuid
+import pyotp
 
 
-@api_view(["POST"])
+@api_view(["POST", "PUT"])
 @permission_classes([])
 @authentication_classes([])
 def validate(request):
@@ -30,7 +31,12 @@ def validate(request):
                 return JsonResponse({"message": "No account exists."}, safe=False)
             if user:
                 if check_password(password, user.password) or password == user.password:
-                    if user.isEmailVerified:
+                    if user.is2FA:
+                        return JsonResponse(
+                            {"is2FA": True},
+                            safe=False,
+                        )
+                    elif user.isEmailVerified:
                         SerializedData = serializers.ViewUserSerializer(
                             user, many=False
                         )
@@ -189,7 +195,8 @@ def user(request, pk=None):
 
         # Check if the sent password matches (you can use your password checking logic)
         if (
-            check_password(data["password"], user.password)
+            ("skipPassword" in data and data["skipPassword"])
+            or check_password(data["password"], user.password)
             or data["password"] == user.password
         ):
             try:
@@ -208,7 +215,12 @@ def user(request, pk=None):
                     user.countryCode = data["countryCode"]
                 if "phoneNumber" in data:
                     user.phoneNumber = data["phoneNumber"]
-
+                if "is2FA" in data:
+                    user.is2FA = data["is2FA"]
+                    if data["is2FA"]:
+                        user.secret2FA = pyotp.random_base32()
+                    else:
+                        user.secret2FA = ""
                 user.save()
             except:
                 pass
@@ -219,4 +231,41 @@ def user(request, pk=None):
             {"message": "Password is wrong."},
             safe=False,
             status=status.HTTP_202_ACCEPTED,
+        )
+
+
+@api_view(["GET", "POST"])
+@permission_classes([])
+@authentication_classes([])
+def verify2fa(request, pk=None):
+    if request.method == "GET":
+        if pk is not None:
+            user = models.CustomUsers.objects.get(pk=int(pk))
+            if user.is2FA:
+                url = pyotp.utils.build_uri(
+                    secret=user.secret2FA,
+                    name=user.email,
+                    issuer="Stankevicius",
+                )
+                return JsonResponse({"url": url}, status=status.HTTP_200_OK)
+        return JsonResponse({"url": ""}, status=status.HTTP_200_OK)
+    elif request.method == "POST":
+        data = JSONParser().parse(request)
+        if data["code"] and data["email"]:
+            try:
+                user = models.CustomUsers.objects.get(email=data["email"])
+                totp = pyotp.TOTP(user.secret2FA)
+                if totp.verify(data["code"]):
+                    SerializedData = serializers.ViewUserSerializer(user, many=False)
+                    return JsonResponse(SerializedData.data, safe=False)
+                else:
+                    return JsonResponse(
+                        {"message": "Code is not valid."},
+                        status=status.HTTP_200_OK,
+                    )
+            except Exception as e:
+                pass
+        return JsonResponse(
+            {"message": "Error verifying code.", "error": str(e)},
+            status=status.HTTP_200_OK,
         )

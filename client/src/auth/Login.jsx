@@ -8,6 +8,7 @@ import {
   checkLoginFromLogin,
 } from "../CONSTANT";
 import InputBox from "../components/InputBox";
+import VerifyOTP from "./VerifyOTP";
 
 const Login = (props) => {
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ const Login = (props) => {
   }, []);
 
   const [isReset, setIsReset] = useState(false);
+  const [is2FA, setIs2FA] = useState(false);
 
   const reset = async (e) => {
     e.target.style.pointerEvents = "none";
@@ -74,6 +76,8 @@ const Login = (props) => {
             let res = responce.data;
             if (res.message) {
               setMessage(res.message, "red-500");
+            } else if (res?.is2FA) {
+              setIs2FA(true);
             } else {
               sessionStorage.setItem(
                 "loggedin",
@@ -112,6 +116,17 @@ const Login = (props) => {
       [e.target.name]: e.target.value,
     });
   };
+
+  if (is2FA) {
+    return (
+      <VerifyOTP
+        email={payload.email}
+        setModalSetting={props?.setModalSetting}
+        updateSessionData={props?.updateSessionData}
+      />
+    );
+  }
+
   return (
     <div className="space-y-4 md:space-y-6">
       <div className="flex mb-5">

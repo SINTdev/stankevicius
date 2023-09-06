@@ -21,6 +21,7 @@ export default function Layout(props) {
       companyURL: "",
       is_staff: false,
       offer: false,
+      is2FA: false,
     },
     isLoggedIn: false,
     isLoaded: false,

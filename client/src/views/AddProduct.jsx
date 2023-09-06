@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   CONSTANT,
   setMessage,
@@ -12,6 +12,7 @@ import UserData from "../contexts/UserData";
 import Menu from "../components/Menu";
 export default function AddProduct(props) {
   const { session, setSession } = useContext(UserData);
+  const { id: id } = useParams();
   let navigate = useNavigate();
   const init__payload = {
     name: "",
@@ -53,6 +54,18 @@ export default function AddProduct(props) {
     listing_durations: [],
   });
 
+  const fetchProduct = async () => {
+    await axios
+      .get(CONSTANT.server + `api/product/${id}`)
+      .then((responce) => {
+        // setOptions(responce.data);
+        setPayload(responce.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   const fetchOptions = async () => {
     await axios
       .get(CONSTANT.server + "api/options")
@@ -68,34 +81,74 @@ export default function AddProduct(props) {
     fetchOptions();
   }, []);
 
+  useEffect(() => {
+    if (id) {
+      fetchProduct();
+    } else {
+      navigate("/");
+    }
+  }, [id]);
+
   const addProduct = async (e) => {
     e.target.style.pointerEvents = "none";
     e.target.innerHTML =
       '<div className="spinner-border custom-spin" role="status"><span className="visually-hidden">Loading...</span></div>';
     e.preventDefault();
     if (validate()) {
-      await axios
-        .post(CONSTANT.server + "api/products", {
-          ...payload,
-          by: session?.personal?.id,
-        })
-        .then((responce) => {
-          if (responce?.data?.message) {
-            setMessage(responce?.data?.message, "red-500");
-          } else {
-            setPayload(init__payload);
-            setMessage("Trade added successfully.", "green-500");
-            setTimeout(() => {
-              navigate("/");
-            }, 4000);
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      if (!props?.edit) {
+        await axios
+          .post(CONSTANT.server + "api/products", {
+            ...payload,
+            by: session?.personal?.id,
+          })
+          .then((responce) => {
+            if (responce?.data?.message) {
+              setMessage(responce?.data?.message, "red-500");
+            } else {
+              setPayload(init__payload);
+              setMessage("Trade added successfully.", "green-500");
+              setTimeout(() => {
+                navigate("/");
+              }, 4000);
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
+        await axios
+          .put(CONSTANT.server + `api/products/${id}`, {
+            action: payload?.action?.id,
+            category: payload?.category?.id,
+            measurement: payload?.measurement?.id,
+            currency: payload?.currency?.id,
+            payment: payload?.payment?.id,
+            delivery: payload?.delivery?.id,
+            contract: payload?.contract?.id,
+            origin: payload?.origin?.id,
+            listingDuration: payload?.listingDuration?.id,
+            name: payload?.name,
+            quantity: payload?.quantity,
+            price: payload?.price,
+          })
+          .then((responce) => {
+            if (responce?.data?.message) {
+              setMessage(responce?.data?.message, "red-500");
+            } else {
+              setPayload(init__payload);
+              setMessage("Trade updated successfully.", "green-500");
+              setTimeout(() => {
+                navigate("/");
+              }, 4000);
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
     }
     e.target.style.pointerEvents = "unset";
-    e.target.innerHTML = "Add new trade";
+    e.target.innerHTML = `${!props?.edit ? "Add new" : "Update"} trade`;
   };
 
   const validate = () => {
@@ -159,7 +212,7 @@ export default function AddProduct(props) {
     <div className="flex justify-center items-center flex-col">
       <div className="md:w-3/4 w-full">
         <div className="w-full text-left mb-5 md:pl-1 text-4xl _font-bold leading-tight tracking-tight text-black">
-          Add new trade
+          {!props?.edit ? "Add new" : "Update"} trade
         </div>
         <div className="w-full flex flex-col md:flex-row">
           <InputBox
@@ -283,7 +336,7 @@ export default function AddProduct(props) {
             onClick={addProduct}
             className="w-fit text-white tracking-wider _font-bold border border-black bg-black text-sm px-5 py-2.5 text-center"
           >
-            Add new trade
+            {!props?.edit ? "Add new" : "Update"} trade
           </button>
           <Link
             to="/"

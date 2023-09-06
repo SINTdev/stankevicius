@@ -6,6 +6,7 @@ import InputBox from "../../components/InputBox";
 import Modal from "../../components/Modal";
 import UserData from "../../contexts/UserData";
 import DashboardOptions from "../../components/client/DashboardOptions";
+import { takeActionOnProduct } from "../../ACTIONS";
 
 const DropdownButton = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -61,7 +62,6 @@ const DropdownButton = (props) => {
 export default function Dashboard(props) {
   const { session, setSession } = useContext(UserData);
 
-
   const fetchProducts = async () => {
     await axios
       .get(CONSTANT.server + `api/myproducts/${session.personal?.id}`)
@@ -105,6 +105,32 @@ export default function Dashboard(props) {
     return newDate.toISOString();
   };
 
+  const countdownFrom5Days = (timestamp) => {
+    const targetDate = new Date(timestamp);
+    const currentTime = new Date().getTime();
+    const targetTime = targetDate.getTime() + 5 * 24 * 60 * 60 * 1000; // 5 days in milliseconds
+    const timeDifference = targetTime - currentTime;
+    const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+    const hours = Math.floor(
+      (timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    );
+    const minutes = Math.floor(
+      (timeDifference % (1000 * 60 * 60)) / (1000 * 60)
+    );
+    let countdownString = "";
+    if (days > 0) {
+      countdownString += `${days} days `;
+    }
+    if (hours > 0) {
+      countdownString += `${hours} hours `;
+    }
+    if (minutes > 0) {
+      countdownString += `${minutes} minutes`;
+    }
+
+    return countdownString.trim();
+  };
+
   let EMPTY_MODAL = {
     isOpen: false,
     content: "",
@@ -114,126 +140,7 @@ export default function Dashboard(props) {
 
   const [modal, setModal] = useState(EMPTY_MODAL);
 
-  const addInteraction = async (user_id, product_id, action_id, isWait) => {
-    let toAdd = {};
-    if (!isWait) {
-      toAdd["isWait"] = false;
-    }
-    await axios
-      .post(CONSTANT.server + "api/interactions", {
-        user: user_id,
-        product: product_id,
-        action: action_id,
-        timestamp: Date.now(),
-        ...toAdd,
-      })
-      .then((responce) => {
-        if (responce?.data?.message) {
-          setModal({
-            ...modal,
-            content: responce?.data?.message,
-            onYes: () => {
-              setModal(EMPTY_MODAL);
-            },
-          });
-        } else {
-          setModal(EMPTY_MODAL);
-          fetchProducts();
-          startTimerAndFetchProducts();
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  const cancelInteraction = async (id) => {
-    await axios
-      .put(CONSTANT.server + "api/interactions", {
-        id: id,
-      })
-      .then((responce) => {
-        if (responce?.data?.message) {
-          setModal({
-            ...modal,
-            content: responce?.data?.message,
-            onYes: () => {
-              setModal(EMPTY_MODAL);
-            },
-          });
-        } else {
-          setModal(EMPTY_MODAL);
-          fetchProducts();
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  const handleInteraction = (
-    product_id,
-    action,
-    isCancel = false,
-    isWait = true
-  ) => {
-    //  console.log(product_id, action, isCancel, isWait);
-    if (session.isLoggedIn) {
-      setModal({
-        isOpen: true,
-        content: isCancel
-          ? "You agree to cancel. Your request will be cancelled and you will not be contacted by our commercial sales team."
-          : action?.name !== "BUYING"
-          ? "You confirm that you can purchase the proposed product and agree to be contacted by our commercial sales team to discuss your offer."
-          : "You confirm that you can supply the required product and agree to be contacted by our commercial sales team to discuss your proposal.",
-        onYes: () => {
-          if (!isCancel) {
-            addInteraction(
-              session?.personal?.id,
-              product_id,
-              action?.id,
-              isWait
-            );
-          } else {
-            cancelInteraction(product_id);
-          }
-        },
-        isCancel: isCancel,
-      });
-    } else {
-      setModal({
-        isOpen: true,
-        content: "Please login to interact.",
-        onYes: () => {
-          setModal(EMPTY_MODAL);
-        },
-        isCancel: false,
-      });
-    }
-  };
-
-  function startTimerAndFetchProducts() {
-    const timer = setTimeout(() => {
-      fetchProducts();
-    }, 5 * 60 * 1000);
-  }
-
   // Utils
-
-  const returnMessage = (product) => {
-    if (product?.lastActivity !== null) {
-      if (product?.lastActivity?.isCancelled) {
-        return "(YOU WON’T BE ABLE TO CANCEL NEXT TIME)";
-      } else if (
-        !hasFiveMinutesPassed(product?.lastActivity?.timestamp) &&
-        product?.lastActivity?.isWait
-      ) {
-        return "(After 5 minutes you won't be able to cancel)";
-      }
-    }
-
-    return "";
-  };
 
   const [showData, setShowData] = useState(productsList || []);
 
@@ -298,17 +205,69 @@ export default function Dashboard(props) {
         >
           <div className="absolute w-[100%] h-[1px] bg-gray-300 -bottom-[0px] left-0 hidden lg:block"></div>
           <p className="text-xs mb-2 lg:mb-0 lg:float-right">
-            <span className="uppercase _font-bold mr-1">opened on</span>
-            <span className="font-thin">{formatDate(product?.timestamp)}</span>
-            <span className="uppercase _font-bold ml-3 mr-1">Expiring on</span>
-            <span className="font-thin">
-              {formatDate(
-                addDaysToTimestamp(
-                  product?.timestamp,
-                  product?.listingDuration?.name
-                )
-              )}
-            </span>
+            {!product?.isExtended && !product?.isArchived ? (
+              <>
+                <span className="uppercase _font-bold mr-1">opened on</span>
+                <span className="font-thin">
+                  {formatDate(product?.openedOn)}
+                </span>
+                <span className="uppercase _font-bold ml-3 mr-1">
+                  {product?.isExpired ? "Expired" : "Expiring"} on
+                </span>
+                <span className="font-thin">
+                  {formatDate(
+                    addDaysToTimestamp(
+                      product?.timestamp,
+                      product?.listingDuration?.name
+                    )
+                  )}
+                </span>
+              </>
+            ) : product?.isExtended && !product?.isArchived ? (
+              <>
+                <span className="uppercase _font-bold mr-1">Expired on</span>
+                <span className="font-thin">
+                  {formatDate(
+                    addDaysToTimestamp(
+                      product?.openedOn,
+                      product?.listingDuration?.name
+                    )
+                  )}
+                </span>
+                <span className="uppercase _font-bold ml-3 mr-1">
+                  Extended till
+                </span>
+                <span className="font-thin">
+                  {formatDate(
+                    addDaysToTimestamp(
+                      product?.timestamp,
+                      product?.listingDuration?.name
+                    )
+                  )}
+                </span>
+              </>
+            ) : (
+              <>
+                <div className="flex flex-col w-full justify-start items-start mr-16">
+                  <div>
+                    <span className="uppercase _font-bold mr-1">
+                      Archived on
+                    </span>
+                    <span className="font-thin">
+                      {formatDate(product?.archivedOn)}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="uppercase _font-bold mr-1">
+                      Deleted in
+                    </span>
+                    <span className="font-thin">
+                      {countdownFrom5Days(product?.archivedOn)}
+                    </span>
+                  </div>
+                </div>
+              </>
+            )}
           </p>
           <div className=" mb-5">
             <h1 className="_font-bold text-[24px] tracking-tight">
@@ -340,20 +299,46 @@ export default function Dashboard(props) {
                   {
                     label: "Edit",
                     type: "link",
-                    click: "/edit",
+                    click: `/edit/${product?.id}`,
                   },
                   {
                     label: "Expire Now",
                     type: "button",
                     click: () => {
-                      alert("Expire");
+                      setModal({
+                        ...modal,
+                        isOpen: true,
+                        content: `You confirm that you want to expire
+                        this trade now and this trade will
+                        expire immediately and will be
+                        removed from listing.`,
+                        onYes: () => {
+                          takeActionOnProduct(product?.id, "expire", () => {
+                            fetchProducts();
+                          });
+                          setModal(EMPTY_MODAL);
+                        },
+                      });
                     },
                   },
                   {
                     label: "Archive Now",
                     type: "button",
                     click: () => {
-                      alert("Archive");
+                      setModal({
+                        ...modal,
+                        isOpen: true,
+                        content: `You confirm that you want to archive
+                        this trade now. An archived trade
+                        cannot be restored and will be
+                        deleted from the system in 5 days.`,
+                        onYes: () => {
+                          takeActionOnProduct(product?.id, "archive", () => {
+                            fetchProducts();
+                          });
+                          setModal(EMPTY_MODAL);
+                        },
+                      });
                     },
                   },
                 ]}
@@ -368,14 +353,29 @@ export default function Dashboard(props) {
                     label: "Extend 7 Days",
                     type: "button",
                     click: () => {
-                      alert("Extend");
+                      takeActionOnProduct(product?.id, "extend", () => {
+                        fetchProducts();
+                      });
                     },
                   },
                   {
                     label: "Archive Now",
                     type: "button",
                     click: () => {
-                      alert("Archive");
+                      setModal({
+                        ...modal,
+                        isOpen: true,
+                        content: `You confirm that you want to archive
+                        this trade now. An archived trade
+                        cannot be restored and will be
+                        deleted from the system in 5 days.`,
+                        onYes: () => {
+                          takeActionOnProduct(product?.id, "archive", () => {
+                            fetchProducts();
+                          });
+                          setModal(EMPTY_MODAL);
+                        },
+                      });
                     },
                   },
                 ]}

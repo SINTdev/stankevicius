@@ -427,7 +427,7 @@ export default function Home(props) {
                         opened on
                       </span>
                       <span className="font-thin">
-                        {formatDate(product?.timestamp)}
+                        {formatDate(product?.openedOn)}
                       </span>
                       <span className="uppercase _font-bold ml-3 mr-1">
                         Expiring on
