@@ -19,7 +19,7 @@ export const USER_DASHBOARD_MENU = [
   },
   {
     label: "Profile",
-    to: "/client/profile",
+    to: "/profile",
   },
   {
     label: "Credit",
@@ -27,7 +27,30 @@ export const USER_DASHBOARD_MENU = [
   },
   {
     label: "Security",
-    to: "/client/security",
+    to: "/security",
+  },
+];
+
+export const CORPORATE_DASHBOARD_MENU = [
+  {
+    label: "Category Management",
+    to: "/corporate/categories",
+  },
+  {
+    label: "User Management",
+    to: "/corporate/profile",
+  },
+  {
+    label: "Credit Management",
+    to: "/corporate/credit",
+  },
+  {
+    label: "Profile",
+    to: "/profile",
+  },
+  {
+    label: "Security",
+    to: "/security",
   },
 ];
 export const checkLoginFromLogin = () => {

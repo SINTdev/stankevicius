@@ -35,10 +35,7 @@ export default function Security(props) {
   return (
     <div>
       <div className="max-w-screen-xl mx-auto p-0 md:p-4">
-        <DashboardOptions
-          name={session?.personal?.fullName}
-          menus={USER_DASHBOARD_MENU}
-        />
+        <DashboardOptions name={session?.personal?.fullName} />
         {/* Content down */}
         <ModalWrapper
           isOpen={modal}
@@ -49,7 +46,7 @@ export default function Security(props) {
         >
           <DoubleAuthForm
             onCancel={() => {
-              navigate("/client");
+              navigate(`/${session?.personal?.is_staff ? "corporate":"client"}`);
             }}
             is2FA={session?.personal?.is2FA}
             user_id={session?.personal?.id}

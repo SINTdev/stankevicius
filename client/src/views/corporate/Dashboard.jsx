@@ -1,12 +1,18 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { CONSTANT, USER_DASHBOARD_MENU } from "../../CONSTANT";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import {
+  CONSTANT,
+  CORPORATE_DASHBOARD_MENU,
+  USER_DASHBOARD_MENU,
+} from "../../CONSTANT";
 import InputBox from "../../components/InputBox";
 import Modal from "../../components/Modal";
 import UserData from "../../contexts/UserData";
 import DashboardOptions from "../../components/client/DashboardOptions";
 import { takeActionOnProduct } from "../../ACTIONS";
+import ModalWrapper from "../../components/ModalWrapper";
+import CategoryManagement from "../../components/corporate/CategoryManagement";
 
 const DropdownButton = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -60,11 +66,12 @@ const DropdownButton = (props) => {
 };
 
 export default function Dashboard(props) {
+  let navigate = useNavigate();
   const { session, setSession } = useContext(UserData);
 
   const fetchProducts = async () => {
     await axios
-      .get(CONSTANT.server + `api/myproducts/${session.personal?.id}`)
+      .get(CONSTANT.server + `api/corporateproducts`)
       .then((responce) => {
         setProductsList(responce.data);
       })
@@ -148,6 +155,7 @@ export default function Dashboard(props) {
     setShowData(
       productsList
         .filter((product, index) => {
+          if (!filter) return true;
           if (filter === "active") {
             return !product?.isArchived && !product?.isExpired;
           }
@@ -157,7 +165,10 @@ export default function Dashboard(props) {
           if (filter === "archived") {
             return product?.isArchived;
           }
-          return true;
+          if (filter === "uncat") {
+            return !product?.category;
+          }
+          return parseInt(product?.category?.id) === parseInt(filter);
         })
         .filter((product, index) => {
           if (!search) return true;
@@ -460,6 +471,30 @@ export default function Dashboard(props) {
     );
   };
 
+  //   Categories
+
+  const [categories, setCategories] = useState([]);
+  const fetchCategories = async () => {
+    await axios
+      .post(CONSTANT.server + "api/options", {})
+      .then((responce) => {
+        setCategories(responce.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  useEffect(() => {
+    fetchCategories();
+  }, []);
+
+  //   Modal
+  const [modalWrap, setModalWrap] = useState(false);
+
+  useEffect(() => {
+    setModalWrap(props?.category);
+  }, [props]);
+
   return (
     <div>
       <Modal
@@ -471,6 +506,25 @@ export default function Dashboard(props) {
         onYes={modal.onYes}
         isCancel={modal.isCancel}
       />
+      <ModalWrapper
+        isOpen={modalWrap}
+        onClose={() => {
+          setModalWrap(!modalWrap);
+        }}
+        overlay
+        big
+      >
+        <CategoryManagement
+          onCancel={() => {
+            navigate(
+              `/${session?.personal?.is_staff ? "corporate" : "client"}`
+            );
+          }}
+          setModal={setModal}
+          modal={modal}
+          EMPTY_MODAL={EMPTY_MODAL}
+        />
+      </ModalWrapper>
       {/* Home Page */}
       <div className="max-w-screen-xl mx-auto p-0 md:p-4">
         <DashboardOptions name={session?.personal?.fullName} />
@@ -505,12 +559,17 @@ export default function Dashboard(props) {
               id: "archived",
               name: "Archived",
             },
+            ...categories,
+            {
+              id: "uncat",
+              name: "Uncategorized",
+            },
           ].map((category, one) => {
             return (
               <p
                 className={`${
                   filter === category.id && "bg-gray-200"
-                } py-2 px-3 hover:bg-gray-200 text-[18px] transition-all duration-300 ease-in-out cursor-pointer`}
+                } py-2 px-3 hover:bg-gray-200 text-[18px] whitespace-nowrap transition-all duration-300 ease-in-out cursor-pointer`}
                 onClick={() => {
                   setFilter(category.id);
                 }}

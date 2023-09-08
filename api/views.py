@@ -267,6 +267,16 @@ def myproducts(request, pk=None):
 @api_view(["POST", "GET"])
 @permission_classes([])
 @authentication_classes([])
+def corporateproducts(request):
+    if request.method == "GET":
+        instance = models.Product.objects.all().order_by("-timestamp")
+        final_data = serializers.ViewProductSerializer(instance, many=True).data
+        return JsonResponse(final_data, safe=False)
+
+
+@api_view(["POST", "GET"])
+@permission_classes([])
+@authentication_classes([])
 def product(request, pk=None):
     if request.method == "GET":
         if pk is None:
@@ -336,3 +346,67 @@ def interactions(request, pk=None):
         except Exception as e:
             print(e)
             return JsonResponse({"message": "Not valid ids!"}, safe=False)
+
+
+@api_view(["POST"])
+@permission_classes([])
+@authentication_classes([])
+def category(request):
+    if request.method == "POST":
+        data = JSONParser().parse(request)
+
+        # Extract the payload and operation from the JSON data
+        payload = data.get("payload")
+        operation = data.get("operation")
+
+        if operation == "add":
+            # Create a new category with the provided value
+            name = payload.get("value")
+            if name:
+                models.Category.objects.create(name=name)
+                return JsonResponse(
+                    {"message": "Category added successfully."}, safe=False
+                )
+            else:
+                return JsonResponse(
+                    {"message": "Invalid payload for 'add' operation."}, safe=False
+                )
+
+        elif operation == "update":
+            # Update an existing category with the provided id and value
+            category_id = payload.get("id")
+            name = payload.get("value")
+            if category_id and name:
+                try:
+                    category = models.Category.objects.get(id=int(category_id))
+                    category.name = name
+                    category.save()
+                    return JsonResponse(
+                        {"message": "Category updated successfully."}, safe=False
+                    )
+                except models.Category.DoesNotExist:
+                    return JsonResponse({"message": "Category not found."}, safe=False)
+            else:
+                return JsonResponse(
+                    {"message": "Invalid payload for 'update' operation."}, safe=False
+                )
+
+        elif operation == "delete":
+            # Delete an existing category with the provided id
+            category_id = payload.get("id")
+            if category_id:
+                try:
+                    category = models.Category.objects.get(id=int(category_id))
+                    category.delete()
+                    return JsonResponse(
+                        {"message": "Category deleted successfully."}, safe=False
+                    )
+                except models.Category.DoesNotExist:
+                    return JsonResponse({"message": "Category not found."}, safe=False)
+            else:
+                return JsonResponse(
+                    {"message": "Invalid payload for 'delete' operation."}, safe=False
+                )
+
+        else:
+            return JsonResponse({"message": "Invalid operation."}, safe=False)

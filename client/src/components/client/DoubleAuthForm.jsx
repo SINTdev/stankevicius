@@ -125,5 +125,3 @@ const DoubleAuthForm = (props) => {
 };
 
 export default DoubleAuthForm;
-
-// https://www.npmjs.com/package/otplib#api--demo-website

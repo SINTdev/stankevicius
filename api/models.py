@@ -79,8 +79,7 @@ class Product(models.Model):
         on_delete=models.CASCADE,
     )
     category = models.ForeignKey(
-        Category,
-        on_delete=models.CASCADE,
+        Category, on_delete=models.SET_NULL, blank=True, null=True
     )
     quantity = models.IntegerField()
     measurement = models.ForeignKey(

@@ -29,7 +29,7 @@ const ProfileForm = (props) => {
       payload.email !== "" &&
       /^\w+([\.-]?\w+)*@[\w-]+(\.\w+)+$/.test(payload.email)
     ) {
-      if (payload.password !== "" && payload.password.length >= 8) {
+      if (payload.password !== "") {
         if (payload.fullName !== "") {
           if (value !== "") {
             if (isPossiblePhoneNumber(value)) {
@@ -100,7 +100,8 @@ const ProfileForm = (props) => {
     setPayload({
       ...payload,
       [e.target.name]:
-        e.target.name === "companyURL" && payload.companyURL.length === 0
+        e.target.name === "companyURL" &&
+        (!payload?.companyURL || payload?.companyURL?.length === 0)
           ? `https://${e.target.value}`
           : e.target.value,
     });

@@ -6,11 +6,13 @@ import Layout from "./layout/Layout";
 import TakeMeToAdmin from "./components/TakeMeToAdmin";
 import Register from "./auth/Register";
 import AddProduct from "./views/AddProduct";
-import Dashboard from "./views/client/Dashboard";
+import UserDashboard from "./views/client/Dashboard";
+import CorporateDashboard from "./views/corporate/Dashboard";
 import Profile from "./views/client/Profile";
 import Credit from "./views/client/Credit";
 import Security from "./views/client/Security";
-import VerifyOTP from "./auth/VerifyOTP";
+import CreditManagement from "./views/corporate/CreditManagement";
+// import CategoryManagement from "./views/corporate/CategoryManagement";
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -74,12 +76,12 @@ function App() {
             path="/client"
             element={
               <Layout {...paramater}>
-                <Dashboard />
+                <UserDashboard />
               </Layout>
             }
           />
           <Route
-            path="/client/profile"
+            path="/profile"
             element={
               <Layout {...paramater}>
                 <Profile />
@@ -95,7 +97,7 @@ function App() {
             }
           />
           <Route
-            path="/client/security"
+            path="/security"
             element={
               <Layout {...paramater}>
                 <Security />
@@ -103,7 +105,33 @@ function App() {
             }
           />
           {/* Client Routes End */}
+          {/* Corporate Routes Start */}
 
+          <Route
+            path="/corporate"
+            element={
+              <Layout {...paramater}>
+                <CorporateDashboard />
+              </Layout>
+            }
+          />
+          <Route
+            path="/corporate/categories"
+            element={
+              <Layout {...paramater}>
+                <CorporateDashboard category={true} />
+              </Layout>
+            }
+          />
+          <Route
+            path="/corporate/credit"
+            element={
+              <Layout {...paramater}>
+                <CreditManagement />
+              </Layout>
+            }
+          />
+          {/* Corporate Routes End */}
           <Route
             path="*"
             element={

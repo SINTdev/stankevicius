@@ -1,20 +1,41 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { checkLoginFromNonLogin } from "../../CONSTANT";
+import {
+  CORPORATE_DASHBOARD_MENU,
+  USER_DASHBOARD_MENU,
+  checkLoginFromNonLogin,
+} from "../../CONSTANT";
+import UserData from "../../contexts/UserData";
 
-export default function DashboardOptions({ name, menus }) {
+export default function DashboardOptions({ name }) {
   const location = useLocation();
   const navigate = useNavigate();
+  const { session } = useContext(UserData);
   useEffect(() => {
     if (checkLoginFromNonLogin()) {
       navigate("/");
     }
   }, []);
+
+  useEffect(() => {
+    if (session.isLoaded && session.isLoggedIn) {
+      setMenus(
+        !session?.personal?.is_staff
+          ? USER_DASHBOARD_MENU
+          : CORPORATE_DASHBOARD_MENU
+      );
+    }
+  }, [session]);
+
+  const [menus, setMenus] = useState([]);
+
   return (
     <>
       <div className="flex space-x-8">
         <h1 className="font-semibold tracking-tight text-[24px]">
-          Hello {name}
+          {!session?.personal?.is_staff
+            ? `Hello ${name}`
+            : "Corporate Dashboard"}
         </h1>
       </div>
       <div className="flex flex-row space-x-8 my-5">

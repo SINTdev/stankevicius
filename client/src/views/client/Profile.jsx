@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { USER_DASHBOARD_MENU } from "../../CONSTANT";
+import { CORPORATE_DASHBOARD_MENU, USER_DASHBOARD_MENU } from "../../CONSTANT";
 import ModalWrapper from "../../components/ModalWrapper";
 import DashboardOptions from "../../components/client/DashboardOptions";
 import ProfileForm from "../../components/client/ProfileForm";
@@ -15,10 +15,7 @@ export default function Profile(props) {
   return (
     <div>
       <div className="max-w-screen-xl mx-auto p-0 md:p-4">
-        <DashboardOptions
-          name={session?.personal?.fullName}
-          menus={USER_DASHBOARD_MENU}
-        />
+        <DashboardOptions name={session?.personal?.fullName} />
         {/* Content down */}
         <ModalWrapper
           isOpen={modal}
@@ -30,7 +27,7 @@ export default function Profile(props) {
         >
           <ProfileForm
             onCancel={() => {
-              navigate("/client");
+              navigate(`/${session?.personal?.is_staff ? "corporate":"client"}`);
             }}
             data={session?.personal}
             updateSessionData={updateSessionData}

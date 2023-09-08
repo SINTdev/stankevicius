@@ -6,7 +6,7 @@ const Modal = (props) => {
   return (
     <>
       {isOpen ? (
-        <div className="fixed inset-0 flex items-center justify-center z-50">
+        <div className="fixed inset-0 flex items-center justify-center z-[100]">
           {/* Overlay */}
           <div
             className="fixed inset-0 bg-white opacity-70"
