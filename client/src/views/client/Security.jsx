@@ -13,24 +13,6 @@ export default function Security(props) {
 
   const [modal, setModal] = useState(true);
 
-  const fetchURL = async () => {
-    await axios
-      .get(CONSTANT.server + `authentication/verify2fa/${session.personal?.id}`)
-      .then((responce) => {
-        setUrl(responce?.data?.url);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  const [url, setUrl] = useState("");
-
-  useEffect(() => {
-    if (session.isLoaded && session.isLoggedIn) {
-      fetchURL();
-    }
-  }, [session]);
 
   return (
     <div>

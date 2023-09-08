@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
-import Login from "./auth/Login";
-import Home from "./views/Home";
-import Layout from "./layout/Layout";
+import {
+  Route,
+  BrowserRouter as Router,
+  Routes,
+  useLocation,
+} from "react-router-dom";
 import TakeMeToAdmin from "./components/TakeMeToAdmin";
-import Register from "./auth/Register";
+import Layout from "./layout/Layout";
 import AddProduct from "./views/AddProduct";
-import UserDashboard from "./views/client/Dashboard";
-import CorporateDashboard from "./views/corporate/Dashboard";
-import Profile from "./views/client/Profile";
+import Home from "./views/Home";
 import Credit from "./views/client/Credit";
+import UserDashboard from "./views/client/Dashboard";
+import Profile from "./views/client/Profile";
 import Security from "./views/client/Security";
 import CreditManagement from "./views/corporate/CreditManagement";
+import CorporateDashboard from "./views/corporate/Dashboard";
+import UserManagement from "./views/corporate/UserManagement";
 // import CategoryManagement from "./views/corporate/CategoryManagement";
 
 function App() {
@@ -80,14 +84,14 @@ function App() {
               </Layout>
             }
           />
-          <Route
+          {/* <Route
             path="/profile"
             element={
               <Layout {...paramater}>
                 <Profile />
               </Layout>
             }
-          />
+          /> */}
           <Route
             path="/client/credit"
             element={
@@ -96,14 +100,14 @@ function App() {
               </Layout>
             }
           />
-          <Route
+          {/* <Route
             path="/security"
             element={
               <Layout {...paramater}>
                 <Security />
               </Layout>
             }
-          />
+          /> */}
           {/* Client Routes End */}
           {/* Corporate Routes Start */}
 
@@ -116,18 +120,18 @@ function App() {
             }
           />
           <Route
-            path="/corporate/categories"
-            element={
-              <Layout {...paramater}>
-                <CorporateDashboard category={true} />
-              </Layout>
-            }
-          />
-          <Route
             path="/corporate/credit"
             element={
               <Layout {...paramater}>
                 <CreditManagement />
+              </Layout>
+            }
+          />
+          <Route
+            path="/corporate/user"
+            element={
+              <Layout {...paramater}>
+                <UserManagement />
               </Layout>
             }
           />

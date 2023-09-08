@@ -10,7 +10,7 @@ import UserData from "../../contexts/UserData";
 export default function DashboardOptions({ name }) {
   const location = useLocation();
   const navigate = useNavigate();
-  const { session } = useContext(UserData);
+  const { session, configureModal, globalModals } = useContext(UserData);
   useEffect(() => {
     if (checkLoginFromNonLogin()) {
       navigate("/");
@@ -40,11 +40,28 @@ export default function DashboardOptions({ name }) {
       </div>
       <div className="flex flex-row space-x-8 my-5">
         {menus.map((menu) => {
+          if (!menu?.isLink) {
+            return (
+              <span
+                onClick={() => {
+                  configureModal(menu?.to);
+                }}
+                className={`${
+                  globalModals[menu?.to] && "bg-[#929292] pointer-events-none"
+                } capitalize cursor-pointer text-center font-medium bg-[#221f1f] text-white px-6 min-w-[8rem] py-1.5`}
+              >
+                {menu?.label}
+              </span>
+            );
+          }
           return (
             <Link
               to={menu?.to}
               className={`${
                 location.pathname === menu?.to &&
+                (!globalModals?.category &&
+                  !globalModals?.profile &&
+                  !globalModals?.security) &&
                 "bg-[#929292] pointer-events-none"
               } capitalize text-center font-medium bg-[#221f1f] text-white px-6 min-w-[8rem] py-1.5`}
             >

@@ -84,7 +84,7 @@ export default function AddProduct(props) {
   useEffect(() => {
     if (id) {
       fetchProduct();
-    } else {
+    } else if (props?.edit) {
       navigate("/");
     }
   }, [id]);

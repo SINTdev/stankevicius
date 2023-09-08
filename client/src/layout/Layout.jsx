@@ -6,6 +6,7 @@ import { checkLoginFromNonLogin } from "../CONSTANT";
 import Footer from "../components/Footer";
 import Menu from "../components/Menu";
 import AccountMenu from "../components/AccountMenu";
+import ModalHandler from "./ModalHandler";
 export default function Layout(props) {
   let navigate = useNavigate();
   // ------------------
@@ -49,8 +50,6 @@ export default function Layout(props) {
     }
   };
 
-  const value = { session, setSession, updateSessionData };
-
   // ------------------
   // SESSION - END
   // ------------------
@@ -72,9 +71,42 @@ export default function Layout(props) {
     props?.setIsAccountMenuOpen(false);
   };
 
+  const INIT_MODAL = {
+    profile: false,
+    security: false,
+    category: false,
+  };
+  const [globalModals, setGlobalModals] = useState(INIT_MODAL);
+
+  const configureModal = (name, val = true) => {
+    setGlobalModals({
+      ...globalModals,
+      [name]: val,
+    });
+  };
+
+  const resetGlobalModal = () => {
+    setGlobalModals(INIT_MODAL);
+  };
+
+  const value = {
+    session,
+    setSession,
+    updateSessionData,
+    configureModal,
+    globalModals,
+  };
+
   return (
     <>
       <UserData.Provider value={value}>
+        <ModalHandler
+          config={globalModals}
+          setter={configureModal}
+          reset={resetGlobalModal}
+          session={session}
+          updateSessionData={updateSessionData}
+        />
         <Navbar
           isLoggedIn={session.isLoggedIn}
           __init_session={__init_session}

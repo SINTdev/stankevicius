@@ -16,41 +16,50 @@ export const USER_DASHBOARD_MENU = [
   {
     label: "Trade History",
     to: "/client",
+    isLink: true,
   },
   {
     label: "Profile",
-    to: "/profile",
+    to: "profile",
+    isLink: false,
   },
   {
     label: "Credit",
     to: "/client/credit",
+    isLink: true,
   },
   {
     label: "Security",
-    to: "/security",
+    to: "security",
+    isLink: false,
   },
 ];
 
 export const CORPORATE_DASHBOARD_MENU = [
   {
     label: "Category Management",
-    to: "/corporate/categories",
+    to: "category",
+    isLink: false,
   },
   {
     label: "User Management",
-    to: "/corporate/profile",
+    to: "/corporate/user",
+    isLink: true,
   },
   {
     label: "Credit Management",
     to: "/corporate/credit",
+    isLink: true,
   },
   {
     label: "Profile",
-    to: "/profile",
+    to: "profile",
+    isLink: false,
   },
   {
     label: "Security",
-    to: "/security",
+    to: "security",
+    isLink: false,
   },
 ];
 export const checkLoginFromLogin = () => {

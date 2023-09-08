@@ -110,12 +110,12 @@ export default function Navbar(props) {
           <Link to="/" className="flex items-center">
             <img
               src="/assets/logo.png"
-              className="h-5 mr-3"
+              className="h-5 mr-3 ml-2"
               alt="Stankevicius Logo"
             />
           </Link>
           <span className="flex justify-center items-center">
-            {props?.isLoggedIn && (
+            {props?.isLoggedIn ? (
               <li
                 className={`md:hidden relative h-full flex items-center cursor-pointer mr-1`}
                 onClick={() => {
@@ -155,6 +155,23 @@ export default function Navbar(props) {
                   <path d="M325.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001l-139.39,139.393L25.607,79.393  c-5.857-5.857-15.355-5.858-21.213,0.001c-5.858,5.858-5.858,15.355,0,21.213l150.004,150c2.813,2.813,6.628,4.393,10.606,4.393  s7.794-1.581,10.606-4.394l149.996-150C331.465,94.749,331.465,85.251,325.607,79.393z" />
                 </svg>
               </li>
+            ) : (
+              <>
+                <span
+                  onClick={() => {
+                    setModalSetting({
+                      ...modalSetting,
+                      login: true,
+                      register: false,
+                    });
+                  }}
+                  className={`md:hidden transition-all duration-300 ease-in-out ${
+                    modalSetting.login && "bg-gray-100"
+                  } hover:bg-gray-100 px-3 h-full relative flex items-center space-x-1 cursor-pointer`}
+                >
+                  <span className="cursor-pointer text-sm">Login/Create Account</span>
+                </span>
+              </>
             )}
             <button
               data-collapse-toggle="navbar-default"

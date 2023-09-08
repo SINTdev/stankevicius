@@ -19,6 +19,12 @@ const UserData = React.createContext({
   },
   setSession: () => {},
   updateSessionData: () => {},
+  configureModal: () => {},
+  globalModals: {
+    profile: false,
+    security: false,
+    category: false,
+  },
 });
 
 export default UserData;

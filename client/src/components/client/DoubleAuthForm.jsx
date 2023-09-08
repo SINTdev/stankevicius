@@ -7,6 +7,28 @@ import InputBox from "../../components/InputBox";
 import QRCode from "react-qr-code";
 
 const DoubleAuthForm = (props) => {
+  const fetchURL = async () => {
+    await axios
+      .get(
+        CONSTANT.server +
+          `authentication/verify2fa/${props?.session.personal?.id}`
+      )
+      .then((responce) => {
+        setUrl(responce?.data?.url);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const [url, setUrl] = useState("");
+
+  useEffect(() => {
+    if (props?.session.isLoaded && props?.session.isLoggedIn) {
+      fetchURL();
+    }
+  }, [props?.session]);
+
   const navigate = useNavigate();
   const update2FA = async (e) => {
     await axios
@@ -90,9 +112,9 @@ const DoubleAuthForm = (props) => {
                 </div>
               )}
             </div>
-            {props?.url !== "" && props?.is2FA && (
+            {url !== "" && props?.is2FA && (
               <div className="w-1/2 flex justify-end items-start">
-                <QRCode size={200} value={props?.url} />
+                <QRCode size={200} value={url} />
               </div>
             )}
           </div>

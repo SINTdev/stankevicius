@@ -506,25 +506,6 @@ export default function Dashboard(props) {
         onYes={modal.onYes}
         isCancel={modal.isCancel}
       />
-      <ModalWrapper
-        isOpen={modalWrap}
-        onClose={() => {
-          setModalWrap(!modalWrap);
-        }}
-        overlay
-        big
-      >
-        <CategoryManagement
-          onCancel={() => {
-            navigate(
-              `/${session?.personal?.is_staff ? "corporate" : "client"}`
-            );
-          }}
-          setModal={setModal}
-          modal={modal}
-          EMPTY_MODAL={EMPTY_MODAL}
-        />
-      </ModalWrapper>
       {/* Home Page */}
       <div className="max-w-screen-xl mx-auto p-0 md:p-4">
         <DashboardOptions name={session?.personal?.fullName} />
