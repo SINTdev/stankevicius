@@ -215,14 +215,14 @@ export default function Home(props) {
       <div className="max-w-screen-xl mx-auto p-0 md:p-4">
         <div className="flex space-x-8">
           <h1 className="font-extrabold text-[24px]">Products</h1>
-          {session.isLoggedIn && (
+          {/* {session.isLoggedIn && (
             <Link
               to="/addProduct"
               className="uppercase font-medium bg-[#221f1f] text-white px-5 min-w-[8rem] py-2.5"
             >
               Add new trade
             </Link>
-          )}
+          )} */}
         </div>
         <p className="my-3 text-[18px] leading-[20px] font-thin text-gray-500">
           Below is a list of the treatments we currently offer via our

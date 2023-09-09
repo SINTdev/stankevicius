@@ -2,11 +2,22 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "react-phone-number-input/style.css";
 import { useNavigate } from "react-router-dom";
-import { CONSTANT, resetMessage, setMessage } from "../../CONSTANT";
+import {
+  CONSTANT,
+  resetMessage,
+  setMessage,
+  checkLoginFromNonLogin,
+} from "../../CONSTANT";
 import InputBox from "../../components/InputBox";
 
 const CategoryManagement = (props) => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (checkLoginFromNonLogin()) {
+      navigate("/");
+    }
+  }, []);
 
   const [categories, setCategories] = useState([]);
   const fetchCategories = async () => {

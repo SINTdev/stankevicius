@@ -69,6 +69,7 @@ export default function Layout(props) {
       isLoggedIn: false,
     });
     props?.setIsAccountMenuOpen(false);
+    navigate("/");
   };
 
   const INIT_MODAL = {
@@ -122,6 +123,7 @@ export default function Layout(props) {
             setIsAccountMenuOpen={props?.setIsAccountMenuOpen}
             session={session}
             logout={logout}
+            setter={configureModal}
           />
         )}
         {!props?.isMenuOpen && !props?.isAccountMenuOpen && <Footer />}

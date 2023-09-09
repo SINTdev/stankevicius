@@ -119,13 +119,13 @@ export default function Navbar(props) {
               <li
                 className={`md:hidden relative h-full flex items-center cursor-pointer mr-1`}
                 onClick={() => {
-                  navigate(
-                    `/${
-                      props?.session?.personal?.is_staff
-                        ? "corporate"
-                        : "client"
-                    }`
-                  );
+                  // navigate(
+                  //   `/${
+                  //     props?.session?.personal?.is_staff
+                  //       ? "corporate"
+                  //       : "client"
+                  //   }`
+                  // );
                   props.setIsAccountMenuOpen(!props.isAccountMenuOpen);
                   props.setIsMenuOpen(false);
                 }}
@@ -169,7 +169,9 @@ export default function Navbar(props) {
                     modalSetting.login && "bg-gray-100"
                   } hover:bg-gray-100 px-3 h-full relative flex items-center space-x-1 cursor-pointer`}
                 >
-                  <span className="cursor-pointer text-sm">Login/Create Account</span>
+                  <span className="cursor-pointer text-sm">
+                    Login/Create Account
+                  </span>
                 </span>
               </>
             )}
@@ -235,13 +237,13 @@ export default function Navbar(props) {
                     props.isAccountMenuOpen && "bg-gray-100"
                   } hover:bg-gray-100 px-3 h-full relative flex items-center space-x-1 cursor-pointer`}
                   onClick={() => {
-                    navigate(
-                      `/${
-                        props?.session?.personal?.is_staff
-                          ? "corporate"
-                          : "client"
-                      }`
-                    );
+                    // navigate(
+                    //   `/${
+                    //     props?.session?.personal?.is_staff
+                    //       ? "corporate"
+                    //       : "client"
+                    //   }`
+                    // );
                     props.setIsAccountMenuOpen(!props.isAccountMenuOpen);
                     props.setIsMenuOpen(false);
                   }}

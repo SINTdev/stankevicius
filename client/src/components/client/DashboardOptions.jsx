@@ -11,6 +11,7 @@ export default function DashboardOptions({ name }) {
   const location = useLocation();
   const navigate = useNavigate();
   const { session, configureModal, globalModals } = useContext(UserData);
+
   useEffect(() => {
     if (checkLoginFromNonLogin()) {
       navigate("/");
@@ -59,9 +60,9 @@ export default function DashboardOptions({ name }) {
               to={menu?.to}
               className={`${
                 location.pathname === menu?.to &&
-                (!globalModals?.category &&
-                  !globalModals?.profile &&
-                  !globalModals?.security) &&
+                !globalModals?.category &&
+                !globalModals?.profile &&
+                !globalModals?.security &&
                 "bg-[#929292] pointer-events-none"
               } capitalize text-center font-medium bg-[#221f1f] text-white px-6 min-w-[8rem] py-1.5`}
             >

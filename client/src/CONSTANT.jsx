@@ -19,6 +19,11 @@ export const USER_DASHBOARD_MENU = [
     isLink: true,
   },
   {
+    label: "Add New Trade",
+    to: "/addProduct",
+    isLink: true,
+  },
+  {
     label: "Profile",
     to: "profile",
     isLink: false,
@@ -36,6 +41,11 @@ export const USER_DASHBOARD_MENU = [
 ];
 
 export const CORPORATE_DASHBOARD_MENU = [
+  {
+    label: "Add New Trade",
+    to: "/addProduct",
+    isLink: true,
+  },
   {
     label: "Category Management",
     to: "category",

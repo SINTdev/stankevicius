@@ -4,17 +4,36 @@ import { Link } from "react-router-dom";
 const AccountMenu = (props) => {
   const [menu, setMenu] = useState([
     {
-      label: "Category Management",
+      label: "Dashboard",
       isLink: true,
-      to: "/",
+      to: `/${props?.session?.personal?.is_staff ? "corporate" : "client"}`,
       onClick: null,
+      is_staff: true,
+      is_both: true,
+    },
+    {
+      label: "Add New Trade",
+      isLink: true,
+      to: `/addProduct`,
+      onClick: null,
+      is_staff: true,
+      is_both: true,
+    },
+    {
+      label: "Category Management",
+      isLink: false,
+      to: "/",
+      onClick: () => {
+        props?.setter("category");
+        props?.setIsAccountMenuOpen(false);
+      },
       is_staff: true,
       is_both: false,
     },
     {
       label: "User Management",
       isLink: true,
-      to: "/",
+      to: "/corporate/user",
       onClick: null,
       is_staff: true,
       is_both: false,
@@ -22,7 +41,7 @@ const AccountMenu = (props) => {
     {
       label: "Credit Management",
       isLink: true,
-      to: "/",
+      to: "/corporate/credit",
       onClick: null,
       is_staff: true,
       is_both: false,
@@ -30,32 +49,38 @@ const AccountMenu = (props) => {
     {
       label: "Trade History",
       isLink: true,
-      to: "/",
+      to: "/client",
       onClick: null,
       is_staff: false,
       is_both: false,
     },
     {
       label: "Profile",
-      isLink: true,
+      isLink: false,
       to: "/",
-      onClick: null,
+      onClick: () => {
+        props?.setter("profile");
+        props?.setIsAccountMenuOpen(false);
+      },
       is_staff: true,
       is_both: true,
     },
     {
       label: "Credit",
       isLink: true,
-      to: "/",
+      to: "/client/credit",
       onClick: null,
       is_staff: false,
       is_both: false,
     },
     {
       label: "Security",
-      isLink: true,
+      isLink: false,
       to: "/",
-      onClick: null,
+      onClick: () => {
+        props?.setter("security");
+        props?.setIsAccountMenuOpen(false);
+      },
       is_staff: true,
       is_both: true,
     },
