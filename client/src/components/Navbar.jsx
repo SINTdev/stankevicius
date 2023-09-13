@@ -191,21 +191,6 @@ export default function Navbar(props) {
               {isNavbarOpen ? (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-4 h-4"
-                >
-                  <path
-                    d="M20 20L4 4.00003M20 4L4.00002 20"
-                    stroke="#000000"
-                    strokeWidth={2}
-                    strokeLinecap="round"
-                  />
-                </svg>
-              ) : (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
@@ -216,6 +201,21 @@ export default function Navbar(props) {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-4 h-4"
+                >
+                  <path
+                    d="M20 20L4 4.00003M20 4L4.00002 20"
+                    stroke="#000000"
+                    strokeWidth={2}
+                    strokeLinecap="round"
                   />
                 </svg>
               )}
