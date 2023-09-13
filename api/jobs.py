@@ -8,6 +8,7 @@ from . import models
 from . import serializers
 from .helpers import email_interaction
 from datetime import datetime, timedelta
+from django.utils import timezone
 
 
 def has5MinPassed(timestamp):
@@ -73,12 +74,25 @@ def evaluateExpired():
             expiredProduct(data["id"])
 
 
+def evaluateArchived():
+    archive_threshold = timedelta(days=5)
+    cutoff_timestamp = timezone.now() - archive_threshold
+    archived_products = models.Product.objects.filter(
+        isArchived=True, archivedOn__lte=cutoff_timestamp
+    )
+
+    for product in archived_products:
+        product.delete()
+        print("[CRON_JOB]: ARCHIVED PRODUCT DELETED")
+
+
 # Views functions above
 
 
 def main():
     evaluateInteractions()
     evaluateExpired()
+    evaluateArchived()
 
 
 def run_continuously(self, interval=1):

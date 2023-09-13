@@ -1,19 +1,64 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import DashboardOptions from "../../components/client/DashboardOptions";
 import InvoiceCard from "../../components/corporate/InvoiceCard";
 import UserData from "../../contexts/UserData";
 import UserCard from "../../components/corporate/UserCard";
 import UserTable from "../../components/corporate/UserTable";
+import axios from "axios";
+import { CONSTANT } from "../../CONSTANT";
+import Modal from "../../components/Modal";
 
 export default function UserManagement(props) {
   const { session, setSession } = useContext(UserData);
-
-  const [modal, setModal] = useState(true);
   const [filter, setFilter] = useState("");
   const [isGrid, setIsGrid] = useState(true);
 
+  const [users, setUsers] = useState([]);
+  const fetchUsers = async () => {
+    await axios
+      .get(CONSTANT.server + "api/corporateusers")
+      .then((responce) => {
+        setUsers(responce?.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
+  let EMPTY_MODAL = {
+    isOpen: false,
+    content: "",
+    onYes: () => {},
+    isCancel: false,
+  };
+
+  const [modal, setModal] = useState(EMPTY_MODAL);
+
+  const deleteUser = async (id) => {
+    await axios
+      .delete(CONSTANT.server + `authentication/user/${id}`)
+      .then((responce) => {
+        fetchUsers();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <div>
+      <Modal
+        isOpen={modal.isOpen}
+        onClose={() => {
+          setModal(EMPTY_MODAL);
+        }}
+        text={modal.content}
+        onYes={modal.onYes}
+        isCancel={modal.isCancel}
+      />
       <div className="max-w-screen-xl mx-auto p-0 md:p-4">
         <DashboardOptions />
         {/* Content down */}
@@ -22,23 +67,35 @@ export default function UserManagement(props) {
           {[
             {
               id: "",
-              name: "All users (4)",
+              name: `All users (${users?.length})`,
             },
             {
               id: "24h",
-              name: "24h active users (4)",
+              name: `24h active users (${
+                users?.filter((a) => {
+                  return a?.status === "24h";
+                })?.length
+              })`,
             },
             {
               id: "7days",
-              name: "7 days active users (4)",
+              name: `7 days active users (${
+                users?.filter((a) => {
+                  return a?.status === "7days";
+                })?.length
+              })`,
             },
             {
               id: "30days",
-              name: "30days active users (4)",
+              name: `30 days active users (${
+                users?.filter((a) => {
+                  return a?.status === "30days";
+                })?.length
+              })`,
             },
             {
               id: "subscribed",
-              name: "Subscribed users (7)",
+              name: "Subscribed users (0)",
             },
           ].map((category, one) => {
             return (
@@ -67,44 +124,63 @@ export default function UserManagement(props) {
         </div>
         {isGrid ? (
           <div className="mt-2">
-            {filter === "" && (
-              <div className="mt-5 grid grid-cols-3 gap-x-10 gap-y-5">
-                <UserCard />
-                <UserCard />
-              </div>
-            )}
-            {filter === "24h" && (
-              <div className="mt-5 grid grid-cols-3 gap-x-10 gap-y-5">
-                <UserCard />
-                <UserCard />
-              </div>
-            )}
-            {filter === "7days" && (
-              <div className="mt-5 grid grid-cols-3 gap-x-10 gap-y-5">
-                <UserCard />
-                <UserCard />
-              </div>
-            )}
-            {filter === "30days" && (
-              <div className="mt-5 grid grid-cols-3 gap-x-10 gap-y-5">
-                <UserCard />
-                <UserCard />
-              </div>
-            )}
-            {filter === "subscribed" && (
-              <div className="mt-5 grid grid-cols-3 gap-x-10 gap-y-5">
-                <UserCard />
-                <UserCard />
-              </div>
-            )}
+            <div className="mt-5 grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-5">
+              {users
+                ?.filter((user) => {
+                  if (filter === "") {
+                    return true;
+                  }
+                  return user?.status === filter;
+                })
+                ?.map((user, one) => {
+                  return (
+                    <UserCard
+                      user={user}
+                      onDelete={() => {
+                        setModal({
+                          ...modal,
+                          isOpen: true,
+                          content: `You confirm that you want to delete
+                          this user. All user data will be deleted
+                          permanently including all user’s
+                          trades.`,
+                          onYes: () => {
+                            deleteUser(user?.id);
+                            setModal(EMPTY_MODAL);
+                          },
+                        });
+                      }}
+                    />
+                  );
+                })}
+            </div>
           </div>
         ) : (
           <div className="mt-2">
-            {filter === "" && (
-              <div className="mt-5 w-full">
-                <UserTable />
-              </div>
-            )}
+            <div className="mt-5 w-full">
+              <UserTable
+                users={users?.filter((user) => {
+                  if (filter === "") {
+                    return true;
+                  }
+                  return user?.status === filter;
+                })}
+                onDelete={(id) => {
+                  setModal({
+                    ...modal,
+                    isOpen: true,
+                    content: `You confirm that you want to delete
+                          this user. All user data will be deleted
+                          permanently including all user’s
+                          trades.`,
+                    onYes: () => {
+                      deleteUser(id);
+                      setModal(EMPTY_MODAL);
+                    },
+                  });
+                }}
+              />
+            </div>
           </div>
         )}
       </div>

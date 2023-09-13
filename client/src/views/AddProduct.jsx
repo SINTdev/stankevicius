@@ -338,18 +338,21 @@ export default function AddProduct(props) {
           >
             {!props?.edit ? "Add new" : "Update"} trade
           </button>
-          <Link
-            to={`${
-              props?.edit
-                ? session?.personal?.is_staff
-                  ? "/corporate"
-                  : "/client"
-                : "/"
-            }`}
-            className="w-fit text-black tracking-wider _font-bold border border-black bg-transparent text-sm px-5 py-2.5 text-center"
+          <span
+            // to={`${
+            //   props?.edit
+            //     ? session?.personal?.is_staff
+            //       ? "/corporate"
+            //       : "/client"
+            //     : "/"
+            // }`}
+            onClick={() => {
+              navigate(-1);
+            }}
+            className="cursor-pointer w-fit text-black tracking-wider _font-bold border border-black bg-transparent text-sm px-5 py-2.5 text-center"
           >
             Cancel
-          </Link>
+          </span>
         </div>
         <div
           className="mt-10 text-center"

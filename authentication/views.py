@@ -13,6 +13,7 @@ from .helpers import send_forget_password_mail, send_email_verfication_mail
 from django.contrib.auth.hashers import check_password, make_password
 import uuid
 import pyotp
+from django.utils import timezone
 
 
 @api_view(["POST", "PUT"])
@@ -40,6 +41,8 @@ def validate(request):
                         SerializedData = serializers.ViewUserSerializer(
                             user, many=False
                         )
+                        user.lastLogin = timezone.now()
+                        user.save()
                         return JsonResponse(SerializedData.data, safe=False)
                     else:
                         return JsonResponse(
@@ -156,7 +159,7 @@ def verify(request):
             )
 
 
-@api_view(["POST", "PUT", "GET"])
+@api_view(["POST", "PUT", "GET", "DELETE"])
 @permission_classes([])
 @authentication_classes([])
 def user(request, pk=None):
@@ -195,8 +198,7 @@ def user(request, pk=None):
 
         # Check if the sent password matches (you can use your password checking logic)
         if (
-            ("skipPassword" in data and data["skipPassword"])
-            or check_password(data["password"], user.password)
+            check_password(data["password"], user.password)
             or data["password"] == user.password
         ):
             try:
@@ -215,6 +217,9 @@ def user(request, pk=None):
                     user.countryCode = data["countryCode"]
                 if "phoneNumber" in data:
                     user.phoneNumber = data["phoneNumber"]
+                if "newPassword" in data:
+                    if data["newPassword"] != "":
+                        user.password = make_password(data["newPassword"])
                 if "is2FA" in data:
                     user.is2FA = data["is2FA"]
                     if data["is2FA"]:
@@ -232,6 +237,12 @@ def user(request, pk=None):
             safe=False,
             status=status.HTTP_202_ACCEPTED,
         )
+    if request.method == "DELETE":
+        if pk is None:
+            return JsonResponse({"message": "No user id given!"}, safe=False)
+        instance = models.CustomUsers.objects.get(pk=int(pk))
+        instance.delete()
+        return JsonResponse({}, safe=False)
 
 
 @api_view(["GET", "POST"])
@@ -257,6 +268,8 @@ def verify2fa(request, pk=None):
                 totp = pyotp.TOTP(user.secret2FA)
                 if totp.verify(data["code"]):
                     SerializedData = serializers.ViewUserSerializer(user, many=False)
+                    user.lastLogin = timezone.now()
+                    user.save()
                     return JsonResponse(SerializedData.data, safe=False)
                 else:
                     return JsonResponse(

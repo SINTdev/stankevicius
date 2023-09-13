@@ -178,7 +178,7 @@ export default function Navbar(props) {
             <button
               data-collapse-toggle="navbar-default"
               type="button"
-              className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500  md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+              className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500  md:hidden"
               aria-controls="navbar-default"
               aria-expanded="false"
               onClick={() => {
@@ -188,21 +188,37 @@ export default function Navbar(props) {
               }}
             >
               <span className="sr-only">Open main menu</span>
-              <svg
-                className="w-5 h-5"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 17 14"
-              >
-                <path
+              {isNavbarOpen ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M1 1h15M1 7h15M1 13h15"
-                />
-              </svg>
+                  className="w-4 h-4"
+                >
+                  <path
+                    d="M20 20L4 4.00003M20 4L4.00002 20"
+                    stroke="#000000"
+                    strokeWidth={2}
+                    strokeLinecap="round"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-5 h-5"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                  />
+                </svg>
+              )}
             </button>
           </span>
           <div

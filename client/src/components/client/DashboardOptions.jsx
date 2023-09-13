@@ -35,11 +35,11 @@ export default function DashboardOptions({ name }) {
       <div className="flex space-x-8">
         <h1 className="font-semibold tracking-tight text-[24px]">
           {!session?.personal?.is_staff
-            ? `Hello ${name}`
+            ? `User Dashboard`
             : "Corporate Dashboard"}
         </h1>
       </div>
-      <div className="flex flex-row space-x-8 my-5">
+      <div className="flex flex-row space-x-8 my-5 overflow-auto">
         {menus.map((menu) => {
           if (!menu?.isLink) {
             return (
@@ -49,7 +49,7 @@ export default function DashboardOptions({ name }) {
                 }}
                 className={`${
                   globalModals[menu?.to] && "bg-[#929292] pointer-events-none"
-                } capitalize cursor-pointer text-center font-medium bg-[#221f1f] text-white px-6 min-w-[8rem] py-1.5`}
+                } capitalize cursor-pointer whitespace-nowrap w-fit text-center font-medium bg-[#221f1f] text-white px-6 py-1.5`}
               >
                 {menu?.label}
               </span>
@@ -64,7 +64,8 @@ export default function DashboardOptions({ name }) {
                 !globalModals?.profile &&
                 !globalModals?.security &&
                 "bg-[#929292] pointer-events-none"
-              } capitalize text-center font-medium bg-[#221f1f] text-white px-6 min-w-[8rem] py-1.5`}
+              } capitalize text-center whitespace-nowrap w-fit font-medium bg-[#221f1f] text-white px-6 py-1.5`}
+              // min-w-[8rem]
             >
               {menu?.label}
             </Link>

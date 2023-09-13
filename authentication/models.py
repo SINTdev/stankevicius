@@ -38,6 +38,7 @@ class CustomUsers(AbstractUser):
     isEmailVerified = models.BooleanField(default=False)
     is2FA = models.BooleanField(default=False)
     secret2FA = models.CharField(max_length=256, blank=True, null=True)
+    lastLogin = models.DateTimeField(blank=True, null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
 
     USERNAME_FIELD = "email"

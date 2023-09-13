@@ -48,5 +48,6 @@ class ViewUserSerializer(serializers.ModelSerializer):
             "is_staff",
             "offer",
             "is2FA",
+            "lastLogin",
             "timestamp",
         )

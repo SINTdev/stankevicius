@@ -2,7 +2,7 @@ import React from "react";
 
 export default function UserCard(props) {
   return (
-    <div className="border-2 border-black">
+    <div className="border-2 border-black overflow-hidden">
       <div className="px-1 py-3 flex flex-row text-xs">
         <div className="w-1/2 flex flex-col">
           <span>FULL NAME:</span>
@@ -23,9 +23,23 @@ export default function UserCard(props) {
           </span>
           <span>{props?.user?.companyName || "-"}</span>
           <span>{props?.user?.companyURL || "-"}</span>
-          <span>{"4/08/2023 09:12:02"}</span>
-          <span>{"4/08/2023 09:12:02"}</span>
-          <span>DELETE</span>
+          <span>
+            {props?.user?.lastLogin &&
+              new Date(props?.user?.lastLogin)?.toLocaleString()}
+            {!props?.user?.lastLogin && "-"}
+          </span>
+          <span>
+            {props?.user?.timestamp &&
+              new Date(props?.user?.timestamp)?.toLocaleString()}
+          </span>
+          <span
+            className="hover:text-gray-500 cursor-pointer"
+            onClick={() => {
+              props?.onDelete();
+            }}
+          >
+            DELETE
+          </span>
           {/* <span>{new Date(props?.user?.timestamp)?.toLocaleString()}</span> */}
         </div>
       </div>

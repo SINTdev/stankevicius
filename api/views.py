@@ -13,8 +13,10 @@ from rest_framework.parsers import JSONParser
 from django.contrib.auth.hashers import make_password
 import base64
 from authentication.models import CustomUsers
+from authentication.serializers import ViewUserSerializer
 from .helpers import email_new_listing, test_email
 from django.utils import timezone
+from datetime import timedelta
 
 # test_email()
 
@@ -410,3 +412,35 @@ def category(request):
 
         else:
             return JsonResponse({"message": "Invalid operation."}, safe=False)
+
+
+@api_view(["POST", "GET"])
+@permission_classes([])
+@authentication_classes([])
+def corporateusers(request):
+    if request.method == "GET":
+        now = timezone.now()
+        last_24_hours = now - timedelta(hours=24)
+        last_7_days = now - timedelta(days=7)
+        last_30_days = now - timedelta(days=30)
+        instance = CustomUsers.objects.filter(is_staff=False).order_by("-timestamp")
+        final_data = [
+            {
+                **ViewUserSerializer(user).data,
+                "lastLogin": user.lastLogin.strftime("%Y-%m-%dT%H:%M:%S.%fZ")
+                if user.lastLogin
+                else None,
+                "status": (
+                    "24h"
+                    if user.lastLogin and user.lastLogin >= last_24_hours
+                    else "7days"
+                    if user.lastLogin and user.lastLogin >= last_7_days
+                    else "30days"
+                    if user.lastLogin and user.lastLogin >= last_30_days
+                    else "30days"
+                ),
+            }
+            for user in instance
+        ]
+
+        return JsonResponse(final_data, safe=False)

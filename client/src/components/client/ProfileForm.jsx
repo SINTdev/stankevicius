@@ -19,66 +19,73 @@ import InputBox from "../../components/InputBox";
 const ProfileForm = (props) => {
   const navigate = useNavigate();
 
+  const validate = () => {
+    let isOkay = false;
+    resetMessage();
+    if (
+      payload.email !== "" &&
+      /^\w+([\.-]?\w+)*@[\w-]+(\.\w+)+$/.test(payload.email)
+    ) {
+      if (payload.fullName !== "") {
+        if (value !== "") {
+          if (isPossiblePhoneNumber(value)) {
+            isOkay = true;
+          } else {
+            setMessage("Please enter valid number.", "red-500");
+          }
+        } else {
+          setMessage("Please enter valid number.", "red-500");
+        }
+      } else {
+        setMessage("Please fill all fields.", "red-500");
+      }
+    } else {
+      setMessage("Please enter valid email.", "red-500");
+    }
+    return isOkay;
+  };
+
   const update = async (e) => {
     e.target.style.pointerEvents = "none";
     e.target.innerHTML =
       '<div className="spinner-border custom-spin" role="status"><span className="visually-hidden">Loading...</span></div>';
     e.preventDefault();
     resetMessage();
-    if (
-      payload.email !== "" &&
-      /^\w+([\.-]?\w+)*@[\w-]+(\.\w+)+$/.test(payload.email)
-    ) {
-      if (payload.password !== "") {
-        if (payload.fullName !== "") {
-          if (value !== "") {
-            if (isPossiblePhoneNumber(value)) {
-              await axios
-                .put(CONSTANT.server + `authentication/user/${payload?.id}`, {
-                  email: payload?.email,
-                  fullName: payload?.fullName,
-                  password: payload?.password,
-                  companyName: payload?.companyName,
-                  companyURL: payload?.companyURL,
-                  offer: S2B(payload?.offer),
-                  countryCode:
-                    formatPhoneNumberIntl(value)?.split(" ")[0] ?? "",
-                  phoneNumber:
-                    formatPhoneNumber(value)?.split(" ").join("") ?? "",
-                })
-                .then((responce) => {
-                  let res = responce.data;
-                  if (res.message) {
-                    // setMessage(getErrorMessage(res.message), "red-500");
-                    setMessage(res.message, "red-500");
-                  } else {
-                    setMessage("Account updated.", "green-500");
-                    sessionStorage.setItem(
-                      "loggedin",
-                      JSON.stringify({
-                        data: res,
-                      })
-                    );
-                    props?.updateSessionData();
-                  }
-                })
-                .catch((error) => {
-                  console.log(error);
-                });
-            } else {
-              setMessage("Please enter valid number.", "red-500");
-            }
+    if (payload?.password !== "") {
+      await axios
+        .put(CONSTANT.server + `authentication/user/${payload?.id}`, {
+          email: payload?.email,
+          fullName: payload?.fullName,
+          password: payload?.password,
+          newPassword: payload?.newPassword,
+          companyName: payload?.companyName,
+          companyURL: payload?.companyURL,
+          offer: S2B(payload?.offer),
+          countryCode: formatPhoneNumberIntl(value)?.split(" ")[0] ?? "",
+          phoneNumber: formatPhoneNumber(value)?.split(" ").join("") ?? "",
+        })
+        .then((responce) => {
+          let res = responce.data;
+          if (res.message) {
+            // setMessage(getErrorMessage(res.message), "red-500");
+            setMessage(res.message, "red-500");
           } else {
-            setMessage("Please enter valid number.", "red-500");
+            setMessage("Account updated.", "green-500");
+            setIsPassword(false);
+            sessionStorage.setItem(
+              "loggedin",
+              JSON.stringify({
+                data: res,
+              })
+            );
+            props?.updateSessionData();
           }
-        } else {
-          setMessage("Please fill all fields.", "red-500");
-        }
-      } else {
-        setMessage("Please enter password.", "red-500");
-      }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     } else {
-      setMessage("Please enter valid email.", "red-500");
+      setMessage("Please enter valid password.", "red-500");
     }
     e.target.style.pointerEvents = "unset";
     e.target.innerHTML = "Save";
@@ -89,10 +96,11 @@ const ProfileForm = (props) => {
     fullName: "",
     countryCode: "",
     phoneNumber: "",
-    password: "",
+    newPassword: "",
     companyName: "",
     companyURL: "",
     offer: false,
+    password: "",
   };
 
   const [payload, setPayload] = useState(init__payload);
@@ -129,6 +137,9 @@ const ProfileForm = (props) => {
       )
     );
   }, [props]);
+
+  const [isPassword, setIsPassword] = useState(false);
+
   return (
     <div className="space-y-4 md:space-y-6">
       <div className="flex mb-5">
@@ -138,94 +149,108 @@ const ProfileForm = (props) => {
       </div>
       <div className="flex justify-center items-center">
         <div className="space-y-2 md:space-y-3 w-full">
+          {!isPassword && (
+            <>
+              {" "}
+              <div className="flex md:flex-row md:space-x-2 space-x-0 md:space-y-0 space-y-2 flex-col w-full">
+                <InputBox
+                  placeholder={"Name"}
+                  value={payload.fullName}
+                  onChange={changePayload}
+                  name="fullName"
+                  className="md:w-1/3 w-full"
+                />
+                <InputBox
+                  placeholder={"Email"}
+                  type="email"
+                  value={payload.email}
+                  onChange={changePayload}
+                  name="email"
+                  className="md:w-1/3 w-full"
+                />{" "}
+                <PhoneInput
+                  international
+                  value={value}
+                  onChange={setValue}
+                  placeholder="Phone Number"
+                  className="md:w-1/3 w-full __PhoneInputInput p-3 text-sm text-gray-900 border-2 border-gray-300  hover:bg-gray-50 outline-none"
+                />
+              </div>
+              <div className="flex md:flex-row md:space-x-2 space-x-0 md:space-y-0 space-y-2 flex-col w-full">
+                <InputBox
+                  placeholder={"Company Name"}
+                  value={payload.companyName}
+                  onChange={changePayload}
+                  name="companyName"
+                  className="md:w-1/3 w-full"
+                />
+                <InputBox
+                  placeholder={"Company URL"}
+                  value={payload.companyURL}
+                  onChange={changePayload}
+                  name="companyURL"
+                  className="md:w-1/3 w-full"
+                />
+                <div className="md:w-1/3 w-full"></div>
+              </div>
+            </>
+          )}
           <div className="flex md:flex-row md:space-x-2 space-x-0 md:space-y-0 space-y-2 flex-col w-full">
             <InputBox
-              placeholder={"Name"}
-              value={payload.fullName}
-              onChange={changePayload}
-              name="fullName"
-              className="md:w-1/3 w-full"
-            />
-            <InputBox
-              placeholder={"Email"}
-              type="email"
-              value={payload.email}
-              onChange={changePayload}
-              name="email"
-              className="md:w-1/3 w-full"
-            />{" "}
-            <PhoneInput
-              international
-              value={value}
-              onChange={setValue}
-              placeholder="Phone Number"
-              className="md:w-1/3 w-full __PhoneInputInput p-3 text-sm text-gray-900 border-2 border-gray-300  hover:bg-gray-50 outline-none"
-            />
-          </div>
-          <div className="flex md:flex-row md:space-x-2 space-x-0 md:space-y-0 space-y-2 flex-col w-full">
-            <InputBox
-              placeholder={"Company Name"}
-              value={payload.companyName}
-              onChange={changePayload}
-              name="companyName"
-              className="md:w-1/3 w-full"
-            />
-            <InputBox
-              placeholder={"Company URL"}
-              value={payload.companyURL}
-              onChange={changePayload}
-              name="companyURL"
-              className="md:w-1/3 w-full"
-            />
-            <div className="md:w-1/3 w-full"></div>
-          </div>
-          <div className="flex md:flex-row md:space-x-2 space-x-0 md:space-y-0 space-y-2 flex-col w-full">
-            <InputBox
-              placeholder={"Password"}
+              placeholder={isPassword ? "Current Password" : "New Password"}
               type="password"
-              value={payload.password}
+              value={payload[isPassword ? "password" : "newPassword"]}
               onChange={changePayload}
-              name="password"
+              name={isPassword ? "password" : "newPassword"}
               className="md:w-1/3 w-full"
             />
             <div className="md:w-1/3 w-full"></div>
             <div className="md:w-1/3 w-full"></div>
           </div>
-
-          <div className="pt-5">
-            <div className="text-left md:text-sm _font-bold leading-tight tracking-tight text-black">
-              Subscribe to offers and promotions
+          {!isPassword && (
+            <div className="pt-5">
+              <div className="text-left md:text-sm _font-bold leading-tight tracking-tight text-black">
+                Subscribe to offers and promotions
+              </div>
+              <div className="mt-2 flex md:flex-row md:space-x-2 space-x-0 md:space-y-0 space-y-2 flex-col w-full">
+                <InputBox
+                  placeholder={"Select [Yes/No]"}
+                  value={payload?.offer}
+                  onChange={changePayload}
+                  name="offer"
+                  select={true}
+                  options={[
+                    {
+                      id: true,
+                      name: "Yes",
+                    },
+                    {
+                      id: false,
+                      name: "No",
+                    },
+                  ]}
+                  className="md:w-1/3 w-full"
+                />
+                <div className="md:w-1/3 w-full"></div>
+                <div className="md:w-1/3 w-full"></div>
+              </div>
             </div>
-            <div className="mt-2 flex md:flex-row md:space-x-2 space-x-0 md:space-y-0 space-y-2 flex-col w-full">
-              <InputBox
-                placeholder={"Select [Yes/No]"}
-                value={payload?.offer}
-                onChange={changePayload}
-                name="offer"
-                select={true}
-                options={[
-                  {
-                    id: true,
-                    name: "Yes",
-                  },
-                  {
-                    id: false,
-                    name: "No",
-                  },
-                ]}
-                className="md:w-1/3 w-full"
-              />
-              <div className="md:w-1/3 w-full"></div>
-              <div className="md:w-1/3 w-full"></div>
-            </div>
-          </div>
+          )}
 
           <div className="mt-2"></div>
           {/* Buttons */}
           <div className="pt-5 flex justify-end space-x-4">
             <button
               className="bg-black w-[7rem] border border-black text-white px-4 py-2"
-              onClick={update}
+              onClick={(e) => {
+                if (isPassword) {
+                  update(e);
+                } else {
+                  if (validate()) {
+                    setIsPassword(true);
+                  }
+                }
+              }}
             >
               Save
             </button>

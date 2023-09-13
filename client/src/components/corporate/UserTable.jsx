@@ -1,6 +1,6 @@
 import React from "react";
 
-const RenderTR = ({ user }) => {
+const RenderTR = ({ user, onDelete }) => {
   return (
     <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
       <th
@@ -16,9 +16,23 @@ const RenderTR = ({ user }) => {
       </td>
       <td className="px-6 py-4">{user?.companyName}</td>
       <td className="px-6 py-4">{user?.companyURL}</td>
-      <td className="px-6 py-4">{"Last login"}</td>
-      <td className="px-6 py-4">{"Created"}</td>
-      <td className="flex items-center px-6 py-4 space-x-3 uppercase">Delete</td>
+      <td className="px-6 py-4">
+        {user?.lastLogin && new Date(user?.lastLogin)?.toLocaleString()}
+        {!user?.lastLogin && "-"}
+      </td>
+      <td className="px-6 py-4">
+        {user?.timestamp && new Date(user?.timestamp)?.toLocaleString()}
+      </td>
+      <td>
+        <span
+          onClick={() => {
+            onDelete(user?.id);
+          }}
+          className="cursor-pointer flex items-center px-6 py-4 space-x-3 uppercase"
+        >
+          Delete
+        </span>
+      </td>
     </tr>
   );
 };
@@ -60,7 +74,7 @@ export default function UserTable(props) {
         </thead>
         <tbody>
           {props?.users?.map((one, index) => {
-            return <RenderTR user={one} />;
+            return <RenderTR user={one} onDelete={props?.onDelete} />;
           })}
         </tbody>
       </table>
