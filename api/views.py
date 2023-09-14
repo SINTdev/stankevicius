@@ -191,7 +191,9 @@ def options(request):
 @authentication_classes([])
 def products(request, pk=None):
     if request.method == "GET":
-        instance = models.Product.objects.filter(isExpired=False).order_by("-timestamp")
+        instance = models.Product.objects.filter(
+            isExpired=False, isArchived=False
+        ).order_by("-timestamp")
         # if pk is not None:
         #     instance = instance.exclude(by__id=pk)
         final_data = serializers.ViewProductSerializer(instance, many=True).data

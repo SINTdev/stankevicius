@@ -10,6 +10,7 @@ import InputBox from "../components/InputBox";
 import axios from "axios";
 import UserData from "../contexts/UserData";
 import Menu from "../components/Menu";
+import DashboardOptions from "../components/client/DashboardOptions";
 export default function AddProduct(props) {
   const { session, setSession } = useContext(UserData);
   const { id: id } = useParams();
@@ -108,7 +109,7 @@ export default function AddProduct(props) {
               setPayload(init__payload);
               setMessage("Trade added successfully.", "green-500");
               setTimeout(() => {
-                navigate("/");
+                navigate(-1);
               }, 4000);
             }
           })
@@ -138,7 +139,7 @@ export default function AddProduct(props) {
               setPayload(init__payload);
               setMessage("Trade updated successfully.", "green-500");
               setTimeout(() => {
-                navigate("/");
+                navigate(-1);
               }, 4000);
             }
           })
@@ -209,156 +210,159 @@ export default function AddProduct(props) {
   }
 
   return (
-    <div className="flex justify-center items-center flex-col">
-      <div className="md:w-3/4 w-full">
-        <div className="w-full text-left mb-5 md:pl-1 text-4xl _font-bold leading-tight tracking-tight text-black">
-          {!props?.edit ? "Add new" : "Update"} trade
-        </div>
-        <div className="w-full flex flex-col md:flex-row">
-          <InputBox
-            placeholder={"Name"}
-            value={payload.name}
-            onChange={changePayload}
-            name="name"
-            className="my-1 md:w-[calc(100%+20px)] md:mx-1"
-          />
-          <InputBox
-            placeholder={"Action"}
-            value={payload.action}
-            onChange={changePayload}
-            name="action"
-            select={true}
-            options={options.actions}
-            className="my-1 md:w-1/2 md:mx-1"
-          />
-          <InputBox
-            placeholder={"Category"}
-            value={payload.category}
-            onChange={changePayload}
-            name="category"
-            select={true}
-            options={options.categories}
-            className="my-1 md:w-1/2 md:mx-1"
-          />
-        </div>
-        <div className="w-full flex flex-col md:flex-row">
-          <InputBox
-            placeholder={"Quantity"}
-            value={payload.quantity}
-            onChange={changePayload}
-            name="quantity"
-            type="number"
-            className="my-1 md:w-full md:mx-1"
-          />
-          <InputBox
-            placeholder={"Measurement"}
-            value={payload.measurement}
-            onChange={changePayload}
-            name="measurement"
-            select={true}
-            options={options.measurements}
-            className="my-1 md:w-full md:mx-1"
-          />{" "}
-          <InputBox
-            placeholder={"Price"}
-            value={payload.price}
-            onChange={changePayload}
-            name="price"
-            type="number"
-            className="my-1 md:w-full md:mx-1"
-          />
-          <InputBox
-            placeholder={"Currency"}
-            value={payload.currency}
-            onChange={changePayload}
-            name="currency"
-            select={true}
-            options={options.currencies}
-            className="my-1 md:w-full md:mx-1"
-          />
-        </div>
-        <div className="w-full flex flex-col md:flex-row"></div>
-        <div className="w-full flex flex-col md:flex-row">
-          <InputBox
-            placeholder={"Payment"}
-            value={payload.payment}
-            onChange={changePayload}
-            name="payment"
-            select={true}
-            options={options.payments}
-            className="my-1 md:w-full md:mx-1"
-          />
-          <InputBox
-            placeholder={"Delivery"}
-            value={payload.delivery}
-            onChange={changePayload}
-            name="delivery"
-            select={true}
-            options={options.deliveries}
-            className="my-1 md:w-full md:mx-1"
-          />
-          <InputBox
-            placeholder={"Contract"}
-            value={payload.contract}
-            onChange={changePayload}
-            name="contract"
-            select={true}
-            options={options.contracts}
-            className="my-1 md:w-full md:mx-1"
-          />
-          <InputBox
-            placeholder={"Origin"}
-            value={payload.origin}
-            onChange={changePayload}
-            name="origin"
-            select={true}
-            options={options.origins}
-            className="my-1 md:w-full md:mx-1"
-          />
-        </div>
-        <span className="mt-10 block"></span>
-        <p className="m-1 text-sm mb-1 md:w-[calc(25%-8px)]">
-          For how long do you want this listing to be valid?
-        </p>
-        <div className="w-full flex flex-col md:flex-row">
-          <InputBox
-            placeholder={"Listing Duration"}
-            value={payload.listingDuration}
-            onChange={changePayload}
-            name="listingDuration"
-            select={true}
-            options={options.listing_durations}
-            className="my-1 md:w-[calc(25%-8px)] w-full md:mx-1"
-          />
-        </div>
-        <div className="mt-5 flex flex-row justify-end items-center space-x-2">
-          <button
-            onClick={addProduct}
-            className="w-fit text-white tracking-wider _font-bold border border-black bg-black text-sm px-5 py-2.5 text-center"
-          >
+    <div className="max-w-screen-xl mx-auto p-0 md:p-4">
+      <DashboardOptions name={""} />
+      <div className="mt-10 flex justify-center items-center flex-col">
+        <div className="w-full">
+          <div className="w-full text-left mb-5 md:pl-1 text-4xl _font-bold leading-tight tracking-tight text-black">
             {!props?.edit ? "Add new" : "Update"} trade
-          </button>
-          <span
-            // to={`${
-            //   props?.edit
-            //     ? session?.personal?.is_staff
-            //       ? "/corporate"
-            //       : "/client"
-            //     : "/"
-            // }`}
-            onClick={() => {
-              navigate(-1);
-            }}
-            className="cursor-pointer w-fit text-black tracking-wider _font-bold border border-black bg-transparent text-sm px-5 py-2.5 text-center"
-          >
-            Cancel
-          </span>
+          </div>
+          <div className="w-full flex flex-col md:flex-row">
+            <InputBox
+              placeholder={"Name"}
+              value={payload.name}
+              onChange={changePayload}
+              name="name"
+              className="my-1 md:w-[calc(100%+20px)] md:mx-1"
+            />
+            <InputBox
+              placeholder={"Action"}
+              value={payload.action}
+              onChange={changePayload}
+              name="action"
+              select={true}
+              options={options.actions}
+              className="my-1 md:w-1/2 md:mx-1"
+            />
+            <InputBox
+              placeholder={"Category"}
+              value={payload.category}
+              onChange={changePayload}
+              name="category"
+              select={true}
+              options={options.categories}
+              className="my-1 md:w-1/2 md:mx-1"
+            />
+          </div>
+          <div className="w-full flex flex-col md:flex-row">
+            <InputBox
+              placeholder={"Quantity"}
+              value={payload.quantity}
+              onChange={changePayload}
+              name="quantity"
+              type="number"
+              className="my-1 md:w-full md:mx-1"
+            />
+            <InputBox
+              placeholder={"Measurement"}
+              value={payload.measurement}
+              onChange={changePayload}
+              name="measurement"
+              select={true}
+              options={options.measurements}
+              className="my-1 md:w-full md:mx-1"
+            />{" "}
+            <InputBox
+              placeholder={"Price"}
+              value={payload.price}
+              onChange={changePayload}
+              name="price"
+              type="number"
+              className="my-1 md:w-full md:mx-1"
+            />
+            <InputBox
+              placeholder={"Currency"}
+              value={payload.currency}
+              onChange={changePayload}
+              name="currency"
+              select={true}
+              options={options.currencies}
+              className="my-1 md:w-full md:mx-1"
+            />
+          </div>
+          <div className="w-full flex flex-col md:flex-row"></div>
+          <div className="w-full flex flex-col md:flex-row">
+            <InputBox
+              placeholder={"Payment"}
+              value={payload.payment}
+              onChange={changePayload}
+              name="payment"
+              select={true}
+              options={options.payments}
+              className="my-1 md:w-full md:mx-1"
+            />
+            <InputBox
+              placeholder={"Delivery"}
+              value={payload.delivery}
+              onChange={changePayload}
+              name="delivery"
+              select={true}
+              options={options.deliveries}
+              className="my-1 md:w-full md:mx-1"
+            />
+            <InputBox
+              placeholder={"Contract"}
+              value={payload.contract}
+              onChange={changePayload}
+              name="contract"
+              select={true}
+              options={options.contracts}
+              className="my-1 md:w-full md:mx-1"
+            />
+            <InputBox
+              placeholder={"Origin"}
+              value={payload.origin}
+              onChange={changePayload}
+              name="origin"
+              select={true}
+              options={options.origins}
+              className="my-1 md:w-full md:mx-1"
+            />
+          </div>
+          <span className="mt-10 block"></span>
+          <p className="m-1 text-sm mb-1 md:w-[calc(25%-8px)]">
+            For how long do you want this listing to be valid?
+          </p>
+          <div className="w-full flex flex-col md:flex-row">
+            <InputBox
+              placeholder={"Listing Duration"}
+              value={payload.listingDuration}
+              onChange={changePayload}
+              name="listingDuration"
+              select={true}
+              options={options.listing_durations}
+              className="my-1 md:w-[calc(25%-8px)] w-full md:mx-1"
+            />
+          </div>
+          <div className="mt-5 flex flex-row justify-end items-center space-x-2">
+            <button
+              onClick={addProduct}
+              className="w-fit text-white tracking-wider _font-bold border border-black bg-black text-sm px-5 py-2.5 text-center"
+            >
+              {!props?.edit ? "Add new" : "Update"} trade
+            </button>
+            <span
+              // to={`${
+              //   props?.edit
+              //     ? session?.personal?.is_staff
+              //       ? "/corporate"
+              //       : "/client"
+              //     : "/"
+              // }`}
+              onClick={() => {
+                navigate(-1);
+              }}
+              className="cursor-pointer w-fit text-black tracking-wider _font-bold border border-black bg-transparent text-sm px-5 py-2.5 text-center"
+            >
+              Cancel
+            </span>
+          </div>
+          <div
+            className="mt-10 text-center"
+            id="error"
+            style={{ display: "none" }}
+          ></div>
         </div>
-        <div
-          className="mt-10 text-center"
-          id="error"
-          style={{ display: "none" }}
-        ></div>
       </div>
     </div>
   );

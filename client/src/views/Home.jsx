@@ -6,10 +6,62 @@ import axios from "axios";
 import { CONSTANT } from "../CONSTANT";
 import UserData from "../contexts/UserData";
 import InputBox from "../components/InputBox";
+import { takeActionOnProduct } from "../ACTIONS";
+
+const DropdownButton = (props) => {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <div className="relative">
+      <button
+        onClick={() => {
+          setIsOpen(!isOpen);
+        }}
+        className={`${props?.className} flex flex-row items-center justify-center text-[16px] uppercase font-semibold bg-[#221f1f] text-white min-w-[8rem] py-2`}
+      >
+        {props?.label}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 330 330"
+          strokeWidth={1.5}
+          className={`ml-2 w-[9px] h-[9px] fill-white ${
+            isOpen ? "rotate-180" : ""
+          }`}
+        >
+          <path d="M325.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001l-139.39,139.393L25.607,79.393  c-5.857-5.857-15.355-5.858-21.213,0.001c-5.858,5.858-5.858,15.355,0,21.213l150.004,150c2.813,2.813,6.628,4.393,10.606,4.393  s7.794-1.581,10.606-4.394l149.996-150C331.465,94.749,331.465,85.251,325.607,79.393z" />
+        </svg>
+      </button>
+      <div className="absolute opacity-100 z-20">
+        {isOpen &&
+          props?.options?.map((one, index) => {
+            if (one?.type === "link") {
+              return (
+                <Link
+                  to={one?.click}
+                  className={`border m-0 border-black border-t-0 flex flex-row items-center justify-center text-[13px] uppercase font-semibold bg-[#D5D5D5] text-white min-w-[8rem] py-1.5`}
+                >
+                  {one?.label}
+                </Link>
+              );
+            }
+            return (
+              <button
+                onClick={() => {
+                  one?.click();
+                }}
+                className={`border m-0 border-black border-t-0 flex flex-row items-center justify-center text-[13px] uppercase font-semibold bg-[#D5D5D5] text-white min-w-[8rem] py-1.5`}
+              >
+                {one?.label}
+              </button>
+            );
+          })}
+      </div>
+    </div>
+  );
+};
+
 export default function Home(props) {
   const { session, setSession } = useContext(UserData);
   const [categories, setCategories] = useState([]);
-
 
   const fetchCategories = async () => {
     await axios
@@ -516,6 +568,70 @@ export default function Home(props) {
                             "Cancel"}
                         </button>
                       )}
+
+                      {product?.by?.id.toString() ===
+                        session?.personal?.id.toString() &&
+                        !product?.isArchived &&
+                        !product?.isExpired && (
+                          <DropdownButton
+                            label="Action"
+                            options={[
+                              {
+                                label: "Edit",
+                                type: "link",
+                                click: `/edit/${product?.id}`,
+                              },
+                              {
+                                label: "Expire Now",
+                                type: "button",
+                                click: () => {
+                                  setModal({
+                                    ...modal,
+                                    isOpen: true,
+                                    content: `You confirm that you want to expire
+                        this trade now and this trade will
+                        expire immediately and will be
+                        removed from listing.`,
+                                    onYes: () => {
+                                      takeActionOnProduct(
+                                        product?.id,
+                                        "expire",
+                                        () => {
+                                          fetchProducts();
+                                        }
+                                      );
+                                      setModal(EMPTY_MODAL);
+                                    },
+                                  });
+                                },
+                              },
+                              {
+                                label: "Archive Now",
+                                type: "button",
+                                click: () => {
+                                  setModal({
+                                    ...modal,
+                                    isOpen: true,
+                                    content: `You confirm that you want to archive
+                        this trade now. An archived trade
+                        cannot be restored and will be
+                        deleted from the system in 5 days.`,
+                                    onYes: () => {
+                                      takeActionOnProduct(
+                                        product?.id,
+                                        "archive",
+                                        () => {
+                                          fetchProducts();
+                                        }
+                                      );
+                                      setModal(EMPTY_MODAL);
+                                    },
+                                  });
+                                },
+                              },
+                            ]}
+                          />
+                        )}
                     </div>
                     <p className="mt-[4px] uppercase text-[.65rem] font-medium text-black lg:text-right h-[4px]">
                       {returnMessage(product)}
