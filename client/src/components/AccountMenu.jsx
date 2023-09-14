@@ -139,7 +139,7 @@ const AccountMenu = (props) => {
         <div className="bg-[#F1F1F1] h-[6rem] flex items-center justify-center">
           <div className="max-w-screen-xl w-full flex flex-wrap items-center justify-between mx-auto p-4 pl-10">
             <span className="font-bold text-xl">
-              {props?.session?.personal?.fullName}
+              Hello, {props?.session?.personal?.fullName}
             </span>
           </div>
         </div>
