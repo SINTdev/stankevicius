@@ -57,8 +57,11 @@ export default function AddProduct(props) {
 
   const fetchProduct = async () => {
     await axios
-      .get(CONSTANT.server + `api/product/${id}`)
+      .get(CONSTANT.server + `api/product/${id}/${session?.personal?.id}`)
       .then((responce) => {
+        if (responce?.data?.message) {
+          navigate("/");
+        }
         setPayload({
           ...responce?.data,
           action: responce?.data?.action?.id,
@@ -93,12 +96,10 @@ export default function AddProduct(props) {
   }, []);
 
   useEffect(() => {
-    if (id) {
+    if (id && session?.isLoaded && session?.isLoggedIn) {
       fetchProduct();
-    } else if (props?.edit) {
-      navigate("/");
     }
-  }, [id]);
+  }, [id, session]);
 
   const addProduct = async (e) => {
     e.target.style.pointerEvents = "none";
@@ -117,9 +118,12 @@ export default function AddProduct(props) {
               setMessage(responce?.data?.message, "red-500");
             } else {
               setPayload(init__payload);
-              setMessage("Trade added successfully.", "green-500");
+              setMessage(
+                "Trade added successfully. You will be now redirected to the homepage...",
+                "green-500"
+              );
               setTimeout(() => {
-                navigate(-1);
+                navigate("/");
               }, 4000);
             }
           })
@@ -147,9 +151,12 @@ export default function AddProduct(props) {
               setMessage(responce?.data?.message, "red-500");
             } else {
               setPayload(init__payload);
-              setMessage("Trade updated successfully.", "green-500");
+              setMessage(
+                "Trade updated successfully. You will be now redirected to the homepage...",
+                "green-500"
+              );
               setTimeout(() => {
-                navigate(-1);
+                navigate("/");
               }, 4000);
             }
           })

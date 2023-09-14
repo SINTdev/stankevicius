@@ -30,8 +30,10 @@ def initialize_backend():
             CustomUsers.objects.create_user(
                 password="admin",
                 email="admin@admin.com",
+                name="Admin",
                 is_staff=True,
                 is_superuser=True,
+                IsEmailVerified=True,
             )
             print("[INITIALIZATION][SUCCESS]: Admin user added")
         else:
@@ -281,13 +283,21 @@ def corporateproducts(request):
 @api_view(["POST", "GET"])
 @permission_classes([])
 @authentication_classes([])
-def product(request, pk=None):
+def product(request, pk=None, user_id=None):
     if request.method == "GET":
         if pk is None:
-            return JsonResponse({})
-        instance = models.Product.objects.get(pk=pk)
-        final_data = serializers.ViewProductSerializer(instance).data
-        return JsonResponse(final_data)
+            return JsonResponse({"message": "Not valid slug!"}, safe=False)
+        if user_id is None:
+            return JsonResponse({"message": "Not valid session!"}, safe=False)
+        try:
+            instance = models.Product.objects.get(slug=pk)
+            session = CustomUsers.objects.get(pk=int(user_id))
+            if session.is_staff or session.id == instance.by.id:
+                final_data = serializers.ViewProductSerializer(instance).data
+                return JsonResponse(final_data)
+        except Exception as e:
+            print(e)
+        return JsonResponse({"message": "Not valid slug!"}, safe=False)
     if request.method == "POST":
         data = JSONParser().parse(request)
         inr = models.Product.objects.get(pk=pk)

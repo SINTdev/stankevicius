@@ -1,6 +1,9 @@
 from django.db import models
 from authentication.models import CustomUsers
 from django.utils import timezone
+from django.utils.text import slugify
+import random
+import string
 
 # Create your models here.
 
@@ -74,6 +77,7 @@ class Product(models.Model):
         on_delete=models.CASCADE,
     )
     name = models.CharField(max_length=50, unique=True)
+    slug = models.SlugField(unique=True, blank=True)
     action = models.ForeignKey(
         Action,
         on_delete=models.CASCADE,
@@ -121,6 +125,16 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            base_slug = slugify(self.name)
+            random_suffix = "".join(
+                random.choices(string.ascii_letters + string.digits, k=8)
+            )
+            self.slug = f"{base_slug}-{random_suffix}"
+
+        super().save(*args, **kwargs)
 
 
 class ProductInteractions(models.Model):

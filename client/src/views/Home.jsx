@@ -12,6 +12,14 @@ const DropdownButton = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="relative">
+      {isOpen && (
+        <div
+          className="w-screen h-screen top-0 left-0 z-10 fixed"
+          onClick={() => {
+            setIsOpen(false);
+          }}
+        ></div>
+      )}
       <button
         onClick={() => {
           setIsOpen(!isOpen);
@@ -30,6 +38,7 @@ const DropdownButton = (props) => {
           <path d="M325.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001l-139.39,139.393L25.607,79.393  c-5.857-5.857-15.355-5.858-21.213,0.001c-5.858,5.858-5.858,15.355,0,21.213l150.004,150c2.813,2.813,6.628,4.393,10.606,4.393  s7.794-1.581,10.606-4.394l149.996-150C331.465,94.749,331.465,85.251,325.607,79.393z" />
         </svg>
       </button>
+
       <div className="absolute opacity-100 z-20">
         {isOpen &&
           props?.options?.map((one, index) => {
@@ -37,7 +46,7 @@ const DropdownButton = (props) => {
               return (
                 <Link
                   to={one?.click}
-                  className={`border m-0 border-black border-t-0 flex flex-row items-center justify-center text-[13px] uppercase font-semibold bg-[#D5D5D5] text-white min-w-[8rem] py-1.5`}
+                  className={`border m-0 border-black border-t-0 flex flex-row items-center justify-center text-[13px] uppercase font-semibold bg-[#D5D5D5] hover:bg-[#929292] transition-all duration-150 ease-in-out text-white min-w-[8rem] py-1.5`}
                 >
                   {one?.label}
                 </Link>
@@ -48,7 +57,7 @@ const DropdownButton = (props) => {
                 onClick={() => {
                   one?.click();
                 }}
-                className={`border m-0 border-black border-t-0 flex flex-row items-center justify-center text-[13px] uppercase font-semibold bg-[#D5D5D5] text-white min-w-[8rem] py-1.5`}
+                className={`border m-0 border-black border-t-0 flex flex-row items-center justify-center text-[13px] uppercase font-semibold bg-[#D5D5D5] hover:bg-[#929292] transition-all duration-150 ease-in-out text-white min-w-[8rem] py-1.5`}
               >
                 {one?.label}
               </button>
@@ -475,23 +484,52 @@ export default function Home(props) {
                   >
                     <div className="absolute w-[100%] h-[1px] bg-gray-300 -bottom-[0px] left-0 hidden lg:block"></div>
                     <p className="text-xs mb-2 lg:mb-0 lg:float-right">
-                      <span className="uppercase _font-bold mr-1">
-                        opened on
-                      </span>
-                      <span className="font-thin">
-                        {formatDate(product?.openedOn)}
-                      </span>
-                      <span className="uppercase _font-bold ml-3 mr-1">
-                        Expiring on
-                      </span>
-                      <span className="font-thin">
-                        {formatDate(
-                          addDaysToTimestamp(
-                            product?.timestamp,
-                            product?.listingDuration?.name
-                          )
-                        )}
-                      </span>
+                      {!product?.isExtended && !product?.isArchived ? (
+                        <>
+                          <span className="uppercase _font-bold mr-1">
+                            opened on
+                          </span>
+                          <span className="font-thin">
+                            {formatDate(product?.openedOn)}
+                          </span>
+                          <span className="uppercase _font-bold ml-3 mr-1">
+                            {product?.isExpired ? "Expired" : "Expiring"} on
+                          </span>
+                          <span className="font-thin">
+                            {formatDate(
+                              addDaysToTimestamp(
+                                product?.timestamp,
+                                product?.listingDuration?.name
+                              )
+                            )}
+                          </span>
+                        </>
+                      ) : product?.isExtended && !product?.isArchived ? (
+                        <>
+                          <span className="uppercase _font-bold mr-1">
+                            Expired on
+                          </span>
+                          <span className="font-thin">
+                            {formatDate(
+                              addDaysToTimestamp(
+                                product?.openedOn,
+                                product?.listingDuration?.name
+                              )
+                            )}
+                          </span>
+                          <span className="uppercase _font-bold ml-3 mr-1">
+                            Extended till
+                          </span>
+                          <span className="font-thin">
+                            {formatDate(
+                              addDaysToTimestamp(
+                                product?.timestamp,
+                                product?.listingDuration?.name
+                              )
+                            )}
+                          </span>
+                        </>
+                      ) : null}
                     </p>
                     <div className=" mb-5">
                       <h1 className="_font-bold text-[24px] tracking-tight">
@@ -580,7 +618,7 @@ export default function Home(props) {
                               {
                                 label: "Edit",
                                 type: "link",
-                                click: `/edit/${product?.id}`,
+                                click: `/edit/${product?.slug}`,
                               },
                               {
                                 label: "Expire Now",

@@ -4,6 +4,7 @@ from . import views
 urlpatterns = [
     path("options", views.options, name="options"),
     path("product", views.product, name="product"),
+    re_path(r"^product/(?P<pk>[\w-]+)/(?P<user_id>[\w-]+)$", views.product),
     re_path(r"^product/(?P<pk>[0-9]+)$", views.product),
     path("products", views.products, name="products"),
     re_path(r"^products/(?P<pk>[0-9]+)$", views.products),
