@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import DashboardOptions from "../../components/client/DashboardOptions";
 import InvoiceCard from "../../components/corporate/InvoiceCard";
 import UserData from "../../contexts/UserData";
+import InputBox from "../../components/InputBox";
 
 export default function CreditManagement(props) {
   const { session, setSession } = useContext(UserData);
@@ -40,6 +41,28 @@ export default function CreditManagement(props) {
             );
           })}
         </div>
+
+        <InputBox
+          placeholder={"Products"}
+          className="lg:hidden mt-3"
+          value={filter}
+          onChange={(e) => {
+            setFilter(e.target.value);
+          }}
+          name="products"
+          select={true}
+          removeDefaultFirst={true}
+          options={[
+            {
+              id: "",
+              name: "All credit purchases (4)",
+            },
+            {
+              id: "30days",
+              name: "30 days purchases (4)",
+            },
+          ]}
+        />
         <div className="mt-2">
           {filter === "" && (
             <div className="mt-5 grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-5">

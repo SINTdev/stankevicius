@@ -7,6 +7,7 @@ import UserTable from "../../components/corporate/UserTable";
 import axios from "axios";
 import { CONSTANT } from "../../CONSTANT";
 import Modal from "../../components/Modal";
+import InputBox from "../../components/InputBox";
 
 export default function UserManagement(props) {
   const { session, setSession } = useContext(UserData);
@@ -112,6 +113,51 @@ export default function UserManagement(props) {
             );
           })}
         </div>
+        <InputBox
+          placeholder={"Products"}
+          className="lg:hidden mt-3"
+          value={filter}
+          onChange={(e) => {
+            setFilter(e.target.value);
+          }}
+          name="products"
+          select={true}
+          removeDefaultFirst={true}
+          options={[
+            {
+              id: "",
+              name: `All users (${users?.length})`,
+            },
+            {
+              id: "24h",
+              name: `24h active users (${
+                users?.filter((a) => {
+                  return a?.status === "24h";
+                })?.length
+              })`,
+            },
+            {
+              id: "7days",
+              name: `7 days active users (${
+                users?.filter((a) => {
+                  return a?.status === "7days";
+                })?.length
+              })`,
+            },
+            {
+              id: "30days",
+              name: `30 days active users (${
+                users?.filter((a) => {
+                  return a?.status === "30days";
+                })?.length
+              })`,
+            },
+            {
+              id: "subscribed",
+              name: "Subscribed users (0)",
+            },
+          ]}
+        />
         <div className="font-bold">
           <p
             className={`py-2 px-5 w-fit hover:bg-gray-200 text-[15px]  transition-all duration-300 ease-in-out cursor-pointer`}

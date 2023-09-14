@@ -86,7 +86,6 @@ const AccountMenu = (props) => {
     },
   ]);
 
-  
   // {
   //   label: "Trade History",
   //   isLink: true,
@@ -103,6 +102,9 @@ const AccountMenu = (props) => {
         <Link
           key={index}
           to={data?.to}
+          onClick={() => {
+            props?.setIsAccountMenuOpen(false);
+          }}
           className={`tracking-tight hover:underline transition-all duration-300 ease-in-out cursor-pointer text-lg my-3 w-full md:w-1/3 flex justify-start ${
             data?.label === "Logout" ? "font-bold" : ""
           }`}
