@@ -47,6 +47,29 @@ export default function Credit(props) {
             );
           })}
         </div>
+
+        <InputBox
+          placeholder={"Products"}
+          className="lg:hidden mt-3"
+          value={filter}
+          onChange={(e) => {
+            setFilter(e.target.value);
+          }}
+          name="products"
+          select={true}
+          removeDefaultFirst={true}
+          options={[
+            {
+              id: "buy",
+              name: "Buy Credit",
+            },
+            {
+              id: "history",
+              name: "Purchase History",
+            },
+          ]}
+        />
+
         <div className="mt-2">
           {filter === "buy" && (
             <div className="flex flex-col space-y-10">
@@ -59,7 +82,7 @@ export default function Credit(props) {
             </div>
           )}
           {filter === "history" && (
-            <div className="mt-5 grid grid-cols-3 gap-x-10 gap-y-5">
+            <div className="mt-5 grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-5">
               <InvoiceCard />
               <InvoiceCard />
               <InvoiceCard />

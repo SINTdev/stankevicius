@@ -14,7 +14,7 @@ export const CONSTANT = {
 
 export const USER_DASHBOARD_MENU = [
   {
-    label: "Trade History",
+    label: "Trade Management",
     to: "/client",
     isLink: true,
   },
@@ -24,14 +24,14 @@ export const USER_DASHBOARD_MENU = [
     isLink: true,
   },
   {
-    label: "Profile",
-    to: "profile",
-    isLink: false,
-  },
-  {
     label: "Credit",
     to: "/client/credit",
     isLink: true,
+  },
+  {
+    label: "Profile",
+    to: "profile",
+    isLink: false,
   },
   {
     label: "Security",
@@ -41,6 +41,11 @@ export const USER_DASHBOARD_MENU = [
 ];
 
 export const CORPORATE_DASHBOARD_MENU = [
+  {
+    label: "Trade Management",
+    to: "/corporate",
+    isLink: true,
+  },
   {
     label: "Add New Trade",
     to: "/addProduct",

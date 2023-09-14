@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const AccountMenu = (props) => {
   const [menu, setMenu] = useState([
     {
-      label: "Dashboard",
+      label: "Trade Management",
       isLink: true,
       to: `/${props?.session?.personal?.is_staff ? "corporate" : "client"}`,
       onClick: null,
@@ -47,9 +47,9 @@ const AccountMenu = (props) => {
       is_both: false,
     },
     {
-      label: "Trade History",
+      label: "Credit",
       isLink: true,
-      to: "/client",
+      to: "/client/credit",
       onClick: null,
       is_staff: false,
       is_both: false,
@@ -64,14 +64,6 @@ const AccountMenu = (props) => {
       },
       is_staff: true,
       is_both: true,
-    },
-    {
-      label: "Credit",
-      isLink: true,
-      to: "/client/credit",
-      onClick: null,
-      is_staff: false,
-      is_both: false,
     },
     {
       label: "Security",
@@ -93,6 +85,17 @@ const AccountMenu = (props) => {
       is_both: true,
     },
   ]);
+
+  
+  // {
+  //   label: "Trade History",
+  //   isLink: true,
+  //   to: "/client",
+  //   onClick: null,
+  //   is_staff: false,
+  //   is_both: false,
+  // },
+  // Before profile
 
   const renderNavigation = (data, index) => {
     if (data?.isLink) {

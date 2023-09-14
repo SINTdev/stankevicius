@@ -522,7 +522,7 @@ export default function Dashboard(props) {
           />
         </div>
         {/* Desktop View Category Filter */}
-        <div className="w-full py-2 border-t border-b border-gray-300 lg:flex items-center justify-start space-x-0 md:space-x-2 font-bold mt-7 mb-3">
+        <div className="hidden py-2 border-t border-b border-gray-300 lg:flex items-center justify-start space-x-0 md:space-x-2 font-bold mt-7 mb-3">
           {[
             {
               id: "",
@@ -587,6 +587,11 @@ export default function Dashboard(props) {
             {
               id: "archived",
               name: "Archived",
+            },
+            ...categories,
+            {
+              id: "uncat",
+              name: "Uncategorized",
             },
           ]}
         />

@@ -39,7 +39,6 @@ export default function ModalHandler({
           onClose={() => {
             reset();
           }}
-          overlay
           big
         >
           {config?.profile && (

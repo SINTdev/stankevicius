@@ -79,8 +79,8 @@ const DoubleAuthForm = (props) => {
             </span>{" "}
             2 Factor Authentication
           </span> */}
-          <div className="w-full flex flex-row justify-start items-center">
-            <div className="w-1/2">
+          <div className="w-full flex md:flex-row flex-col justify-start items-center">
+            <div className="md:w-1/2 w-full">
               <div className="text-left md:text-sm _font-bold leading-tight tracking-tight text-black">
                 2 Factor Authentication {props?.is2FA ? "Enabled" : "Disabled"}
               </div>
@@ -113,7 +113,7 @@ const DoubleAuthForm = (props) => {
               )}
             </div>
             {url !== "" && props?.is2FA && (
-              <div className="w-1/2 flex justify-end items-start">
+              <div className="md:w-1/2 w-full flex md:justify-end md:items-start justify-center items-center md:mt-0 mt-5">
                 <QRCode size={200} value={url} />
               </div>
             )}

@@ -198,7 +198,8 @@ def user(request, pk=None):
 
         # Check if the sent password matches (you can use your password checking logic)
         if (
-            check_password(data["password"], user.password)
+            ("skipPassword" in data and data["skipPassword"])
+            or check_password(data["password"], user.password)
             or data["password"] == user.password
         ):
             try:

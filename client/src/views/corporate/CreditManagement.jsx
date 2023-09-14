@@ -42,14 +42,14 @@ export default function CreditManagement(props) {
         </div>
         <div className="mt-2">
           {filter === "" && (
-            <div className="mt-5 grid grid-cols-3 gap-x-10 gap-y-5">
+            <div className="mt-5 grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-5">
               <InvoiceCard />
               <InvoiceCard />
               <InvoiceCard />
             </div>
           )}
           {filter === "30days" && (
-            <div className="mt-5 grid grid-cols-3 gap-x-10 gap-y-5">
+            <div className="mt-5 grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-5">
               <InvoiceCard />
               <InvoiceCard />
               <InvoiceCard />
