@@ -126,14 +126,14 @@ def email_new_listing(data):
         settings.EMAIL_OF_ADMIN
     ]  # Assuming the recipient is the same as the seller's email
     try:
-        # send_mail(
-        #     subject,
-        #     "",
-        #     email_from,
-        #     recipient_list,
-        #     fail_silently=False,
-        #     html_message=message,
-        # )
+        send_mail(
+            subject,
+            "",
+            email_from,
+            recipient_list,
+            fail_silently=False,
+            html_message=message,
+        )
         print("Sending mail... [SUCCESS]")
     except Exception as e:
         print("Sending mail... [ERROR]")

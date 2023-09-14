@@ -116,7 +116,7 @@ Scheduler.run_continuously = run_continuously
 
 def start_scheduler():
     scheduler = Scheduler()
-    # scheduler.every(4).minutes.do(main)  # Run every 5 minute
+    scheduler.every(4).minutes.do(main)  # Run every 5 minute
     # scheduler.every(20).seconds.do(main)
     # scheduler.every().second.do(main)
     scheduler.run_continuously()
