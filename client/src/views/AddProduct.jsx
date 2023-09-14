@@ -59,8 +59,18 @@ export default function AddProduct(props) {
     await axios
       .get(CONSTANT.server + `api/product/${id}`)
       .then((responce) => {
-        // setOptions(responce.data);
-        setPayload(responce.data);
+        setPayload({
+          ...responce?.data,
+          action: responce?.data?.action?.id,
+          category: responce?.data?.category?.id,
+          measurement: responce?.data?.measurement?.id,
+          currency: responce?.data?.currency?.id,
+          payment: responce?.data?.payment?.id,
+          delivery: responce?.data?.delivery?.id,
+          contract: responce?.data?.contract?.id,
+          origin: responce?.data?.origin?.id,
+          listingDuration: responce?.data?.listingDuration?.id,
+        });
       })
       .catch((error) => {
         console.log(error);
