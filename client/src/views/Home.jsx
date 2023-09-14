@@ -569,8 +569,9 @@ export default function Home(props) {
                         </button>
                       )}
 
-                      {product?.by?.id.toString() ===
-                        session?.personal?.id.toString() &&
+                      {session?.isLoggedIn &&
+                        product?.by?.id?.toString() ===
+                          session?.personal?.id?.toString() &&
                         !product?.isArchived &&
                         !product?.isExpired && (
                           <DropdownButton
