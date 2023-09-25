@@ -76,7 +76,8 @@ const DropdownButton = (props) => {
 
 export default function Dashboard(props) {
   let navigate = useNavigate();
-  const { session, setSession } = useContext(UserData);
+  const { session, setSession, fetchCategories, categories } =
+    useContext(UserData);
 
   const fetchProducts = async () => {
     await axios
@@ -481,21 +482,16 @@ export default function Dashboard(props) {
   };
 
   //   Categories
-
-  const [categories, setCategories] = useState([]);
-  const fetchCategories = async () => {
-    await axios
-      .post(CONSTANT.server + "api/options", {})
-      .then((responce) => {
-        setCategories(responce.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
   useEffect(() => {
     fetchCategories();
   }, []);
+
+  useEffect(() => {
+    if (categories.length > 0) {
+      setFilter("");
+      fetchProducts();
+    }
+  }, [categories]);
 
   //   Modal
   const [modalWrap, setModalWrap] = useState(false);

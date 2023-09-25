@@ -194,7 +194,7 @@ def options(request):
 def products(request, pk=None):
     if request.method == "GET":
         instance = models.Product.objects.filter(
-            isExpired=False, isArchived=False
+            isExpired=False, isArchived=False, category__isnull=False
         ).order_by("-timestamp")
         # if pk is not None:
         #     instance = instance.exclude(by__id=pk)
@@ -234,6 +234,7 @@ def products(request, pk=None):
             return JsonResponse(
                 {"content": serializer.data}, status=status.HTTP_202_ACCEPTED
             )
+        print(serializer.errors)
         return JsonResponse(
             {"message": "Not valid data!"}, status=status.HTTP_202_ACCEPTED
         )

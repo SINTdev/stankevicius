@@ -139,3 +139,7 @@ def email_new_listing(data):
         print("Sending mail... [ERROR]")
         print("[ERROR]", e)
     return True
+
+# Pharmaceuticals
+
+

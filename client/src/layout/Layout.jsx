@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import UserData from "../contexts/UserData";
 import Navbar from "../components/Navbar";
-import { checkLoginFromNonLogin } from "../CONSTANT";
+import { checkLoginFromNonLogin, CONSTANT } from "../CONSTANT";
 import Footer from "../components/Footer";
 import Menu from "../components/Menu";
 import AccountMenu from "../components/AccountMenu";
 import ModalHandler from "./ModalHandler";
+import axios from "axios";
+import SearchMenu from "../components/SearchMenu";
 export default function Layout(props) {
   let navigate = useNavigate();
   // ------------------
@@ -90,12 +92,27 @@ export default function Layout(props) {
     setGlobalModals(INIT_MODAL);
   };
 
+  const [categories, setCategories] = useState([]);
+
+  const fetchCategories = async () => {
+    await axios
+      .post(CONSTANT.server + "api/options", {})
+      .then((responce) => {
+        setCategories(responce.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   const value = {
     session,
     setSession,
     updateSessionData,
     configureModal,
     globalModals,
+    fetchCategories,
+    categories,
   };
 
   return (
@@ -107,6 +124,7 @@ export default function Layout(props) {
           reset={resetGlobalModal}
           session={session}
           updateSessionData={updateSessionData}
+          fetchCategories={fetchCategories}
         />
         <Navbar
           isLoggedIn={session.isLoggedIn}
@@ -126,6 +144,7 @@ export default function Layout(props) {
             setter={configureModal}
           />
         )}
+        {props?.isSearchOpen && <SearchMenu />}
         {!props?.isMenuOpen && !props?.isAccountMenuOpen && <Footer />}
       </UserData.Provider>
     </>

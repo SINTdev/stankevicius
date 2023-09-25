@@ -76,7 +76,7 @@ class Product(models.Model):
         CustomUsers,
         on_delete=models.CASCADE,
     )
-    name = models.CharField(max_length=50, unique=True)
+    name = models.CharField(max_length=50)
     slug = models.SlugField(unique=True, blank=True)
     action = models.ForeignKey(
         Action,

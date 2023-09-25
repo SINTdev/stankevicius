@@ -21,12 +21,15 @@ import UserManagement from "./views/corporate/UserManagement";
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAccountMenuOpen, setIsAccountMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   const paramater = {
     isMenuOpen: isMenuOpen,
     setIsMenuOpen: setIsMenuOpen,
     isAccountMenuOpen: isAccountMenuOpen,
     setIsAccountMenuOpen: setIsAccountMenuOpen,
+    isSearchOpen: isSearchOpen,
+    setIsSearchOpen: setIsSearchOpen,
   };
 
   return (

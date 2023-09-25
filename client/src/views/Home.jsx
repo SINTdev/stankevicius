@@ -274,9 +274,11 @@ export default function Home(props) {
       />
       {/* Home Page */}
       <div className="max-w-screen-xl mx-auto p-0 md:p-4">
-        <div className="flex space-x-8">
-          <h1 className="font-extrabold text-[24px]">Products</h1>
-          {/* {session.isLoggedIn && (
+        {!props?.onlySearch && (
+          <>
+            <div className="flex space-x-8">
+              <h1 className="font-extrabold text-[24px]">Products</h1>
+              {/* {session.isLoggedIn && (
             <Link
               to="/addProduct"
               className="uppercase font-medium bg-[#221f1f] text-white px-5 min-w-[8rem] py-2.5"
@@ -284,17 +286,19 @@ export default function Home(props) {
               Add new trade
             </Link>
           )} */}
-        </div>
-        <p className="my-3 text-[18px] leading-[20px] font-thin text-gray-500">
-          Below is a list of the treatments we currently offer via our
-          Innovative Medicines Division. Visit{" "}
-          <span className="text-sky-700 underline">Sandoz</span> and{" "}
-          <span className="text-sky-700 underline">
-            Advanced Accelerator Applications
-          </span>{" "}
-          to learn about our generics and radiopharmaceutical products. Please
-          note: Not all treatments are available in all countries.
-        </p>
+            </div>
+            <p className="my-3 text-[18px] leading-[20px] font-thin text-gray-500">
+              Below is a list of the treatments we currently offer via our
+              Innovative Medicines Division. Visit{" "}
+              <span className="text-sky-700 underline">Sandoz</span> and{" "}
+              <span className="text-sky-700 underline">
+                Advanced Accelerator Applications
+              </span>{" "}
+              to learn about our generics and radiopharmaceutical products.
+              Please note: Not all treatments are available in all countries.
+            </p>
+          </>
+        )}
 
         {/* Search Bar */}
         <div className="flex flex-wrap md:flex-nowrap justify-between space-y-3 md:space-y-0 md:space-x-2">
@@ -331,32 +335,34 @@ export default function Home(props) {
             </button> */}
         </div>
         {/* Desktop View Category Filter */}
-        <div className="hidden py-2 border-t border-b border-gray-300 lg:flex items-center justify-start space-x-2 font-bold mt-7 mb-3 overflow-x-auto">
-          <p
-            className={`${
-              filter === "" && "bg-gray-200"
-            } py-2 px-3 text-[18px] hover:bg-gray-200 transition-all duration-300 ease-in-out cursor-pointer`}
-            onClick={() => {
-              setFilter("");
-            }}
-          >
-            All Products
-          </p>
-          {categories.map((category, one) => {
-            return (
-              <p
-                className={`${
-                  filter === category.id && "bg-gray-200"
-                } py-2 px-3 hover:bg-gray-200 text-[18px] transition-all duration-300 ease-in-out cursor-pointer`}
-                onClick={() => {
-                  setFilter(category.id);
-                }}
-              >
-                {category.name}
-              </p>
-            );
-          })}
-        </div>
+        {!props?.onlySearch && (
+          <div className="hidden py-2 border-t border-b border-gray-300 lg:flex items-center justify-start space-x-2 font-bold mt-7 mb-3 overflow-x-auto">
+            <p
+              className={`${
+                filter === "" && "bg-gray-200"
+              } py-2 px-3 text-[18px] hover:bg-gray-200 transition-all duration-300 ease-in-out cursor-pointer`}
+              onClick={() => {
+                setFilter("");
+              }}
+            >
+              All Products
+            </p>
+            {categories.map((category, one) => {
+              return (
+                <p
+                  className={`${
+                    filter === category.id && "bg-gray-200"
+                  } py-2 px-3 hover:bg-gray-200 text-[18px] transition-all duration-300 ease-in-out cursor-pointer`}
+                  onClick={() => {
+                    setFilter(category.id);
+                  }}
+                >
+                  {category.name}
+                </p>
+              );
+            })}
+          </div>
+        )}
 
         {/* Mobile View Category Filter */}
         {/* <select
@@ -371,207 +377,236 @@ export default function Home(props) {
               return <option value={category.id}>{category.name}</option>;
             })}
           </select> */}
-        <InputBox
-          placeholder={"Products"}
-          className="lg:hidden mt-3"
-          value={filter}
-          onChange={(e) => {
-            setFilter(e.target.value);
-          }}
-          name="products"
-          select={true}
-          removeDefaultFirst={true}
-          options={[
-            {
-              id: "",
-              name: "All Products",
-            },
-            ...categories,
-          ]}
-        />
+        {!props?.onlySearch && (
+          <InputBox
+            placeholder={"Products"}
+            className="lg:hidden mt-3"
+            value={filter}
+            onChange={(e) => {
+              setFilter(e.target.value);
+            }}
+            name="products"
+            select={true}
+            removeDefaultFirst={true}
+            options={[
+              {
+                id: "",
+                name: "All Products",
+              },
+              ...categories,
+            ]}
+          />
+        )}
 
-        <div>
-          <p className="tracking-tight font-thin text-gray-500">
-            Showing{" "}
-            {
-              productsList
-                .filter((product, index) => {
-                  if (!filter) return true;
-                  return parseInt(product?.category?.id) === parseInt(filter);
-                })
-                .filter((product, index) => {
-                  if (!search) return true;
-                  return (
-                    product?.category?.name
-                      .toLowerCase()
-                      .includes(search.toLowerCase()) ||
-                    product?.contract?.name
-                      .toLowerCase()
-                      .includes(search.toLowerCase()) ||
-                    product?.currency?.name
-                      .toLowerCase()
-                      .includes(search.toLowerCase()) ||
-                    product?.delivery?.name
-                      .toLowerCase()
-                      .includes(search.toLowerCase()) ||
-                    product?.listingDuration?.name
-                      .toLowerCase()
-                      .includes(search.toLowerCase()) ||
-                    product?.measurement?.name
-                      .toLowerCase()
-                      .includes(search.toLowerCase()) ||
-                    product?.origin?.name
-                      .toLowerCase()
-                      .includes(search.toLowerCase()) ||
-                    product?.payment?.name
-                      .toLowerCase()
-                      .includes(search.toLowerCase()) ||
-                    product?.name.toLowerCase().includes(search.toLowerCase())
-                  );
-                })
-                .slice(0, show).length
-            }{" "}
-            results
-          </p>
+        <div className={props?.onlySearch && "mt-10"}>
+          {((props?.onlySearch && search !== "") || !props?.onlySearch) && (
+            <p className="tracking-tight font-thin text-gray-500">
+              Showing{" "}
+              {
+                productsList
+                  .filter((product, index) => {
+                    if (!filter) return true;
+                    return parseInt(product?.category?.id) === parseInt(filter);
+                  })
+                  .filter((product, index) => {
+                    if (!search) return true;
+                    return (
+                      product?.category?.name
+                        .toLowerCase()
+                        .includes(search.toLowerCase()) ||
+                      product?.contract?.name
+                        .toLowerCase()
+                        .includes(search.toLowerCase()) ||
+                      product?.currency?.name
+                        .toLowerCase()
+                        .includes(search.toLowerCase()) ||
+                      product?.delivery?.name
+                        .toLowerCase()
+                        .includes(search.toLowerCase()) ||
+                      product?.listingDuration?.name
+                        .toLowerCase()
+                        .includes(search.toLowerCase()) ||
+                      product?.measurement?.name
+                        .toLowerCase()
+                        .includes(search.toLowerCase()) ||
+                      product?.origin?.name
+                        .toLowerCase()
+                        .includes(search.toLowerCase()) ||
+                      product?.payment?.name
+                        .toLowerCase()
+                        .includes(search.toLowerCase()) ||
+                      product?.name.toLowerCase().includes(search.toLowerCase())
+                    );
+                  })
+                  .slice(0, show).length
+              }{" "}
+              results
+            </p>
+          )}
         </div>
 
-        <div className="my-5">
-          {productsList
-            .filter((product, index) => {
-              if (!filter) return true;
-              return parseInt(product?.category?.id) === parseInt(filter);
-            })
-            .filter((product, index) => {
-              if (!search) return true;
-              return (
-                product?.category?.name
-                  .toLowerCase()
-                  .includes(search.toLowerCase()) ||
-                product?.contract?.name
-                  .toLowerCase()
-                  .includes(search.toLowerCase()) ||
-                product?.currency?.name
-                  .toLowerCase()
-                  .includes(search.toLowerCase()) ||
-                product?.delivery?.name
-                  .toLowerCase()
-                  .includes(search.toLowerCase()) ||
-                product?.listingDuration?.name
-                  .toLowerCase()
-                  .includes(search.toLowerCase()) ||
-                product?.measurement?.name
-                  .toLowerCase()
-                  .includes(search.toLowerCase()) ||
-                product?.origin?.name
-                  .toLowerCase()
-                  .includes(search.toLowerCase()) ||
-                product?.payment?.name
-                  .toLowerCase()
-                  .includes(search.toLowerCase()) ||
-                product?.name.toLowerCase().includes(search.toLowerCase())
-              );
-            })
-            .slice(0, show)
-            .map((product, index) => {
-              return (
-                <div className="flex flex-wrap" key={index}>
-                  <div
-                    className={`w-full flex-grow lg:w-1/2    px-4 py-4  border-l-8 relative ${
-                      product?.action?.name === "BUYING"
-                        ? "border-l-green-500"
-                        : "border-l-red-500"
-                    }`}
-                  >
-                    <div className="absolute w-[100%] h-[1px] bg-gray-300 -bottom-[0px] left-0 hidden lg:block"></div>
-                    <p className="text-xs mb-2 lg:mb-0 lg:float-right">
-                      {!product?.isExtended && !product?.isArchived ? (
-                        <>
-                          <span className="uppercase _font-bold mr-1">
-                            opened on
-                          </span>
-                          <span className="font-thin">
-                            {formatDate(product?.openedOn)}
-                          </span>
-                          <span className="uppercase _font-bold ml-3 mr-1">
-                            {product?.isExpired ? "Expired" : "Expiring"} on
-                          </span>
-                          <span className="font-thin">
-                            {formatDate(
-                              addDaysToTimestamp(
-                                product?.timestamp,
-                                product?.listingDuration?.name
-                              )
-                            )}
-                          </span>
-                        </>
-                      ) : product?.isExtended && !product?.isArchived ? (
-                        <>
-                          <span className="uppercase _font-bold mr-1">
-                            Expired on
-                          </span>
-                          <span className="font-thin">
-                            {formatDate(
-                              addDaysToTimestamp(
-                                product?.openedOn,
-                                product?.listingDuration?.name
-                              )
-                            )}
-                          </span>
-                          <span className="uppercase _font-bold ml-3 mr-1">
-                            Extended till
-                          </span>
-                          <span className="font-thin">
-                            {formatDate(
-                              addDaysToTimestamp(
-                                product?.timestamp,
-                                product?.listingDuration?.name
-                              )
-                            )}
-                          </span>
-                        </>
-                      ) : null}
-                    </p>
-                    <div className=" mb-5">
-                      <h1 className="_font-bold text-[24px] tracking-tight">
-                        {product?.name}
-                      </h1>
-                      <p className="uppercase text-[14px] leading-3 font-medium">
-                        {product?.action?.name}
+        {((props?.onlySearch && search !== "") || !props?.onlySearch) && (
+          <div className="my-5">
+            {productsList
+              .filter((product, index) => {
+                if (!filter) return true;
+                return parseInt(product?.category?.id) === parseInt(filter);
+              })
+              .filter((product, index) => {
+                if (!search) return true;
+                return (
+                  product?.category?.name
+                    .toLowerCase()
+                    .includes(search.toLowerCase()) ||
+                  product?.contract?.name
+                    .toLowerCase()
+                    .includes(search.toLowerCase()) ||
+                  product?.currency?.name
+                    .toLowerCase()
+                    .includes(search.toLowerCase()) ||
+                  product?.delivery?.name
+                    .toLowerCase()
+                    .includes(search.toLowerCase()) ||
+                  product?.listingDuration?.name
+                    .toLowerCase()
+                    .includes(search.toLowerCase()) ||
+                  product?.measurement?.name
+                    .toLowerCase()
+                    .includes(search.toLowerCase()) ||
+                  product?.origin?.name
+                    .toLowerCase()
+                    .includes(search.toLowerCase()) ||
+                  product?.payment?.name
+                    .toLowerCase()
+                    .includes(search.toLowerCase()) ||
+                  product?.name.toLowerCase().includes(search.toLowerCase())
+                );
+              })
+              .slice(0, show)
+              .map((product, index) => {
+                return (
+                  <div className="flex flex-wrap" key={index}>
+                    <div
+                      className={`w-full flex-grow lg:w-1/2    px-4 py-4  border-l-8 relative ${
+                        product?.action?.name === "BUYING"
+                          ? "border-l-green-500"
+                          : "border-l-red-500"
+                      }`}
+                    >
+                      <div className="absolute w-[100%] h-[1px] bg-gray-300 -bottom-[0px] left-0 hidden lg:block"></div>
+                      <p className="text-xs mb-2 lg:mb-0 lg:float-right">
+                        {!product?.isExtended && !product?.isArchived ? (
+                          <>
+                            <span className="uppercase _font-bold mr-1">
+                              opened on
+                            </span>
+                            <span className="font-thin">
+                              {formatDate(product?.openedOn)}
+                            </span>
+                            <span className="uppercase _font-bold ml-3 mr-1">
+                              {product?.isExpired ? "Expired" : "Expiring"} on
+                            </span>
+                            <span className="font-thin">
+                              {formatDate(
+                                addDaysToTimestamp(
+                                  product?.timestamp,
+                                  product?.listingDuration?.name
+                                )
+                              )}
+                            </span>
+                          </>
+                        ) : product?.isExtended && !product?.isArchived ? (
+                          <>
+                            <span className="uppercase _font-bold mr-1">
+                              Expired on
+                            </span>
+                            <span className="font-thin">
+                              {formatDate(
+                                addDaysToTimestamp(
+                                  product?.openedOn,
+                                  product?.listingDuration?.name
+                                )
+                              )}
+                            </span>
+                            <span className="uppercase _font-bold ml-3 mr-1">
+                              Extended till
+                            </span>
+                            <span className="font-thin">
+                              {formatDate(
+                                addDaysToTimestamp(
+                                  product?.timestamp,
+                                  product?.listingDuration?.name
+                                )
+                              )}
+                            </span>
+                          </>
+                        ) : null}
                       </p>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <p className="capitalize text-[18px] font-medium text-gray-800">
-                        {product?.category?.name}
-                      </p>
+                      <div className=" mb-5">
+                        <h1 className="_font-bold text-[24px] tracking-tight">
+                          {product?.name}
+                        </h1>
+                        <p className="uppercase text-[14px] leading-3 font-medium">
+                          {product?.action?.name}
+                        </p>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <p className="capitalize text-[18px] font-medium text-gray-800">
+                          {product?.category?.name}
+                        </p>
 
-                      {((session?.isLoggedIn &&
-                        product?.by?.id.toString() !==
-                          session?.personal?.id.toString()) ||
-                        !session?.isLoggedIn) && (
-                        <button
-                          onClick={() => {
-                            handleInteraction(
-                              product?.lastActivity &&
+                        {((session?.isLoggedIn &&
+                          product?.by?.id.toString() !==
+                            session?.personal?.id.toString()) ||
+                          !session?.isLoggedIn) && (
+                          <button
+                            onClick={() => {
+                              handleInteraction(
+                                product?.lastActivity &&
+                                  !product?.lastActivity?.isCancelled &&
+                                  !hasFiveMinutesPassed(
+                                    product?.lastActivity?.timestamp
+                                  ) &&
+                                  product?.lastActivity?.isWait
+                                  ? product?.lastActivity?.id
+                                  : product.id,
+                                product?.action,
+                                (product?.lastActivity &&
+                                  !product?.lastActivity?.isCancelled &&
+                                  !hasFiveMinutesPassed(
+                                    product?.lastActivity?.timestamp
+                                  ) &&
+                                  product?.lastActivity?.isWait) ??
+                                  false,
+                                !Boolean(product?.lastActivity)
+                              );
+                            }}
+                            className={`${
+                              ((product?.lastActivity &&
                                 !product?.lastActivity?.isCancelled &&
-                                !hasFiveMinutesPassed(
+                                hasFiveMinutesPassed(
                                   product?.lastActivity?.timestamp
-                                ) &&
-                                product?.lastActivity?.isWait
-                                ? product?.lastActivity?.id
-                                : product.id,
-                              product?.action,
+                                )) ||
+                                (product?.lastActivity &&
+                                  !product?.lastActivity?.isCancelled &&
+                                  !product?.lastActivity?.isWait)) &&
+                              "bg-[#929292] pointer-events-none"
+                            } text-[16px] uppercase font-semibold bg-[#221f1f] text-white min-w-[8rem] py-2`}
+                          >
+                            {(!product?.lastActivity ||
                               (product?.lastActivity &&
-                                !product?.lastActivity?.isCancelled &&
-                                !hasFiveMinutesPassed(
-                                  product?.lastActivity?.timestamp
-                                ) &&
-                                product?.lastActivity?.isWait) ??
-                                false,
-                              !Boolean(product?.lastActivity)
-                            );
-                          }}
-                          className={`${
-                            ((product?.lastActivity &&
+                                product?.lastActivity?.isCancelled)) &&
+                              (product?.action?.name !== "BUYING"
+                                ? "Buy"
+                                : "Sell")}
+                            {product?.lastActivity &&
+                              !product?.lastActivity?.isCancelled &&
+                              !hasFiveMinutesPassed(
+                                product?.lastActivity?.timestamp
+                              ) &&
+                              product?.lastActivity?.isWait &&
+                              "Cancel"}
+                            {((product?.lastActivity &&
                               !product?.lastActivity?.isCancelled &&
                               hasFiveMinutesPassed(
                                 product?.lastActivity?.timestamp
@@ -579,196 +614,176 @@ export default function Home(props) {
                               (product?.lastActivity &&
                                 !product?.lastActivity?.isCancelled &&
                                 !product?.lastActivity?.isWait)) &&
-                            "bg-[#929292] pointer-events-none"
-                          } text-[16px] uppercase font-semibold bg-[#221f1f] text-white min-w-[8rem] py-2`}
-                        >
-                          {(!product?.lastActivity ||
-                            (product?.lastActivity &&
-                              product?.lastActivity?.isCancelled)) &&
-                            (product?.action?.name !== "BUYING"
-                              ? "Buy"
-                              : "Sell")}
-                          {product?.lastActivity &&
-                            !product?.lastActivity?.isCancelled &&
-                            !hasFiveMinutesPassed(
-                              product?.lastActivity?.timestamp
-                            ) &&
-                            product?.lastActivity?.isWait &&
-                            "Cancel"}
-                          {((product?.lastActivity &&
-                            !product?.lastActivity?.isCancelled &&
-                            hasFiveMinutesPassed(
-                              product?.lastActivity?.timestamp
-                            )) ||
-                            (product?.lastActivity &&
-                              !product?.lastActivity?.isCancelled &&
-                              !product?.lastActivity?.isWait)) &&
-                            "Cancel"}
-                        </button>
-                      )}
+                              "Cancel"}
+                          </button>
+                        )}
 
-                      {session?.isLoggedIn &&
-                        product?.by?.id?.toString() ===
-                          session?.personal?.id?.toString() &&
-                        !product?.isArchived &&
-                        !product?.isExpired && (
-                          <DropdownButton
-                            label="Action"
-                            options={[
-                              {
-                                label: "Edit",
-                                type: "link",
-                                click: `/edit/${product?.slug}`,
-                              },
-                              {
-                                label: "Expire Now",
-                                type: "button",
-                                click: () => {
-                                  setModal({
-                                    ...modal,
-                                    isOpen: true,
-                                    content: `You confirm that you want to expire
+                        {session?.isLoggedIn &&
+                          product?.by?.id?.toString() ===
+                            session?.personal?.id?.toString() &&
+                          !product?.isArchived &&
+                          !product?.isExpired && (
+                            <DropdownButton
+                              label="Action"
+                              options={[
+                                {
+                                  label: "Edit",
+                                  type: "link",
+                                  click: `/edit/${product?.slug}`,
+                                },
+                                {
+                                  label: "Expire Now",
+                                  type: "button",
+                                  click: () => {
+                                    setModal({
+                                      ...modal,
+                                      isOpen: true,
+                                      content: `You confirm that you want to expire
                         this trade now and this trade will
                         expire immediately and will be
                         removed from listing.`,
-                                    onYes: () => {
-                                      takeActionOnProduct(
-                                        product?.id,
-                                        "expire",
-                                        () => {
-                                          fetchProducts();
-                                        }
-                                      );
-                                      setModal(EMPTY_MODAL);
-                                    },
-                                  });
+                                      onYes: () => {
+                                        takeActionOnProduct(
+                                          product?.id,
+                                          "expire",
+                                          () => {
+                                            fetchProducts();
+                                          }
+                                        );
+                                        setModal(EMPTY_MODAL);
+                                      },
+                                    });
+                                  },
                                 },
-                              },
-                              {
-                                label: "Archive Now",
-                                type: "button",
-                                click: () => {
-                                  setModal({
-                                    ...modal,
-                                    isOpen: true,
-                                    content: `You confirm that you want to archive
+                                {
+                                  label: "Archive Now",
+                                  type: "button",
+                                  click: () => {
+                                    setModal({
+                                      ...modal,
+                                      isOpen: true,
+                                      content: `You confirm that you want to archive
                         this trade now. An archived trade
                         cannot be restored and will be
                         deleted from the system in 5 days.`,
-                                    onYes: () => {
-                                      takeActionOnProduct(
-                                        product?.id,
-                                        "archive",
-                                        () => {
-                                          fetchProducts();
-                                        }
-                                      );
-                                      setModal(EMPTY_MODAL);
-                                    },
-                                  });
+                                      onYes: () => {
+                                        takeActionOnProduct(
+                                          product?.id,
+                                          "archive",
+                                          () => {
+                                            fetchProducts();
+                                          }
+                                        );
+                                        setModal(EMPTY_MODAL);
+                                      },
+                                    });
+                                  },
                                 },
-                              },
-                            ]}
-                          />
-                        )}
+                              ]}
+                            />
+                          )}
+                      </div>
+                      <p className="mt-[4px] uppercase text-[.65rem] font-medium text-black lg:text-right h-[4px]">
+                        {returnMessage(product)}
+                      </p>
                     </div>
-                    <p className="mt-[4px] uppercase text-[.65rem] font-medium text-black lg:text-right h-[4px]">
-                      {returnMessage(product)}
-                    </p>
-                  </div>
-                  <div
-                    className={`w-full flex-grow lg:w-1/2 border-l-8 pt-6 pb-4 lg:py-4  mb-[1.7px] lg:mb-0 relative  ${
-                      product?.action?.name === "BUYING"
-                        ? "border-l-green-500"
-                        : "border-l-red-500"
-                    }  lg:border lg:border-gray-300 px-4  flex flex-col justify-between`}
-                  >
-                    <div className="absolute w-[99%] h-[1px] bg-gray-300 -bottom-[2px] left-1 lg:hidden"></div>
-                    <div className="text-[14px] flex flex-wrap tracking-tight">
-                      <div className="mr-2">
-                        <span className="capitalize _font-bold mr-1">
-                          Quantity:
-                        </span>
-                        <span className="font-light text-gray-700">
-                          {product?.quantity}
-                          {product?.measurement?.name}
-                        </span>
+                    <div
+                      className={`w-full flex-grow lg:w-1/2 border-l-8 pt-6 pb-4 lg:py-4  mb-[1.7px] lg:mb-0 relative  ${
+                        product?.action?.name === "BUYING"
+                          ? "border-l-green-500"
+                          : "border-l-red-500"
+                      }  lg:border lg:border-gray-300 px-4  flex flex-col justify-between`}
+                    >
+                      <div className="absolute w-[99%] h-[1px] bg-gray-300 -bottom-[2px] left-1 lg:hidden"></div>
+                      <div className="text-[14px] flex flex-wrap tracking-tight">
+                        <div className="mr-2">
+                          <span className="capitalize _font-bold mr-1">
+                            Quantity:
+                          </span>
+                          <span className="font-light text-gray-700">
+                            {product?.quantity}
+                            {product?.measurement?.name}
+                          </span>
+                        </div>
+                        <div className="mr-2">
+                          <span className="capitalize _font-bold mr-1">
+                            Contract:
+                          </span>
+                          <span className="font-light text-gray-700 whitespace-nowrap">
+                            {product?.contract?.name}
+                          </span>
+                        </div>
+                        <div className="mr-2">
+                          <span className="capitalize _font-bold mr-1">
+                            Delivery:
+                          </span>
+                          <span className="font-light text-gray-700">
+                            {product?.delivery?.name}
+                          </span>
+                        </div>
+                        <div className="mr-2">
+                          <span className="capitalize _font-bold mr-1">
+                            Payment:
+                          </span>
+                          <span className="font-light text-gray-700">
+                            {product?.payment?.name}
+                          </span>
+                        </div>
+                        <div className="mr-2">
+                          <span className="capitalize _font-bold mr-1">
+                            Origin:
+                          </span>
+                          <span className="font-light text-gray-700">
+                            {product?.origin?.name}
+                          </span>
+                        </div>
+                        <div className="mr-2">
+                          <span className="capitalize _font-bold mr-1">
+                            Price:
+                          </span>
+                          <span className="font-light text-gray-700">
+                            {product?.price}
+                            {product?.currency?.name}
+                          </span>
+                        </div>
                       </div>
-                      <div className="mr-2">
-                        <span className="capitalize _font-bold mr-1">
-                          Contract:
-                        </span>
-                        <span className="font-light text-gray-700 whitespace-nowrap">
-                          {product?.contract?.name}
-                        </span>
-                      </div>
-                      <div className="mr-2">
-                        <span className="capitalize _font-bold mr-1">
-                          Delivery:
-                        </span>
-                        <span className="font-light text-gray-700">
-                          {product?.delivery?.name}
-                        </span>
-                      </div>
-                      <div className="mr-2">
-                        <span className="capitalize _font-bold mr-1">
-                          Payment:
-                        </span>
-                        <span className="font-light text-gray-700">
-                          {product?.payment?.name}
-                        </span>
-                      </div>
-                      <div className="mr-2">
-                        <span className="capitalize _font-bold mr-1">
-                          Origin:
-                        </span>
-                        <span className="font-light text-gray-700">
-                          {product?.origin?.name}
-                        </span>
-                      </div>
-                      <div className="mr-2">
-                        <span className="capitalize _font-bold mr-1">
-                          Price:
-                        </span>
-                        <span className="font-light text-gray-700">
-                          {product?.price}
-                          {product?.currency?.name}
-                        </span>
-                      </div>
-                    </div>
 
-                    {product?.isPaidPromoted && (
-                      <a
-                        href={product?.by?.companyURL}
-                        target="_blank"
-                        className="text-sky-700 border-b  inline-flex max-w-fit border-b-sky-700   items-baseline space-x-1 mt-4 lg:mt-0"
-                      >
-                        <span className="inline-block">
-                          {product?.by?.companyName}
-                        </span>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          strokeWidth={2}
-                          stroke="currentColor"
-                          className="w-4 h-4 text-[#221f1f] relative top-[1px]"
+                      {product?.isPaidPromoted && (
+                        <a
+                          href={product?.by?.companyURL}
+                          target="_blank"
+                          className="text-sky-700 border-b  inline-flex max-w-fit border-b-sky-700   items-baseline space-x-1 mt-4 lg:mt-0"
                         >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
-                          />
-                        </svg>
-                      </a>
-                    )}
+                          <span className="inline-block">
+                            {product?.by?.companyName}
+                          </span>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth={2}
+                            stroke="currentColor"
+                            className="w-4 h-4 text-[#221f1f] relative top-[1px]"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                            />
+                          </svg>
+                        </a>
+                      )}
+                    </div>
                   </div>
-                </div>
-              );
-            })}
-        </div>
+                );
+              })}
+          </div>
+        )}
 
-        {productsList.length > show && (
+        {((!props?.onlySearch && productsList.length > show) ||
+          (props?.onlySearch &&
+            search !== "" &&
+            productsList.length > show)) && (
           <div className="flex flex-row items-center justify-center">
             <button
               onClick={() => {

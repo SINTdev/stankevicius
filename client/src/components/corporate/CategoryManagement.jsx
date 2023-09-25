@@ -57,6 +57,7 @@ const CategoryManagement = (props) => {
       })
       .then((responce) => {
         fetchCategories();
+        props?.refreshCategories();
         setIsText(false);
         setNewValue("");
         setState({

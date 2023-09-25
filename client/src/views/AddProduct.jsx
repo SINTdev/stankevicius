@@ -132,7 +132,7 @@ export default function AddProduct(props) {
           });
       } else {
         await axios
-          .put(CONSTANT.server + `api/products/${id}`, {
+          .put(CONSTANT.server + `api/products/${payload?.id}`, {
             action: payload?.action,
             category: payload?.category,
             measurement: payload?.measurement,
@@ -354,7 +354,7 @@ export default function AddProduct(props) {
           <div className="mt-5 flex flex-row justify-end items-center space-x-2">
             <button
               onClick={addProduct}
-              className="w-fit text-white tracking-wider _font-bold border border-black bg-black text-sm px-5 py-2.5 text-center"
+              className="w-fit text-white border border-black bg-black text-sm px-5 py-2.5 text-center"
             >
               {!props?.edit ? "Add new" : "Update"} trade
             </button>
@@ -369,7 +369,7 @@ export default function AddProduct(props) {
               onClick={() => {
                 navigate(-1);
               }}
-              className="cursor-pointer w-fit text-black tracking-wider _font-bold border border-black bg-transparent text-sm px-5 py-2.5 text-center"
+              className="cursor-pointer w-fit text-black border border-black bg-transparent text-sm px-5 py-2.5 text-center"
             >
               Cancel
             </span>

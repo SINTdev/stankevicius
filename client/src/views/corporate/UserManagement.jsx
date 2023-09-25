@@ -96,7 +96,11 @@ export default function UserManagement(props) {
             },
             {
               id: "subscribed",
-              name: "Subscribed users (0)",
+              name: `Subscribed users (${
+                users?.filter((a) => {
+                  return a?.offer;
+                })?.length
+              })`,
             },
           ].map((category, one) => {
             return (
@@ -154,7 +158,11 @@ export default function UserManagement(props) {
             },
             {
               id: "subscribed",
-              name: "Subscribed users (0)",
+              name: `Subscribed users (${
+                users?.filter((a) => {
+                  return a?.offer;
+                })?.length
+              })`,
             },
           ]}
         />
@@ -175,6 +183,9 @@ export default function UserManagement(props) {
                 ?.filter((user) => {
                   if (filter === "") {
                     return true;
+                  }
+                  if (filter === "subscribed") {
+                    return user?.offer;
                   }
                   return user?.status === filter;
                 })
@@ -208,6 +219,9 @@ export default function UserManagement(props) {
                 users={users?.filter((user) => {
                   if (filter === "") {
                     return true;
+                  }
+                  if (filter === "subscribed") {
+                    return user?.offer;
                   }
                   return user?.status === filter;
                 })}

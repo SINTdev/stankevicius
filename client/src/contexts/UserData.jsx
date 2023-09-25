@@ -20,6 +20,8 @@ const UserData = React.createContext({
   setSession: () => {},
   updateSessionData: () => {},
   configureModal: () => {},
+  fetchCategories: () => {},
+  categories: [],
   globalModals: {
     profile: false,
     security: false,

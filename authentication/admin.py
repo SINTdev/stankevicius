@@ -11,7 +11,6 @@ class UserAdmin(admin.ModelAdmin):
         "last_name",
         "groups",
         "user_permissions",
-        "is_staff",
         "is_active",
         "is_superuser",
         "last_login",

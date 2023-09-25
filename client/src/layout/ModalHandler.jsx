@@ -12,6 +12,7 @@ export default function ModalHandler({
   session,
   setter,
   updateSessionData,
+  fetchCategories
 }) {
   let navigate = useNavigate();
   let EMPTY_MODAL = {
@@ -69,6 +70,7 @@ export default function ModalHandler({
               setModal={setModal}
               modal={modal}
               EMPTY_MODAL={EMPTY_MODAL}
+              refreshCategories={fetchCategories}
             />
           )}
         </ModalWrapper>

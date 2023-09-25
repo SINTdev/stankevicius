@@ -228,21 +228,45 @@ export default function Navbar(props) {
             id="navbar-default"
           >
             <ul className="h-[4.5rem] font-medium flex flex-col p-4 md:p-0 mt-4 border items-center  space-y-4 md:space-y-0 border-gray-100  bg-gray-50 md:flex-row md:mt-0 md:border-0 md:bg-transparent 0 text-sm">
-              <li className="flex items-center space-x-1 cursor-pointer mr-3">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-5 h-5"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-                  />
-                </svg>
+              <li
+                onClick={() => {
+                  props?.setIsSearchOpen(!props?.isSearchOpen);
+                }}
+                className={`transition-all duration-300 ease-in-out ${
+                  props?.isSearchOpen && "bg-gray-100"
+                } hover:bg-gray-100 px-3 h-full relative flex items-center space-x-1 cursor-pointer`}
+              >
+                {props?.isSearchOpen ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-4 h-4"
+                  >
+                    <path
+                      d="M20 20L4 4.00003M20 4L4.00002 20"
+                      stroke="#000000"
+                      strokeWidth={2}
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-5 h-5"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                    />
+                  </svg>
+                )}
 
                 <span className="">Search</span>
               </li>
@@ -350,6 +374,15 @@ export default function Navbar(props) {
         </div>
       </nav>
       <div className="background_stripe"></div>
+      <div class="background_video">
+        <video autoPlay loop muted>
+          <source
+            src="https://data.bloomberglp.com/professional/sites/12/Megasite-Conform-170413-HD-25s-2-4bitrate.mp4"
+            type="video/mp4"
+          />
+          Your browser does not support the video tag.
+        </video>
+      </div>
     </div>
   );
 }
