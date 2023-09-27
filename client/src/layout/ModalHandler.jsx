@@ -12,7 +12,7 @@ export default function ModalHandler({
   session,
   setter,
   updateSessionData,
-  fetchCategories
+  fetchCategories,
 }) {
   let navigate = useNavigate();
   let EMPTY_MODAL = {
@@ -55,6 +55,16 @@ export default function ModalHandler({
             <DoubleAuthForm
               onCancel={() => {
                 reset();
+              }}
+              onEnable={() => {
+                setModal({
+                  isOpen: true,
+                  content: "Double authentication is successfully enabled. Make sure to scan the QR Code.",
+                  onYes: () => {
+                    setModal(EMPTY_MODAL);
+                  },
+                  isCancel: false,
+                });
               }}
               is2FA={session?.personal?.is2FA}
               user_id={session?.personal?.id}

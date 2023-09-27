@@ -16,7 +16,7 @@ body {
   font-family: "arial", sans-serif;
 }
 .background_stripe {
-  background-image: url("/assets/pattern.webp");
+  /* background-image: url("/assets/pattern.webp"); */
 }
 
 .background_stripe {
@@ -77,6 +77,7 @@ body {
 ::-webkit-scrollbar {
   width: 0;
   height: 0;
+  display: none;
 }
 
 /* Optional: Style the scrollbar track and thumb for Webkit browsers */

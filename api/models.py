@@ -90,7 +90,7 @@ class Product(models.Model):
         Measurement,
         on_delete=models.CASCADE,
     )
-    price = models.IntegerField()
+    price = models.FloatField()
     currency = models.ForeignKey(
         Currency,
         on_delete=models.CASCADE,
@@ -115,6 +115,8 @@ class Product(models.Model):
         ListingDuration,
         on_delete=models.CASCADE,
     )
+    promoteToSubscribed = models.BooleanField(default=False)
+    promoteToTradeQuoteBar = models.BooleanField(default=False)
     isPaidPromoted = models.BooleanField(default=False)  # Imp
     isArchived = models.BooleanField(default=False)  # Imp
     archivedOn = models.DateTimeField(blank=True, null=True)  # Imp

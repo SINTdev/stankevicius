@@ -28,6 +28,8 @@ export default function AddProduct(props) {
     contract: "",
     origin: "",
     listingDuration: "",
+    promoteToSubscribed: false,
+    promoteToTradeQuoteBar: false,
   };
   const [payload, setPayload] = useState(init__payload);
   const changePayload = (e) => {
@@ -145,6 +147,8 @@ export default function AddProduct(props) {
             name: payload?.name,
             quantity: payload?.quantity,
             price: payload?.price,
+            promoteToSubscribed: payload?.promoteToSubscribed,
+            promoteToTradeQuoteBar: payload?.promoteToTradeQuoteBar,
           })
           .then((responce) => {
             if (responce?.data?.message) {
@@ -231,8 +235,11 @@ export default function AddProduct(props) {
       <DashboardOptions name={""} />
       <div className="mt-10 flex justify-center items-center flex-col">
         <div className="w-full">
-          <div className="w-full text-left mb-5 md:pl-1 text-4xl _font-bold leading-tight tracking-tight text-black">
+          <div className="w-full text-left mb-2 md:pl-1 text-4xl _font-bold leading-tight tracking-tight text-black">
             {!props?.edit ? "Add new" : "Update"} trade
+          </div>
+          <div className="w-full text-left md:pl-1 mb-3 text-xl _font-bold leading-tight tracking-tight text-black">
+            Product and trade overview information
           </div>
           <div className="w-full flex flex-col md:flex-row">
             <InputBox
@@ -336,9 +343,12 @@ export default function AddProduct(props) {
               className="my-1 md:w-full md:mx-1"
             />
           </div>
-          <span className="mt-10 block"></span>
-          <p className="m-1 text-sm mb-1 md:w-[calc(25%-8px)]">
-            For how long do you want this listing to be valid?
+          <span className="mt-8 block"></span>
+          <div className="w-full text-left md:pl-1 mb-3 text-xl _font-bold leading-tight tracking-tight text-black">
+            Listing validity
+          </div>
+          <p className="m-1 mt-0 text-sm mb-1 md:w-[calc(25%-8px)]">
+            How long this listing should be valid?
           </p>
           <div className="w-full flex flex-col md:flex-row">
             <InputBox
@@ -348,6 +358,57 @@ export default function AddProduct(props) {
               name="listingDuration"
               select={true}
               options={options.listing_durations}
+              className="my-1 md:w-[calc(25%-8px)] w-full md:mx-1"
+            />
+          </div>
+          <span className="mt-8 block"></span>
+          <div className="w-full text-left md:pl-1 mb-3 text-xl _font-bold leading-tight tracking-tight text-black">
+            Promotion
+          </div>
+          <p className="m-1 mt-0 text-sm mb-1 md:w-[calc(25%-8px)]">
+            Promote to subscribers users?
+          </p>
+          <div className="w-full flex flex-col md:flex-row">
+            <InputBox
+              placeholder={"Yes/No"}
+              value={payload.promoteToSubscribed}
+              onChange={changePayload}
+              name="promoteToSubscribed"
+              select={true}
+              options={[
+                {
+                  id: true,
+                  name: "Yes",
+                },
+                {
+                  id: false,
+                  name: "No",
+                },
+              ]}
+              className="my-1 md:w-[calc(25%-8px)] w-full md:mx-1"
+            />
+          </div>
+          <span className="mt-2 block"></span>
+          <p className="m-1 mt-0 text-sm mb-1 md:w-[calc(25%-8px)]">
+            Promote on Trade Quote bar?
+          </p>
+          <div className="w-full flex flex-col md:flex-row">
+            <InputBox
+              placeholder={"Yes/No"}
+              value={payload.promoteToTradeQuoteBar}
+              onChange={changePayload}
+              name="promoteToTradeQuoteBar"
+              select={true}
+              options={[
+                {
+                  id: true,
+                  name: "Yes",
+                },
+                {
+                  id: false,
+                  name: "No",
+                },
+              ]}
               className="my-1 md:w-[calc(25%-8px)] w-full md:mx-1"
             />
           </div>

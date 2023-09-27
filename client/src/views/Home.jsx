@@ -304,7 +304,7 @@ export default function Home(props) {
         <div className="flex flex-wrap md:flex-nowrap justify-between space-y-3 md:space-y-0 md:space-x-2">
           <input
             type="search"
-            className="block w-full p-3 text-sm text-gray-900 border-2 border-gray-300  bg-ray-50 outline-none -none"
+            className="block w-full rounded-none p-3 text-sm text-gray-900 border-2 border-gray-300  hover:bg-gray-50 outline-none"
             placeholder="Search Product"
             value={search}
             onChange={(e) => {
@@ -336,11 +336,11 @@ export default function Home(props) {
         </div>
         {/* Desktop View Category Filter */}
         {!props?.onlySearch && (
-          <div className="hidden py-2 border-t border-b border-gray-300 lg:flex items-center justify-start space-x-2 font-bold mt-7 mb-3 overflow-x-auto">
+          <div className="overflow-auto hidden py-2 border-t border-b border-gray-300 lg:flex items-center justify-start space-x-2 font-bold mt-7 mb-3">
             <p
               className={`${
                 filter === "" && "bg-gray-200"
-              } py-2 px-3 text-[18px] hover:bg-gray-200 transition-all duration-300 ease-in-out cursor-pointer`}
+              } py-2 px-3 text-[18px] hover:bg-gray-200 transition-all whitespace-nowrap duration-300 ease-in-out cursor-pointer`}
               onClick={() => {
                 setFilter("");
               }}
@@ -352,7 +352,7 @@ export default function Home(props) {
                 <p
                   className={`${
                     filter === category.id && "bg-gray-200"
-                  } py-2 px-3 hover:bg-gray-200 text-[18px] transition-all duration-300 ease-in-out cursor-pointer`}
+                  } py-2 px-3 hover:bg-gray-200 text-[18px] transition-all whitespace-nowrap duration-300 ease-in-out cursor-pointer`}
                   onClick={() => {
                     setFilter(category.id);
                   }}

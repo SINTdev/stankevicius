@@ -486,7 +486,7 @@ export default function Dashboard(props) {
         <div className="flex flex-wrap md:flex-nowrap justify-between space-y-3 md:space-y-0 md:space-x-2">
           <input
             type="search"
-            className="block w-full p-3 text-sm text-gray-900 border-2 border-gray-300  bg-ray-50 outline-none -none"
+            className="block w-full rounded-none p-3 text-sm text-gray-900 border-2 border-gray-300  hover:bg-gray-50 outline-none"
             placeholder="Search Product"
             value={search}
             onChange={(e) => {

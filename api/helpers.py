@@ -1,6 +1,7 @@
 from django.core.mail import send_mail
 
 from django.conf import settings
+from authentication import models
 
 
 def test_email():
@@ -122,9 +123,15 @@ def email_new_listing(data):
                     </body>
                 </html>"""
     email_from = settings.EMAIL_HOST_USER
-    recipient_list = [
-        settings.EMAIL_OF_ADMIN
-    ]  # Assuming the recipient is the same as the seller's email
+    recipient_list = [settings.EMAIL_OF_ADMIN]
+    if data["promoteToSubscribed"]:
+        recipient_list += [
+            email
+            for email in models.CustomUsers.objects.filter(offer=True).values_list(
+                "email", flat=True
+            )
+            if email != data["by"]["email"]
+        ]
     try:
         send_mail(
             subject,
@@ -139,7 +146,3 @@ def email_new_listing(data):
         print("Sending mail... [ERROR]")
         print("[ERROR]", e)
     return True
-
-# Pharmaceuticals
-
-

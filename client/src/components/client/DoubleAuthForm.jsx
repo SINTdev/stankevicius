@@ -41,7 +41,13 @@ const DoubleAuthForm = (props) => {
         if (res.message) {
           setMessage(res.message, "red-500");
         } else {
-          setMessage("Account updated.", "green-500");
+          if (S2B(value)) {
+            props?.onEnable();
+          }
+          setMessage(
+            `Double authenticator is ${S2B(value) ? "enabled" : "disabled"}.`,
+            "green-500"
+          );
           sessionStorage.setItem(
             "loggedin",
             JSON.stringify({
@@ -60,6 +66,7 @@ const DoubleAuthForm = (props) => {
   useEffect(() => {
     setValue(props?.is2FA);
   }, [props]);
+
   return (
     <div className="space-y-4 md:space-y-6">
       <div className="flex mb-5">
@@ -107,8 +114,8 @@ const DoubleAuthForm = (props) => {
                 />
               </div>
               {props?.is2FA && (
-                <div className="mt-2 text-left md:text-sm leading-tight tracking-tight text-black">
-                  Please scan from your Google authenticator.
+                <div className="md:w-2/3 w-full mt-2 text-left md:text-sm leading-tight tracking-tight text-black">
+                  Please scan this QR code with your Google Authenticator app.
                 </div>
               )}
             </div>

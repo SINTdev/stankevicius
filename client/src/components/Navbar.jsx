@@ -268,7 +268,7 @@ export default function Navbar(props) {
                   </svg>
                 )}
 
-                <span className="">Search</span>
+                <span className="font-bold">Search</span>
               </li>
 
               {props?.isLoggedIn ? (
@@ -374,11 +374,21 @@ export default function Navbar(props) {
         </div>
       </nav>
       <div className="background_stripe"></div>
-      <div class="background_video">
-        <video autoPlay loop muted>
+      <div class="background_video relative select-none">
+        <div className="absolute flex items-center w-full h-[calc(100%-4.5rem)] mt-[4.5rem] p-10">
+          <div className="max-w-screen-xl w-full flex flex-wrap items-center justify-between mx-auto">
+            <span className="z-10 font-extrabold text-white md:text-6xl text-4xl -tracking-wider">
+              Delivering a clear view
+              <br />
+              in a complex world.
+            </span>
+          </div>
+        </div>
+        <video autoPlay={true} loop={true} muted={true} playsInline={true} controls={false}>
           <source
             src="https://data.bloomberglp.com/professional/sites/12/Megasite-Conform-170413-HD-25s-2-4bitrate.mp4"
             type="video/mp4"
+            id="main_bg"
           />
           Your browser does not support the video tag.
         </video>
