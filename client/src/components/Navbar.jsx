@@ -115,6 +115,48 @@ export default function Navbar(props) {
             />
           </Link>
           <span className="flex justify-center items-center">
+            <li
+              onClick={() => {
+                props?.setIsSearchOpen(!props?.isSearchOpen);
+                props.setIsAccountMenuOpen(false);
+                props.setIsMenuOpen(false);
+              }}
+              className={`md:hidden transition-all duration-300 ease-in-out ${
+                props?.isSearchOpen && "bg-gray-100"
+              } hover:bg-gray-100 h-full relative flex items-center cursor-pointer`}
+            >
+              {props?.isSearchOpen ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-4 h-4"
+                >
+                  <path
+                    d="M20 20L4 4.00003M20 4L4.00002 20"
+                    stroke="#000000"
+                    strokeWidth={2}
+                    strokeLinecap="round"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-5 h-5"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                  />
+                </svg>
+              )}
+            </li>
             {props?.isLoggedIn ? (
               <li
                 className={`md:hidden relative h-full flex items-center cursor-pointer mr-1`}
@@ -128,6 +170,7 @@ export default function Navbar(props) {
                   // );
                   props.setIsAccountMenuOpen(!props.isAccountMenuOpen);
                   props.setIsMenuOpen(false);
+                  props?.setIsSearchOpen(false);
                 }}
               >
                 <span
@@ -164,6 +207,9 @@ export default function Navbar(props) {
                       login: true,
                       register: false,
                     });
+                    props.setIsAccountMenuOpen(false);
+                    props.setIsMenuOpen(false);
+                    props.setIsSearchOpen(false);
                   }}
                   className={`md:hidden transition-all duration-300 ease-in-out ${
                     modalSetting.login && "bg-gray-100"
@@ -185,6 +231,7 @@ export default function Navbar(props) {
                 setIsNavbarOpen(!isNavbarOpen);
                 props.setIsMenuOpen(!props.isMenuOpen);
                 props.setIsAccountMenuOpen(false);
+                props?.setIsSearchOpen(false);
               }}
             >
               <span className="sr-only">Open main menu</span>
@@ -231,6 +278,8 @@ export default function Navbar(props) {
               <li
                 onClick={() => {
                   props?.setIsSearchOpen(!props?.isSearchOpen);
+                  props.setIsAccountMenuOpen(false);
+                  props.setIsMenuOpen(false);
                 }}
                 className={`transition-all duration-300 ease-in-out ${
                   props?.isSearchOpen && "bg-gray-100"
@@ -286,6 +335,7 @@ export default function Navbar(props) {
                     // );
                     props.setIsAccountMenuOpen(!props.isAccountMenuOpen);
                     props.setIsMenuOpen(false);
+                    props?.setIsSearchOpen(false);
                   }}
                 >
                   <span className="select-none mr-1">
@@ -317,6 +367,9 @@ export default function Navbar(props) {
                         login: true,
                         register: false,
                       });
+                      props.setIsAccountMenuOpen(false);
+                      props.setIsMenuOpen(false);
+                      props.setIsSearchOpen(false);
                     }}
                     className={`transition-all duration-300 ease-in-out ${
                       modalSetting.login && "bg-gray-100"
@@ -333,6 +386,7 @@ export default function Navbar(props) {
                 onClick={() => {
                   props.setIsMenuOpen(!props.isMenuOpen);
                   props.setIsAccountMenuOpen(false);
+                  props?.setIsSearchOpen(false);
                 }}
               >
                 {props?.isMenuOpen ? (
@@ -377,14 +431,24 @@ export default function Navbar(props) {
       <div class="background_video relative select-none">
         <div className="absolute flex items-center w-full h-[calc(100%-4.5rem)] mt-[4.5rem] p-10">
           <div className="max-w-screen-xl w-full flex flex-wrap items-center justify-between mx-auto">
-            <span className="z-10 font-extrabold text-white md:text-6xl text-4xl -tracking-wider">
-              Delivering a clear view
-              <br />
-              in a complex world.
+            <span className="z-10 font-extrabold text-white md:text-6xl text-4xl -tracking-wider flex flex-col flex-nowrap">
+              <span className="whitespace-nowrap">This is</span>
+              <span className="whitespace-nowrap">Stankevicius.</span>
             </span>
           </div>
         </div>
-        <video autoPlay={true} loop={true} muted={true} playsInline={true} controls={false}>
+        <img
+          className="source_play md:hidden flex"
+          src="https://e0.pxfuel.com/wallpapers/195/220/desktop-wallpaper-skyscraper-corporate.jpg"
+        />
+        <video
+          autoPlay={true}
+          loop={true}
+          muted={true}
+          playsInline={true}
+          controls={false}
+          className="source_play md:block hidden"
+        >
           <source
             src="https://data.bloomberglp.com/professional/sites/12/Megasite-Conform-170413-HD-25s-2-4bitrate.mp4"
             type="video/mp4"

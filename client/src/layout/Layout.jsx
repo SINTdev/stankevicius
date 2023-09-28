@@ -144,7 +144,8 @@ export default function Layout(props) {
             setter={configureModal}
           />
         )}
-        {props?.isSearchOpen && <SearchMenu />}
+        {/* {props?.isSearchOpen && <SearchMenu />} */}
+        <SearchMenu isSearchOpen={props?.isSearchOpen}/>
         {!props?.isMenuOpen && !props?.isAccountMenuOpen && <Footer />}
       </UserData.Provider>
     </>

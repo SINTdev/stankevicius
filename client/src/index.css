@@ -30,7 +30,7 @@ body {
   overflow: hidden;
 }
 
-.background_video video {
+.background_video .source_play {
   object-fit: cover;
   width: 100%;
   height: 100%;

@@ -211,7 +211,7 @@ const Menu = () => {
    };
 
    return (
-      <div className="absolute top-0 left-0 bg-white w-screen h-screen z-10">
+      <div className="fixed top-0 left-0 bg-white w-screen h-screen z-10">
          <div className="max-w-screen-xl mx-auto  h-full p-2 justify-center hidden md:flex">
             <div className="flex w-screen h-screen absolute top-0 left-0 -z-10">
                <div className="flex-1 w-1/2 h-full bg-white"></div>
