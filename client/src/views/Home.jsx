@@ -46,6 +46,11 @@ const DropdownButton = (props) => {
               return (
                 <Link
                   to={one?.click}
+                  onClick={() => {
+                    if (one?.label === "Edit" && props?.onlySearch) {
+                      props?.setIsSearchOpen(false);
+                    }
+                  }}
                   className={`border m-0 border-black border-t-0 flex flex-row items-center justify-center text-[13px] uppercase font-semibold bg-[#D5D5D5] hover:bg-[#929292] transition-all duration-150 ease-in-out text-white min-w-[8rem] py-1.5`}
                 >
                   {one?.label}
@@ -624,6 +629,8 @@ export default function Home(props) {
                           !product?.isArchived &&
                           !product?.isExpired && (
                             <DropdownButton
+                              onlySearch={props?.onlySearch}
+                              setIsSearchOpen={props?.setIsSearchOpen}
                               label="Action"
                               options={[
                                 {

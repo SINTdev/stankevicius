@@ -2,10 +2,10 @@ import React from "react";
 
 const RenderTR = ({ user, onDelete }) => {
   return (
-    <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+    <tr className="whitespace-nowrap bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
       <th
         scope="row"
-        className="sticky left-0 h-fit bg-white px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+        className="sticky left-0 bg-white px-6 py-1 font-medium text-gray-900 whitespace-nowrap dark:text-white"
       >
         {user?.fullName}
       </th>
@@ -41,7 +41,7 @@ export default function UserTable(props) {
   return (
     <div className="relative overflow-x-auto shadow-md">
       <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <thead className="whitespace-nowrap text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
             <th
               scope="col"
@@ -73,6 +73,21 @@ export default function UserTable(props) {
           </tr>
         </thead>
         <tbody>
+          {props?.users?.map((one, index) => {
+            return <RenderTR user={one} onDelete={props?.onDelete} />;
+          })}
+          {props?.users?.map((one, index) => {
+            return <RenderTR user={one} onDelete={props?.onDelete} />;
+          })}
+          {props?.users?.map((one, index) => {
+            return <RenderTR user={one} onDelete={props?.onDelete} />;
+          })}
+          {props?.users?.map((one, index) => {
+            return <RenderTR user={one} onDelete={props?.onDelete} />;
+          })}
+          {props?.users?.map((one, index) => {
+            return <RenderTR user={one} onDelete={props?.onDelete} />;
+          })}
           {props?.users?.map((one, index) => {
             return <RenderTR user={one} onDelete={props?.onDelete} />;
           })}

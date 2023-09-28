@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Home from "../views/Home";
 
-export default function SearchMenu({ isSearchOpen }) {
+export default function SearchMenu({ isSearchOpen, setIsSearchOpen }) {
   return (
     <div
       className={`fixed top-0 left-0 bg-white w-screen ${
@@ -11,7 +11,7 @@ export default function SearchMenu({ isSearchOpen }) {
       {isSearchOpen && (
         <div className="mx-4 lg:mx-10 mt-24">
           <div className="max-w-screen-xl mx-auto p-0 md:p-4">
-            <Home onlySearch={true} />
+            <Home onlySearch={true} setIsSearchOpen={setIsSearchOpen}/>
           </div>
         </div>
       )}

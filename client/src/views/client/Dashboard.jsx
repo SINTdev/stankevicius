@@ -223,24 +223,27 @@ export default function Dashboard(props) {
                   {product?.isExpired ? "Expired" : "Expiring"} on
                 </span>
                 <span className="font-thin">
-                  {formatDate(
-                    addDaysToTimestamp(
-                      product?.timestamp,
-                      product?.listingDuration?.name
-                    )
-                  )}
+                  {product?.isExpired
+                    ? formatDate(product?.expiryDate)
+                    : formatDate(
+                        addDaysToTimestamp(
+                          product?.timestamp,
+                          product?.listingDuration?.name
+                        )
+                      )}
                 </span>
               </>
             ) : product?.isExtended && !product?.isArchived ? (
               <>
                 <span className="uppercase _font-bold mr-1">Expired on</span>
                 <span className="font-thin">
-                  {formatDate(
+                  {/* {formatDate(
                     addDaysToTimestamp(
                       product?.openedOn,
                       product?.listingDuration?.name
                     )
-                  )}
+                  )} */}
+                  {formatDate(product?.expiryDate)}
                 </span>
                 <span className="uppercase _font-bold ml-3 mr-1">
                   Extended till
@@ -248,7 +251,7 @@ export default function Dashboard(props) {
                 <span className="font-thin">
                   {formatDate(
                     addDaysToTimestamp(
-                      product?.timestamp,
+                      product?.expiryDate,
                       product?.listingDuration?.name
                     )
                   )}

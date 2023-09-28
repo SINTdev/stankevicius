@@ -101,3 +101,30 @@ body {
   /* Internet Explorer */
   -ms-overflow-style: none;
 }
+
+/* Animation footer */
+
+.scrolling-container {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.scrolling-content {
+  display: inline-block;
+  animation: scrollRight 15s linear infinite; /* Adjust animation duration as needed */
+  animation-play-state: running;
+  animation-delay: 500ms;
+}
+
+@keyframes scrollRight {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.scrolling-content:hover {
+  animation-play-state: paused;
+}

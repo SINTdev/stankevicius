@@ -122,6 +122,7 @@ class Product(models.Model):
     archivedOn = models.DateTimeField(blank=True, null=True)  # Imp
     isExtended = models.BooleanField(default=False)
     isExpired = models.BooleanField(default=False)  # Imp
+    expiryDate = models.DateTimeField(blank=True, null=True)  # Imp
     timestamp = models.DateTimeField(default=timezone.now)  # Imp
     openedOn = models.DateTimeField(default=timezone.now)  # Imp
 

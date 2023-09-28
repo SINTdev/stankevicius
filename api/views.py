@@ -226,11 +226,11 @@ def products(request, pk=None):
         serializer = serializers.ProductSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
-            email_new_listing(
-                serializers.ViewProductSerializer(
-                    models.Product.objects.get(pk=serializer.data["id"])
-                ).data
-            )
+            # email_new_listing(
+            #     serializers.ViewProductSerializer(
+            #         models.Product.objects.get(pk=serializer.data["id"])
+            #     ).data
+            # )
             return JsonResponse(
                 {"content": serializer.data}, status=status.HTTP_202_ACCEPTED
             )
@@ -309,6 +309,7 @@ def product(request, pk=None, user_id=None):
         elif data["type"] == "expire":
             # Expire product
             inr.isExpired = True
+            inr.expiryDate = timezone.now()
         elif data["type"] == "extend":
             # Expire product
             inr.isExpired = False
