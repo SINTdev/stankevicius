@@ -188,7 +188,7 @@ def options(request):
         return JsonResponse(categories_serializer.data, safe=False)
 
 
-@api_view(["POST", "GET", "PUT"])
+@api_view(["GET"])
 @permission_classes([])
 @authentication_classes([])
 def products(request, pk=None):
@@ -257,6 +257,43 @@ def products(request, pk=None):
         return JsonResponse(
             {"message": "Not valid data!"}, status=status.HTTP_202_ACCEPTED
         )
+
+
+@api_view(["POST", "GET", "PUT"])
+@permission_classes([])
+@authentication_classes([])
+def promotedproducts(request, pk=None):
+    if request.method == "GET":
+        instance = models.Product.objects.filter(
+            isExpired=False,
+            isArchived=False,
+            category__isnull=False,
+            promoteToTradeQuoteBar=True,
+        ).order_by("-timestamp")
+        # if pk is not None:
+        #     instance = instance.exclude(by__id=pk)
+        final_data = serializers.ViewProductSerializer(instance, many=True).data
+        output = []
+        for data in final_data:
+            if pk is not None:
+                lastObject = (
+                    models.ProductInteractions.objects.filter(
+                        user__id=pk, product__id=data["id"]
+                    )
+                    .order_by("-timestamp")
+                    .first()
+                )
+            else:
+                lastObject = None
+
+            data["lastActivity"] = (
+                serializers.HomeProductInteractionsSerializer(lastObject).data
+                if lastObject is not None
+                else None
+            )
+            output.append(data)
+
+        return JsonResponse(output, safe=False)
 
 
 @api_view(["POST", "GET"])

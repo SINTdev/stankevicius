@@ -105,6 +105,15 @@ export default function Layout(props) {
       });
   };
 
+  const [pushProductChange, setPushProductChange] = useState(false);
+
+  const changePushProductChange = () => {
+    setPushProductChange(true);
+    setTimeout(() => {
+      setPushProductChange(false);
+    }, 1000);
+  };
+
   const value = {
     session,
     setSession,
@@ -113,6 +122,8 @@ export default function Layout(props) {
     globalModals,
     fetchCategories,
     categories,
+    changePushProductChange,
+    pushProductChange
   };
 
   return (
@@ -145,7 +156,10 @@ export default function Layout(props) {
           />
         )}
         {/* {props?.isSearchOpen && <SearchMenu />} */}
-        <SearchMenu isSearchOpen={props?.isSearchOpen} setIsSearchOpen={props?.setIsSearchOpen}/>
+        <SearchMenu
+          isSearchOpen={props?.isSearchOpen}
+          setIsSearchOpen={props?.setIsSearchOpen}
+        />
         {!props?.isMenuOpen && <Footer />}
       </UserData.Provider>
     </>

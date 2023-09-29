@@ -21,7 +21,9 @@ const UserData = React.createContext({
   updateSessionData: () => {},
   configureModal: () => {},
   fetchCategories: () => {},
+  changePushProductChange: () => {},
   categories: [],
+  pushProductChange: false,
   globalModals: {
     profile: false,
     security: false,

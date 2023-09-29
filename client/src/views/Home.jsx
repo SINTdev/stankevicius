@@ -74,7 +74,7 @@ const DropdownButton = (props) => {
 };
 
 export default function Home(props) {
-  const { session, setSession } = useContext(UserData);
+  const { session, setSession, pushProductChange } = useContext(UserData);
   const [categories, setCategories] = useState([]);
 
   const fetchCategories = async () => {
@@ -116,6 +116,12 @@ export default function Home(props) {
       fetchProducts();
     }
   }, [session]);
+
+  useEffect(() => {
+    if (pushProductChange) {
+      fetchProducts();
+    }
+  }, [pushProductChange]);
 
   const [filter, setFilter] = useState("");
   const [search, setSearch] = useState("");
