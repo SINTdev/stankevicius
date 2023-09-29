@@ -62,8 +62,15 @@ const Footer = () => {
   return (
     <>
       <div className="mt-[calc(5rem+100px)] relative">
-        <PromotionBar className={isFooterVisible ? "absolute -top-[100px]" : "fixed bottom-0"} />
-        <footer ref={footerRef} className={`bg-[#f1f1f1] transition-all duration-300 ease-in-out px-4 py-6 md:p-10`}>
+        <PromotionBar
+          className={
+            isFooterVisible ? "absolute -top-[100px]" : "fixed -bottom-1"
+          }
+        />
+        <footer
+          ref={footerRef}
+          className={`bg-[#f1f1f1] transition-all duration-300 ease-in-out px-4 py-6 md:p-10`}
+        >
           <div class="mx-auto w-full max-w-screen-xl">
             <Link to="/" className="flex items-center">
               <img

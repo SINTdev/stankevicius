@@ -76,21 +76,6 @@ export default function UserTable(props) {
           {props?.users?.map((one, index) => {
             return <RenderTR user={one} onDelete={props?.onDelete} />;
           })}
-          {props?.users?.map((one, index) => {
-            return <RenderTR user={one} onDelete={props?.onDelete} />;
-          })}
-          {props?.users?.map((one, index) => {
-            return <RenderTR user={one} onDelete={props?.onDelete} />;
-          })}
-          {props?.users?.map((one, index) => {
-            return <RenderTR user={one} onDelete={props?.onDelete} />;
-          })}
-          {props?.users?.map((one, index) => {
-            return <RenderTR user={one} onDelete={props?.onDelete} />;
-          })}
-          {props?.users?.map((one, index) => {
-            return <RenderTR user={one} onDelete={props?.onDelete} />;
-          })}
         </tbody>
       </table>
     </div>

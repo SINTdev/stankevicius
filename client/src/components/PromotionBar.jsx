@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Marquee from "react-fast-marquee";
 
 const ProductCard = (props) => {
   return (
@@ -17,7 +18,7 @@ const ProductCard = (props) => {
           </div>
         </div>
       </div>
-      <div className="text-xs flex flex-row bg-green-500 px-2 py-0.5 justify-center items-center md:space-x-0 space-x-2">
+      <div className="text-xs flex flex-row bg-gradient-to-b from-green-900 via-green-700 to-green-500 px-2 py-0.5 justify-center items-center md:space-x-0 space-x-2">
         <div className="w-1/2 flex flex-col">
           <div className="whitespace-nowrap items-center flex flex-row space-x-1">
             <span className="_font-bold uppercase">Quantity:</span>
@@ -52,7 +53,66 @@ const ProductCard = (props) => {
   );
 };
 
+const TIMEZONES = [
+  {
+    label: "HKT",
+    name: "Asia/Hong_Kong",
+  },
+  {
+    label: "EST",
+    name: "America/New_York",
+  },
+  {
+    label: "GST",
+    name: "Asia/Dubai",
+  },
+];
+
 export default function PromotionBar(props) {
+  const formatTimeDate = (timeZone, label) => {
+    let now = new Date(
+      new Date().toLocaleString("en-US", {
+        timeZone,
+      })
+    );
+    let hours = now.getHours();
+    let minutes = now.getMinutes();
+    let ampm = hours >= 12 ? "pm" : "am";
+    let formattedHours = hours % 12 === 0 ? 12 : hours % 12;
+    let monthNames = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+    let month = monthNames[now.getMonth()];
+    let day = now.getDate();
+
+    let formattedTimeDate = `${formattedHours}:${
+      minutes < 10 ? "0" : ""
+    }${minutes} ${ampm} ${label} ${month} ${day}`;
+
+    return formattedTimeDate;
+  };
+
+  const [counter, setCounter] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCounter((prevCounter) => (prevCounter + 1) % 3);
+    }, 6000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div
       className={`${props?.className} max-h-[100px] h-full overflow-hidden w-full transition-all duration-300 ease-in-out`}
@@ -60,11 +120,17 @@ export default function PromotionBar(props) {
       <div className="max-h-[100px] flex flex-row bg-black p-1">
         <div className="mr-1 border-2 px-2 border-[#6E6162] flex flex-col items-end justify-center bg-[#464646] text-white">
           <span className="text-2xl _font-bold">Stankevicius</span>
-          <span className="uppercase text-xs">11:03 am hkt sep 18</span>
+          {/* <span className="uppercase text-xs">11:03 am hkt sep 18</span> */}
+          <span className="uppercase text-xs">
+            {formatTimeDate(
+              TIMEZONES[counter]?.name,
+              TIMEZONES[counter]?.label
+            )}
+          </span>
           <span className="uppercase text-xs">trade quotes</span>
         </div>
         <div className="scrolling-container w-full">
-          <div className="scrolling-content w-full">
+          <div className="scrolling-content w-full space-x-0.5">
             <ProductCard />
             <ProductCard />
             <ProductCard />
@@ -72,7 +138,6 @@ export default function PromotionBar(props) {
             <ProductCard />
           </div>
         </div>
-        {/* <ProductCard /> */}
       </div>
     </div>
   );

@@ -451,7 +451,7 @@ export default function Home(props) {
         </div>
 
         {((props?.onlySearch && search !== "") || !props?.onlySearch) && (
-          <div className="my-5">
+          <div className={`my-5 ${props?.onlySearch && "max-h-[70vh] overflow-scroll"}`}>
             {productsList
               .filter((product, index) => {
                 if (!filter) return true;

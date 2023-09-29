@@ -36,6 +36,7 @@ def updateOnEmail(pk):
 def expiredProduct(pk):
     inr = models.Product.objects.get(pk=pk)
     inr.isExpired = True
+    inr.expiryDate = timezone.now()
     inr.save()
 
 

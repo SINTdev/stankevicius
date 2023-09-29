@@ -432,8 +432,8 @@ export default function Navbar(props) {
         <div className="absolute flex items-center w-full h-[calc(100%-4.5rem)] mt-[4.5rem] p-10">
           <div className="max-w-screen-xl w-full flex flex-wrap items-center justify-between mx-auto">
             <span className="z-10 font-extrabold text-white md:text-6xl text-4xl -tracking-wider flex flex-col flex-nowrap">
-              <span className="whitespace-nowrap">This is</span>
-              <span className="whitespace-nowrap">Stankevicius.</span>
+              <span className="whitespace-nowrap">Delivering clear view</span>
+              <span className="whitespace-nowrap">in a complex world</span>
             </span>
           </div>
         </div>
@@ -450,7 +450,7 @@ export default function Navbar(props) {
           className="source_play md:block hidden"
         >
           <source
-            src="https://data.bloomberglp.com/professional/sites/12/Megasite-Conform-170413-HD-25s-2-4bitrate.mp4"
+            src="/assets/bg_video.mp4"
             type="video/mp4"
             id="main_bg"
           />
