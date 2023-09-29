@@ -226,7 +226,7 @@ export default function Dashboard(props) {
         >
           <div className="absolute w-[100%] h-[1px] bg-gray-300 -bottom-[0px] left-0 hidden lg:block"></div>
           <p className="text-xs mb-2 lg:mb-0 lg:float-right">
-            {!product?.isExtended && !product?.isArchived ? (
+            {/* {!product?.isExtended && !product?.isArchived ? (
               <>
                 <span className="uppercase _font-bold mr-1">opened on</span>
                 <span className="font-thin">
@@ -262,6 +262,72 @@ export default function Dashboard(props) {
                   {formatDate(
                     addDaysToTimestamp(
                       product?.timestamp,
+                      product?.listingDuration?.name
+                    )
+                  )}
+                </span>
+              </>
+            ) : (
+              <>
+                <div className="flex flex-col w-full justify-start items-start mr-16">
+                  <div>
+                    <span className="uppercase _font-bold mr-1">
+                      Archived on
+                    </span>
+                    <span className="font-thin">
+                      {formatDate(product?.archivedOn)}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="uppercase _font-bold mr-1">
+                      Deleted in
+                    </span>
+                    <span className="font-thin">
+                      {countdownFrom5Days(product?.archivedOn)}
+                    </span>
+                  </div>
+                </div>
+              </>
+            )} */}
+            {!product?.isExtended && !product?.isArchived ? (
+              <>
+                <span className="uppercase _font-bold mr-1">opened on</span>
+                <span className="font-thin">
+                  {formatDate(product?.openedOn)}
+                </span>
+                <span className="uppercase _font-bold ml-3 mr-1">
+                  {product?.isExpired ? "Expired" : "Expiring"} on
+                </span>
+                <span className="font-thin">
+                  {product?.isExpired
+                    ? formatDate(product?.expiryDate)
+                    : formatDate(
+                        addDaysToTimestamp(
+                          product?.timestamp,
+                          product?.listingDuration?.name
+                        )
+                      )}
+                </span>
+              </>
+            ) : product?.isExtended && !product?.isArchived ? (
+              <>
+                <span className="uppercase _font-bold mr-1">Expired on</span>
+                <span className="font-thin">
+                  {/* {formatDate(
+                    addDaysToTimestamp(
+                      product?.openedOn,
+                      product?.listingDuration?.name
+                    )
+                  )} */}
+                  {formatDate(product?.expiryDate)}
+                </span>
+                <span className="uppercase _font-bold ml-3 mr-1">
+                  Extended till
+                </span>
+                <span className="font-thin">
+                  {formatDate(
+                    addDaysToTimestamp(
+                      product?.expiryDate,
                       product?.listingDuration?.name
                     )
                   )}

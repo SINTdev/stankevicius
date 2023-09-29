@@ -451,7 +451,11 @@ export default function Home(props) {
         </div>
 
         {((props?.onlySearch && search !== "") || !props?.onlySearch) && (
-          <div className={`my-5 ${props?.onlySearch && "max-h-[70vh] overflow-scroll"}`}>
+          <div
+            className={`my-5 ${
+              props?.onlySearch && "max-h-[70vh] overflow-scroll"
+            }`}
+          >
             {productsList
               .filter((product, index) => {
                 if (!filter) return true;
@@ -512,12 +516,20 @@ export default function Home(props) {
                               {product?.isExpired ? "Expired" : "Expiring"} on
                             </span>
                             <span className="font-thin">
-                              {formatDate(
+                              {/* {formatDate(
                                 addDaysToTimestamp(
                                   product?.timestamp,
                                   product?.listingDuration?.name
                                 )
-                              )}
+                              )} */}
+                              {product?.isExpired
+                                ? formatDate(product?.expiryDate)
+                                : formatDate(
+                                    addDaysToTimestamp(
+                                      product?.timestamp,
+                                      product?.listingDuration?.name
+                                    )
+                                  )}
                             </span>
                           </>
                         ) : product?.isExtended && !product?.isArchived ? (
@@ -526,20 +538,27 @@ export default function Home(props) {
                               Expired on
                             </span>
                             <span className="font-thin">
-                              {formatDate(
+                              {/* {formatDate(
                                 addDaysToTimestamp(
                                   product?.openedOn,
                                   product?.listingDuration?.name
                                 )
-                              )}
+                              )} */}
+                              {formatDate(product?.expiryDate)}
                             </span>
                             <span className="uppercase _font-bold ml-3 mr-1">
                               Extended till
                             </span>
                             <span className="font-thin">
-                              {formatDate(
+                              {/* {formatDate(
                                 addDaysToTimestamp(
                                   product?.timestamp,
+                                  product?.listingDuration?.name
+                                )
+                              )} */}
+                              {formatDate(
+                                addDaysToTimestamp(
+                                  product?.expiryDate,
                                   product?.listingDuration?.name
                                 )
                               )}
