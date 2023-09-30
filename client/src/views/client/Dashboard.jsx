@@ -310,7 +310,7 @@ export default function Dashboard(props) {
                   {
                     label: "Edit",
                     type: "link",
-                    click: `/edit/${product?.slug}`,
+                    click: `/edit/${product?.slug}?focus=update`,
                   },
                   {
                     label: "Expire Now",

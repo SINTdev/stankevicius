@@ -121,9 +121,7 @@ export default function Navbar(props) {
                 props.setIsAccountMenuOpen(false);
                 props.setIsMenuOpen(false);
               }}
-              className={`md:hidden transition-all duration-300 ease-in-out ${
-                props?.isSearchOpen && "bg-gray-100"
-              } hover:bg-gray-100 h-full relative flex items-center cursor-pointer`}
+              className={`md:hidden transition-all duration-300 mr-1 ease-in-out h-full relative flex items-center cursor-pointer`}
             >
               {props?.isSearchOpen ? (
                 <svg
@@ -211,9 +209,7 @@ export default function Navbar(props) {
                     props.setIsMenuOpen(false);
                     props.setIsSearchOpen(false);
                   }}
-                  className={`md:hidden transition-all duration-300 ease-in-out ${
-                    modalSetting.login && "bg-gray-100"
-                  } hover:bg-gray-100 px-1.5 h-full relative flex items-center cursor-pointer`}
+                  className={`md:hidden transition-all duration-300 ease-in-out px-1.5 h-full relative flex items-center cursor-pointer`}
                 >
                   <span className="cursor-pointer text-sm">
                     Login/Create Account

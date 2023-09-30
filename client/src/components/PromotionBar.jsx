@@ -33,13 +33,13 @@ const ProductCard = ({
     return str;
   }
   return (
-    <div className="mr-0.5 max-h-[100px] inline-block  min-w-[25rem] w-full border-2 border-[#6E6162] text-white flex-col">
-      <div className="flex flex-row px-2 pr-1 py-1 justify-between w-full">
-        <div className="w-3/6 uppercase flex items-center text-base _font-bold text-[#FFB769]">
+    <div className="mr-0.5 h-[92px] inline-block  min-w-[25rem] w-full border-2 border-[#6E6162] text-white flex-col">
+      <div className="flex flex-row px-2 pr-1 py-1 justify-between w-full h-[28px]">
+        <div className="w-3/6 uppercase flex items-center text-[calc(1rem-2px)] _font-bold text-[#FFB769]">
           {truncateString(product?.name, 16)}
         </div>
         <div className="w-3/6 md:m-0 ml-3 flex flex-row justify-between">
-          <div className="flex flex-col _font-bold uppercase text-xs leading-none justify-center">
+          <div className="flex flex-col _font-bold uppercase text-[0.6rem] leading-none justify-center">
             <span>Open: {formatDateDot(product?.openedOn)}</span>
             <span>
               Exp:{" "}
@@ -81,7 +81,7 @@ const ProductCard = ({
                     !product?.lastActivity?.isCancelled &&
                     !product?.lastActivity?.isWait)) &&
                 "bg-[#929292] pointer-events-none"
-              } transition-all duration-300 ease-in-out text-base hover:text-black hover:bg-[#FFB769] cursor-pointer text-[#FFB769] px-1 justify-center items-center flex border-2 _font-bold uppercase border-[#FFB769]`}
+              } transition-all duration-300 ease-in-out text-[calc(1rem-2px)] hover:text-black hover:bg-[#FFB769] cursor-pointer text-[#FFB769] px-1 justify-center items-center flex border-2 _font-bold uppercase border-[#FFB769]`}
             >
               {(!product?.lastActivity ||
                 (product?.lastActivity &&
@@ -91,52 +91,73 @@ const ProductCard = ({
                 !product?.lastActivity?.isCancelled &&
                 !hasFiveMinutesPassed(product?.lastActivity?.timestamp) &&
                 product?.lastActivity?.isWait &&
-                "X"}
+                "Cancel"}
               {((product?.lastActivity &&
                 !product?.lastActivity?.isCancelled &&
                 hasFiveMinutesPassed(product?.lastActivity?.timestamp)) ||
                 (product?.lastActivity &&
                   !product?.lastActivity?.isCancelled &&
                   !product?.lastActivity?.isWait)) &&
-                "X"}
+                "Cancel"}
+            </button>
+          )}
+          {((session?.isLoggedIn &&
+            product?.by?.id.toString() === session?.personal?.id.toString()) ||
+            !session?.isLoggedIn) && (
+            <button
+              className={` transition-all duration-300 ease-in-out text-[calc(1rem-2px)] hover:text-black hover:bg-[#FFB769] cursor-pointer text-[#FFB769] px-1 justify-center items-center flex border-2 _font-bold uppercase border-[#FFB769]`}
+            >
+              {product?.action?.name !== "BUYING" ? "Buy" : "Sell"}
             </button>
           )}
         </div>
       </div>
       <div
-        className={`text-xs flex flex-row bg-gradient-to-b ${
+        className={`text-[0.78rem] flex flex-row bg-gradient-to-b ${
           product?.action?.name === "BUYING"
             ? "from-green-900 via-green-700 to-green-500"
             : "from-red-900 via-red-700 to-red-500"
-        } px-2 py-0.5 justify-center items-center md:space-x-0 space-x-2`}
+        } px-2 py-0.5 h-[60px] items-center justify-center`}
       >
         <div className="w-1/2 flex flex-col">
           <div className="whitespace-nowrap items-center flex flex-row space-x-1">
             <span className="_font-bold uppercase">Quantity:</span>
-            <span className="font-semibold">{product?.quantity}</span>
+            <span className="font-bold tracking-tight">
+              {product?.quantity}
+            </span>
           </div>
           <div className="whitespace-nowrap items-center flex flex-row space-x-1">
             <span className="_font-bold uppercase">Delivery:</span>
-            <span className="font-semibold">{product?.delivery?.name}</span>
+            <span className="font-bold tracking-tight">
+              {product?.delivery?.name}
+            </span>
           </div>
           <div className="whitespace-nowrap items-center flex flex-row space-x-1">
             <span className="_font-bold uppercase">Origin:</span>
-            <span className="font-semibold">{product?.origin?.name}</span>
+            <span className="font-bold tracking-tight">
+              {product?.origin?.name}
+            </span>
           </div>
         </div>
 
         <div className="w-1/2 flex flex-col">
           <div className="whitespace-nowrap items-center flex flex-row space-x-1">
             <span className="_font-bold uppercase">Contract:</span>
-            <span className="font-semibold">{product?.contract?.name}</span>
+            <span className="font-bold tracking-tight">
+              {product?.contract?.name}
+            </span>
           </div>
           <div className="whitespace-nowrap items-center flex flex-row space-x-1">
             <span className="_font-bold uppercase">Payment:</span>
-            <span className="font-semibold">{product?.payment?.name}</span>
+            <span className="font-bold tracking-tight">
+              {product?.payment?.name}
+            </span>
           </div>
           <div className="whitespace-nowrap items-center flex flex-row space-x-1">
             <span className="_font-bold uppercase">Price:</span>
-            <span className="font-semibold">{product?.price} USD</span>
+            <span className="font-bold tracking-tight">
+              {product?.price} USD
+            </span>
           </div>
         </div>
       </div>
@@ -435,7 +456,7 @@ export default function PromotionBar(props) {
           })} */}
 
           {productsList?.length > 0 && (
-            <InfiniteLooper speed={10} direction="left">
+            <InfiniteLooper speed={13} direction="left">
               {productsList?.map((product, one) => {
                 return (
                   <ProductCard product={product} key={one} {...toSendAlong} />

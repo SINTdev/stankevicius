@@ -188,7 +188,7 @@ def options(request):
         return JsonResponse(categories_serializer.data, safe=False)
 
 
-@api_view(["GET"])
+@api_view(["POST", "GET", "PUT"])
 @permission_classes([])
 @authentication_classes([])
 def products(request, pk=None):
@@ -259,7 +259,7 @@ def products(request, pk=None):
         )
 
 
-@api_view(["POST", "GET", "PUT"])
+@api_view(["GET"])
 @permission_classes([])
 @authentication_classes([])
 def promotedproducts(request, pk=None):
@@ -474,7 +474,7 @@ def corporateusers(request):
         last_24_hours = now - timedelta(hours=24)
         last_7_days = now - timedelta(days=7)
         last_30_days = now - timedelta(days=30)
-        instance = CustomUsers.objects.filter(is_staff=False).order_by("-timestamp")
+        instance = CustomUsers.objects.filter().order_by("-timestamp")
         final_data = [
             {
                 **ViewUserSerializer(user).data,
