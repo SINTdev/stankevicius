@@ -101,15 +101,14 @@ const ProductCard = ({
                 "Cancel"}
             </button>
           )}
-          {((session?.isLoggedIn &&
-            product?.by?.id.toString() === session?.personal?.id.toString()) ||
-            !session?.isLoggedIn) && (
-            <button
-              className={` transition-all duration-300 ease-in-out text-[calc(1rem-2px)] hover:text-black hover:bg-[#FFB769] cursor-pointer text-[#FFB769] px-1 justify-center items-center flex border-2 _font-bold uppercase border-[#FFB769]`}
-            >
-              {product?.action?.name !== "BUYING" ? "Buy" : "Sell"}
-            </button>
-          )}
+          {session?.isLoggedIn &&
+            product?.by?.id.toString() === session?.personal?.id.toString() && (
+              <button
+                className={` transition-all duration-300 ease-in-out text-[calc(1rem-2px)] hover:text-black hover:bg-[#FFB769] cursor-pointer text-[#FFB769] px-1 justify-center items-center flex border-2 _font-bold uppercase border-[#FFB769]`}
+              >
+                {product?.action?.name !== "BUYING" ? "Buy" : "Sell"}
+              </button>
+            )}
         </div>
       </div>
       <div
