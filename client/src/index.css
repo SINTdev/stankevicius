@@ -114,6 +114,9 @@ body {
   animation-play-state: running;
   animation-delay: 500ms;
 }
+/* .scrolling-content.fast-up{
+  animation-duration:s;
+} */
 
 @keyframes scrollRight {
   0% {
@@ -126,4 +129,16 @@ body {
 
 .scrolling-content:hover {
   animation-play-state: paused;
+}
+
+/* For desktop and non-iPhone mobile browsers */
+input {
+  border-radius: 0; /* Set to strict rectangular */
+}
+
+/* For iPhone browser */
+@media (max-width: 768px) and (-webkit-touch-callout: none) {
+  input {
+    border-radius: 0; /* Set to strict rectangular */
+  }
 }

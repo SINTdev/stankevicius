@@ -4,6 +4,7 @@ import Marquee from "react-fast-marquee";
 import { CONSTANT } from "../CONSTANT";
 import UserData from "../contexts/UserData";
 import Modal from "../components/Modal";
+import { isMobileOnly } from "react-device-detect";
 
 const ProductCard = ({
   product,
@@ -27,13 +28,13 @@ const ProductCard = ({
     return newDate.toISOString();
   };
   return (
-    <div className="max-h-[100px] inline-block w-fit md:w-full md:max-w-md border-2 border-[#6E6162] text-white flex-col">
+    <div className="max-h-[100px] inline-block min-w-fit w-full max-w-md border-2 border-[#6E6162] text-white flex-col">
       <div className="flex flex-row px-2 pr-1 py-1 justify-between w-full">
-        <div className="md:w-4/6 w-3/6 uppercase flex items-center md:text-base text-[.8rem] _font-bold text-[#FFB769]">
+        <div className="w-4/6 uppercase flex items-center text-base _font-bold text-[#FFB769]">
           {product?.name}
         </div>
-        <div className="md:w-2/6 w-3/6 md:m-0 ml-3 flex flex-row justify-between">
-          <div className="flex flex-col _font-bold uppercase md:text-xs text-[.6rem] leading-none justify-center">
+        <div className="w-2/6 md:m-0 ml-3 flex flex-row justify-between">
+          <div className="flex flex-col _font-bold uppercase text-xs leading-none justify-center">
             <span>Open: {formatDateDot(product?.openedOn)}</span>
             <span>
               Exp:{" "}
@@ -75,7 +76,7 @@ const ProductCard = ({
                     !product?.lastActivity?.isCancelled &&
                     !product?.lastActivity?.isWait)) &&
                 "bg-[#929292] pointer-events-none"
-              } transition-all duration-300 ease-in-out md:text-base text-[.8rem] hover:text-black hover:bg-[#FFB769] cursor-pointer text-[#FFB769] px-1 justify-center items-center flex border-2 _font-bold uppercase border-[#FFB769]`}
+              } transition-all duration-300 ease-in-out text-base hover:text-black hover:bg-[#FFB769] cursor-pointer text-[#FFB769] px-1 justify-center items-center flex border-2 _font-bold uppercase border-[#FFB769]`}
             >
               {(!product?.lastActivity ||
                 (product?.lastActivity &&
@@ -215,7 +216,7 @@ export default function PromotionBar(props) {
   useEffect(() => {
     const interval = setInterval(() => {
       setCounter((prevCounter) => (prevCounter + 1) % 3);
-    }, 6000);
+    }, 4000);
 
     return () => clearInterval(interval);
   }, []);
@@ -371,7 +372,7 @@ export default function PromotionBar(props) {
           <div className="mr-1 border-2 px-2 border-[#6E6162] flex flex-col items-end justify-center bg-[#464646] text-white">
             <span className="text-2xl _font-bold">Stankevicius</span>
             {/* <span className="uppercase text-xs">11:03 am hkt sep 18</span> */}
-            <span className="uppercase text-xs">
+            <span className="uppercase text-xs transition-all ease-in-out duration-1000">
               {formatTimeDate(
                 TIMEZONES[counter]?.name,
                 TIMEZONES[counter]?.label
@@ -380,10 +381,16 @@ export default function PromotionBar(props) {
             <span className="uppercase text-xs">trade quotes</span>
           </div>
           <div className="scrolling-container w-full">
-            <div className="scrolling-content w-full space-x-0.5">
+            <div
+              className={`scrolling-content w-full space-x-0.5 ${
+                isMobileOnly ? "fast-up" : ""
+              }`}
+            >
               {productsList?.map((product, one) => {
-             return <ProductCard product={product} key={one} {...toSendAlong}/>;
-           })}
+                return (
+                  <ProductCard product={product} key={one} {...toSendAlong} />
+                );
+              })}
             </div>
           </div>
           {/* {productsList?.map((product, one) => {
