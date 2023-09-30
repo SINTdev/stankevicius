@@ -459,7 +459,7 @@ export default function Home(props) {
         {((props?.onlySearch && search !== "") || !props?.onlySearch) && (
           <div
             className={`my-5 ${
-              props?.onlySearch && "max-h-[70vh] overflow-scroll"
+              props?.onlySearch && "max-h-[70vh] h-[70vh] overflow-scroll"
             }`}
           >
             {productsList
@@ -661,7 +661,7 @@ export default function Home(props) {
                                 {
                                   label: "Edit",
                                   type: "link",
-                                  click: `/edit/${product?.slug}`,
+                                  click: `/edit/${product?.slug}?focus=update`,
                                 },
                                 {
                                   label: "Expire Now",

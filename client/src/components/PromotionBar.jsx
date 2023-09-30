@@ -1,10 +1,9 @@
-import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
-import Marquee from "react-fast-marquee";
+import React, { useContext, useEffect, useState } from "react";
 import { CONSTANT } from "../CONSTANT";
-import UserData from "../contexts/UserData";
+import InfiniteLooper from "../components/InfiniteLooper";
 import Modal from "../components/Modal";
-import { isMobileOnly } from "react-device-detect";
+import UserData from "../contexts/UserData";
 
 const ProductCard = ({
   product,
@@ -27,13 +26,19 @@ const ProductCard = ({
     newDate.setDate(originalDate.getDate() + daysToAdd);
     return newDate.toISOString();
   };
+  function truncateString(str, maxLength) {
+    if (str.length > maxLength) {
+      return str.slice(0, maxLength) + "...";
+    }
+    return str;
+  }
   return (
-    <div className="max-h-[100px] inline-block min-w-fit w-full max-w-md border-2 border-[#6E6162] text-white flex-col">
+    <div className="mr-0.5 max-h-[100px] inline-block  min-w-[25rem] w-full border-2 border-[#6E6162] text-white flex-col">
       <div className="flex flex-row px-2 pr-1 py-1 justify-between w-full">
-        <div className="w-4/6 uppercase flex items-center text-base _font-bold text-[#FFB769]">
-          {product?.name}
+        <div className="w-3/6 uppercase flex items-center text-base _font-bold text-[#FFB769]">
+          {truncateString(product?.name, 16)}
         </div>
-        <div className="w-2/6 md:m-0 ml-3 flex flex-row justify-between">
+        <div className="w-3/6 md:m-0 ml-3 flex flex-row justify-between">
           <div className="flex flex-col _font-bold uppercase text-xs leading-none justify-center">
             <span>Open: {formatDateDot(product?.openedOn)}</span>
             <span>
@@ -211,16 +216,36 @@ export default function PromotionBar(props) {
     return formattedTimeDate;
   };
 
-  const [counter, setCounter] = useState(0);
+  // const [counter, setCounter] = useState(0);
+
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setCounter((prevCounter) => (prevCounter + 1) % 3);
+  //   }, 4000);
+
+  //   return () => clearInterval(interval);
+  // }, []);
+
+  const texts = [
+    ...TIMEZONES.map((tz) => {
+      return formatTimeDate(tz?.name, tz?.label);
+    }),
+  ]; // Replace with your array of strings
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [animationClass, setAnimationClass] = useState("fade-in-left");
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCounter((prevCounter) => (prevCounter + 1) % 3);
-    }, 4000);
+      setAnimationClass("fade-out-right");
+
+      setTimeout(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % texts.length);
+        setAnimationClass("fade-in-left");
+      }, 500); // Adjust the animation duration (e.g., 500ms) as needed
+    }, 4000); // Change text every 4 seconds
 
     return () => clearInterval(interval);
   }, []);
-
   // All config done
   // Implementation starts
 
@@ -372,17 +397,29 @@ export default function PromotionBar(props) {
           <div className="mr-1 border-2 px-2 border-[#6E6162] flex flex-col items-end justify-center bg-[#464646] text-white">
             <span className="text-2xl _font-bold">Stankevicius</span>
             {/* <span className="uppercase text-xs">11:03 am hkt sep 18</span> */}
-            <span className="uppercase text-xs transition-all ease-in-out duration-1000">
+            {/* <span className="uppercase text-xs transition-all ease-in-out duration-1000">
               {formatTimeDate(
                 TIMEZONES[counter]?.name,
                 TIMEZONES[counter]?.label
               )}
+            </span> */}
+            <span
+              className={`uppercase text-xs ${
+                animationClass === "fade-out-right"
+                  ? "opacity-0"
+                  : "opacity-100"
+              } ${animationClass}`}
+            >
+              {texts[currentIndex]}
             </span>
-            <span className="uppercase text-xs">trade quotes</span>
+
+            <span className="uppercase text-xs time-animation">
+              trade quotes
+            </span>
           </div>
-          <div className="scrolling-container w-full">
+          {/* <div className="scrolling-container w-full flex flex-row">
             <div
-              className={`scrolling-content w-full space-x-0.5 ${
+              className={`scrolling-content space-x-0.5 ${
                 isMobileOnly ? "fast-up" : ""
               }`}
             >
@@ -392,10 +429,20 @@ export default function PromotionBar(props) {
                 );
               })}
             </div>
-          </div>
+          </div> */}
           {/* {productsList?.map((product, one) => {
             return <ProductCard product={product} key={one} {...toSendAlong} />;
           })} */}
+
+          {productsList?.length > 0 && (
+            <InfiniteLooper speed={10} direction="left">
+              {productsList?.map((product, one) => {
+                return (
+                  <ProductCard product={product} key={one} {...toSendAlong} />
+                );
+              })}
+            </InfiniteLooper>
+          )}
         </div>
       </div>
     </>

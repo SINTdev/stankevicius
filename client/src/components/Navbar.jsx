@@ -213,7 +213,7 @@ export default function Navbar(props) {
                   }}
                   className={`md:hidden transition-all duration-300 ease-in-out ${
                     modalSetting.login && "bg-gray-100"
-                  } hover:bg-gray-100 px-3 h-full relative flex items-center space-x-1 cursor-pointer`}
+                  } hover:bg-gray-100 px-1.5 h-full relative flex items-center cursor-pointer`}
                 >
                   <span className="cursor-pointer text-sm">
                     Login/Create Account
@@ -224,7 +224,7 @@ export default function Navbar(props) {
             <button
               data-collapse-toggle="navbar-default"
               type="button"
-              className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500  md:hidden"
+              className="inline-flex items-center px-1 w-fit h-fit mr-1 justify-center text-sm text-gray-500  md:hidden"
               aria-controls="navbar-default"
               aria-expanded="false"
               onClick={() => {
@@ -431,9 +431,9 @@ export default function Navbar(props) {
       <div class="background_video relative select-none">
         <div className="absolute flex items-center w-full h-[calc(100%-4.5rem)] mt-[4.5rem] p-10">
           <div className="max-w-screen-xl w-full flex flex-wrap items-center justify-between mx-auto">
-            <span className="z-10 font-extrabold text-white md:text-6xl text-4xl -tracking-wider flex flex-col flex-nowrap">
-              <span className="whitespace-nowrap">Delivering clear view</span>
-              <span className="whitespace-nowrap">in a complex world</span>
+            <span className="z-10 font-extrabold text-white md:text-6xl text-4xl -tracking-wider md:flex md:flex-col md:flex-nowrap">
+              <span className="md:whitespace-nowrap md:m-0 mr-2">Delivering clear view</span>
+              <span className="md:whitespace-nowrap">in a complex world</span>
             </span>
           </div>
         </div>

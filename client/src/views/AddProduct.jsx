@@ -15,6 +15,27 @@ export default function AddProduct(props) {
   const { session, setSession } = useContext(UserData);
   const { id: id } = useParams();
   let navigate = useNavigate();
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const focusParam = params.get("focus");
+
+    if (focusParam === "update") {
+      const mainFormDiv = document.getElementById("main_form_div");
+      if (mainFormDiv) {
+        const marginFromTop = 4 * 16; // 20rem in pixels (assuming 1rem = 16px)
+        const targetPosition =
+          mainFormDiv.getBoundingClientRect().top +
+          window.scrollY -
+          marginFromTop;
+
+        window.scrollTo({
+          top: targetPosition,
+          behavior: "smooth",
+        });
+      }
+    }
+  }, []);
   const init__payload = {
     name: "",
     action: "",
@@ -233,7 +254,10 @@ export default function AddProduct(props) {
   return (
     <div className="max-w-screen-xl mx-auto p-0 md:p-4">
       <DashboardOptions name={""} />
-      <div className="mt-10 flex justify-center items-center flex-col">
+      <div
+        className="mt-10 flex justify-center items-center flex-col"
+        id="main_form_div"
+      >
         <div className="w-full">
           <div className="w-full text-left mb-2 md:pl-1 text-4xl _font-bold leading-tight tracking-tight text-black">
             {!props?.edit ? "Add new" : "Update"} trade

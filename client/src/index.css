@@ -109,7 +109,7 @@ body {
 }
 
 .scrolling-content {
-  display: inline-block;
+  display: flex;
   animation: scrollRight 20s linear infinite;
   animation-play-state: running;
   animation-delay: 500ms;
@@ -131,14 +131,35 @@ body {
   animation-play-state: paused;
 }
 
-/* For desktop and non-iPhone mobile browsers */
-input {
-  border-radius: 0; /* Set to strict rectangular */
-}
-
 /* For iPhone browser */
 @media (max-width: 768px) and (-webkit-touch-callout: none) {
   input {
     border-radius: 0; /* Set to strict rectangular */
   }
+}
+input {
+  border-radius: 0 !important; /* Set to strict rectangular */
+  -webkit-appearance: none!important;
+  -webkit-border-radius: 0!important;
+}
+
+input[type="search"] {
+  -webkit-appearance: none;
+}
+/* Define the initial state (opacity 100%, no animation) */
+.opacity-100 {
+  opacity: 1;
+  transition: opacity 0s; /* No transition */
+}
+
+/* Define the fade-out animation to the right */
+.fade-out-right {
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+
+/* Define the fade-in animation from the left */
+.fade-in-left {
+  opacity: 1;
+  transition: opacity 0.5s ease-in;
 }
