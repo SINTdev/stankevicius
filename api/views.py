@@ -90,7 +90,7 @@ def initialize_backend():
 
         if models.Origin.objects.count() == 0:
             models.Origin.objects.bulk_create(
-                [models.Origin(name=value) for value in constants.ORIGINS]
+                [models.Origin(name=value) for value in constants.ORIGINS], ignore_conflicts=True
             )
             print("[INITIALIZATION][SUCCESS]: ORIGINS populated")
         else:
