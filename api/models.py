@@ -78,39 +78,18 @@ class Product(models.Model):
     )
     name = models.CharField(max_length=50)
     slug = models.SlugField(unique=True, blank=True)
-    action = models.ForeignKey(
-        Action,
-        on_delete=models.SET_NULL,
-    )
+    action = models.ForeignKey(Action, on_delete=models.SET_NULL, null=True)
     category = models.ForeignKey(
         Category, on_delete=models.SET_NULL, blank=True, null=True
     )
     quantity = models.IntegerField()
-    measurement = models.ForeignKey(
-        Measurement,
-        on_delete=models.SET_NULL,
-    )
+    measurement = models.ForeignKey(Measurement, on_delete=models.SET_NULL, null=True)
     price = models.FloatField()
-    currency = models.ForeignKey(
-        Currency,
-        on_delete=models.SET_NULL,
-    )
-    payment = models.ForeignKey(
-        Payment,
-        on_delete=models.SET_NULL,
-    )
-    delivery = models.ForeignKey(
-        Delivery,
-        on_delete=models.SET_NULL,
-    )
-    contract = models.ForeignKey(
-        Contract,
-        on_delete=models.SET_NULL,
-    )
-    origin = models.ForeignKey(
-        Origin,
-        on_delete=models.SET_NULL,
-    )
+    currency = models.ForeignKey(Currency, on_delete=models.SET_NULL, null=True)
+    payment = models.ForeignKey(Payment, on_delete=models.SET_NULL, null=True)
+    delivery = models.ForeignKey(Delivery, on_delete=models.SET_NULL, null=True)
+    contract = models.ForeignKey(Contract, on_delete=models.SET_NULL, null=True)
+    origin = models.ForeignKey(Origin, on_delete=models.SET_NULL, null=True)
     listingDuration = models.ForeignKey(
         ListingDuration,
         on_delete=models.CASCADE,
