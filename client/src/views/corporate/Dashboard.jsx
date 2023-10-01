@@ -482,8 +482,7 @@ export default function Dashboard(props) {
             <div className="mr-2">
               <span className="capitalize _font-bold mr-1">Quantity:</span>
               <span className="font-light text-gray-700">
-                {product?.quantity}
-                {product?.measurement?.name}
+                {`${product?.quantity} ${product?.measurement?.name}`}
               </span>
             </div>
             <div className="mr-2">
@@ -513,8 +512,7 @@ export default function Dashboard(props) {
             <div className="mr-2">
               <span className="capitalize _font-bold mr-1">Price:</span>
               <span className="font-light text-gray-700">
-                {product?.price}
-                {product?.currency?.name}
+                {`${product?.price} ${product?.currency?.name}`}
               </span>
             </div>
           </div>
@@ -538,14 +536,13 @@ export default function Dashboard(props) {
                 }}
                 className="select-none"
               >
-                {isView.show &&
-                parseInt(isView.id) === parseInt(product?.id) ? (
+                {(isView.show &&
+                  parseInt(isView.id) === parseInt(product?.id)) ||
+                isShowInfo ? (
                   <>
                     <svg
                       fill="currentColor"
-                      className="w-6 h-6 cursor-pointer"
-                      width="24"
-                      height="24"
+                      className="w-6 h-6 scale-90 cursor-pointer"
                       xmlns="http://www.w3.org/2000/svg"
                       fill-rule="evenodd"
                       clip-rule="evenodd"
@@ -557,9 +554,7 @@ export default function Dashboard(props) {
                   <>
                     <svg
                       fill="currentColor"
-                      className="w-6 h-6 cursor-pointer"
-                      width="24"
-                      height="24"
+                      className="w-6 h-6 scale-90 cursor-pointer"
                       xmlns="http://www.w3.org/2000/svg"
                       fill-rule="evenodd"
                       clip-rule="evenodd"
@@ -571,13 +566,25 @@ export default function Dashboard(props) {
               </span>
               <div
                 className={`transition-all duration-300 ease-in-out flex md:flex-row flex-col md:space-x-2 space-x-0 ${
-                  isView.show && parseInt(isView.id) === parseInt(product?.id)
+                  (isView.show &&
+                    parseInt(isView.id) === parseInt(product?.id)) ||
+                  isShowInfo
                     ? "pointer-events-auto select-auto"
-                    : "blur-sm pointer-events-none select-none"
+                    : "pointer-events-none select-none"
                 }`}
               >
-                {renderInfoCompany(product?.by)}
-                {renderInfoPersonal(product?.by)}
+                {renderInfoCompany(
+                  product?.by,
+                  (isView.show &&
+                    parseInt(isView.id) === parseInt(product?.id)) ||
+                    isShowInfo
+                )}
+                {renderInfoPersonal(
+                  product?.by,
+                  (isView.show &&
+                    parseInt(isView.id) === parseInt(product?.id)) ||
+                    isShowInfo
+                )}
               </div>
             </div>
           )}
@@ -610,7 +617,7 @@ export default function Dashboard(props) {
     show: false,
   });
 
-  const renderInfoCompany = (by) => {
+  const renderInfoCompany = (by, show) => {
     if (
       by?.companyURL !== "" &&
       by?.companyName !== "" &&
@@ -619,11 +626,15 @@ export default function Dashboard(props) {
     ) {
       return (
         <a
-          href={by?.companyURL}
+          href={show ? by?.companyURL : ""}
           target="_blank"
           className="text-sky-700 border-b  inline-flex max-w-fit border-b-sky-700   items-baseline space-x-1 mt-4 lg:mt-0"
         >
-          <span className="inline-block">{by?.companyName}</span>
+          <span className="inline-block">
+            {show
+              ? by?.companyName
+              : by?.companyName?.split("")?.map((a) => "*")}
+          </span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -642,52 +653,44 @@ export default function Dashboard(props) {
       );
     } else if (by?.companyName !== "" && by?.companyName) {
       return (
-        <span className="text-sky-700 border-b  inline-flex max-w-fit border-b-sky-700   items-baseline space-x-1 mt-4 lg:mt-0">
-          <span className="inline-block">{by?.companyName}</span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={2}
-            stroke="currentColor"
-            className="w-4 h-4 text-[#221f1f] relative top-[1px]"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
-            />
-          </svg>
+        <span className="text-black inline-flex max-w-fit items-baseline space-x-1 mt-4 lg:mt-0">
+          <span className="inline-block">
+            {show
+              ? by?.companyName
+              : by?.companyName?.split("")?.map((a) => "*")}
+          </span>
         </span>
       );
     }
     return null;
   };
-  const renderInfoPersonal = (by) => {
+  const renderInfoPersonal = (by, show) => {
     return (
       <a
-        href={`mailto:${by?.email}`}
+        href={show ? `mailto:${by?.email}` : ""}
         target="_blank"
-        className="text-sky-700 border-b  inline-flex max-w-fit border-b-sky-700   items-baseline space-x-1 mt-4 lg:mt-0"
+        className="text-sky-700 border-b text-[calc(1rem-2px)] inline-flex max-w-fit border-b-sky-700   items-baseline space-x-1 mt-4 lg:mt-0"
       >
-        <span className="inline-block">{by?.fullName}</span>
+        <span className="inline-block">
+          {show ? by?.fullName : by?.fullName?.split("")?.map((a) => "*")}
+        </span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={2}
-          stroke="currentColor"
-          className="w-4 h-4 text-[#221f1f] relative top-[1px]"
+          viewBox="0 0 512 512"
+          className="w-3 h-3 text-[#221f1f] relative top-[1px]"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
-          />
+          <g>
+            <path
+              class="st0"
+              d="M510.678,112.275c-2.308-11.626-7.463-22.265-14.662-31.054c-1.518-1.915-3.104-3.63-4.823-5.345   c-12.755-12.818-30.657-20.814-50.214-20.814H71.021c-19.557,0-37.395,7.996-50.21,20.814c-1.715,1.715-3.301,3.43-4.823,5.345   C8.785,90.009,3.63,100.649,1.386,112.275C0.464,116.762,0,121.399,0,126.087V385.92c0,9.968,2.114,19.55,5.884,28.203   c3.497,8.26,8.653,15.734,14.926,22.001c1.59,1.586,3.169,3.044,4.892,4.494c12.286,10.175,28.145,16.32,45.319,16.32h369.958   c17.18,0,33.108-6.145,45.323-16.384c1.718-1.386,3.305-2.844,4.891-4.43c6.27-6.267,11.425-13.741,14.994-22.001v-0.064   c3.769-8.653,5.812-18.171,5.812-28.138V126.087C512,121.399,511.543,116.762,510.678,112.275z M46.509,101.571   c6.345-6.338,14.866-10.175,24.512-10.175h369.958c9.646,0,18.242,3.837,24.512,10.175c1.122,1.129,2.179,2.387,3.112,3.637   L274.696,274.203c-5.348,4.687-11.954,7.002-18.696,7.002c-6.674,0-13.276-2.315-18.695-7.002L43.472,105.136   C44.33,103.886,45.387,102.7,46.509,101.571z M36.334,385.92V142.735L176.658,265.15L36.405,387.435   C36.334,386.971,36.334,386.449,36.334,385.92z M440.979,420.597H71.021c-6.281,0-12.158-1.651-17.174-4.552l147.978-128.959   l13.815,12.018c11.561,10.046,26.028,15.134,40.36,15.134c14.406,0,28.872-5.088,40.432-15.134l13.808-12.018l147.92,128.959   C453.137,418.946,447.26,420.597,440.979,420.597z M475.666,385.92c0,0.529,0,1.051-0.068,1.515L335.346,265.221L475.666,142.8   V385.92z"
+            />
+          </g>
         </svg>
       </a>
     );
   };
+
+  const [isShowInfo, setIsShowInfo] = useState(false);
 
   return (
     <div>
@@ -790,9 +793,17 @@ export default function Dashboard(props) {
           ]}
         />
 
-        <div>
+        <div className="flex flex-row justify-between">
           <p className="tracking-tight font-thin text-gray-500">
             Showing {showData?.length} results
+          </p>
+          <p
+            className={`py-2 px-5 w-fit hover:bg-gray-200 text-[15px]  transition-all duration-300 ease-in-out cursor-pointer`}
+            onClick={() => {
+              setIsShowInfo(!isShowInfo);
+            }}
+          >
+            {!isShowInfo ? "View" : "Hide"} All
           </p>
         </div>
 

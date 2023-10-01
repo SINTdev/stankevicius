@@ -315,7 +315,9 @@ export default function Home(props) {
         <div className="flex flex-wrap md:flex-nowrap justify-between space-y-3 md:space-y-0 md:space-x-2">
           <input
             type="search"
-            className="block w-full rounded-none p-3 text-sm text-gray-900 border-2 border-gray-300  hover:bg-gray-50 outline-none"
+            className={`${
+              props?.onlySearch && "delay-the-search"
+            } block w-full rounded-none p-3 text-sm text-gray-900 border-2 border-gray-300  hover:bg-gray-50 outline-none`}
             placeholder="Search Product"
             value={search}
             onChange={(e) => {
@@ -458,9 +460,10 @@ export default function Home(props) {
 
         {((props?.onlySearch && search !== "") || !props?.onlySearch) && (
           <div
-            className={`my-5 ${
-              props?.onlySearch && "max-h-[70vh] h-[70vh] overflow-scroll"
-            }`}
+            className={`my-5 `}
+            // ${
+            //   props?.onlySearch && "max-h-[70vh] h-[70vh] overflow-scroll"
+            // }
           >
             {productsList
               .filter((product, index) => {
@@ -733,8 +736,7 @@ export default function Home(props) {
                             Quantity:
                           </span>
                           <span className="font-light text-gray-700">
-                            {product?.quantity}
-                            {product?.measurement?.name}
+                            {`${product?.quantity} ${product?.measurement?.name}`}
                           </span>
                         </div>
                         <div className="mr-2">
@@ -774,8 +776,7 @@ export default function Home(props) {
                             Price:
                           </span>
                           <span className="font-light text-gray-700">
-                            {product?.price}
-                            {product?.currency?.name}
+                            {`${product?.price} ${product?.currency?.name}`}
                           </span>
                         </div>
                       </div>

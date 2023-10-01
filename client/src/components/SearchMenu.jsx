@@ -6,7 +6,7 @@ export default function SearchMenu({ isSearchOpen, setIsSearchOpen }) {
     <div
       className={`fixed top-0 left-0 bg-white w-screen ${
         isSearchOpen ? "h-screen" : "h-0"
-      } transition-all ease-in-out z-10 duration-300`}
+      } transition-all ease-in-out z-10 duration-300 overflow-scroll`}
     >
       {isSearchOpen && (
         <div className="mx-4 lg:mx-10 mt-24">

@@ -406,8 +406,7 @@ export default function Dashboard(props) {
             <div className="mr-2">
               <span className="capitalize _font-bold mr-1">Quantity:</span>
               <span className="font-light text-gray-700">
-                {product?.quantity}
-                {product?.measurement?.name}
+              {`${product?.quantity} ${product?.measurement?.name}`}
               </span>
             </div>
             <div className="mr-2">
@@ -437,8 +436,7 @@ export default function Dashboard(props) {
             <div className="mr-2">
               <span className="capitalize _font-bold mr-1">Price:</span>
               <span className="font-light text-gray-700">
-                {product?.price}
-                {product?.currency?.name}
+              {`${product?.price} ${product?.currency?.name}`}
               </span>
             </div>
           </div>
