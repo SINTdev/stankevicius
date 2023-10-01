@@ -80,7 +80,7 @@ class Product(models.Model):
     slug = models.SlugField(unique=True, blank=True)
     action = models.ForeignKey(
         Action,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
     )
     category = models.ForeignKey(
         Category, on_delete=models.SET_NULL, blank=True, null=True
@@ -88,28 +88,28 @@ class Product(models.Model):
     quantity = models.IntegerField()
     measurement = models.ForeignKey(
         Measurement,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
     )
     price = models.FloatField()
     currency = models.ForeignKey(
         Currency,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
     )
     payment = models.ForeignKey(
         Payment,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
     )
     delivery = models.ForeignKey(
         Delivery,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
     )
     contract = models.ForeignKey(
         Contract,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
     )
     origin = models.ForeignKey(
         Origin,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
     )
     listingDuration = models.ForeignKey(
         ListingDuration,
