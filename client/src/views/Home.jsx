@@ -323,7 +323,7 @@ export default function Home(props) {
   function startTimerAndFetchProducts() {
     const timer = setTimeout(() => {
       fetchProducts();
-    }, 5 * 60 * 1000);
+    }, 2 * 60 * 1000);
   }
 
   // Utils
