@@ -518,7 +518,7 @@ export default function Dashboard(props) {
           </div>
 
           {session?.personal?.email === "admin@admin.com" && (
-            <div className="flex flex-row space-x-3">
+            <div className="flex flex-row space-x-3 items-center mt-3 md:mt-0">
               <span
                 onClick={() => {
                   setIsView((old) => {
@@ -628,7 +628,7 @@ export default function Dashboard(props) {
         <a
           href={show ? by?.companyURL : ""}
           target="_blank"
-          className="text-sky-700 border-b  inline-flex max-w-fit border-b-sky-700   items-baseline space-x-1 mt-4 lg:mt-0"
+          className="text-sky-700 border-b  inline-flex max-w-fit border-b-sky-700   items-baseline space-x-1 md:mt-4 mt-0 lg:mt-0"
         >
           <span className="inline-block">
             {show
@@ -653,7 +653,7 @@ export default function Dashboard(props) {
       );
     } else if (by?.companyName !== "" && by?.companyName) {
       return (
-        <span className="text-black inline-flex max-w-fit items-baseline space-x-1 mt-4 lg:mt-0">
+        <span className="text-black inline-flex max-w-fit items-baseline space-x-1 md:mt-4 mt-0 lg:mt-0">
           <span className="inline-block">
             {show
               ? by?.companyName
@@ -669,7 +669,7 @@ export default function Dashboard(props) {
       <a
         href={show ? `mailto:${by?.email}` : ""}
         target="_blank"
-        className="text-sky-700 border-b text-[calc(1rem-2px)] inline-flex max-w-fit border-b-sky-700   items-baseline space-x-1 mt-4 lg:mt-0"
+        className="text-sky-700 border-b text-[calc(1rem-2px)] inline-flex max-w-fit border-b-sky-700   items-baseline space-x-1 md:mt-4 mt-0 lg:mt-0"
       >
         <span className="inline-block">
           {show ? by?.fullName : by?.fullName?.split("")?.map((a) => "*")}

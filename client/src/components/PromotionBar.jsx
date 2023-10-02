@@ -35,7 +35,7 @@ const ProductCard = ({
   return (
     <div className="mr-0.5 h-[92px] inline-block  min-w-[25rem] w-full border-2 border-[#6E6162] text-white flex-col">
       <div className="flex flex-row px-2 pr-1 py-1 justify-between w-full h-[28px]">
-        <div className="w-3/6 uppercase flex items-center text-[calc(1rem-2px)] _font-bold text-[#FFB769]">
+        <div className="w-3/6 uppercase flex items-center text-[calc(1rem-2px)] _font-bold text-[#FFB769] backface-visibility-visible">
           {truncateString(product?.name, 19)}
         </div>
         <div className="w-3/6 md:m-0 ml-3 flex flex-row justify-between">
@@ -120,20 +120,26 @@ const ProductCard = ({
       >
         <div className="w-1/2 flex flex-col">
           <div className="whitespace-nowrap items-center flex flex-row space-x-1">
-            <span className="_font-bold uppercase">Quantity:</span>
-            <span className="font-medium tracking-tight">
+            <span className="_font-bold uppercase backface-visibility-visible">
+              Quantity:
+            </span>
+            <span className="font-medium tracking-tight backface-visibility-visible">
               {product?.quantity} {product?.measurement?.name}
             </span>
           </div>
           <div className="whitespace-nowrap items-center flex flex-row space-x-1">
-            <span className="_font-bold uppercase">Delivery:</span>
-            <span className="font-medium tracking-tight">
+            <span className="_font-bold uppercase backface-visibility-visible">
+              Delivery:
+            </span>
+            <span className="font-medium tracking-tight backface-visibility-visible">
               {product?.delivery?.name}
             </span>
           </div>
           <div className="whitespace-nowrap items-center flex flex-row space-x-1">
-            <span className="_font-bold uppercase">Origin:</span>
-            <span className="font-medium tracking-tight">
+            <span className="_font-bold uppercase backface-visibility-visible">
+              Origin:
+            </span>
+            <span className="font-medium tracking-tight backface-visibility-visible">
               {product?.origin?.name}
             </span>
           </div>
@@ -141,20 +147,26 @@ const ProductCard = ({
 
         <div className="w-1/2 flex flex-col">
           <div className="whitespace-nowrap items-center flex flex-row space-x-1">
-            <span className="_font-bold uppercase">Contract:</span>
-            <span className="font-medium tracking-tight">
+            <span className="_font-bold uppercase backface-visibility-visible">
+              Contract:
+            </span>
+            <span className="font-medium tracking-tight backface-visibility-visible">
               {product?.contract?.name}
             </span>
           </div>
           <div className="whitespace-nowrap items-center flex flex-row space-x-1">
-            <span className="_font-bold uppercase">Payment:</span>
-            <span className="font-medium tracking-tight">
+            <span className="_font-bold uppercase backface-visibility-visible">
+              Payment:
+            </span>
+            <span className="font-medium tracking-tight backface-visibility-visible">
               {product?.payment?.name}
             </span>
           </div>
           <div className="whitespace-nowrap items-center flex flex-row space-x-1">
-            <span className="_font-bold uppercase">Price:</span>
-            <span className="font-medium tracking-tight">
+            <span className="_font-bold uppercase backface-visibility-visible">
+              Price:
+            </span>
+            <span className="font-medium tracking-tight backface-visibility-visible">
               {product?.price} USD
             </span>
           </div>

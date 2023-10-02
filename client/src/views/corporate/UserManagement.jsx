@@ -168,12 +168,57 @@ export default function UserManagement(props) {
         />
         <div className="font-bold">
           <p
-            className={`py-2 px-5 w-fit hover:bg-gray-200 text-[15px]  transition-all duration-300 ease-in-out cursor-pointer`}
+            className={`py-2 select-none px-5 flex flex-row justify-center items-center w-fit hover:bg-gray-200 text-[15px]  transition-all duration-300 ease-in-out cursor-pointer`}
             onClick={() => {
               setIsGrid(!isGrid);
             }}
           >
-            SHOW {!isGrid ? "GRID" : "LIST"}
+            {!isGrid ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                fill="currentColor"
+                className="w-6 h-6 scale-90 translate-y-[1.5px] cursor-pointer"
+                viewBox="0 0 24 24"
+              >
+                <defs></defs>
+                <g
+                  id="Page-1"
+                  stroke="none"
+                  stroke-width="1"
+                  fill="none"
+                  fill-rule="evenodd"
+                >
+                  <g
+                    id="Dribbble-Light-Preview"
+                    transform="translate(-59.000000, -240.000000)"
+                    fill="#000000"
+                  >
+                    <g id="icons" transform="translate(56.000000, 160.000000)">
+                      <path
+                        d="M16.65,98 L21.9,98 L21.9,93 L16.65,93 L16.65,98 Z M14.55,100 L24,100 L24,91 L14.55,91 L14.55,100 Z M5.1,98 L10.35,98 L10.35,93 L5.1,93 L5.1,98 Z M3,100 L12.45,100 L12.45,91 L3,91 L3,100 Z M16.65,87 L21.9,87 L21.9,82 L16.65,82 L16.65,87 Z M14.55,89 L24,89 L24,80 L14.55,80 L14.55,89 Z M5.1,87 L10.35,87 L10.35,82 L5.1,82 L5.1,87 Z M3,89 L12.45,89 L12.45,80 L3,80 L3,89 Z"
+                        id="grid_system-[#1520]"
+                      ></path>
+                    </g>
+                  </g>
+                </g>
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                className="w-6 h-6 scale-75 cursor-pointer"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M0 0h16v7H0V0zm2 2v3h12V2H2zM0 9h16v7H0V9zm2 2v3h12v-3H2z"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            )}
+            <span className="ml-2 flex items-center justify-center translate-y-[1px]">
+              SHOW {!isGrid ? "GRID" : "LIST"}
+            </span>
           </p>
         </div>
         {isGrid ? (

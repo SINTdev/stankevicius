@@ -11,13 +11,13 @@ from datetime import datetime, timedelta
 from django.utils import timezone
 
 
-def has5MinPassed(timestamp):
+def hasMinsPassed(timestamp):
     # Convert JavaScript timestamp to Python datetime
     js_timestamp = datetime.fromtimestamp(timestamp / 1000.0)  # Convert to seconds
 
     # Calculate the time 5 minutes ago from the current time
     current_time = datetime.now()
-    time_window = timedelta(minutes=5)
+    time_window = timedelta(minutes=2)
     minutes_ago = current_time - time_window
 
     # Check if the JavaScript timestamp is earlier than 5 minutes ago
@@ -58,7 +58,7 @@ def evaluateInteractions():
     for interaction in recent_interactions:
         serializer = serializers.ViewProductInteractionsSerializer(interaction)
         s_data = serializer.data
-        if has5MinPassed(s_data["timestamp"]) or not s_data["isWait"]:
+        if hasMinsPassed(s_data["timestamp"]) or not s_data["isWait"]:
             email_interaction(s_data["product"], s_data["user"], s_data["action"])
             print("[CRON_JOB]:", "PRODUCT LOCKED")
             updateOnEmail(interaction.pk)

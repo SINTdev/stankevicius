@@ -96,6 +96,7 @@ class Product(models.Model):
     )
     promoteToSubscribed = models.BooleanField(default=False)
     promoteToTradeQuoteBar = models.BooleanField(default=False)
+    promoteCompanyWebsite = models.BooleanField(default=False)
     isPaidPromoted = models.BooleanField(default=False)  # Imp
     isArchived = models.BooleanField(default=False)  # Imp
     archivedOn = models.DateTimeField(blank=True, null=True)  # Imp

@@ -8,6 +8,58 @@ import UserData from "../contexts/UserData";
 import InputBox from "../components/InputBox";
 import { takeActionOnProduct } from "../ACTIONS";
 
+const CountdownComponent = ({ lastActivity, hasMinutesPassed }) => {
+  const [countdown, setCountdown] = useState(null);
+
+  useEffect(() => {
+    let countdownInterval;
+
+    const updateCountdown = () => {
+      if (
+        lastActivity &&
+        !lastActivity.isCancelled &&
+        !hasMinutesPassed(lastActivity.timestamp) &&
+        lastActivity.isWait
+      ) {
+        const targetTime =
+          new Date(lastActivity.timestamp).getTime() + 2 * 60 * 1000; // Add 2 minutes
+        const currentTime = Date.now();
+
+        if (targetTime > currentTime) {
+          const remainingTimeMillis = targetTime - currentTime;
+          const minutes = Math.floor(remainingTimeMillis / 60000);
+          const seconds = Math.floor((remainingTimeMillis % 60000) / 1000);
+
+          setCountdown(
+            `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(
+              2,
+              "0"
+            )}`
+          );
+        } else {
+          // Countdown has expired
+          setCountdown("00:00");
+          clearInterval(countdownInterval);
+        }
+      }
+    };
+
+    updateCountdown(); // Initialize the countdown
+
+    countdownInterval = setInterval(updateCountdown, 1000); // Update every second
+
+    return () => {
+      clearInterval(countdownInterval);
+    };
+  }, [lastActivity]);
+
+  return (
+    <span className="text-xs">
+      Cancel
+      <span className="ml-2">{countdown}</span>
+    </span>
+  );
+};
 const DropdownButton = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
@@ -101,12 +153,31 @@ export default function Home(props) {
       });
   };
 
-  const hasFiveMinutesPassed = (timestamp) => {
-    let fiveMinutesInMillis = 5 * 60 * 1000;
+  const hasMinutesPassed = (timestamp) => {
+    let minutesInMillis = 2 * 60 * 1000;
     let currentTimeInMillis = Date.now();
     let targetTimeInMillis = new Date(timestamp).getTime();
-    return currentTimeInMillis - targetTimeInMillis >= fiveMinutesInMillis;
+    return currentTimeInMillis - targetTimeInMillis >= minutesInMillis;
   };
+
+  // const formatCountdownFromTimestamp = (timestamp, currentTime) => {
+  //   currentTime = currentTime;
+  //   let targetTime = new Date(timestamp).getTime() + 2 * 60 * 1000; // Add 2 minutes to the given timestamp
+
+  //   if (currentTime >= targetTime) {
+  //     return "00:00";
+  //   }
+
+  //   let remainingTimeMillis = targetTime - currentTime;
+  //   let minutes = Math.floor(remainingTimeMillis / 60000); // 1 minute = 60,000 milliseconds
+  //   let seconds = Math.floor((remainingTimeMillis % 60000) / 1000); // 1 second = 1,000 milliseconds
+
+  //   // Add leading zeros to ensure two-digit format
+  //   let formattedMinutes = String(minutes).padStart(2, "0");
+  //   let formattedSeconds = String(seconds).padStart(2, "0");
+
+  //   return `${formattedMinutes}:${formattedSeconds}`;
+  // };
   useEffect(() => {
     fetchCategories();
   }, []);
@@ -262,10 +333,10 @@ export default function Home(props) {
       if (product?.lastActivity?.isCancelled) {
         return "(YOU WON’T BE ABLE TO CANCEL NEXT TIME)";
       } else if (
-        !hasFiveMinutesPassed(product?.lastActivity?.timestamp) &&
+        !hasMinutesPassed(product?.lastActivity?.timestamp) &&
         product?.lastActivity?.isWait
       ) {
-        return "(After 5 minutes you won't be able to cancel)";
+        return "(After 2 minutes you won't be able to cancel)";
       }
     }
 
@@ -324,28 +395,6 @@ export default function Home(props) {
               setSearch(e.target.value);
             }}
           />
-          {/* <button
-              type="submit"
-              className="flex items-center justify-center p-3 border-2  border-[#221f1f] hover:bg-[#221f1f] -sm group transition ease-in-out w-full md:w-fit space-x-6"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-4 h-4 group-hover:text-white"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-                />
-              </svg>
-              <span className="text-[#221f1f] md:hidden font-semibold group-hover:text-white">
-                Search
-              </span>
-            </button> */}
         </div>
         {/* Desktop View Category Filter */}
         {!props?.onlySearch && (
@@ -376,20 +425,6 @@ export default function Home(props) {
             })}
           </div>
         )}
-
-        {/* Mobile View Category Filter */}
-        {/* <select
-            value={filter}
-            onChange={(e) => {
-              setFilter(e.target.value);
-            }}
-            className="bg-gray-50 border-2 lg:hidden  border-[#221f1f] text-gray-900 text-sm   block w-full p-2.5 mt-3 -none"
-          >
-            <option value={""}>All Products</option>
-            {categories.map((category, one) => {
-              return <option value={category.id}>{category.name}</option>;
-            })}
-          </select> */}
         {!props?.onlySearch && (
           <InputBox
             placeholder={"Products"}
@@ -592,63 +627,81 @@ export default function Home(props) {
                           product?.by?.id.toString() !==
                             session?.personal?.id.toString()) ||
                           !session?.isLoggedIn) && (
-                          <button
-                            onClick={() => {
-                              handleInteraction(
-                                product?.lastActivity &&
+                          <div className="flex flex-row items-end">
+                            {/* <p className="md:-translate-y-3.5 md:-translate-x-2 uppercase text-[1rem] font-medium text-black lg:text-right h-[4px]">
+                              02:00
+                            </p> */}
+                            <button
+                              onClick={() => {
+                                handleInteraction(
+                                  product?.lastActivity &&
+                                    !product?.lastActivity?.isCancelled &&
+                                    !hasMinutesPassed(
+                                      product?.lastActivity?.timestamp
+                                    ) &&
+                                    product?.lastActivity?.isWait
+                                    ? product?.lastActivity?.id
+                                    : product.id,
+                                  product?.action,
+                                  (product?.lastActivity &&
+                                    !product?.lastActivity?.isCancelled &&
+                                    !hasMinutesPassed(
+                                      product?.lastActivity?.timestamp
+                                    ) &&
+                                    product?.lastActivity?.isWait) ??
+                                    false,
+                                  !Boolean(product?.lastActivity)
+                                );
+                              }}
+                              className={`${
+                                ((product?.lastActivity &&
                                   !product?.lastActivity?.isCancelled &&
-                                  !hasFiveMinutesPassed(
+                                  hasMinutesPassed(
                                     product?.lastActivity?.timestamp
-                                  ) &&
-                                  product?.lastActivity?.isWait
-                                  ? product?.lastActivity?.id
-                                  : product.id,
-                                product?.action,
+                                  )) ||
+                                  (product?.lastActivity &&
+                                    !product?.lastActivity?.isCancelled &&
+                                    !product?.lastActivity?.isWait)) &&
+                                "bg-[#929292] pointer-events-none"
+                              } text-[16px] uppercase font-semibold bg-[#221f1f] text-white min-w-[8rem] py-2`}
+                            >
+                              {(!product?.lastActivity ||
                                 (product?.lastActivity &&
-                                  !product?.lastActivity?.isCancelled &&
-                                  !hasFiveMinutesPassed(
-                                    product?.lastActivity?.timestamp
-                                  ) &&
-                                  product?.lastActivity?.isWait) ??
-                                  false,
-                                !Boolean(product?.lastActivity)
-                              );
-                            }}
-                            className={`${
-                              ((product?.lastActivity &&
+                                  product?.lastActivity?.isCancelled)) &&
+                                (product?.action?.name !== "BUYING"
+                                  ? "Buy"
+                                  : "Sell")}
+                              {product?.lastActivity &&
                                 !product?.lastActivity?.isCancelled &&
-                                hasFiveMinutesPassed(
+                                !hasMinutesPassed(
+                                  product?.lastActivity?.timestamp
+                                ) &&
+                                product?.lastActivity?.isWait && (
+                                  <CountdownComponent
+                                    lastActivity={product?.lastActivity}
+                                    hasMinutesPassed={hasMinutesPassed}
+                                  />
+                                  // <span className="text-xs">
+                                  //   Cancel
+                                  //   <span className="ml-2">
+                                  //     {formatCountdownFromTimestamp(
+                                  //       product?.lastActivity?.timestamp,
+                                  //       Date.now()
+                                  //     )}
+                                  //   </span>
+                                  // </span>
+                                )}
+                              {((product?.lastActivity &&
+                                !product?.lastActivity?.isCancelled &&
+                                hasMinutesPassed(
                                   product?.lastActivity?.timestamp
                                 )) ||
                                 (product?.lastActivity &&
                                   !product?.lastActivity?.isCancelled &&
                                   !product?.lastActivity?.isWait)) &&
-                              "bg-[#929292] pointer-events-none"
-                            } text-[16px] uppercase font-semibold bg-[#221f1f] text-white min-w-[8rem] py-2`}
-                          >
-                            {(!product?.lastActivity ||
-                              (product?.lastActivity &&
-                                product?.lastActivity?.isCancelled)) &&
-                              (product?.action?.name !== "BUYING"
-                                ? "Buy"
-                                : "Sell")}
-                            {product?.lastActivity &&
-                              !product?.lastActivity?.isCancelled &&
-                              !hasFiveMinutesPassed(
-                                product?.lastActivity?.timestamp
-                              ) &&
-                              product?.lastActivity?.isWait &&
-                              "Cancel"}
-                            {((product?.lastActivity &&
-                              !product?.lastActivity?.isCancelled &&
-                              hasFiveMinutesPassed(
-                                product?.lastActivity?.timestamp
-                              )) ||
-                              (product?.lastActivity &&
-                                !product?.lastActivity?.isCancelled &&
-                                !product?.lastActivity?.isWait)) &&
-                              "Cancel"}
-                          </button>
+                                "Cancel"}
+                            </button>
+                          </div>
                         )}
 
                         {session?.isLoggedIn &&

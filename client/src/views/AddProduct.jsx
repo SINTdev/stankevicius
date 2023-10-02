@@ -51,6 +51,7 @@ export default function AddProduct(props) {
     listingDuration: "",
     promoteToSubscribed: false,
     promoteToTradeQuoteBar: false,
+    promoteCompanyWebsite: false,
   };
   const [payload, setPayload] = useState(init__payload);
   const changePayload = (e) => {
@@ -390,7 +391,7 @@ export default function AddProduct(props) {
             Promotion
           </div>
           <p className="m-1 mt-0 text-sm mb-1 md:w-[calc(25%-8px)]">
-            Promote to subscribers users?
+            Promote to subscribed users?
           </p>
           <div className="w-full flex flex-col md:flex-row">
             <InputBox
@@ -422,6 +423,30 @@ export default function AddProduct(props) {
               value={payload.promoteToTradeQuoteBar}
               onChange={changePayload}
               name="promoteToTradeQuoteBar"
+              select={true}
+              options={[
+                {
+                  id: true,
+                  name: "Yes",
+                },
+                {
+                  id: false,
+                  name: "No",
+                },
+              ]}
+              className="my-1 md:w-[calc(25%-8px)] w-full md:mx-1"
+            />
+          </div>
+          <span className="mt-2 block"></span>
+          <p className="m-1 mt-0 text-sm mb-1 md:w-[calc(25%-8px)]">
+            Promote company website?
+          </p>
+          <div className="w-full flex flex-col md:flex-row">
+            <InputBox
+              placeholder={"Yes/No"}
+              value={payload.promoteCompanyWebsite}
+              onChange={changePayload}
+              name="promoteCompanyWebsite"
               select={true}
               options={[
                 {
