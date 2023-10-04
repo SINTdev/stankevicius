@@ -35,55 +35,63 @@ const Register = (props) => {
       payload.email !== "" &&
       /^\w+([\.-]?\w+)*@[\w-]+(\.\w+)+$/.test(payload.email)
     ) {
-      if (payload.password !== "" && payload.password.length >= 8) {
-        if (payload.fullName !== "") {
-          if (value !== "") {
-            if (isPossiblePhoneNumber(value)) {
-              await axios
-                .post(CONSTANT.server + "authentication/user", {
-                  ...payload,
-                  countryCode:
-                    formatPhoneNumberIntl(value)?.split(" ")[0] ?? "",
-                  phoneNumber:
-                    formatPhoneNumber(value)?.split(" ").join("") ?? "",
-                  client_url: CONSTANT.client,
-                })
-                .then((responce) => {
-                  let res = responce.data;
-                  if (res.message) {
-                    setMessage(getErrorMessage(res.message), "red-500");
-                    // setMessage(res.message, "red-500");
-                  } else {
-                    setMessage(
-                      "Account created, please verify your email. Check mail.",
-                      "green-500"
-                    );
-                    // sessionStorage.setItem(
-                    //   "loggedin",
-                    //   JSON.stringify({
-                    //     data: res,
-                    //   })
-                    // );
-                    setTimeout(() => {
-                      props?.setModalSetting({
-                        login: false,
-                        register: false,
-                      });
-                    }, 5000);
-                    // props?.updateSessionData();
-                  }
-                })
-                .catch((error) => {
-                  console.log(error);
-                });
+      if (payload.password !== "") {
+        if (payload.password.length >= 8) {
+          if (payload.fullName !== "") {
+            if (value !== "") {
+              if (isPossiblePhoneNumber(value)) {
+                await axios
+                  .post(CONSTANT.server + "authentication/user", {
+                    ...payload,
+                    countryCode:
+                      formatPhoneNumberIntl(value)?.split(" ")[0] ?? "",
+                    phoneNumber:
+                      formatPhoneNumber(value)?.split(" ").join("") ?? "",
+                    client_url: CONSTANT.client,
+                  })
+                  .then((responce) => {
+                    let res = responce.data;
+                    if (res.message) {
+                      setMessage(getErrorMessage(res.message), "red-500");
+                      // setMessage(res.message, "red-500");
+                    } else {
+                      setPayload(init__payload);
+                      setMessage(
+                        "Account created, please verify your email. Check mail.",
+                        "green-500"
+                      );
+                      // sessionStorage.setItem(
+                      //   "loggedin",
+                      //   JSON.stringify({
+                      //     data: res,
+                      //   })
+                      // );
+                      setTimeout(() => {
+                        props?.setModalSetting({
+                          login: false,
+                          register: false,
+                        });
+                      }, 5000);
+                      // props?.updateSessionData();
+                    }
+                  })
+                  .catch((error) => {
+                    console.log(error);
+                  });
+              } else {
+                setMessage("Please enter valid number.", "red-500");
+              }
             } else {
               setMessage("Please enter valid number.", "red-500");
             }
           } else {
-            setMessage("Please enter valid number.", "red-500");
+            setMessage("Please fill all fields.", "red-500");
           }
         } else {
-          setMessage("Please fill all fields.", "red-500");
+          setMessage(
+            "Please make sure your entered password is at least 8 characters long.",
+            "red-500"
+          );
         }
       } else {
         setMessage("Please enter password.", "red-500");
@@ -105,6 +113,7 @@ const Register = (props) => {
     companyName: "",
     companyURL: "",
     offer: false,
+    privacy: false,
   };
 
   const [payload, setPayload] = useState(init__payload);
@@ -208,31 +217,60 @@ const Register = (props) => {
             onChange={changePayload}
             name="companyURL"
           />
-          <div className="flex items-center __CHECK_REG__">
-            <input
-              id="link-checkbox"
-              type="checkbox"
-              checked={payload.offer}
-              onChange={(e) => {
-                setPayload({
-                  ...payload,
-                  offer: e.target.checked,
-                });
-              }}
-              className="cursor-pointer w-4 h-4 text-black bg-white border-gray-300 hover:bg-gray-50 focus:ring-0 dark:focus:ring-0 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
-            />
+          <div className="flex items-center __CHECK_REG__ space-x-2">
+            <span className="flex items-center">
+              <input
+                id="link-checkbox"
+                type="checkbox"
+                checked={payload.offer}
+                onChange={(e) => {
+                  setPayload({
+                    ...payload,
+                    offer: e.target.checked,
+                  });
+                }}
+                className="cursor-pointer text-black bg-white border-gray-300 hover:bg-gray-50 focus:ring-0 dark:focus:ring-0 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
+              />
+            </span>
             <label
               htmlFor="link-checkbox"
-              className="ml-2 tracking-normal text-gray-500 text-sm font-medium"
+              className="tracking-normal text-gray-500 text-sm font-medium"
             >
               Stankevicius may send me offers and promotions.
+            </label>
+          </div>
+          <div className="flex items-center __CHECK_REG__ space-x-2">
+            <span className="flex items-center">
+              <input
+                id="privacy-checkbox"
+                type="checkbox"
+                checked={payload.privacy}
+                onChange={(e) => {
+                  setPayload({
+                    ...payload,
+                    privacy: e.target.checked,
+                  });
+                }}
+                className="cursor-pointer text-black bg-white border-gray-300 hover:bg-gray-50 focus:ring-0 dark:focus:ring-0 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
+              />
+            </span>
+            <label
+              htmlFor="privacy-checkbox"
+              className="tracking-normal text-gray-500 text-sm font-medium"
+            >
+              By submitting my information, I agree to the Privacy Policy and
+              Terms of Service.
             </label>
           </div>
 
           <div className="mt-2"></div>
           <button
             onClick={register}
-            className="w-full text-white tracking-wider bg-black text-sm px-5 py-2.5 text-center"
+            className={`${
+              !payload?.privacy
+                ? "pointer-events-none opacity-60 cursor-not-allowed"
+                : "pointer-events-auto"
+            } w-full text-white tracking-wider bg-black text-sm px-5 py-2.5 text-center`}
           >
             Create Account
           </button>

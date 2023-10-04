@@ -69,7 +69,11 @@ export default function UserManagement(props) {
           {[
             {
               id: "",
-              name: `All users (${users?.length})`,
+              name: `All verified users (${
+                users?.filter((a) => {
+                  return a?.isEmailVerified;
+                })?.length
+              })`,
             },
             {
               id: "24h",
@@ -99,7 +103,15 @@ export default function UserManagement(props) {
               id: "subscribed",
               name: `Subscribed users (${
                 users?.filter((a) => {
-                  return a?.offer;
+                  return a?.offer && a?.isEmailVerified;
+                })?.length
+              })`,
+            },
+            {
+              id: "unverified",
+              name: `Unverified users (${
+                users?.filter((a) => {
+                  return !a?.isEmailVerified;
                 })?.length
               })`,
             },
@@ -108,7 +120,7 @@ export default function UserManagement(props) {
               <p
                 className={`${
                   filter === category.id && "bg-gray-200"
-                } py-2 px-5 hover:bg-gray-200 text-[18px]  transition-all duration-300 ease-in-out cursor-pointer`}
+                } py-2 px-5 whitespace-nowrap hover:bg-gray-200 text-[18px]  transition-all duration-300 ease-in-out cursor-pointer`}
                 onClick={() => {
                   setFilter(category.id);
                 }}
@@ -131,7 +143,11 @@ export default function UserManagement(props) {
           options={[
             {
               id: "",
-              name: `All users (${users?.length})`,
+              name: `All verified users (${
+                users?.filter((a) => {
+                  return a?.isEmailVerified;
+                })?.length
+              })`,
             },
             {
               id: "24h",
@@ -161,7 +177,15 @@ export default function UserManagement(props) {
               id: "subscribed",
               name: `Subscribed users (${
                 users?.filter((a) => {
-                  return a?.offer;
+                  return a?.offer && a?.isEmailVerified;
+                })?.length
+              })`,
+            },
+            {
+              id: "unverified",
+              name: `Unverified users (${
+                users?.filter((a) => {
+                  return !a?.isEmailVerified;
                 })?.length
               })`,
             },
@@ -230,10 +254,13 @@ export default function UserManagement(props) {
               {users
                 ?.filter((user) => {
                   if (filter === "") {
-                    return true;
+                    return user?.isEmailVerified;
                   }
                   if (filter === "subscribed") {
-                    return user?.offer;
+                    return user?.offer && user?.isEmailVerified;
+                  }
+                  if (filter === "unverified") {
+                    return !user?.isEmailVerified;
                   }
                   return user?.status === filter;
                 })
@@ -266,10 +293,13 @@ export default function UserManagement(props) {
               <UserTable
                 users={users?.filter((user) => {
                   if (filter === "") {
-                    return true;
+                    return user?.isEmailVerified;
                   }
                   if (filter === "subscribed") {
-                    return user?.offer;
+                    return user?.offer && user?.isEmailVerified;
+                  }
+                  if (filter === "unverified") {
+                    return !user?.isEmailVerified;
                   }
                   return user?.status === filter;
                 })}

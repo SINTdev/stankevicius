@@ -3,7 +3,7 @@ import Menu from "../components/Menu";
 import Modal from "../components/Modal";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { CONSTANT } from "../CONSTANT";
+import { CONSTANT, smoothScrollDown } from "../CONSTANT";
 import UserData from "../contexts/UserData";
 import InputBox from "../components/InputBox";
 import { takeActionOnProduct } from "../ACTIONS";
@@ -128,6 +128,15 @@ const DropdownButton = (props) => {
 export default function Home(props) {
   const { session, setSession, pushProductChange } = useContext(UserData);
   const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const focusParam = params.get("focus");
+
+    if (focusParam === "list") {
+      smoothScrollDown();
+    }
+  }, []);
 
   const fetchCategories = async () => {
     await axios
@@ -343,6 +352,79 @@ export default function Home(props) {
     return "";
   };
 
+  const renderInfoCompany = (by, show) => {
+    if (
+      by?.companyURL !== "" &&
+      by?.companyName !== "" &&
+      by?.companyURL &&
+      by?.companyName
+    ) {
+      return (
+        <a
+          href={show ? by?.companyURL : ""}
+          target="_blank"
+          className="text-sky-700 border-b text-[calc(1rem-2px)] tracking-normal  inline-flex max-w-fit border-b-sky-700   items-baseline space-x-1 md:mt-4 mt-0 lg:mt-0"
+        >
+          <span className="inline-block">
+            {show
+              ? by?.companyName
+              : by?.companyName?.split("")?.map((a) => "*")}
+          </span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={2}
+            stroke="currentColor"
+            className="w-3.5 h-3.5 text-[#221f1f] relative top-[1px]"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+            />
+          </svg>
+        </a>
+      );
+    } else if (by?.companyName !== "" && by?.companyName) {
+      return (
+        <span className="text-black text-[calc(1rem-2px)] tracking-normal inline-flex max-w-fit items-baseline space-x-1 md:mt-4 mt-0 lg:mt-0">
+          <span className="inline-block">
+            {show
+              ? by?.companyName
+              : by?.companyName?.split("")?.map((a) => "*")}
+          </span>
+        </span>
+      );
+    }
+    return null;
+  };
+  // const renderInfoPersonal = (by, show) => {
+  //   return (
+  //     <a
+  //       href={show ? `mailto:${by?.email}` : ""}
+  //       target="_blank"
+  //       className="text-sky-700 border-b text-[calc(1rem-2px)] tracking-normal inline-flex max-w-fit border-b-sky-700   items-baseline space-x-1 md:mt-4 mt-0 lg:mt-0"
+  //     >
+  //       <span className="inline-block">
+  //         {show ? by?.fullName : by?.fullName?.split("")?.map((a) => "*")}
+  //       </span>
+  //       <svg
+  //         xmlns="http://www.w3.org/2000/svg"
+  //         viewBox="0 0 512 512"
+  //         className="w-3 h-3 text-[#221f1f] relative top-[1px]"
+  //       >
+  //         <g>
+  //           <path
+  //             class="st0"
+  //             d="M510.678,112.275c-2.308-11.626-7.463-22.265-14.662-31.054c-1.518-1.915-3.104-3.63-4.823-5.345   c-12.755-12.818-30.657-20.814-50.214-20.814H71.021c-19.557,0-37.395,7.996-50.21,20.814c-1.715,1.715-3.301,3.43-4.823,5.345   C8.785,90.009,3.63,100.649,1.386,112.275C0.464,116.762,0,121.399,0,126.087V385.92c0,9.968,2.114,19.55,5.884,28.203   c3.497,8.26,8.653,15.734,14.926,22.001c1.59,1.586,3.169,3.044,4.892,4.494c12.286,10.175,28.145,16.32,45.319,16.32h369.958   c17.18,0,33.108-6.145,45.323-16.384c1.718-1.386,3.305-2.844,4.891-4.43c6.27-6.267,11.425-13.741,14.994-22.001v-0.064   c3.769-8.653,5.812-18.171,5.812-28.138V126.087C512,121.399,511.543,116.762,510.678,112.275z M46.509,101.571   c6.345-6.338,14.866-10.175,24.512-10.175h369.958c9.646,0,18.242,3.837,24.512,10.175c1.122,1.129,2.179,2.387,3.112,3.637   L274.696,274.203c-5.348,4.687-11.954,7.002-18.696,7.002c-6.674,0-13.276-2.315-18.695-7.002L43.472,105.136   C44.33,103.886,45.387,102.7,46.509,101.571z M36.334,385.92V142.735L176.658,265.15L36.405,387.435   C36.334,386.971,36.334,386.449,36.334,385.92z M440.979,420.597H71.021c-6.281,0-12.158-1.651-17.174-4.552l147.978-128.959   l13.815,12.018c11.561,10.046,26.028,15.134,40.36,15.134c14.406,0,28.872-5.088,40.432-15.134l13.808-12.018l147.92,128.959   C453.137,418.946,447.26,420.597,440.979,420.597z M475.666,385.92c0,0.529,0,1.051-0.068,1.515L335.346,265.221L475.666,142.8   V385.92z"
+  //           />
+  //         </g>
+  //       </svg>
+  //     </a>
+  //   );
+  // };
+
   return (
     <div>
       <Modal
@@ -387,7 +469,7 @@ export default function Home(props) {
           <input
             type="search"
             className={`${
-              props?.onlySearch && "delay-the-search"
+              props?.onlySearch && "delay-the-search focus:border-black"
             } block w-full rounded-none p-3 text-sm text-gray-900 border-2 border-gray-300  hover:bg-gray-50 outline-none`}
             placeholder="Search Product"
             value={search}
@@ -625,8 +707,11 @@ export default function Home(props) {
 
                         {((session?.isLoggedIn &&
                           product?.by?.id.toString() !==
-                            session?.personal?.id.toString()) ||
-                          !session?.isLoggedIn) && (
+                            session?.personal?.id.toString() &&
+                          session?.personal?.email !== "admin@admin.com") ||
+                          (!session?.isLoggedIn &&
+                            session?.personal?.email !==
+                              "admin@admin.com")) && (
                           <div className="flex flex-row items-end">
                             {/* <p className="md:-translate-y-3.5 md:-translate-x-2 uppercase text-[1rem] font-medium text-black lg:text-right h-[4px]">
                               02:00
@@ -704,72 +789,73 @@ export default function Home(props) {
                           </div>
                         )}
 
-                        {session?.isLoggedIn &&
+                        {((session?.isLoggedIn &&
                           product?.by?.id?.toString() ===
                             session?.personal?.id?.toString() &&
                           !product?.isArchived &&
-                          !product?.isExpired && (
-                            <DropdownButton
-                              onlySearch={props?.onlySearch}
-                              setIsSearchOpen={props?.setIsSearchOpen}
-                              label="Action"
-                              options={[
-                                {
-                                  label: "Edit",
-                                  type: "link",
-                                  click: `/edit/${product?.slug}?focus=update`,
-                                },
-                                {
-                                  label: "Expire Now",
-                                  type: "button",
-                                  click: () => {
-                                    setModal({
-                                      ...modal,
-                                      isOpen: true,
-                                      content: `You confirm that you want to expire
+                          !product?.isExpired) ||
+                          session?.personal?.email === "admin@admin.com") && (
+                          <DropdownButton
+                            onlySearch={props?.onlySearch}
+                            setIsSearchOpen={props?.setIsSearchOpen}
+                            label="Action"
+                            options={[
+                              {
+                                label: "Edit",
+                                type: "link",
+                                click: `/edit/${product?.slug}?focus=update`,
+                              },
+                              {
+                                label: "Expire Now",
+                                type: "button",
+                                click: () => {
+                                  setModal({
+                                    ...modal,
+                                    isOpen: true,
+                                    content: `You confirm that you want to expire
                         this trade now and this trade will
                         expire immediately and will be
                         removed from listing.`,
-                                      onYes: () => {
-                                        takeActionOnProduct(
-                                          product?.id,
-                                          "expire",
-                                          () => {
-                                            fetchProducts();
-                                          }
-                                        );
-                                        setModal(EMPTY_MODAL);
-                                      },
-                                    });
-                                  },
+                                    onYes: () => {
+                                      takeActionOnProduct(
+                                        product?.id,
+                                        "expire",
+                                        () => {
+                                          fetchProducts();
+                                        }
+                                      );
+                                      setModal(EMPTY_MODAL);
+                                    },
+                                  });
                                 },
-                                {
-                                  label: "Archive Now",
-                                  type: "button",
-                                  click: () => {
-                                    setModal({
-                                      ...modal,
-                                      isOpen: true,
-                                      content: `You confirm that you want to archive
+                              },
+                              {
+                                label: "Archive Now",
+                                type: "button",
+                                click: () => {
+                                  setModal({
+                                    ...modal,
+                                    isOpen: true,
+                                    content: `You confirm that you want to archive
                         this trade now. An archived trade
                         cannot be restored and will be
                         deleted from the system in 5 days.`,
-                                      onYes: () => {
-                                        takeActionOnProduct(
-                                          product?.id,
-                                          "archive",
-                                          () => {
-                                            fetchProducts();
-                                          }
-                                        );
-                                        setModal(EMPTY_MODAL);
-                                      },
-                                    });
-                                  },
+                                    onYes: () => {
+                                      takeActionOnProduct(
+                                        product?.id,
+                                        "archive",
+                                        () => {
+                                          fetchProducts();
+                                        }
+                                      );
+                                      setModal(EMPTY_MODAL);
+                                    },
+                                  });
                                 },
-                              ]}
-                            />
-                          )}
+                              },
+                            ]}
+                          />
+                        )}
                       </div>
                       <p className="mt-[4px] uppercase text-[.65rem] font-medium text-black lg:text-right h-[4px]">
                         {returnMessage(product)}
@@ -834,7 +920,7 @@ export default function Home(props) {
                         </div>
                       </div>
 
-                      {(product?.isPaidPromoted ||
+                      {/* {(product?.isPaidPromoted ||
                         product?.promoteCompanyWebsite) && (
                         <a
                           href={product?.by?.companyURL}
@@ -859,7 +945,10 @@ export default function Home(props) {
                             />
                           </svg>
                         </a>
-                      )}
+                      )} */}
+                      {(product?.isPaidPromoted ||
+                        product?.promoteCompanyWebsite) &&
+                        renderInfoCompany(product?.by, true)}
                     </div>
                   </div>
                 );

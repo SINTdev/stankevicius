@@ -156,7 +156,7 @@ export default function AddProduct(props) {
                 "green-500"
               );
               setTimeout(() => {
-                navigate("/");
+                navigate("/?focus=list");
               }, 4000);
             }
           })
@@ -191,7 +191,7 @@ export default function AddProduct(props) {
                 "green-500"
               );
               setTimeout(() => {
-                navigate("/");
+                navigate("/?focus=list");
               }, 4000);
             }
           })

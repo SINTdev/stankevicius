@@ -483,7 +483,7 @@ export default function PromotionBar(props) {
         className={`${props?.className} max-h-[100px] h-full overflow-hidden w-full transition-all duration-300 ease-in-out`}
       >
         <div className="max-h-[100px] h-full flex flex-row bg-black p-1">
-          <div className="mr-1 border-2 px-2 border-[#6E6162] flex flex-col items-end justify-center bg-[#464646] text-white">
+          <div className="mr-1 border-2 px-2 border-[#6E6162] flex flex-col items-end justify-center bg-gradient-to-b from-gray-700 via-gray-600 to-gray-400 text-white">
             <span className="text-2xl _font-bold">Stankevicius</span>
             {/* <span className="uppercase text-xs">11:03 am hkt sep 18</span> */}
             {/* <span className="uppercase text-xs transition-all ease-in-out duration-1000">
