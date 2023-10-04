@@ -7,6 +7,7 @@ import {
   resetMessage,
   setMessage,
   checkLoginFromNonLogin,
+  smoothScrollDown,
 } from "../../CONSTANT";
 import InputBox from "../../components/InputBox";
 
@@ -17,6 +18,7 @@ const CategoryManagement = (props) => {
     if (checkLoginFromNonLogin()) {
       navigate("/");
     }
+    smoothScrollDown();
   }, []);
 
   const [categories, setCategories] = useState([]);

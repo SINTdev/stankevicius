@@ -176,3 +176,30 @@ input[type="search"] {
     opacity: 1;
   }
 }
+
+
+/* Checkbox input */
+.__CHECK_REG__ input {
+  width: 1rem;
+  height: 1rem;
+  color: black;
+  border-radius: 0.125rem;
+  border: 1px solid #cbd5e0;
+  outline: none;
+  appearance: none;
+  transition: background-color 0.2s, border-color 0.2s;
+  cursor: pointer;
+}
+
+.__CHECK_REG__ input:checked {
+  background-color: black;
+  border-color: black;
+}
+
+/* Label for the checkbox */
+label[for="link-checkbox"] {
+  margin-left: 0.5rem;
+  color: #4a5568;
+  font-size: 0.875rem;
+  font-weight: 500;
+}

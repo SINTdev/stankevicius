@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { CONSTANT, USER_DASHBOARD_MENU } from "../../CONSTANT";
+import { CONSTANT, USER_DASHBOARD_MENU, smoothScrollDown } from "../../CONSTANT";
 import InputBox from "../../components/InputBox";
 import Modal from "../../components/Modal";
 import UserData from "../../contexts/UserData";
@@ -69,6 +69,11 @@ const DropdownButton = (props) => {
 
 export default function Dashboard(props) {
   const { session, setSession } = useContext(UserData);
+
+  
+  useEffect(() => {
+    smoothScrollDown();
+  }, []);
 
   const fetchProducts = async () => {
     await axios

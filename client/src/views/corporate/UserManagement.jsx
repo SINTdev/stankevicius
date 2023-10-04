@@ -5,7 +5,7 @@ import UserData from "../../contexts/UserData";
 import UserCard from "../../components/corporate/UserCard";
 import UserTable from "../../components/corporate/UserTable";
 import axios from "axios";
-import { CONSTANT } from "../../CONSTANT";
+import { CONSTANT, smoothScrollDown } from "../../CONSTANT";
 import Modal from "../../components/Modal";
 import InputBox from "../../components/InputBox";
 
@@ -26,6 +26,7 @@ export default function UserManagement(props) {
       });
   };
   useEffect(() => {
+    smoothScrollDown();
     fetchUsers();
   }, []);
 
@@ -168,7 +169,9 @@ export default function UserManagement(props) {
         />
         <div className="font-bold">
           <p
-            className={`py-2 select-none px-5 flex flex-row justify-center items-center w-fit hover:bg-gray-200 text-[15px]  transition-all duration-300 ease-in-out cursor-pointer`}
+            className={`py-2 select-none transition-all duration-300 ease-in-out ${
+              isGrid ? "pr-3.5" : "pr-2.5"
+            } flex flex-row justify-center items-center w-fit hover:bg-gray-200 text-[15px]  transition-all duration-300 ease-in-out cursor-pointer`}
             onClick={() => {
               setIsGrid(!isGrid);
             }}
@@ -178,7 +181,7 @@ export default function UserManagement(props) {
                 xmlns="http://www.w3.org/2000/svg"
                 xmlns:xlink="http://www.w3.org/1999/xlink"
                 fill="currentColor"
-                className="w-6 h-6 scale-90 translate-y-[1.5px] cursor-pointer"
+                className="ml-4 w-6 h-6 scale-90 translate-y-[1.5px] cursor-pointer"
                 viewBox="0 0 24 24"
               >
                 <defs></defs>
@@ -207,7 +210,7 @@ export default function UserManagement(props) {
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
-                className="w-6 h-6 scale-75 cursor-pointer"
+                className="ml-4 w-6 h-6 scale-75 cursor-pointer"
                 viewBox="0 0 16 16"
               >
                 <path

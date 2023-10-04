@@ -5,8 +5,12 @@ import {
   setMessage,
   resetMessage,
   checkLoginFromNonLogin,
+  smoothScrollDown,
 } from "../CONSTANT";
 import InputBox from "../components/InputBox";
+
+import { Tooltip as TP } from "react-tooltip";
+import Tooltip from "../components/Tooltip";
 import axios from "axios";
 import UserData from "../contexts/UserData";
 import Menu from "../components/Menu";
@@ -36,6 +40,11 @@ export default function AddProduct(props) {
       }
     }
   }, []);
+
+  useEffect(() => {
+    smoothScrollDown();
+  }, []);
+
   const init__payload = {
     name: "",
     action: "",
@@ -254,7 +263,8 @@ export default function AddProduct(props) {
 
   return (
     <div className="max-w-screen-xl mx-auto p-0 md:p-4">
-      <DashboardOptions name={""} />
+    <DashboardOptions name={""} />
+      <TP id="my-tooltip" className="max-w-sm md:max-w-md z-20"/>
       <div
         className="mt-10 flex justify-center items-center flex-col"
         id="main_form_div"
@@ -372,8 +382,9 @@ export default function AddProduct(props) {
           <div className="w-full text-left md:pl-1 mb-3 text-xl _font-bold leading-tight tracking-tight text-black">
             Listing validity
           </div>
-          <p className="m-1 mt-0 text-sm mb-1 md:w-[calc(25%-8px)]">
+          <p className="m-1 mt-0 text-sm mb-1 md:w-[calc(25%-8px)] flex flex-row items-center">
             How long this listing should be valid?
+            <Tooltip text="Select the duration for this trade. Once the trade is expired, it will be automatically removed from the public list." />
           </p>
           <div className="w-full flex flex-col md:flex-row">
             <InputBox
@@ -390,8 +401,9 @@ export default function AddProduct(props) {
           <div className="w-full text-left md:pl-1 mb-3 text-xl _font-bold leading-tight tracking-tight text-black">
             Promotion
           </div>
-          <p className="m-1 mt-0 text-sm mb-1 md:w-[calc(25%-8px)]">
+          <p className="m-1 mt-0 text-sm mb-1 md:w-[calc(25%-8px)] flex flex-row items-center">
             Promote to subscribed users?
+            <Tooltip text="If you select yes, then upon your submission, the trade information will be sent directly to emails of all the subscribed users. Users will then be able reach out to you directly." />
           </p>
           <div className="w-full flex flex-col md:flex-row">
             <InputBox
@@ -414,8 +426,9 @@ export default function AddProduct(props) {
             />
           </div>
           <span className="mt-2 block"></span>
-          <p className="m-1 mt-0 text-sm mb-1 md:w-[calc(25%-8px)]">
+          <p className="m-1 mt-0 text-sm mb-1 md:w-[calc(25%-8px)] flex flex-row items-center">
             Promote on Trade Quote bar?
+            <Tooltip text="Your trade will appear on the running *Trade Quotes* bar to reach more visibility." />
           </p>
           <div className="w-full flex flex-col md:flex-row">
             <InputBox
@@ -438,8 +451,9 @@ export default function AddProduct(props) {
             />
           </div>
           <span className="mt-2 block"></span>
-          <p className="m-1 mt-0 text-sm mb-1 md:w-[calc(25%-8px)]">
-            Promote company website?
+          <p className="m-1 mt-0 text-sm mb-1 md:w-[calc(25%-8px)] flex flex-row items-center">
+            Promote your company?
+            <Tooltip text="Your company's name will be promoted on your trade along with your company's website. Users may reach out to your company directly." />
           </p>
           <div className="w-full flex flex-col md:flex-row">
             <InputBox

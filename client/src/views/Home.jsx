@@ -834,7 +834,8 @@ export default function Home(props) {
                         </div>
                       </div>
 
-                      {product?.isPaidPromoted && (
+                      {(product?.isPaidPromoted ||
+                        product?.promoteCompanyWebsite) && (
                         <a
                           href={product?.by?.companyURL}
                           target="_blank"

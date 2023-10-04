@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { CONSTANT, USER_DASHBOARD_MENU } from "../../CONSTANT";
+import { CONSTANT, USER_DASHBOARD_MENU, smoothScrollDown } from "../../CONSTANT";
 import InputBox from "../../components/InputBox";
 import Modal from "../../components/Modal";
 import UserData from "../../contexts/UserData";
@@ -15,6 +15,11 @@ export default function Credit(props) {
 
   const [modal, setModal] = useState(true);
   const [filter, setFilter] = useState("buy");
+
+  useEffect(() => {
+    smoothScrollDown();
+  }, []);
+
 
   return (
     <div>

@@ -1,14 +1,19 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import DashboardOptions from "../../components/client/DashboardOptions";
 import InvoiceCard from "../../components/corporate/InvoiceCard";
 import UserData from "../../contexts/UserData";
 import InputBox from "../../components/InputBox";
+import { smoothScrollDown } from "../../CONSTANT";
 
 export default function CreditManagement(props) {
   const { session, setSession } = useContext(UserData);
 
   const [modal, setModal] = useState(true);
   const [filter, setFilter] = useState("");
+
+  useEffect(() => {
+    smoothScrollDown();
+  }, []);
 
   return (
     <div>

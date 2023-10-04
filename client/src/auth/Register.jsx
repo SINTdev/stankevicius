@@ -104,6 +104,7 @@ const Register = (props) => {
     password: "",
     companyName: "",
     companyURL: "",
+    offer: false,
   };
 
   const [payload, setPayload] = useState(init__payload);
@@ -207,6 +208,27 @@ const Register = (props) => {
             onChange={changePayload}
             name="companyURL"
           />
+          <div className="flex items-center __CHECK_REG__">
+            <input
+              id="link-checkbox"
+              type="checkbox"
+              checked={payload.offer}
+              onChange={(e) => {
+                setPayload({
+                  ...payload,
+                  offer: e.target.checked,
+                });
+              }}
+              className="cursor-pointer w-4 h-4 text-black bg-white border-gray-300 hover:bg-gray-50 focus:ring-0 dark:focus:ring-0 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
+            />
+            <label
+              htmlFor="link-checkbox"
+              className="ml-2 tracking-normal text-gray-500 text-sm font-medium"
+            >
+              Stankevicius may send me offers and promotions.
+            </label>
+          </div>
+
           <div className="mt-2"></div>
           <button
             onClick={register}

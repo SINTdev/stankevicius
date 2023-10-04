@@ -91,6 +91,14 @@ export const checkLoginFromNonLogin = () => {
     : true;
 };
 
+export const smoothScrollDown = () => {
+  let scrollTarget = 25 * 16; // 5rem * 16px per rem
+  window.scrollTo({
+    top: scrollTarget,
+    behavior: "smooth",
+  });
+};
+
 export const getUserData = () => {
   if (
     sessionStorage.getItem("loggedin") &&

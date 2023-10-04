@@ -5,10 +5,63 @@ import InfiniteLooper from "../components/InfiniteLooper";
 import Modal from "../components/Modal";
 import UserData from "../contexts/UserData";
 
+const CountdownComponent = ({ lastActivity, hasMinutesPassed }) => {
+  const [countdown, setCountdown] = useState(null);
+
+  useEffect(() => {
+    let countdownInterval;
+
+    const updateCountdown = () => {
+      if (
+        lastActivity &&
+        !lastActivity.isCancelled &&
+        !hasMinutesPassed(lastActivity.timestamp) &&
+        lastActivity.isWait
+      ) {
+        const targetTime =
+          new Date(lastActivity.timestamp).getTime() + 2 * 60 * 1000; // Add 2 minutes
+        const currentTime = Date.now();
+
+        if (targetTime > currentTime) {
+          const remainingTimeMillis = targetTime - currentTime;
+          const minutes = Math.floor(remainingTimeMillis / 60000);
+          const seconds = Math.floor((remainingTimeMillis % 60000) / 1000);
+
+          setCountdown(
+            `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(
+              2,
+              "0"
+            )}`
+          );
+        } else {
+          // Countdown has expired
+          setCountdown("00:00");
+          clearInterval(countdownInterval);
+        }
+      }
+    };
+
+    updateCountdown(); // Initialize the countdown
+
+    countdownInterval = setInterval(updateCountdown, 1000); // Update every second
+
+    return () => {
+      clearInterval(countdownInterval);
+    };
+  }, [lastActivity]);
+
+  return (
+    <span className="text-xs">
+      Cancel
+      <span className="ml-2">{countdown}</span>
+    </span>
+  );
+};
+
 const ProductCard = ({
   product,
   handleInteraction,
-  hasFiveMinutesPassed,
+  hasMinutesPassed,
   session,
 }) => {
   const formatDateDot = (date) => {
@@ -60,14 +113,14 @@ const ProductCard = ({
                 handleInteraction(
                   product?.lastActivity &&
                     !product?.lastActivity?.isCancelled &&
-                    !hasFiveMinutesPassed(product?.lastActivity?.timestamp) &&
+                    !hasMinutesPassed(product?.lastActivity?.timestamp) &&
                     product?.lastActivity?.isWait
                     ? product?.lastActivity?.id
                     : product.id,
                   product?.action,
                   (product?.lastActivity &&
                     !product?.lastActivity?.isCancelled &&
-                    !hasFiveMinutesPassed(product?.lastActivity?.timestamp) &&
+                    !hasMinutesPassed(product?.lastActivity?.timestamp) &&
                     product?.lastActivity?.isWait) ??
                     false,
                   !Boolean(product?.lastActivity)
@@ -76,7 +129,7 @@ const ProductCard = ({
               className={`${
                 ((product?.lastActivity &&
                   !product?.lastActivity?.isCancelled &&
-                  hasFiveMinutesPassed(product?.lastActivity?.timestamp)) ||
+                  hasMinutesPassed(product?.lastActivity?.timestamp)) ||
                   (product?.lastActivity &&
                     !product?.lastActivity?.isCancelled &&
                     !product?.lastActivity?.isWait)) &&
@@ -89,12 +142,16 @@ const ProductCard = ({
                 (product?.action?.name !== "BUYING" ? "Buy" : "Sell")}
               {product?.lastActivity &&
                 !product?.lastActivity?.isCancelled &&
-                !hasFiveMinutesPassed(product?.lastActivity?.timestamp) &&
-                product?.lastActivity?.isWait &&
-                "Cancel"}
+                !hasMinutesPassed(product?.lastActivity?.timestamp) &&
+                product?.lastActivity?.isWait && (
+                  <CountdownComponent
+                    lastActivity={product?.lastActivity}
+                    hasMinutesPassed={hasMinutesPassed}
+                  />
+                )}
               {((product?.lastActivity &&
                 !product?.lastActivity?.isCancelled &&
-                hasFiveMinutesPassed(product?.lastActivity?.timestamp)) ||
+                hasMinutesPassed(product?.lastActivity?.timestamp)) ||
                 (product?.lastActivity &&
                   !product?.lastActivity?.isCancelled &&
                   !product?.lastActivity?.isWait)) &&
@@ -290,8 +347,8 @@ export default function PromotionBar(props) {
 
   const [modal, setModal] = useState(EMPTY_MODAL);
 
-  const hasFiveMinutesPassed = (timestamp) => {
-    let fiveMinutesInMillis = 5 * 60 * 1000;
+  const hasMinutesPassed = (timestamp) => {
+    let fiveMinutesInMillis = 2 * 60 * 1000;
     let currentTimeInMillis = Date.now();
     let targetTimeInMillis = new Date(timestamp).getTime();
     return currentTimeInMillis - targetTimeInMillis >= fiveMinutesInMillis;
@@ -406,7 +463,7 @@ export default function PromotionBar(props) {
 
   const toSendAlong = {
     handleInteraction: handleInteraction,
-    hasFiveMinutesPassed: hasFiveMinutesPassed,
+    hasMinutesPassed: hasMinutesPassed,
     session: session,
   };
 
