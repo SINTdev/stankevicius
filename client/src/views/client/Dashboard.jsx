@@ -1,7 +1,11 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { CONSTANT, USER_DASHBOARD_MENU, smoothScrollDown } from "../../CONSTANT";
+import {
+  CONSTANT,
+  USER_DASHBOARD_MENU,
+  smoothScrollDown,
+} from "../../CONSTANT";
 import InputBox from "../../components/InputBox";
 import Modal from "../../components/Modal";
 import UserData from "../../contexts/UserData";
@@ -41,6 +45,9 @@ const DropdownButton = (props) => {
       <div className="absolute opacity-100 z-20">
         {isOpen &&
           props?.options?.map((one, index) => {
+            if (one?.hide) {
+              return null;
+            }
             if (one?.type === "link") {
               return (
                 <Link
@@ -70,7 +77,6 @@ const DropdownButton = (props) => {
 export default function Dashboard(props) {
   const { session, setSession } = useContext(UserData);
 
-  
   useEffect(() => {
     smoothScrollDown();
   }, []);
@@ -367,6 +373,7 @@ export default function Dashboard(props) {
                 options={[
                   {
                     label: "Extend 7 Days",
+                    hide: product?.isExtended,
                     type: "button",
                     click: () => {
                       takeActionOnProduct(product?.id, "extend", () => {
@@ -411,7 +418,7 @@ export default function Dashboard(props) {
             <div className="mr-2">
               <span className="capitalize _font-bold mr-1">Quantity:</span>
               <span className="font-light text-gray-700">
-              {`${product?.quantity} ${product?.measurement?.name}`}
+                {`${product?.quantity} ${product?.measurement?.name}`}
               </span>
             </div>
             <div className="mr-2">
@@ -441,7 +448,7 @@ export default function Dashboard(props) {
             <div className="mr-2">
               <span className="capitalize _font-bold mr-1">Price:</span>
               <span className="font-light text-gray-700">
-              {`${product?.price} ${product?.currency?.name}`}
+                {`${product?.price} ${product?.currency?.name}`}
               </span>
             </div>
           </div>
@@ -492,7 +499,7 @@ export default function Dashboard(props) {
         <div className="flex flex-wrap md:flex-nowrap justify-between space-y-3 md:space-y-0 md:space-x-2">
           <input
             type="search"
-            className="block w-full rounded-none p-3 text-sm text-gray-900 border-2 border-gray-300  hover:bg-gray-50 outline-none"
+            className="block w-full rounded-none p-3 focus:border-black text-sm text-gray-900 border-2 border-gray-300  hover:bg-gray-50 outline-none"
             placeholder="Search Product"
             value={search}
             onChange={(e) => {

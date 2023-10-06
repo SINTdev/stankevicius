@@ -469,8 +469,8 @@ export default function Home(props) {
           <input
             type="search"
             className={`${
-              props?.onlySearch && "delay-the-search focus:border-black"
-            } block w-full rounded-none p-3 text-sm text-gray-900 border-2 border-gray-300  hover:bg-gray-50 outline-none`}
+              props?.onlySearch && "delay-the-search"
+            } block w-full rounded-none p-3 focus:border-black text-sm text-gray-900 border-2 border-gray-300  hover:bg-gray-50 outline-none`}
             placeholder="Search Product"
             value={search}
             onChange={(e) => {

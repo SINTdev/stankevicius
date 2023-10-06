@@ -4,7 +4,7 @@ const ModalWrapper = (props) => {
   return (
     <>
       {props?.isOpen ? (
-        <div className="fixed inset-0 flex items-center justify-center z-50">
+        <div className="fixed inset-0 flex items-center justify-center z-50 overflow-hidden">
           {/* Overlay */}
           {!props?.overlay && (
             <div
@@ -14,7 +14,7 @@ const ModalWrapper = (props) => {
           )}
 
           {/* Modal Content */}
-          <div className={`bg-white p-8 border-2 shadow-2xl z-10 ${!props?.big ? "md:w-2/5":"md:w-3/5"} w-full`}>
+          <div className={`bg-white p-8 border-2 shadow-2xl max-h-[90%] overflow-auto z-10 ${!props?.big ? "md:w-2/5":"md:w-3/5"} w-full`}>
             {props?.children}
           </div>
         </div>

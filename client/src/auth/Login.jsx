@@ -180,7 +180,7 @@ const Login = (props) => {
               }}
               className="text-xs underline font-medium"
             >
-              {!isReset ? "Forgot Password" : "Back to Login"}
+              {!isReset ? "Forgot Password" : "Back to Login"}.
             </span>
             <span className="text-xs">
               Don't have an account?{" "}

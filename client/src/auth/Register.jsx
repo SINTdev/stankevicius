@@ -113,7 +113,6 @@ const Register = (props) => {
     companyName: "",
     companyURL: "",
     offer: false,
-    privacy: false,
   };
 
   const [payload, setPayload] = useState(init__payload);
@@ -240,7 +239,7 @@ const Register = (props) => {
             </label>
           </div>
           <div className="flex items-center __CHECK_REG__ space-x-2">
-            <span className="flex items-center">
+            {/* <span className="flex items-center">
               <input
                 id="privacy-checkbox"
                 type="checkbox"
@@ -253,24 +252,22 @@ const Register = (props) => {
                 }}
                 className="cursor-pointer text-black bg-white border-gray-300 hover:bg-gray-50 focus:ring-0 dark:focus:ring-0 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
               />
-            </span>
+            </span> */}
             <label
               htmlFor="privacy-checkbox"
               className="tracking-normal text-gray-500 text-sm font-medium"
             >
-              By submitting my information, I agree to the Privacy Policy and
-              Terms of Service.
+              By submitting my information, I agree to the{" "}
+              <a href="#" className="text-black underline cursor-pointer">Privacy Policy</a>
+              {" and "}
+              <a href="#" className="text-black underline cursor-pointer">Terms of Service</a>.
             </label>
           </div>
 
           <div className="mt-2"></div>
           <button
             onClick={register}
-            className={`${
-              !payload?.privacy
-                ? "pointer-events-none opacity-60 cursor-not-allowed"
-                : "pointer-events-auto"
-            } w-full text-white tracking-wider bg-black text-sm px-5 py-2.5 text-center`}
+            className={`w-full text-white tracking-wider bg-black text-sm px-5 py-2.5 text-center`}
           >
             Create Account
           </button>

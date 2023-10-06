@@ -49,6 +49,9 @@ const DropdownButton = (props) => {
       <div className="absolute opacity-100 z-20">
         {isOpen &&
           props?.options?.map((one, index) => {
+            if (one?.hide) {
+              return null;
+            }
             if (one?.type === "link") {
               return (
                 <Link
@@ -439,6 +442,7 @@ export default function Dashboard(props) {
                 options={[
                   {
                     label: "Extend 7 Days",
+                    hide: product?.isExtended,
                     type: "button",
                     click: () => {
                       takeActionOnProduct(product?.id, "extend", () => {
@@ -693,11 +697,9 @@ export default function Dashboard(props) {
 
   const [isShowInfo, setIsShowInfo] = useState(false);
 
-  
   useEffect(() => {
     smoothScrollDown();
   }, []);
-
 
   return (
     <div>
@@ -717,7 +719,7 @@ export default function Dashboard(props) {
         <div className="flex flex-wrap md:flex-nowrap justify-between space-y-3 md:space-y-0 md:space-x-2">
           <input
             type="search"
-            className="block w-full rounded-none p-3 text-sm text-gray-900 border-2 border-gray-300  hover:bg-gray-50 outline-none"
+            className="block w-full rounded-none p-3 focus:border-black text-sm text-gray-900 border-2 border-gray-300  hover:bg-gray-50 outline-none"
             placeholder="Search Product"
             value={search}
             onChange={(e) => {
