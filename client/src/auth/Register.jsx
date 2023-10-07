@@ -25,6 +25,34 @@ const Register = (props) => {
     }
   }, []);
 
+  const preValidate = () => {
+    resetMessage();
+    if (
+      payload.email !== "" &&
+      /^\w+([\.-]?\w+)*@[\w-]+(\.\w+)+$/.test(payload.email)
+    ) {
+      if (payload.password !== "") {
+        if (payload.password.length >= 8) {
+          if (payload.fullName !== "") {
+            return true;
+          } else {
+            setMessage("Please enter your full name.", "red-500");
+          }
+        } else {
+          setMessage(
+            "Please make sure your entered password is at least 8 characters long.",
+            "red-500"
+          );
+        }
+      } else {
+        setMessage("Please enter password.", "red-500");
+      }
+    } else {
+      setMessage("Please enter valid email.", "red-500");
+    }
+    return false;
+  };
+
   const register = async (e) => {
     e.target.style.pointerEvents = "none";
     e.target.innerHTML =
@@ -137,6 +165,9 @@ const Register = (props) => {
   };
 
   const [value, setValue] = useState("");
+
+  const [page, setPage] = useState(0);
+
   return (
     <div className="space-y-4 md:space-y-6">
       <div className="flex mb-5">
@@ -156,120 +187,154 @@ const Register = (props) => {
         </span>
       </div>
       <div className="flex justify-center items-center">
-        <div className="space-y-2 md:space-y-3 w-full md:w-3/5">
-          <InputBox
-            placeholder={"Name"}
-            value={payload.fullName}
-            onChange={changePayload}
-            name="fullName"
-          />
-          <InputBox
-            placeholder={"Email"}
-            type="email"
-            value={payload.email}
-            onChange={changePayload}
-            name="email"
-          />
-          <InputBox
-            placeholder={"Password"}
-            type="password"
-            value={payload.password}
-            onChange={changePayload}
-            name="password"
-          />
-          <PhoneInput
-            international
-            value={value}
-            onChange={setValue}
-            placeholder="Phone Number"
-            className="__PhoneInputInput p-3 text-sm text-gray-900 border-2 border-gray-300  hover:bg-gray-50 outline-none"
-          />
-          {/* <InputBox
-            placeholder={"Select country code"}
-            value={payload.countryCode}
-            onChange={changePayload}
-            name="countryCode"
-            select={true}
-            options={codes.map((a) => {
-              return {
-                id: a.countryCodes[0],
-                name: a.country,
-              };
-            })}
-          />
-          <InputBox
-            placeholder={"Phone Number"}
-            value={payload.phoneNumber}
-            onChange={changePayload}
-            name="phoneNumber"
-            type="number"
-          /> */}
-          <InputBox
-            placeholder={"Company Name"}
-            value={payload.companyName}
-            onChange={changePayload}
-            name="companyName"
-          />
-          <InputBox
-            placeholder={"Company URL"}
-            value={payload.companyURL}
-            onChange={changePayload}
-            name="companyURL"
-          />
-          <div className="flex items-center __CHECK_REG__ space-x-2">
-            <span className="flex items-center">
-              <input
-                id="link-checkbox"
-                type="checkbox"
-                checked={payload.offer}
-                onChange={(e) => {
-                  setPayload({
-                    ...payload,
-                    offer: e.target.checked,
-                  });
-                }}
-                className="cursor-pointer text-black bg-white border-gray-300 hover:bg-gray-50 focus:ring-0 dark:focus:ring-0 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
+        <div className="space-y-2 md:space-y-3 w-full md:w-4/5 xl:w-2/3">
+          {/* {page === 0 && (
+            <div className="space-y-2 md:space-y-3">
+              <InputBox
+                placeholder={"Name"}
+                value={payload.fullName}
+                onChange={changePayload}
+                name="fullName"
               />
-            </span>
-            <label
-              htmlFor="link-checkbox"
-              className="tracking-normal text-gray-500 text-sm font-medium"
-            >
-              Stankevicius may send me offers and promotions.
-            </label>
-          </div>
-          <div className="flex items-center __CHECK_REG__ space-x-2">
-            {/* <span className="flex items-center">
-              <input
-                id="privacy-checkbox"
-                type="checkbox"
-                checked={payload.privacy}
-                onChange={(e) => {
-                  setPayload({
-                    ...payload,
-                    privacy: e.target.checked,
-                  });
-                }}
-                className="cursor-pointer text-black bg-white border-gray-300 hover:bg-gray-50 focus:ring-0 dark:focus:ring-0 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
+              <InputBox
+                placeholder={"Email"}
+                type="email"
+                value={payload.email}
+                onChange={changePayload}
+                name="email"
               />
-            </span> */}
-            <label
-              htmlFor="privacy-checkbox"
-              className="tracking-normal text-gray-500 text-sm font-medium"
-            >
-              By submitting my information, I agree to the{" "}
-              <a href="#" className="text-black underline cursor-pointer">Privacy Policy</a>
-              {" and "}
-              <a href="#" className="text-black underline cursor-pointer">Terms of Service</a>.
-            </label>
+              <InputBox
+                placeholder={"Password"}
+                type="password"
+                value={payload.password}
+                onChange={changePayload}
+                name="password"
+              />
+            </div>
+          )} */}
+
+          <div
+            className={`space-y-2 md:space-y-3 transition-all duration-300 ease-in-out page0-animated-div ${
+              page === 0 ? "" : "leave_div"
+            }`}
+          >
+            <InputBox
+              placeholder={"Name"}
+              value={payload.fullName}
+              onChange={changePayload}
+              name="fullName"
+            />
+            <InputBox
+              placeholder={"Email"}
+              type="email"
+              value={payload.email}
+              onChange={changePayload}
+              name="email"
+            />
+            <InputBox
+              placeholder={"Password"}
+              type="password"
+              value={payload.password}
+              onChange={changePayload}
+              name="password"
+            />
           </div>
 
+          <div
+            className={`space-y-2 md:space-y-3 delay-1000 transition-all duration-300 ease-in-out page1-animated-div ${
+              page === 1 ? "come_div" : ""
+            }`}
+          >
+            <PhoneInput
+              international
+              value={value}
+              onChange={setValue}
+              placeholder="Phone Number"
+              className="__PhoneInputInput p-3 text-sm text-gray-900 border-2 border-gray-300  hover:bg-gray-50 outline-none"
+            />
+            <InputBox
+              placeholder={"Company Name"}
+              value={payload.companyName}
+              onChange={changePayload}
+              name="companyName"
+            />
+            <InputBox
+              placeholder={"Company URL"}
+              value={payload.companyURL}
+              onChange={changePayload}
+              name="companyURL"
+            />
+            <div className="flex items-center __CHECK_REG__ space-x-2">
+              <span className="flex items-center">
+                <input
+                  id="link-checkbox"
+                  type="checkbox"
+                  checked={payload.offer}
+                  onChange={(e) => {
+                    setPayload({
+                      ...payload,
+                      offer: e.target.checked,
+                    });
+                  }}
+                  className="cursor-pointer text-black bg-white border-gray-300 hover:bg-gray-50 focus:ring-0 dark:focus:ring-0 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
+                />
+              </span>
+              <label
+                htmlFor="link-checkbox"
+                className="tracking-normal text-gray-500 text-sm font-medium"
+              >
+                Stankevicius may send me offers and promotions.
+              </label>
+            </div>
+            <div className="flex items-center __CHECK_REG__ space-x-2">
+              <label
+                htmlFor="privacy-checkbox"
+                className="tracking-normal text-gray-500 text-sm font-medium"
+              >
+                By submitting my information, I agree to the{" "}
+                <a href="#" className="text-black underline cursor-pointer">
+                  Privacy Policy
+                </a>
+                {" and "}
+                <a href="#" className="text-black underline cursor-pointer">
+                  Terms of Service
+                </a>
+                .
+              </label>
+            </div>
+          </div>
           <div className="mt-2"></div>
           <button
-            onClick={register}
-            className={`w-full text-white tracking-wider bg-black text-sm px-5 py-2.5 text-center`}
+            onClick={
+              page <= 0
+                ? () => {
+                    if (preValidate()) {
+                      setPage((old) => {
+                        return old + 1;
+                      });
+                    }
+                  }
+                : register
+            }
+            className={`w-full flex flex-row items-center justify-center text-white tracking-wider bg-black text-sm px-5 py-2.5 text-center`}
           >
-            Create Account
+            {page <= 0 ? "Next" : "Create Account"}
+            {page <= 0 && (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 25 25"
+                className="w-4 h-4 ml-2 stroke-white"
+              >
+                <g id="Right-2" data-name="Right">
+                  <polygon
+                    points="17.5 5.999 16.793 6.706 22.086 11.999 1 11.999 1 12.999 22.086 12.999 16.792 18.294 17.499 19.001 24 12.499 17.5 5.999"
+                    style={{
+                      fill: "white",
+                    }}
+                  />
+                </g>
+              </svg>
+            )}
           </button>
           <div className="flex flex-row justify-between">
             <span className="text-xs">

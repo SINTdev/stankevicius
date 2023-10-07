@@ -148,7 +148,7 @@ const Login = (props) => {
         </span>
       </div>
       <div className="flex justify-center items-center">
-        <div className="space-y-2 md:space-y-3 w-full md:w-3/5">
+        <div className="space-y-2 md:space-y-3 w-full md:w-4/5 xl:w-2/3">
           <InputBox
             placeholder={"Email"}
             type="email"

@@ -78,6 +78,7 @@ def evaluateExpired():
 def evaluateArchived():
     archive_threshold = timedelta(days=5)
     cutoff_timestamp = timezone.now() - archive_threshold
+    print(archive_threshold, cutoff_timestamp)
     archived_products = models.Product.objects.filter(
         isArchived=True, archivedOn__lte=cutoff_timestamp
     )

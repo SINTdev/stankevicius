@@ -199,10 +199,35 @@ input[type="search"] {
 }
 
 /* Label for the checkbox */
-.__CHECK_REG__ label{
+.__CHECK_REG__ label {
   width: 100%;
   /* margin-left: 0.5rem; */
   color: #4a5568;
   font-size: 0.875rem;
   font-weight: 500;
+}
+
+.page0-animated-div {
+  height: 100%;
+  opacity: 1;
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+}
+
+.page1-animated-div {
+  height: 0px;
+  transform: translateX(100%);
+  opacity: 0;
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+}
+
+.leave_div {
+  opacity: 0;
+  transform: translateX(100%);
+  height: 0px;
+}
+
+.come_div {
+  opacity: 1;
+  transform: translateX(0%);
+  height: 100%;
 }
