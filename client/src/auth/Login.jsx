@@ -148,7 +148,7 @@ const Login = (props) => {
         </span>
       </div>
       <div className="flex justify-center items-center">
-        <div className="space-y-2 md:space-y-3 w-full md:w-4/5 xl:w-2/3">
+        <div className="space-y-2 md:space-y-3 w-full md:w-full lg:w-[70%] xl:w-3/5">
           <InputBox
             placeholder={"Email"}
             type="email"
@@ -172,17 +172,17 @@ const Login = (props) => {
           >
             {!isReset ? "Log In" : "Reset"}
           </button>
-          <div className="flex flex-row justify-between">
+          <div className="flex flex-nowrap space-x-3 flex-row justify-between">
             <span
               role="button"
               onClick={() => {
                 setIsReset(!isReset);
               }}
-              className="text-xs underline font-medium"
+              className="text-xs whitespace-nowrap underline font-medium"
             >
               {!isReset ? "Forgot Password" : "Back to Login"}.
             </span>
-            <span className="text-xs">
+            <span className="text-xs whitespace-nowrap">
               Don't have an account?{" "}
               <span
                 onClick={() => {

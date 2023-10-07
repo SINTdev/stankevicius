@@ -14,7 +14,7 @@ const ModalWrapper = (props) => {
           )}
 
           {/* Modal Content */}
-          <div className={`bg-white p-8 border-2 shadow-2xl max-h-[90%] overflow-auto z-10 ${!props?.big ? "md:w-3/6":"md:w-3/5"} w-full`}>
+          <div className={`bg-white p-8 border-2 shadow-2xl max-h-[90%] overflow-auto z-10 ${!props?.big ? "md:w-2/5":"md:w-3/5"} w-full`}>
             {props?.children}
           </div>
         </div>

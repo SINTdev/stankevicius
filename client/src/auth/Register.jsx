@@ -187,7 +187,7 @@ const Register = (props) => {
         </span>
       </div>
       <div className="flex justify-center items-center">
-        <div className="space-y-2 md:space-y-3 w-full md:w-4/5 xl:w-2/3">
+        <div className="space-y-2 md:space-y-3 w-full md:w-3/5">
           {/* {page === 0 && (
             <div className="space-y-2 md:space-y-3">
               <InputBox
