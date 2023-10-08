@@ -188,34 +188,9 @@ const Register = (props) => {
       </div>
       <div className="flex justify-center items-center">
         <div className="space-y-2 md:space-y-3 w-full md:w-3/5">
-          {/* {page === 0 && (
-            <div className="space-y-2 md:space-y-3">
-              <InputBox
-                placeholder={"Name"}
-                value={payload.fullName}
-                onChange={changePayload}
-                name="fullName"
-              />
-              <InputBox
-                placeholder={"Email"}
-                type="email"
-                value={payload.email}
-                onChange={changePayload}
-                name="email"
-              />
-              <InputBox
-                placeholder={"Password"}
-                type="password"
-                value={payload.password}
-                onChange={changePayload}
-                name="password"
-              />
-            </div>
-          )} */}
-
           <div
             className={`space-y-2 md:space-y-3 transition-all duration-300 ease-in-out page0-animated-div ${
-              page === 0 ? "" : "leave_div"
+              page === 0 ? "come_div delay-me height-page0" : "leave_div"
             }`}
           >
             <InputBox
@@ -241,8 +216,8 @@ const Register = (props) => {
           </div>
 
           <div
-            className={`space-y-2 md:space-y-3 delay-1000 transition-all duration-300 ease-in-out page1-animated-div ${
-              page === 1 ? "come_div" : ""
+            className={`space-y-2 md:space-y-3 transition-all duration-300 ease-in-out page1-animated-div ${
+              page === 1 ? "come_div delay-me height-page1" : "leave_div"
             }`}
           >
             <PhoneInput
@@ -304,38 +279,65 @@ const Register = (props) => {
             </div>
           </div>
           <div className="mt-2"></div>
-          <button
-            onClick={
-              page <= 0
-                ? () => {
-                    if (preValidate()) {
-                      setPage((old) => {
-                        return old + 1;
-                      });
-                    }
-                  }
-                : register
-            }
-            className={`w-full flex flex-row items-center justify-center text-white tracking-wider bg-black text-sm px-5 py-2.5 text-center`}
-          >
-            {page <= 0 ? "Next" : "Create Account"}
-            {page <= 0 && (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 25 25"
-                className="w-4 h-4 ml-2 stroke-white"
+          <div className="flex flex-row items-center justify-center space-x-2">
+            {page > 0 && (
+              <button
+                onClick={() => {
+                  setPage((old) => {
+                    return 0;
+                  });
+                }}
+                className={`flex min-h-[40px] flex-row items-center justify-center text-white tracking-wider bg-black text-sm px-5 py-2.5 text-center`}
               >
-                <g id="Right-2" data-name="Right">
-                  <polygon
-                    points="17.5 5.999 16.793 6.706 22.086 11.999 1 11.999 1 12.999 22.086 12.999 16.792 18.294 17.499 19.001 24 12.499 17.5 5.999"
-                    style={{
-                      fill: "white",
-                    }}
-                  />
-                </g>
-              </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 25 25"
+                  className="w-4 h-4 stroke-white rotate-180"
+                >
+                  <g id="Right-2" data-name="Right">
+                    <polygon
+                      points="17.5 5.999 16.793 6.706 22.086 11.999 1 11.999 1 12.999 22.086 12.999 16.792 18.294 17.499 19.001 24 12.499 17.5 5.999"
+                      style={{
+                        fill: "white",
+                      }}
+                    />
+                  </g>
+                </svg>
+              </button>
             )}
-          </button>
+            <button
+              onClick={
+                page <= 0
+                  ? () => {
+                      if (preValidate()) {
+                        setPage((old) => {
+                          return old + 1;
+                        });
+                      }
+                    }
+                  : register
+              }
+              className={`w-full flex flex-row items-center justify-center text-white tracking-wider bg-black text-sm px-5 py-2.5 text-center`}
+            >
+              {page <= 0 ? "Next" : "Create Account"}
+              {page <= 0 && (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 25 25"
+                  className="w-4 h-4 ml-2 stroke-white"
+                >
+                  <g id="Right-2" data-name="Right">
+                    <polygon
+                      points="17.5 5.999 16.793 6.706 22.086 11.999 1 11.999 1 12.999 22.086 12.999 16.792 18.294 17.499 19.001 24 12.499 17.5 5.999"
+                      style={{
+                        fill: "white",
+                      }}
+                    />
+                  </g>
+                </svg>
+              )}
+            </button>
+          </div>
           <div className="flex flex-row justify-between">
             <span className="text-xs">
               Already have an account?{" "}

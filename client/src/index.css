@@ -208,16 +208,19 @@ input[type="search"] {
 }
 
 .page0-animated-div {
-  height: 100%;
   opacity: 1;
-  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+  transition: opacity .7s ease-in-out, transform .7s ease-in-out, height .9s ease-in-out;
 }
 
 .page1-animated-div {
   height: 0px;
   transform: translateX(100%);
   opacity: 0;
-  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+  transition: opacity .7s ease-in-out, transform .7s ease-in-out, height .9s ease-in-out;
+}
+
+.delay-me {
+  transition-delay: .7s;
 }
 
 .leave_div {
@@ -229,5 +232,12 @@ input[type="search"] {
 .come_div {
   opacity: 1;
   transform: translateX(0%);
-  height: 100%;
+}
+
+.height-page0{
+  height: 168px;
+}
+
+.height-page1{
+  height: 272px;
 }
