@@ -187,11 +187,12 @@ const Register = (props) => {
         </span>
       </div>
       <div className="flex justify-center items-center">
-        <div className="space-y-2 md:space-y-3 w-full md:w-3/5">
+        <div className="space-y-2 md:space-y-3 w-full md:w-4/6 overflow-hidden">
+          {/* {page === 0 && ( */}
           <div
-            className={`space-y-2 md:space-y-3 transition-all duration-300 ease-in-out page0-animated-div ${
-              page === 0 ? "come_div delay-me height-page0" : "leave_div"
-            }`}
+            className={`${
+              page === 1 ? "translate-x-[150%] h-0 opacity-0" : ""
+            } space-y-2 md:space-y-3 transition-all duration-1000 ease-in-out page0-animated-div`}
           >
             <InputBox
               placeholder={"Name"}
@@ -214,11 +215,13 @@ const Register = (props) => {
               name="password"
             />
           </div>
+          {/* )} */}
 
+          {/* {page === 1 && ( */}
           <div
-            className={`space-y-2 md:space-y-3 transition-all duration-300 ease-in-out page1-animated-div ${
-              page === 1 ? "come_div delay-me height-page1" : "leave_div"
-            }`}
+            className={`${
+              page === 0 ? "translate-x-[150%] h-0 opacity-0" : ""
+            } space-y-2 md:space-y-3 transition-all duration-1000 ease-in-out page1-animated-div`}
           >
             <PhoneInput
               international
@@ -278,6 +281,7 @@ const Register = (props) => {
               </label>
             </div>
           </div>
+          {/* )} */}
           <div className="mt-2"></div>
           <div className="flex flex-row items-center justify-center space-x-2">
             {page > 0 && (

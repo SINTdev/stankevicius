@@ -206,7 +206,7 @@ input[type="search"] {
   font-size: 0.875rem;
   font-weight: 500;
 }
-
+/* 
 .page0-animated-div {
   opacity: 1;
   transition: opacity .7s ease-in-out, transform .7s ease-in-out, height .9s ease-in-out;
@@ -240,4 +240,4 @@ input[type="search"] {
 
 .height-page1{
   height: 272px;
-}
+} */
