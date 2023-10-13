@@ -409,10 +409,10 @@ const Menu = () => {
               menuItems[hoveredItem].subLinks.map((subLink, index) => (
                 <div
                   key={index}
-                  className={`text-sm ${
+                  className={`text-sm border-l-2 border-l-transparent ${
                     (selectedSubLink === null && hoveredSubLink === index) ||
                     selectedSubLink === index
-                      ? "font-bold"
+                      ? "font-bold hover:bg-[#F1F1F1] hover:border-l-[#221f1f]"
                       : ""
                   } cursor-pointer px-5 py-2`}
                   onClick={() => handleSubLinkClick(index)}

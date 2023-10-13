@@ -169,11 +169,11 @@ const Login = (props) => {
           <div className="mt-2"></div>
           <button
             onClick={!isReset ? login : reset}
-            className="w-full text-white tracking-wider bg-black text-sm px-5 py-2.5 text-center"
+            className="w-full hover:animate-pulse text-white tracking-wider bg-black text-sm px-5 py-2.5 text-center"
           >
             {!isReset ? "Log In" : "Reset"}
           </button>
-          <div className="flex flex-nowrap space-x-3 flex-row justify-between">
+          <div className="flex flex-nowrap space-y-1 flex-col-reverse">
             <span
               role="button"
               onClick={() => {

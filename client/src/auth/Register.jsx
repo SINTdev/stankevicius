@@ -167,6 +167,20 @@ const Register = (props) => {
   const [value, setValue] = useState("");
 
   const [page, setPage] = useState(0);
+  const [hoverStates, setHoverStates] = useState({
+    leftArrow: false,
+    rightArrow: false,
+  });
+  // const [showP, setshowP] = useState(false);
+
+  // useEffect(() => {
+  //   if (page === 0) {
+  //     setshowP(true);
+  //     setTimeout(() => {
+  //       setshowP(false);
+  //     }, 200);
+  //   }
+  // }, [page]);
 
   return (
     <div className="space-y-4 md:space-y-6">
@@ -186,13 +200,13 @@ const Register = (props) => {
           Please create an account to log in.
         </span>
       </div>
-      <div className="flex justify-center items-center">
-        <div className="space-y-2 md:space-y-3 w-full md:w-4/6 overflow-hidden">
+      <div className="flex justify-center items-center overflow-hidden">
+        <div className="relative space-y-2 md:space-y-3 w-full md:w-4/6 overflow-hidden">
           {/* {page === 0 && ( */}
           <div
             className={`${
               page === 1 ? "translate-x-[150%] h-0 opacity-0" : ""
-            } space-y-2 md:space-y-3 transition-all duration-1000 ease-in-out page0-animated-div`}
+            } space-y-2 md:space-y-3 transition-all duration-[1s] ease-in-out`}
           >
             <InputBox
               placeholder={"Name"}
@@ -220,8 +234,10 @@ const Register = (props) => {
           {/* {page === 1 && ( */}
           <div
             className={`${
-              page === 0 ? "translate-x-[150%] h-0 opacity-0" : ""
-            } space-y-2 md:space-y-3 transition-all duration-1000 ease-in-out page1-animated-div`}
+              page === 0
+                ? "translate-x-[150%] h-0 opacity-0 absolute top-0"
+                : ""
+            } space-y-2 md:space-y-3 transition-all duration-[1s] ease-in-out`}
           >
             <PhoneInput
               international
@@ -242,48 +258,59 @@ const Register = (props) => {
               onChange={changePayload}
               name="companyURL"
             />
-            <div className="flex items-center __CHECK_REG__ space-x-2">
-              <span className="flex items-center">
-                <input
-                  id="link-checkbox"
-                  type="checkbox"
-                  checked={payload.offer}
-                  onChange={(e) => {
-                    setPayload({
-                      ...payload,
-                      offer: e.target.checked,
-                    });
-                  }}
-                  className="cursor-pointer text-black bg-white border-gray-300 hover:bg-gray-50 focus:ring-0 dark:focus:ring-0 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
-                />
-              </span>
-              <label
-                htmlFor="link-checkbox"
-                className="tracking-normal text-gray-500 text-sm font-medium"
+            {page === 1 && (
+              <div
+                className={`transition-all duration-100 ease-in-out flex space-y-2 md:space-y-3 flex-col`}
               >
-                Stankevicius may send me offers and promotions.
-              </label>
-            </div>
-            <div className="flex items-center __CHECK_REG__ space-x-2">
-              <label
-                htmlFor="privacy-checkbox"
-                className="tracking-normal text-gray-500 text-sm font-medium"
-              >
-                By submitting my information, I agree to the{" "}
-                <a href="#" className="text-black underline cursor-pointer">
-                  Privacy Policy
-                </a>
-                {" and "}
-                <a href="#" className="text-black underline cursor-pointer">
-                  Terms of Service
-                </a>
-                .
-              </label>
-            </div>
+                <div className="flex items-center __CHECK_REG__ space-x-2">
+                  <span className="flex items-center">
+                    <input
+                      id="link-checkbox"
+                      type="checkbox"
+                      checked={payload.offer}
+                      onChange={(e) => {
+                        setPayload({
+                          ...payload,
+                          offer: e.target.checked,
+                        });
+                      }}
+                      className="cursor-pointer text-black bg-white border-gray-300 hover:bg-gray-50 focus:ring-0 dark:focus:ring-0 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
+                    />
+                  </span>
+                  <label
+                    htmlFor="link-checkbox"
+                    className="tracking-normal text-gray-500 text-sm font-medium"
+                  >
+                    Stankevicius may send me offers and promotions.
+                  </label>
+                </div>
+                <div className="flex items-center __CHECK_REG__ space-x-2">
+                  <label
+                    htmlFor="privacy-checkbox"
+                    className="tracking-normal text-gray-500 text-sm font-medium"
+                  >
+                    By submitting my information, I agree to the{" "}
+                    <a href="#" className="text-black underline cursor-pointer">
+                      Privacy Policy
+                    </a>
+                    {" and "}
+                    <a href="#" className="text-black underline cursor-pointer">
+                      Terms of Service
+                    </a>
+                    .
+                  </label>
+                </div>
+              </div>
+            )}
           </div>
           {/* )} */}
+          <span
+            className={`${
+              page === 0 ? "py-1" : "py-0"
+            } block transition-all duration-300 ease-in-out`}
+          ></span>
           <div className="mt-2"></div>
-          <div className="flex flex-row items-center justify-center space-x-2">
+          <div className="overflow-hidden flex flex-row items-center justify-center space-x-2">
             {page > 0 && (
               <button
                 onClick={() => {
@@ -291,12 +318,20 @@ const Register = (props) => {
                     return 0;
                   });
                 }}
-                className={`flex min-h-[40px] flex-row items-center justify-center text-white tracking-wider bg-black text-sm px-5 py-2.5 text-center`}
+                onMouseEnter={() => {
+                  setHoverStates({ ...hoverStates, rightArrow: true });
+                }}
+                onMouseLeave={() => {
+                  setHoverStates({ ...hoverStates, rightArrow: false });
+                }}
+                className={`flex min-h-[40px] hover:animate-pulse flex-row items-center justify-center text-white tracking-wider bg-black text-sm px-5 py-2.5 text-center`}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 25 25"
-                  className="w-4 h-4 stroke-white rotate-180"
+                  className={`w-4 h-4 stroke-white rotate-180 ${
+                    hoverStates?.rightArrow && "right_arrow_animation"
+                  }`}
                 >
                   <g id="Right-2" data-name="Right">
                     <polygon
@@ -321,14 +356,22 @@ const Register = (props) => {
                     }
                   : register
               }
-              className={`w-full flex flex-row items-center justify-center text-white tracking-wider bg-black text-sm px-5 py-2.5 text-center`}
+              onMouseEnter={() => {
+                setHoverStates({ ...hoverStates, leftArrow: true });
+              }}
+              onMouseLeave={() => {
+                setHoverStates({ ...hoverStates, leftArrow: false });
+              }}
+              className={`w-full flex hover:animate-pulse flex-row items-center justify-center text-white tracking-wider bg-black text-sm px-5 py-2.5 text-center`}
             >
               {page <= 0 ? "Next" : "Create Account"}
               {page <= 0 && (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 25 25"
-                  className="w-4 h-4 ml-2 stroke-white"
+                  className={`w-4 h-4 ml-2 stroke-white ${
+                    hoverStates?.leftArrow && "arrow_animation"
+                  }`}
                 >
                   <g id="Right-2" data-name="Right">
                     <polygon
