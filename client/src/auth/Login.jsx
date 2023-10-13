@@ -169,7 +169,7 @@ const Login = (props) => {
           <div className="mt-2"></div>
           <button
             onClick={!isReset ? login : reset}
-            className="w-full hover:animate-pulse text-white tracking-wider bg-black text-sm px-5 py-2.5 text-center"
+            className="w-full  text-white tracking-wider bg-black text-sm px-5 py-2.5 text-center"
           >
             {!isReset ? "Log In" : "Reset"}
           </button>

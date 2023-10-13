@@ -324,7 +324,7 @@ const Register = (props) => {
                 onMouseLeave={() => {
                   setHoverStates({ ...hoverStates, rightArrow: false });
                 }}
-                className={`flex min-h-[40px] hover:animate-pulse flex-row items-center justify-center text-white tracking-wider bg-black text-sm px-5 py-2.5 text-center`}
+                className={`flex min-h-[40px]  flex-row items-center justify-center text-white tracking-wider bg-black text-sm px-5 py-2.5 text-center`}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -362,7 +362,7 @@ const Register = (props) => {
               onMouseLeave={() => {
                 setHoverStates({ ...hoverStates, leftArrow: false });
               }}
-              className={`w-full flex hover:animate-pulse flex-row items-center justify-center text-white tracking-wider bg-black text-sm px-5 py-2.5 text-center`}
+              className={`w-full flex  flex-row items-center justify-center text-white tracking-wider bg-black text-sm px-5 py-2.5 text-center`}
             >
               {page <= 0 ? "Next" : "Create Account"}
               {page <= 0 && (
