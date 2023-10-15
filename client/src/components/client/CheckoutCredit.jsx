@@ -45,10 +45,10 @@ const CheckoutCredit = (props) => {
         if (res.message) {
           setMessage(res.message, "red-500");
         } else {
-          setMessage(
-            "Payment successful. Credits added to account.",
-            "green-500"
-          );
+          //   setMessage(
+          //     "Payment successful. Credits added to account.",
+          //     "green-500"
+          //   );
           sessionStorage.setItem(
             "loggedin",
             JSON.stringify({
@@ -56,9 +56,7 @@ const CheckoutCredit = (props) => {
             })
           );
           props?.updateSessionData();
-          setTimeout(() => {
-            navigate("/client/credit");
-          }, 1000);
+          navigate("/client/credit");
         }
       })
       .catch((error) => {
@@ -96,7 +94,7 @@ const CheckoutCredit = (props) => {
       setMessage("Invalid amount.", "red-500");
     }
     e.target.style.pointerEvents = "unset";
-    e.target.innerHTML = "Checkout";
+    e.target.innerHTML = "Purchase Now";
   };
 
   return (
@@ -111,26 +109,44 @@ const CheckoutCredit = (props) => {
 
       <div className="flex flex-col">
         <span className="text-xl text-center _font-bold leading-tight tracking-tight text-black md:text-2xl">
-          Buy Credits
+          {props?.resp?.status === "success"
+            ? `${props?.resp?.amount} Credits Purchased`
+            : "Buy Advertising Credits"}
         </span>
-        <span className="text-center mt-2">Enter amount of credits.</span>
+        <span className="text-center mt-2">
+          {props?.resp?.status === "success"
+            ? "Payment successful. Credits added to account."
+            : "Enter amount of credits."}
+        </span>
       </div>
       <div className="flex justify-center items-center">
         <div className="space-y-2 md:space-y-3 w-full md:w-3/5">
-          <InputBox
-            placeholder={"1"}
-            type="number"
-            value={payload.amount}
-            onChange={changePayload}
-            name="amount"
-          />
-          <div className="mt-2"></div>
-          <button
-            onClick={getFormLink}
-            className="w-full text-white tracking-wider bg-black text-sm px-5 py-2.5 text-center"
-          >
-            Checkout
-          </button>
+          {props?.resp?.status !== "success" ? (
+            <>
+              <InputBox
+                placeholder={"1"}
+                type="number"
+                value={payload.amount}
+                onChange={changePayload}
+                name="amount"
+              />
+              <div className="mt-2"></div>{" "}
+              <button
+                onClick={getFormLink}
+                className="w-full text-white tracking-wider bg-black text-sm px-5 py-2.5 text-center"
+              >
+                Purchase Now
+              </button>
+            </>
+          ) : (
+            <button
+              onClick={props?.onClose}
+              className="w-full text-white tracking-wider bg-black text-sm px-5 py-2.5 text-center"
+            >
+              Ok
+            </button>
+          )}
+
           <div className="mt-2"></div>
           <div
             id="error"

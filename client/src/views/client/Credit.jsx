@@ -32,6 +32,7 @@ export default function Credit(props) {
   const [resp, setResp] = useState({
     status: "",
     value: "",
+    amount: 0,
   });
 
   useEffect(() => {
@@ -40,22 +41,44 @@ export default function Credit(props) {
     // Extract query parameters from the URL
     let searchParams = new URLSearchParams(location.search);
     let entryParam = searchParams.get("entry");
+    let amountParam = searchParams.get("amount");
     let cancelledParam = searchParams.get("cancelled");
 
-    if (entryParam) {
+    if (entryParam && amountParam) {
       setIsBuy(true);
       setResp({
         status: "success",
         value: entryParam,
+        amount: amountParam,
       });
     } else if (cancelledParam) {
       setIsBuy(true);
       setResp({
         status: "cancel",
         value: cancelledParam,
+        amount: 0,
       });
     }
   }, [location]);
+
+  const [records, setRecords] = useState([]);
+
+  const getRecords = async () => {
+    await axios
+      .get(CONSTANT.server + `api/credits/${session?.personal?.id}`)
+      .then((responce) => {
+        setRecords(responce.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    if (session.isLoggedIn && session.isLoaded) {
+      getRecords();
+    }
+  }, [session]);
 
   return (
     <div>
@@ -73,6 +96,12 @@ export default function Credit(props) {
             resp={resp}
             onClose={() => {
               setIsBuy(false);
+              setResp({
+                status: "",
+                value: "",
+                amount: 0,
+              });
+              getRecords();
             }}
             updateSessionData={updateSessionData}
           />
@@ -131,7 +160,7 @@ export default function Credit(props) {
           {filter === "buy" && (
             <div className="flex flex-col space-y-10">
               <span className="text-lg _font-bold">
-                Your current advertising credit is: {session?.personal?.credits}
+                Your current Advertising Credit is: {session?.personal?.credits}
               </span>
               <span className="flex flex-row space-x-2 items-center">
                 <button
@@ -147,14 +176,9 @@ export default function Credit(props) {
           )}
           {filter === "history" && (
             <div className="mt-5 grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-5">
-              <InvoiceCard />
-              <InvoiceCard />
-              <InvoiceCard />
-              <InvoiceCard />
-              <InvoiceCard />
-              <InvoiceCard />
-              <InvoiceCard />
-              <InvoiceCard />
+              {records?.map((record, index) => {
+                return <InvoiceCard key={index} data={record} />;
+              })}
             </div>
           )}
         </div>

@@ -19,4 +19,5 @@ urlpatterns = [
     path("category", views.category, name="category"),
     path("checkoutsession", views.checkoutsession, name="checkoutsession"),
     path("credits", views.credits, name="credits"),
+    re_path(r"^credits/(?P<pk>[0-9]+)$", views.credits),
 ]

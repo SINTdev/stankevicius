@@ -148,7 +148,8 @@ def checkoutsession(request):
             )
 
             checkout_session = stripe.checkout.Session.create(
-                success_url=client + "client/credit?entry=" + str(entry),
+                success_url=client
+                + f'client/credit?entry={str(entry)}&amount={str(data["amount"])}',
                 cancel_url=client + "client/credit?cancelled=true",
                 mode="payment",
                 customer_email=email,
@@ -192,7 +193,15 @@ def get_or_create_price():
 @authentication_classes([])
 def credits(request, pk=None):
     if request.method == "GET":
-        pass
+        if pk is None:
+            return JsonResponse([], safe=False)
+        instance = models.CreditsPurchasing.objects.filter(
+            user__id=int(pk), isPaid=True
+        ).order_by("-timestamp")
+        final_data = serializers.ViewCreditsPurchasingSerializer(
+            instance, many=True
+        ).data
+        return JsonResponse(final_data, safe=False)
     if request.method == "POST":
         data = JSONParser().parse(request)
         return createCreditEntry(data)
