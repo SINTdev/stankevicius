@@ -451,15 +451,17 @@ export default function Home(props) {
             </Link>
           )} */}
             </div>
-            <p className="my-3 text-[18px] leading-[20px] font-thin text-gray-500">
-              Below is a list of the treatments we currently offer via our
-              Innovative Medicines Division. Visit{" "}
-              <span className="text-sky-700 underline">Sandoz</span> and{" "}
+            <p className="my-3 text-[18px] leading-[23px] font-thin text-gray-500">
+              Below is a list of products currently being traded via our
+              interactive trading platform. Visit{" "}
+              <span className="text-sky-700 underline">Trading Policy</span> and{" "}
               <span className="text-sky-700 underline">
-                Advanced Accelerator Applications
+                Safety Trading Regulatory Policy
               </span>{" "}
-              to learn about our generics and radiopharmaceutical products.
-              Please note: Not all treatments are available in all countries.
+              to learn about our trading rules and recommendations. Please note:
+              Trading involves risk. Read{" "}
+              <span className="text-sky-700 underline">Trading Risks</span>{" "}
+              before trading.
             </p>
           </>
         )}

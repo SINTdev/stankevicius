@@ -63,6 +63,19 @@ class ProductSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+class CreditsPurchasingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.CreditsPurchasing
+        fields = "__all__"
+
+class ViewCreditsPurchasingSerializer(serializers.ModelSerializer):
+    user = ViewUserSerializer()
+
+    class Meta:
+        model = models.CreditsPurchasing
+        fields = "__all__"
+
+
 class ViewProductSerializer(serializers.ModelSerializer):
     by = ViewUserSerializer()
     action = ActionSerializer()
@@ -85,8 +98,10 @@ class ProductInteractionsSerializer(serializers.ModelSerializer):
         model = models.ProductInteractions
         fields = "__all__"
 
+
 class HomeProductInteractionsSerializer(serializers.ModelSerializer):
     action = ActionSerializer()
+
     class Meta:
         model = models.ProductInteractions
         fields = "__all__"

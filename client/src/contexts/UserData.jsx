@@ -13,6 +13,7 @@ const UserData = React.createContext({
       is_staff: false,
       offer: false,
       is2FA: false,
+      credits: 0,
     },
     isLoaded: false,
     isLoggedIn: false,

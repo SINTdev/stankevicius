@@ -30,42 +30,50 @@ const DoubleAuthForm = (props) => {
   }, [props?.session]);
 
   const navigate = useNavigate();
-  const update2FA = async (e) => {
-    await axios
-      .put(CONSTANT.server + `authentication/user/${props?.user_id}`, {
-        is2FA: S2B(value),
-        skipPassword: true,
-      })
-      .then((responce) => {
-        let res = responce.data;
-        if (res.message) {
-          setMessage(res.message, "red-500");
-        } else {
-          if (S2B(value)) {
-            props?.onEnable();
+  const update2FA = async (e, oQR = true) => {
+    if (url !== "" && S2B(value)) {
+      props?.onCancel();
+    } else {
+      await axios
+        .put(CONSTANT.server + `authentication/user/${props?.user_id}`, {
+          is2FA: S2B(value),
+          skipPassword: true,
+          onlyQR: oQR,
+        })
+        .then((responce) => {
+          let res = responce.data;
+          if (res.message) {
+            setMessage(res.message, "red-500");
+          } else {
+            if (S2B(value)) {
+              props?.onEnable();
+            } else {
+              setMessage(
+                `Double authenticator is ${
+                  S2B(value) ? "enabled" : "disabled"
+                }.`,
+                "green-500"
+              );
+            }
+            sessionStorage.setItem(
+              "loggedin",
+              JSON.stringify({
+                data: res,
+              })
+            );
+            props?.updateSessionData();
           }
-          setMessage(
-            `Double authenticator is ${S2B(value) ? "enabled" : "disabled"}.`,
-            "green-500"
-          );
-          sessionStorage.setItem(
-            "loggedin",
-            JSON.stringify({
-              data: res,
-            })
-          );
-          props?.updateSessionData();
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   };
 
   const [value, setValue] = useState(false);
   useEffect(() => {
-    setValue(props?.is2FA);
-  }, [props]);
+    setValue(url !== "");
+  }, [url]);
 
   return (
     <div className="space-y-4 md:space-y-6">
@@ -76,20 +84,10 @@ const DoubleAuthForm = (props) => {
       </div>
       <div className="flex justify-center items-center">
         <div className="space-y-2 md:space-y-3 w-full">
-          {/* <span className="text-base text-center _font-bold leading-tight tracking-tight text-black md:text-lg">
-            <span
-              className={`${
-                !props?.is2FA ? "text-sky-700" : "text-red-500"
-              } cursor-pointer`}
-            >
-              {!props?.is2FA ? "Enable" : "Disable"}
-            </span>{" "}
-            2 Factor Authentication
-          </span> */}
           <div className="w-full flex md:flex-row flex-col justify-start items-center">
             <div className="md:w-1/2 w-full">
               <div className="text-left md:text-sm _font-bold leading-tight tracking-tight text-black">
-                2 Factor Authentication {props?.is2FA ? "Enabled" : "Disabled"}
+                2 Factor Authentication {url !== "" ? "Enabled" : "Disabled"}
               </div>
               <div className="mt-2 flex md:flex-row md:space-x-2 space-x-0 md:space-y-0 space-y-2 flex-col w-full">
                 <InputBox
@@ -113,13 +111,13 @@ const DoubleAuthForm = (props) => {
                   className="md:w-2/3 w-full"
                 />
               </div>
-              {props?.is2FA && (
+              {url !== "" && (
                 <div className="md:w-2/3 w-full mt-2 text-left md:text-sm leading-tight tracking-tight text-black">
                   Please scan this QR code with your Google Authenticator app.
                 </div>
               )}
             </div>
-            {url !== "" && props?.is2FA && (
+            {url !== "" && url !== "" && (
               <div className="md:w-1/2 w-full flex md:justify-end md:items-start justify-center items-center md:mt-0 mt-5">
                 <QRCode size={200} value={url} />
               </div>
@@ -142,11 +140,13 @@ const DoubleAuthForm = (props) => {
             </button>
           </div>
           <div className="mt-2"></div>
-          <div
-            id="error"
-            className="text-sm text-center"
-            style={{ display: "none" }}
-          ></div>
+          {!props?.hideError && (
+            <div
+              id="error"
+              className="text-sm text-center"
+              style={{ display: "none" }}
+            ></div>
+          )}
         </div>
       </div>
     </div>

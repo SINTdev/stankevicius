@@ -140,3 +140,16 @@ class ProductInteractions(models.Model):
 
     def __str__(self):
         return f"{self.product.name} - {self.user.fullName}"
+
+
+class CreditsPurchasing(models.Model):
+    user = models.ForeignKey(
+        CustomUsers,
+        on_delete=models.CASCADE,
+    )
+    amount = models.PositiveIntegerField(default=1)
+    isPaid = models.BooleanField(default=False)
+    timestamp = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return f"{self.amount} - {self.user.fullName}"

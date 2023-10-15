@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http.response import JsonResponse
+from django.shortcuts import redirect
 from rest_framework.decorators import (
     api_view,
     authentication_classes,
@@ -17,6 +18,9 @@ from authentication.serializers import ViewUserSerializer
 from .helpers import email_new_listing, test_email
 from django.utils import timezone
 from datetime import timedelta
+import stripe
+
+stripe.api_key = "sk_test_51LyNIZJwTuApoB7Ms8joJ1fORtVdu9sohKVSy1KoZJALIWKCsv7sST3AVYfWpfoEis9gvsPK6JRlZLyFFQhjmKhG00VJdbjvll"
 
 # test_email()
 
@@ -90,7 +94,8 @@ def initialize_backend():
 
         if models.Origin.objects.count() == 0:
             models.Origin.objects.bulk_create(
-                [models.Origin(name=value) for value in constants.ORIGINS], ignore_conflicts=True
+                [models.Origin(name=value) for value in constants.ORIGINS],
+                ignore_conflicts=True,
             )
             print("[INITIALIZATION][SUCCESS]: ORIGINS populated")
         else:
@@ -121,6 +126,105 @@ def initialize_backend():
 
 # Call the function to initialize the backend
 initialize_backend()
+
+
+@api_view(["POST"])
+@permission_classes([])
+@authentication_classes([])
+def checkoutsession(request):
+    if request.method == "POST":
+        try:
+            data = JSONParser().parse(request)
+            quantity = int(data["amount"])
+            client = data["client"]
+            email = data["email"]
+            user_identifier = int(data["user_identifier"])
+
+            # Create a price object if it doesn't exist
+            price = get_or_create_price()
+
+            entry = createCreditEntry(
+                {"user": user_identifier, "amount": quantity}, True
+            )
+
+            checkout_session = stripe.checkout.Session.create(
+                success_url=client + "client/credit?entry=" + str(entry),
+                cancel_url=client + "client/credit?cancelled=true",
+                mode="payment",
+                customer_email=email,
+                line_items=[
+                    {
+                        "price": price.id,  # Use the price object created above
+                        "quantity": quantity,
+                    }
+                ],
+                metadata={"user_identifier": user_identifier},
+            )
+            return JsonResponse({"url": checkout_session.url}, status=200)
+        except Exception as e:
+            return JsonResponse(
+                {"message": "[SESSION CHECKOUT]: " + str(e)}, status=200
+            )
+
+
+def get_or_create_price():
+    # Check if a price object already exists with the desired unit amount (1 USD in cents)
+    existing_prices = stripe.Price.list(unit_amount=100, currency="usd")
+
+    if existing_prices:
+        # If an existing price is found, return its ID
+        return existing_prices.data[0]
+
+    # If no existing price is found, create a new product and price
+    product = stripe.Product.create(name="Credits")
+
+    price = stripe.Price.create(
+        unit_amount=100,  # $1 in cents
+        currency="usd",
+        product=product.id,  # Attach the price to the product
+    )
+
+    return price
+
+
+@api_view(["POST", "GET", "PUT"])
+@permission_classes([])
+@authentication_classes([])
+def credits(request, pk=None):
+    if request.method == "GET":
+        pass
+    if request.method == "POST":
+        data = JSONParser().parse(request)
+        return createCreditEntry(data)
+    if request.method == "PUT":
+        data = JSONParser().parse(request)
+        return changeStatusToPaid(int(data["id"]))
+
+
+def createCreditEntry(data, returnId=False):
+    serializer = serializers.CreditsPurchasingSerializer(data=data)
+    if serializer.is_valid():
+        instance = serializer.save()
+        if returnId:
+            return instance.id
+        return JsonResponse(
+            {"content": serializer.data}, status=status.HTTP_202_ACCEPTED
+        )
+    print(serializer.errors)
+    return JsonResponse({"message": "Not valid data!"}, status=status.HTTP_202_ACCEPTED)
+
+
+def changeStatusToPaid(id):
+    if id:
+        entry = models.CreditsPurchasing.objects.get(id=int(id))
+        if not entry.isPaid:
+            entry.isPaid = True
+            entry.user.credits = entry.user.credits + entry.amount
+            entry.user.save()
+            entry.save()
+        SerializedData = serializers.ViewUserSerializer(entry.user, many=False)
+        return JsonResponse(SerializedData.data, status=status.HTTP_202_ACCEPTED)
+    return JsonResponse({"message": "Not valid data!"}, status=status.HTTP_202_ACCEPTED)
 
 
 @api_view(["GET", "POST"])

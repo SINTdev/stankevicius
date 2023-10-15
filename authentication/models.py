@@ -34,6 +34,7 @@ class CustomUsers(AbstractUser):
     companyURL = models.URLField(null=True, blank=True)
     token = models.TextField(null=True, blank=True)
     offer = models.BooleanField(default=False)
+    credits = models.PositiveBigIntegerField(default=0)
     emailToken = models.TextField(null=True, blank=True)
     isEmailVerified = models.BooleanField(default=False)
     is2FA = models.BooleanField(default=False)

@@ -78,6 +78,7 @@ export default function Layout(props) {
     profile: false,
     security: false,
     category: false,
+    otp: false,
   };
   const [globalModals, setGlobalModals] = useState(INIT_MODAL);
 
@@ -123,7 +124,7 @@ export default function Layout(props) {
     fetchCategories,
     categories,
     changePushProductChange,
-    pushProductChange
+    pushProductChange,
   };
 
   return (

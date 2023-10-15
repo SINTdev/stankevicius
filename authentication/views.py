@@ -222,11 +222,15 @@ def user(request, pk=None):
                     if data["newPassword"] != "":
                         user.password = make_password(data["newPassword"])
                 if "is2FA" in data:
-                    user.is2FA = data["is2FA"]
-                    if data["is2FA"]:
-                        user.secret2FA = pyotp.random_base32()
-                    else:
-                        user.secret2FA = ""
+                    if not data["is2FA"]:
+                        user.is2FA = data["is2FA"]
+                    if not data["onlyQR"]:
+                        user.is2FA = data["is2FA"]
+                    if data["onlyQR"]:
+                        if data["is2FA"] and user.secret2FA == "":
+                            user.secret2FA = pyotp.random_base32()
+                        else:
+                            user.secret2FA = ""
                 user.save()
             except:
                 pass
@@ -253,7 +257,7 @@ def verify2fa(request, pk=None):
     if request.method == "GET":
         if pk is not None:
             user = models.CustomUsers.objects.get(pk=int(pk))
-            if user.is2FA:
+            if user.secret2FA:
                 url = pyotp.utils.build_uri(
                     secret=user.secret2FA,
                     name=user.email,
@@ -278,8 +282,11 @@ def verify2fa(request, pk=None):
                         status=status.HTTP_200_OK,
                     )
             except Exception as e:
-                pass
+                return JsonResponse(
+                    {"message": "Error verifying code.", "error": str(e)},
+                    status=status.HTTP_200_OK,
+                )
         return JsonResponse(
-            {"message": "Error verifying code.", "error": str(e)},
+            {"message": "Error verifying code.", "error": "No code and email given."},
             status=status.HTTP_200_OK,
         )

@@ -17,4 +17,6 @@ urlpatterns = [
     path("interactions", views.interactions, name="interactions"),
     re_path(r"^interactions/(?P<pk>[0-9]+)$", views.interactions),
     path("category", views.category, name="category"),
+    path("checkoutsession", views.checkoutsession, name="checkoutsession"),
+    path("credits", views.credits, name="credits"),
 ]

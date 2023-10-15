@@ -44,20 +44,21 @@ const VerifyOTP = (props) => {
           if (res.message) {
             setMessage(res.message, "red-500");
           } else {
-            sessionStorage.setItem(
-              "loggedin",
-              JSON.stringify({
-                data: res,
-              })
-            );
-            props?.setModalSetting({
-              login: false,
-              register: false,
-            });
-            props?.updateSessionData();
-            // setMessage("Password resetted successfully.", "green-500");
-            // setPayload(init__payload);
-            // props?.onClose();
+            if (props?.validate) {
+              update2FA();
+            } else {
+              sessionStorage.setItem(
+                "loggedin",
+                JSON.stringify({
+                  data: res,
+                })
+              );
+              props?.setModalSetting({
+                login: false,
+                register: false,
+              });
+              props?.updateSessionData();
+            }
           }
         })
         .catch((error) => {
@@ -69,6 +70,41 @@ const VerifyOTP = (props) => {
     e.target.style.pointerEvents = "unset";
     e.target.innerHTML = "Verify";
   };
+
+  const update2FA = async () => {
+    await axios
+      .put(CONSTANT.server + `authentication/user/${props?.user_id}`, {
+        is2FA: true,
+        skipPassword: true,
+        onlyQR: false,
+      })
+      .then((responce) => {
+        let res = responce.data;
+        console.log(res)
+        if (res.message) {
+          setMessage(res.message, "red-500");
+        } else {
+          setMessage(
+            `Double authenticator is enabled.`,
+            "green-500"
+          );
+          sessionStorage.setItem(
+            "loggedin",
+            JSON.stringify({
+              data: res,
+            })
+          );
+          props?.updateSessionData();
+          setTimeout(() => {
+            props?.onCancel();
+          }, 1000);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <div className="space-y-4 md:space-y-6">
       <div className="flex mb-5">
@@ -81,7 +117,7 @@ const VerifyOTP = (props) => {
 
       <div className="flex flex-col">
         <span className="text-xl text-center _font-bold leading-tight tracking-tight text-black md:text-2xl">
-          2FA Authentication
+          2FA {props?.validate ? "Validation" : "Authentication"}
         </span>
         <span className="text-center mt-2">
           Please enter code from your Google authenticator.

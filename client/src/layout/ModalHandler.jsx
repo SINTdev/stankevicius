@@ -5,6 +5,7 @@ import Modal from "../components/Modal";
 import { useNavigate } from "react-router-dom";
 import ProfileForm from "../components/client/ProfileForm";
 import DoubleAuthForm from "../components/client/DoubleAuthForm";
+import VerifyOTP from "../auth/VerifyOTP";
 
 export default function ModalHandler({
   config,
@@ -23,7 +24,7 @@ export default function ModalHandler({
   };
 
   const [modal, setModal] = useState(EMPTY_MODAL);
-  if (config?.category || config?.profile || config?.security) {
+  if (config?.category || config?.profile || config?.security || config?.otp) {
     return (
       <>
         <Modal
@@ -38,7 +39,15 @@ export default function ModalHandler({
         <ModalWrapper
           isOpen={true}
           onClose={() => {
-            reset();
+            if (
+              !session?.personal?.is2FA &&
+              session?.personal?.secret2FA !== "" &&
+              config?.security
+            ) {
+              setter("otp");
+            } else {
+              reset();
+            }
           }}
           big
         >
@@ -54,12 +63,20 @@ export default function ModalHandler({
           {config?.security && (
             <DoubleAuthForm
               onCancel={() => {
-                reset();
+                if (
+                  !session?.personal?.is2FA &&
+                  session?.personal?.secret2FA !== ""
+                ) {
+                  setter("otp");
+                } else {
+                  reset();
+                }
               }}
               onEnable={() => {
                 setModal({
                   isOpen: true,
-                  content: "Double authentication is successfully enabled. Make sure to scan the QR Code.",
+                  content:
+                    "Double authentication is successfully enabled. Make sure to scan the QR Code.",
                   onYes: () => {
                     setModal(EMPTY_MODAL);
                   },
@@ -70,6 +87,7 @@ export default function ModalHandler({
               user_id={session?.personal?.id}
               session={session}
               updateSessionData={updateSessionData}
+              hideError={config?.otp || false}
             />
           )}
           {config?.category && (
@@ -84,6 +102,33 @@ export default function ModalHandler({
             />
           )}
         </ModalWrapper>
+        {config?.otp && (
+          <ModalWrapper
+            isOpen={true}
+            onClose={() => {
+              if (
+                !session?.personal?.is2FA &&
+                session?.personal?.secret2FA !== "" &&
+                config?.security
+              ) {
+                setter("otp");
+              } else {
+                reset();
+              }
+            }}
+            big
+          >
+            <VerifyOTP
+              validate={true}
+              user_id={session?.personal?.id}
+              email={session?.personal?.email}
+              updateSessionData={updateSessionData}
+              onCancel={() => {
+                reset();
+              }}
+            />
+          </ModalWrapper>
+        )}
       </>
     );
   }

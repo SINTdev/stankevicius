@@ -15,4 +15,5 @@ admin.site.register(models.ListingDuration)
 
 # Separate the Product in another section "Interactions"
 admin.site.register(models.Product)
+admin.site.register(models.CreditsPurchasing)
 admin.site.register(models.ProductInteractions)

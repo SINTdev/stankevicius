@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import MobileMenu from "./MobileMenu";
+import { RENDER_MENU } from "../MENUS";
 
 const Menu = () => {
   const newMenuItems = [
@@ -7,20 +8,13 @@ const Menu = () => {
       link: "About",
       subLinks: [
         {
+          link: "Introduction",
+        },
+        {
           link: "Our Company",
-          content: {
-            img: "/assets/our_company.jpg",
-            title: "Our Company",
-            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget bibendum urna. Integer efficitur augue eu cursus suscipit.",
-          },
         },
         {
           link: "CEO's Letter",
-          content: {
-            img: "/assets/ceo_letter.jpg",
-            title: "CEO's Letter",
-            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget bibendum urna. Integer efficitur augue eu cursus suscipit.",
-          },
         },
       ],
     },
@@ -29,19 +23,9 @@ const Menu = () => {
       subLinks: [
         {
           link: "Small Business",
-          content: {
-            img: "/assets/small_business.jpg",
-            title: "Small Business",
-            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget bibendum urna. Integer efficitur augue eu cursus suscipit.",
-          },
         },
         {
           link: "Institutions",
-          content: {
-            img: "/assets/institutions.jpg",
-            title: "Institutions",
-            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget bibendum urna. Integer efficitur augue eu cursus suscipit.",
-          },
         },
       ],
     },
@@ -50,35 +34,15 @@ const Menu = () => {
       subLinks: [
         {
           link: "Sourcing and Procurement",
-          content: {
-            img: "/assets/sourcing_procurement.jpg",
-            title: "Sourcing and Procurement",
-            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget bibendum urna. Integer efficitur augue eu cursus suscipit.",
-          },
         },
         {
           link: "Production and Manufacturing",
-          content: {
-            img: "/assets/production_manufacturing.jpg",
-            title: "Production and Manufacturing",
-            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget bibendum urna. Integer efficitur augue eu cursus suscipit.",
-          },
         },
         {
           link: "Shipping and Logistics",
-          content: {
-            img: "/assets/shipping_logistics.jpg",
-            title: "Shipping and Logistics",
-            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget bibendum urna. Integer efficitur augue eu cursus suscipit.",
-          },
         },
         {
           link: "Inspection and Quality Checks",
-          content: {
-            img: "/assets/inspection_quality.jpg",
-            title: "Inspection and Quality Checks",
-            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget bibendum urna. Integer efficitur augue eu cursus suscipit.",
-          },
         },
       ],
     },
@@ -87,27 +51,12 @@ const Menu = () => {
       subLinks: [
         {
           link: "Business Audit",
-          content: {
-            img: "/assets/business_audit.jpg",
-            title: "Business Audit",
-            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget bibendum urna. Integer efficitur augue eu cursus suscipit.",
-          },
         },
         {
           link: "Business Counterparty Due Diligence",
-          content: {
-            img: "/assets/counterparty_due_diligence.jpg",
-            title: "Business Counterparty Due Diligence",
-            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget bibendum urna. Integer efficitur augue eu cursus suscipit.",
-          },
         },
         {
           link: "Professional Contracting",
-          content: {
-            img: "/assets/professional_contracting.jpg",
-            title: "Professional Contracting",
-            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget bibendum urna. Integer efficitur augue eu cursus suscipit.",
-          },
         },
       ],
     },
@@ -116,210 +65,13 @@ const Menu = () => {
       subLinks: [
         {
           link: "Company News",
-          content: {
-            img: "/assets/company_news.jpg",
-            title: "Company News",
-            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget bibendum urna. Integer efficitur augue eu cursus suscipit.",
-          },
         },
         {
           link: "Industry Insights",
-          content: {
-            img: "/assets/industry_insights.jpg",
-            title: "Industry Insights",
-            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget bibendum urna. Integer efficitur augue eu cursus suscipit.",
-          },
         },
       ],
     },
   ];
-
-  //   const [menuItems, setMenuItems] = useState([
-  //     {
-  //       link: "About",
-  //       subLinks: [
-  //         {
-  //           link: "Board of Directors",
-  //           content: {
-  //             img: "/assets/test3.jpeg",
-  //             title: "Board of Directors",
-  //             desc: " Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias praesentium dicta alias! Voluptatum molestiae suscipit praesentium sunt fuga. Alias, reiciendis. Sit ullam recusandae in, fugit natus corrupti quaerat laborum totam.",
-  //           },
-  //         },
-  //         {
-  //           link: "Products",
-  //           content: {
-  //             title: "Products",
-  //             links: [
-  //               {
-  //                 label:
-  //                   "Cardiovascular and metabolic disease research at Novartis",
-  //                 url: "https://e0.pxfuel.com/wallpapers/314/61/desktop-wallpaper-medical-science-laboratory-doctor-medicine-research-lab-test-tube-chemistry-best-high-quality.jpg",
-  //               },
-  //               {
-  //                 label:
-  //                   "Cardiovascular and metabolic disease research at Novartis",
-  //                 url: "https://e0.pxfuel.com/wallpapers/314/61/desktop-wallpaper-medical-science-laboratory-doctor-medicine-research-lab-test-tube-chemistry-best-high-quality.jpg",
-  //               },
-  //               {
-  //                 label:
-  //                   "Cardiovascular and metabolic disease research at Novartis",
-  //                 url: "https://e0.pxfuel.com/wallpapers/314/61/desktop-wallpaper-medical-science-laboratory-doctor-medicine-research-lab-test-tube-chemistry-best-high-quality.jpg",
-  //               },
-  //               {
-  //                 label:
-  //                   "Cardiovascular and metabolic disease research at Novartis",
-  //                 url: "https://e0.pxfuel.com/wallpapers/314/61/desktop-wallpaper-medical-science-laboratory-doctor-medicine-research-lab-test-tube-chemistry-best-high-quality.jpg",
-  //               },
-  //               {
-  //                 label:
-  //                   "Cardiovascular and metabolic disease research at Novartis",
-  //                 url: "https://e0.pxfuel.com/wallpapers/314/61/desktop-wallpaper-medical-science-laboratory-doctor-medicine-research-lab-test-tube-chemistry-best-high-quality.jpg",
-  //               },
-  //             ],
-  //           },
-  //         },
-  //       ],
-  //     },
-  //     {
-  //       link: "Patients and Caregivers",
-  //       subLinks: [
-  //         {
-  //           link: "Board of Directors",
-  //           content: {
-  //             img: "/assets/test3.jpeg",
-  //             title: "Board of Directors",
-  //             desc: " Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias praesentium dicta alias! Voluptatum molestiae suscipit praesentium sunt fuga. Alias, reiciendis. Sit ullam recusandae in, fugit natus corrupti quaerat laborum totam.",
-  //           },
-  //         },
-  //         {
-  //           link: "Products",
-  //           content: {
-  //             title: "Products",
-  //             links: [
-  //               {
-  //                 label:
-  //                   "Cardiovascular and metabolic disease research at Novartis",
-  //                 url: "https://e0.pxfuel.com/wallpapers/314/61/desktop-wallpaper-medical-science-laboratory-doctor-medicine-research-lab-test-tube-chemistry-best-high-quality.jpg",
-  //               },
-  //               {
-  //                 label:
-  //                   "Cardiovascular and metabolic disease research at Novartis",
-  //                 url: "https://e0.pxfuel.com/wallpapers/314/61/desktop-wallpaper-medical-science-laboratory-doctor-medicine-research-lab-test-tube-chemistry-best-high-quality.jpg",
-  //               },
-  //               {
-  //                 label:
-  //                   "Cardiovascular and metabolic disease research at Novartis",
-  //                 url: "https://e0.pxfuel.com/wallpapers/314/61/desktop-wallpaper-medical-science-laboratory-doctor-medicine-research-lab-test-tube-chemistry-best-high-quality.jpg",
-  //               },
-  //               {
-  //                 label:
-  //                   "Cardiovascular and metabolic disease research at Novartis",
-  //                 url: "https://e0.pxfuel.com/wallpapers/314/61/desktop-wallpaper-medical-science-laboratory-doctor-medicine-research-lab-test-tube-chemistry-best-high-quality.jpg",
-  //               },
-  //               {
-  //                 label:
-  //                   "Cardiovascular and metabolic disease research at Novartis",
-  //                 url: "https://e0.pxfuel.com/wallpapers/314/61/desktop-wallpaper-medical-science-laboratory-doctor-medicine-research-lab-test-tube-chemistry-best-high-quality.jpg",
-  //               },
-  //             ],
-  //           },
-  //         },
-  //       ],
-  //     },
-  //     {
-  //       link: "Healthcare Professional",
-  //       subLinks: [
-  //         {
-  //           link: "Board of Directors",
-  //           content: {
-  //             img: "/assets/test3.jpeg",
-  //             title: "Board of Directors",
-  //             desc: " Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias praesentium dicta alias! Voluptatum molestiae suscipit praesentium sunt fuga. Alias, reiciendis. Sit ullam recusandae in, fugit natus corrupti quaerat laborum totam.",
-  //           },
-  //         },
-  //         {
-  //           link: "Products",
-  //           content: {
-  //             title: "Products",
-  //             links: [
-  //               {
-  //                 label:
-  //                   "Cardiovascular and metabolic disease research at Novartis",
-  //                 url: "https://e0.pxfuel.com/wallpapers/314/61/desktop-wallpaper-medical-science-laboratory-doctor-medicine-research-lab-test-tube-chemistry-best-high-quality.jpg",
-  //               },
-  //               {
-  //                 label:
-  //                   "Cardiovascular and metabolic disease research at Novartis",
-  //                 url: "https://e0.pxfuel.com/wallpapers/314/61/desktop-wallpaper-medical-science-laboratory-doctor-medicine-research-lab-test-tube-chemistry-best-high-quality.jpg",
-  //               },
-  //               {
-  //                 label:
-  //                   "Cardiovascular and metabolic disease research at Novartis",
-  //                 url: "https://e0.pxfuel.com/wallpapers/314/61/desktop-wallpaper-medical-science-laboratory-doctor-medicine-research-lab-test-tube-chemistry-best-high-quality.jpg",
-  //               },
-  //               {
-  //                 label:
-  //                   "Cardiovascular and metabolic disease research at Novartis",
-  //                 url: "https://e0.pxfuel.com/wallpapers/314/61/desktop-wallpaper-medical-science-laboratory-doctor-medicine-research-lab-test-tube-chemistry-best-high-quality.jpg",
-  //               },
-  //               {
-  //                 label:
-  //                   "Cardiovascular and metabolic disease research at Novartis",
-  //                 url: "https://e0.pxfuel.com/wallpapers/314/61/desktop-wallpaper-medical-science-laboratory-doctor-medicine-research-lab-test-tube-chemistry-best-high-quality.jpg",
-  //               },
-  //             ],
-  //           },
-  //         },
-  //       ],
-  //     },
-  //     {
-  //       link: "ESG",
-  //       subLinks: [
-  //         {
-  //           link: "Board of Directors",
-  //           content: {
-  //             img: "/assets/test3.jpeg",
-  //             title: "Board of Directors",
-  //             desc: " Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias praesentium dicta alias! Voluptatum molestiae suscipit praesentium sunt fuga. Alias, reiciendis. Sit ullam recusandae in, fugit natus corrupti quaerat laborum totam.",
-  //           },
-  //         },
-  //         {
-  //           link: "Products",
-  //           content: {
-  //             title: "Products",
-  //             links: [
-  //               {
-  //                 label:
-  //                   "Cardiovascular and metabolic disease research at Novartis",
-  //                 url: "https://e0.pxfuel.com/wallpapers/314/61/desktop-wallpaper-medical-science-laboratory-doctor-medicine-research-lab-test-tube-chemistry-best-high-quality.jpg",
-  //               },
-  //               {
-  //                 label:
-  //                   "Cardiovascular and metabolic disease research at Novartis",
-  //                 url: "https://e0.pxfuel.com/wallpapers/314/61/desktop-wallpaper-medical-science-laboratory-doctor-medicine-research-lab-test-tube-chemistry-best-high-quality.jpg",
-  //               },
-  //               {
-  //                 label:
-  //                   "Cardiovascular and metabolic disease research at Novartis",
-  //                 url: "https://e0.pxfuel.com/wallpapers/314/61/desktop-wallpaper-medical-science-laboratory-doctor-medicine-research-lab-test-tube-chemistry-best-high-quality.jpg",
-  //               },
-  //               {
-  //                 label:
-  //                   "Cardiovascular and metabolic disease research at Novartis",
-  //                 url: "https://e0.pxfuel.com/wallpapers/314/61/desktop-wallpaper-medical-science-laboratory-doctor-medicine-research-lab-test-tube-chemistry-best-high-quality.jpg",
-  //               },
-  //               {
-  //                 label:
-  //                   "Cardiovascular and metabolic disease research at Novartis",
-  //                 url: "https://e0.pxfuel.com/wallpapers/314/61/desktop-wallpaper-medical-science-laboratory-doctor-medicine-research-lab-test-tube-chemistry-best-high-quality.jpg",
-  //               },
-  //             ],
-  //           },
-  //         },
-  //       ],
-  //     },
-  //   ]);
 
   const [menuItems, setMenuItems] = useState(newMenuItems);
 
@@ -341,29 +93,6 @@ const Menu = () => {
     setHoveredSubLink(subLinkIndex);
   };
 
-  const renderShowUp = (data) => {
-    return (
-      <div className="">
-        <img src={data?.content?.img} alt="" />
-        <h1 className="font-extrabold text-[24px] mt-2 mb-1">
-          {data?.content?.title}
-        </h1>
-        <p className="text-[18px]">{data?.content?.desc}</p>
-        <div className="space-y-4 mt-7">
-          {data?.content?.links?.map((link, one) => {
-            return (
-              <div className="border-b w-fit border-gray-300 hover:border-black transition-all duration-300 ease-in-out">
-                <a className="text-sm font-medium" href={link?.url}>
-                  {link?.label}
-                </a>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    );
-  };
-
   return (
     <div className="fixed top-0 left-0 bg-white w-screen h-screen z-10">
       <div className="max-w-screen-xl mx-auto  h-full p-2 justify-center hidden md:flex">
@@ -383,7 +112,6 @@ const Menu = () => {
                       : ""
                   }`}
                   onMouseEnter={() => handleItemHover(index)}
-                  onClick={() => handleSubLinkClick(index)}
                 >
                   {menuItem.link}
                 </p>
@@ -412,7 +140,7 @@ const Menu = () => {
                   className={`text-sm border-l-2 border-l-transparent ${
                     (selectedSubLink === null && hoveredSubLink === index) ||
                     selectedSubLink === index
-                      ? "font-bold hover:bg-[#F1F1F1] hover:border-l-[#221f1f]"
+                      ? "font-bold bg-[#F1F1F1] border-l-[#221f1f]"
                       : ""
                   } cursor-pointer px-5 py-2`}
                   onClick={() => handleSubLinkClick(index)}
@@ -424,12 +152,22 @@ const Menu = () => {
               ))}
           </div>
         </div>
-        <div className="w-1/2 h-full bg-[#F1F1F1] pt-20 px-10">
-          {selectedSubLink !== null &&
+        <div className="w-1/2 h-full bg-[#F1F1F1] pt-20 pl-10 overflow-scroll">
+          {/* {selectedSubLink !== null &&
             renderShowUp(menuItems[hoveredItem]?.subLinks[selectedSubLink])}
           {hoveredSubLink !== null &&
             selectedSubLink === null &&
-            renderShowUp(menuItems[hoveredItem]?.subLinks[hoveredSubLink])}
+            renderShowUp(menuItems[hoveredItem]?.subLinks[hoveredSubLink])} */}
+          {selectedSubLink !== null && (
+            <RENDER_MENU
+              menu={menuItems[hoveredItem]?.subLinks[selectedSubLink]?.link}
+            />
+          )}
+          {hoveredSubLink !== null && selectedSubLink === null && (
+            <RENDER_MENU
+              menu={menuItems[hoveredItem]?.subLinks[hoveredSubLink]?.link}
+            />
+          )}
         </div>
       </div>
 
