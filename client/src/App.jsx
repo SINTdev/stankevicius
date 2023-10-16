@@ -16,6 +16,7 @@ import Security from "./views/client/Security";
 import CreditManagement from "./views/corporate/CreditManagement";
 import CorporateDashboard from "./views/corporate/Dashboard";
 import UserManagement from "./views/corporate/UserManagement";
+import Introduction from "./views/menus/Introduction";
 // import CategoryManagement from "./views/corporate/CategoryManagement";
 
 function App() {
@@ -139,6 +140,16 @@ function App() {
             }
           />
           {/* Corporate Routes End */}
+          {/* Menu Routes Start */}
+          <Route
+            path="/menu/introduction"
+            element={
+              <Layout {...paramater}>
+                <Introduction />
+              </Layout>
+            }
+          />
+          {/* Menu Routes End */}
           <Route
             path="*"
             element={

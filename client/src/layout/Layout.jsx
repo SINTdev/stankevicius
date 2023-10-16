@@ -147,7 +147,7 @@ export default function Layout(props) {
           {...props}
         />
         <div className="mx-4 lg:mx-10 mt-24">{props.children}</div>
-        {props?.isMenuOpen && <Menu />}
+        {props?.isMenuOpen && <Menu setIsMenuOpen={props?.setIsMenuOpen}/>}
         {props?.isAccountMenuOpen && session?.isLoggedIn && (
           <AccountMenu
             setIsAccountMenuOpen={props?.setIsAccountMenuOpen}
