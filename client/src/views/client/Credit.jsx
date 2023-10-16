@@ -169,7 +169,7 @@ export default function Credit(props) {
                   }}
                   className="w-fit text-white border border-black bg-black text-sm px-5 py-2.5 text-center"
                 >
-                  Buy Credits
+                  Buy Advertising Credits
                 </button>
               </span>
             </div>

@@ -21,7 +21,7 @@ from datetime import timedelta
 import stripe
 
 stripe.api_key = "sk_test_51LyNIZJwTuApoB7Ms8joJ1fORtVdu9sohKVSy1KoZJALIWKCsv7sST3AVYfWpfoEis9gvsPK6JRlZLyFFQhjmKhG00VJdbjvll"
-
+# stripe.api_key = "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"
 # test_email()
 
 

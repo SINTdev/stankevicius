@@ -227,7 +227,7 @@ def user(request, pk=None):
                     if not data["onlyQR"]:
                         user.is2FA = data["is2FA"]
                     if data["onlyQR"]:
-                        if data["is2FA"] and user.secret2FA == "":
+                        if data["is2FA"] and not user.secret2FA:
                             user.secret2FA = pyotp.random_base32()
                         else:
                             user.secret2FA = ""
@@ -257,6 +257,7 @@ def verify2fa(request, pk=None):
     if request.method == "GET":
         if pk is not None:
             user = models.CustomUsers.objects.get(pk=int(pk))
+            print(user.secret2FA)
             if user.secret2FA:
                 url = pyotp.utils.build_uri(
                     secret=user.secret2FA,

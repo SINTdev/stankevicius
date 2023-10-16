@@ -278,7 +278,7 @@ export default function AddProduct(props) {
           </div>
           <div className="w-full flex flex-col md:flex-row">
             <InputBox
-              placeholder={"Name"}
+              placeholder={"Product Name"}
               value={payload.name}
               onChange={changePayload}
               name="name"

@@ -80,14 +80,11 @@ const VerifyOTP = (props) => {
       })
       .then((responce) => {
         let res = responce.data;
-        console.log(res)
+        console.log(res);
         if (res.message) {
           setMessage(res.message, "red-500");
         } else {
-          setMessage(
-            `Double authenticator is enabled.`,
-            "green-500"
-          );
+          setMessage(`Double authenticator is enabled.`, "green-500");
           sessionStorage.setItem(
             "loggedin",
             JSON.stringify({
@@ -96,8 +93,8 @@ const VerifyOTP = (props) => {
           );
           props?.updateSessionData();
           setTimeout(() => {
-            props?.onCancel();
-          }, 1000);
+            props?.onDone();
+          }, 3000);
         }
       })
       .catch((error) => {
@@ -133,12 +130,30 @@ const VerifyOTP = (props) => {
             name="code"
           />
           <div className="mt-2"></div>
-          <button
-            onClick={verify}
-            className="w-full text-white tracking-wider bg-black text-sm px-5 py-2.5 text-center"
-          >
-            Verify
-          </button>
+          {props?.validate ? (
+            <div className="flex flex-row space-x-5 items-center justify-center w-full pt-5">
+              <button
+                className="bg-black w-[7rem] border border-black text-white px-4 py-2"
+                onClick={verify}
+              >
+                Verify
+              </button>
+              <button
+                className="bg-white text-black border border-black w-[7rem] px-4 py-2"
+                onClick={props?.onCancel}
+              >
+                Back
+              </button>
+            </div>
+          ) : (
+            <button
+              onClick={verify}
+              className="w-full text-white tracking-wider bg-black text-sm px-5 py-2.5 text-center"
+            >
+              Verify
+            </button>
+          )}
+
           <div className="mt-2"></div>
           <div
             id="error"

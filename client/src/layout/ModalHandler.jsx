@@ -24,7 +24,7 @@ export default function ModalHandler({
   };
 
   const [modal, setModal] = useState(EMPTY_MODAL);
-  if (config?.category || config?.profile || config?.security || config?.otp) {
+  if (config?.category || config?.profile || config?.security) {
     return (
       <>
         <Modal
@@ -39,17 +39,18 @@ export default function ModalHandler({
         <ModalWrapper
           isOpen={true}
           onClose={() => {
-            if (
-              !session?.personal?.is2FA &&
-              session?.personal?.secret2FA !== "" &&
-              config?.security
-            ) {
-              setter("otp");
-            } else {
-              reset();
-            }
+            // if (
+            //   !session?.personal?.is2FA &&
+            //   session?.personal?.secret2FA !== "" &&
+            //   config?.security
+            // ) {
+            //   setter("otp");
+            // } else {
+            //   reset();
+            // }
+            reset();
           }}
-          big
+          big={!config?.security}
         >
           {config?.profile && (
             <ProfileForm
@@ -63,14 +64,15 @@ export default function ModalHandler({
           {config?.security && (
             <DoubleAuthForm
               onCancel={() => {
-                if (
-                  !session?.personal?.is2FA &&
-                  session?.personal?.secret2FA !== ""
-                ) {
-                  setter("otp");
-                } else {
-                  reset();
-                }
+                // if (
+                //   !session?.personal?.is2FA &&
+                //   session?.personal?.secret2FA !== ""
+                // ) {
+                //   setter("otp");
+                // } else {
+                //   reset();
+                // }
+                reset();
               }}
               onEnable={() => {
                 setModal({
@@ -85,6 +87,7 @@ export default function ModalHandler({
               }}
               is2FA={session?.personal?.is2FA}
               user_id={session?.personal?.id}
+              email={session?.personal?.email}
               session={session}
               updateSessionData={updateSessionData}
               hideError={config?.otp || false}
@@ -102,7 +105,7 @@ export default function ModalHandler({
             />
           )}
         </ModalWrapper>
-        {config?.otp && (
+        {/* {config?.otp && (
           <ModalWrapper
             isOpen={true}
             onClose={() => {
@@ -128,7 +131,7 @@ export default function ModalHandler({
               }}
             />
           </ModalWrapper>
-        )}
+        )} */}
       </>
     );
   }
