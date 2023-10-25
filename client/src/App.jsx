@@ -17,6 +17,10 @@ import CreditManagement from "./views/corporate/CreditManagement";
 import CorporateDashboard from "./views/corporate/Dashboard";
 import UserManagement from "./views/corporate/UserManagement";
 import Introduction from "./views/menus/Introduction";
+import CompanyNews from "./views/menus/CompanyNews";
+import ContractingandDueDiligence from "./views/menus/ContractingandDueDiligence";
+import BusinessAudit from "./views/menus/BusinessAudit";
+
 // import CategoryManagement from "./views/corporate/CategoryManagement";
 
 function App() {
@@ -144,8 +148,54 @@ function App() {
           <Route
             path="/menu/introduction"
             element={
-              <Layout {...paramater}>
+              <Layout {...paramater} menu={true}>
                 <Introduction />
+              </Layout>
+            }
+          />
+          <Route
+            path="/menu/business_audit"
+            element={
+              <Layout {...paramater} menu={true}>
+                <ContractingandDueDiligence mode="business_audit">
+                  <BusinessAudit />
+                </ContractingandDueDiligence>
+              </Layout>
+            }
+          />
+          <Route
+            path="/menu/counterparty_due_diligence"
+            element={
+              <Layout {...paramater} menu={true}>
+                <ContractingandDueDiligence mode="counterparty_due_diligence">
+                  <BusinessAudit />
+                </ContractingandDueDiligence>
+              </Layout>
+            }
+          />
+          <Route
+            path="/menu/professional_contracting"
+            element={
+              <Layout {...paramater} menu={true}>
+                <ContractingandDueDiligence mode="professional_contracting">
+                  <BusinessAudit />
+                </ContractingandDueDiligence>
+              </Layout>
+            }
+          />
+          <Route
+            path="/menu/company_news"
+            element={
+              <Layout {...paramater} menu={true}>
+                <CompanyNews />
+              </Layout>
+            }
+          />
+          <Route
+            path="/menu/industry_insights"
+            element={
+              <Layout {...paramater} menu={true}>
+                <CompanyNews />
               </Layout>
             }
           />
