@@ -220,7 +220,6 @@ const Menu = (props) => {
                       : ""
                   }`}
                   onMouseEnter={() => handleItemHover(index)}
-                  onClick={() => handleSubLinkClick(index)}
                 >
                   {menuItem.link}
                 </p>
