@@ -46,12 +46,10 @@ export default function OurCompany() {
       </div>
       <div className="py-4"></div>
       <div className="flex flex-row space-y-3">
-        <div>
+        <div className="w-full overflow-hidden">
           <svg
             id="RD"
             xmlns="http://www.w3.org/2000/svg"
-            width={500}
-            height={500}
             viewBox="0 0 500 500"
             className="graphic__image graphic__image--inline-svg"
           >

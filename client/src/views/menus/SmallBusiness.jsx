@@ -120,7 +120,7 @@ export default function SmallBusiness() {
       </div>
       <div className="py-3"></div>
       <div className="border-t-2 border-[#4472c4] py-2">
-        <div className="flex flex-col space-y-3">
+        <div className="flex flex-col space-y-3 overflow-auto overflow-auto">
           <span className="flex flex-row items-center space-x-1">
             <span className="_font-bold text-lg tracking-tight">
               Progress against ESG targets
@@ -206,7 +206,7 @@ export default function SmallBusiness() {
         significantly ahead of the Bloomberg benchmark of +19% mean for the same
         period.
       </div>
-      <div className="flex flex-col space-y-3">
+      <div className="flex flex-col space-y-3 overflow-auto overflow-auto">
         <span className="_font-bold text-lg tracking-tight">
           Access to healthcare performance indicators
         </span>
@@ -427,7 +427,7 @@ export default function SmallBusiness() {
         innovation
       </div>
       <div className="py-6"></div>
-      <div className="flex flex-col space-y-3">
+      <div className="flex flex-col space-y-3 overflow-auto overflow-auto">
         <span className="_font-bold text-lg tracking-tight">
           Diversity, equity and inclusion (DEI) performance indicators
         </span>
@@ -549,7 +549,7 @@ export default function SmallBusiness() {
       </div>
       <div className="py-3"></div>
       <div className="border-t-2 border-[#4472c4] py-2">
-        <div className="flex flex-col space-y-3">
+        <div className="flex flex-col space-y-3 overflow-auto overflow-auto">
           <span className="flex flex-row items-center space-x-1">
             <span className="_font-bold text-lg tracking-tight">
               Progress against ESG targets
@@ -733,7 +733,7 @@ export default function SmallBusiness() {
           </div>
         </div>
         <div className="flex flex-col w-2/5 mt-16">
-          <div className="-translate-x-2 w-full text-left font-extralight text-7xl leading-tight text-[#0460a9]">
+          <div className="-translate-x-2 w-full text-left font-extralight text-4xl md:text-7xl leading-tight text-[#0460a9]">
             1st
           </div>
           <div className="w-full flex flex-row items-center _font-bold text-left leading-relaxed tracking-wide text-base text-black">

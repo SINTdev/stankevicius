@@ -210,6 +210,9 @@ input[type="search"] {
   font-size: 0.875rem;
   font-weight: 500;
 }
+.__CHECK_REG__LABEL__ {
+  font-size: 0.75rem !important;
+}
 /* 
 .page0-animated-div {
   opacity: 1;

@@ -163,17 +163,61 @@ const CheckoutCredit = (props) => {
                     type="checkbox"
                     checked={payload.accept}
                     onChange={(e) => {
-                      setPayload({
-                        ...payload,
-                        accept: e.target.checked,
-                      });
+                      if (e.target.checked) {
+                        props?.setStaticMessage({
+                          show: true,
+                          message: (
+                            <div>
+                              You can use our services in a variety of ways to
+                              manage your privacy.<div className="py-2"></div>{" "}
+                              For example, you can sign up for a Google Account
+                              if you want to create and manage content like
+                              emails and photos, or see more relevant search
+                              results.
+                              <div className="py-2"></div> And you can use many
+                              Google services when you’re signed out or without
+                              creating an account at all, like searching on
+                              Google or watching YouTube videos. You can also
+                              choose to browse the web in a private mode, like
+                              Chrome Incognito mode. And across our services,
+                              you can adjust your privacy settings to control
+                              what we collect and how your information is used.{" "}
+                              <div className="py-2"></div>To help explain things
+                              as clearly as possible, we’ve added examples,
+                              explanatory videos, and definitions for key terms.
+                              And if you have any questions about this Privacy
+                              Policy, you can contact us. When you’re not signed
+                              in to a Google Account, we store the information
+                              we collect with unique identifiers tied to the
+                              browser, application, or device you’re using. This
+                              allows us to do things like maintain your
+                              preferences across browsing sessions, such as your
+                              preferred language or whether to show you more
+                              relevant search results or ads based on your
+                              activity.
+                            </div>
+                          ),
+                          isInfo: false,
+                          onAgree: () => {
+                            setPayload({
+                              ...payload,
+                              accept: true,
+                            });
+                          },
+                        });
+                      } else {
+                        setPayload({
+                          ...payload,
+                          accept: e.target.checked,
+                        });
+                      }
                     }}
                     className="cursor-pointer text-black bg-white border-gray-300 hover:bg-gray-50 focus:ring-0 dark:focus:ring-0 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
                   />
                 </span>
                 <label
                   htmlFor="link-checkbox"
-                  className="tracking-normal text-gray-500 text-sm font-medium"
+                  className="tracking-normal __CHECK_REG__LABEL__ text-gray-500 font-medium"
                 >
                   Agree to Terms of Use and Purchase Policy of Advertising
                   Credits.

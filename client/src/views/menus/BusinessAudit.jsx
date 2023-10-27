@@ -225,7 +225,7 @@ export default function BusinessAudit() {
           </div>
         </div>
         <div className="flex flex-col w-2/5 mt-16">
-          <div className="w-full text-left font-extralight text-7xl leading-tight text-[#0460a9]">
+          <div className="w-full text-left font-extralight text-4xl md:text-4xl md:text-7xl leading-tight text-[#0460a9]">
             2 cities
           </div>
           <div className="w-full flex flex-row items-center _font-bold text-left leading-relaxed tracking-wide text-base text-black">

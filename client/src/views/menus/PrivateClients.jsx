@@ -22,8 +22,8 @@ export default function PrivateClients(props) {
     <div className="w-full flex flex-col space-y-8">
       <Fold className="">
         <Fold inside>
-          <div className="flex flex-row w-full">
-            <div className="w-2/12">
+          <div className="flex flex-row w-full px-2">
+            <div className="w-2/12 md:block hidden">
               <span className="sticky top-[7rem]">
                 <span className="_font-bold text-lg">Private Clients</span>
                 <span className="border-b-2 w-full mt-1 border-black block"></span>
@@ -41,8 +41,8 @@ export default function PrivateClients(props) {
                 </div>
               </span>
             </div>
-            <div className="w-10/12">
-              <div className="ml-20">{props.children}</div>
+            <div className="w-full md:w-10/12">
+              <div className="md:ml-20 m-0">{props.children}</div>
             </div>
           </div>
         </Fold>

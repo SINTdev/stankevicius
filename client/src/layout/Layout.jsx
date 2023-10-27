@@ -9,6 +9,7 @@ import AccountMenu from "../components/AccountMenu";
 import ModalHandler from "./ModalHandler";
 import axios from "axios";
 import SearchMenu from "../components/SearchMenu";
+import InfoModal from "../components/InfoModal";
 export default function Layout(props) {
   let navigate = useNavigate();
   // ------------------
@@ -115,6 +116,18 @@ export default function Layout(props) {
     }, 1000);
   };
 
+  let __INIT__STATIC__MESSAGE__ = {
+    show: false,
+    message: "",
+    isInfo: true,
+    onAgree: () => {},
+  };
+  const [staticMessage, setStaticMessage] = useState(__INIT__STATIC__MESSAGE__);
+
+  const resetStaticMessage = () => {
+    setStaticMessage(__INIT__STATIC__MESSAGE__);
+  };
+
   const value = {
     session,
     setSession,
@@ -125,6 +138,9 @@ export default function Layout(props) {
     categories,
     changePushProductChange,
     pushProductChange,
+    staticMessage,
+    setStaticMessage,
+    resetStaticMessage,
   };
 
   const location = useLocation();
@@ -142,6 +158,7 @@ export default function Layout(props) {
   return (
     <>
       <UserData.Provider value={value}>
+        <InfoModal {...staticMessage} onClose={resetStaticMessage}/>
         <ModalHandler
           config={globalModals}
           setter={configureModal}

@@ -23,8 +23,16 @@ const UserData = React.createContext({
   configureModal: () => {},
   fetchCategories: () => {},
   changePushProductChange: () => {},
+  setStaticMessage: () => {},
+  resetStaticMessage: () => {},
   categories: [],
   pushProductChange: false,
+  staticMessage: {
+    show: false,
+    message: "",
+    isInfo: true,
+    onAgree: () => {},
+  },
   globalModals: {
     profile: false,
     security: false,

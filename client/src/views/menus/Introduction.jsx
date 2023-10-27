@@ -4,7 +4,7 @@ import Fold from "../../components/menus/Fold";
 const GrayCards = () => {
   return (
     <div className="select-none cursor-pointer bg-[#F1F1F1] py-8 px-5 flex flex-col">
-      <div className="w-full text-left font-extralight text-7xl leading-tight text-[#0460a9]">
+      <div className="w-full text-left font-extralight text-4xl md:text-7xl leading-tight text-[#0460a9]">
         10.0 bn
       </div>
       <div className="mt-3 w-full text-left mb-2 text-2xl _font-bold leading-tight tracking-tight text-black">
@@ -21,8 +21,8 @@ const GrayCards = () => {
 export default function Introduction() {
   return (
     <div className="flex flex-col w-full">
-      <div className="flex w-full flex-row whitespace-nowrap">
-        <div className="m-0 w-full text-left text-7xl _font-bold leading-tight tracking-tight text-black">
+      <div className="flex w-full flex-col space-y-3 md:space-y-0 items-center md:flex-row whitespace-nowrap">
+        <div className="m-0 w-full md:text-left text-4xl md:text-4xl md:text-7xl text-center _font-bold leading-tight tracking-tight text-black">
           2022 at a glance
         </div>
         <span className="flex items-center">
@@ -35,7 +35,7 @@ export default function Introduction() {
         </span>
       </div>
       <div className="py-3"></div>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
         <GrayCards />
         <GrayCards />
         <GrayCards />
@@ -45,10 +45,10 @@ export default function Introduction() {
       <Fold className="bg-[#F1F1F1] py-8 px-10">
         <Fold
           inside
-          className="flex flex-row space-x-5 items-center justify-center"
+          className="flex flex-col md:flex-row space-x-5 items-center justify-center"
         >
-          <div className="py-10 flex flex-col space-y-5 w-1/2">
-            <div className="m-0 w-full text-left text-7xl _font-bold leading-tight tracking-tight text-black">
+          <div className="py-10 flex flex-col space-y-5 w-full md:w-1/2">
+            <div className="m-0 w-full text-left text-4xl md:text-4xl md:text-7xl _font-bold leading-tight tracking-tight text-black">
               Who we are
             </div>
             <div className="mt-3 w-full text-left mb-2 text-2xl _font-bold leading-tight tracking-tight text-black">
@@ -63,7 +63,7 @@ export default function Introduction() {
               Learn more
             </button>
           </div>
-          <div className="w-1/2">
+          <div className="w-full md:w-1/2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 450 450"
@@ -999,15 +999,15 @@ export default function Introduction() {
       <Fold className="bg-[#0460A9] py-8 px-10">
         <Fold
           inside
-          className="flex flex-row space-x-5 items-center justify-center"
+          className="flex flex-col md:flex-row space-x-5 items-center justify-center"
         >
-          <div className="py-10 flex flex-col space-y-5 w-1/2">
-            <div className="m-0 w-full text-left text-7xl _font-bold leading-tight tracking-tight text-white">
+          <div className="py-10 flex flex-col space-y-5 md:w-1/2 w-full">
+            <div className="m-0 w-full text-left text-4xl md:text-7xl _font-bold leading-tight tracking-tight text-white">
               CEO’s letter
             </div>
             <img src="https://www.reporting.novartis.com/2022/_assets/gallery/ceo-image.jpg" />
           </div>
-          <div className="w-1/2 pl-10">
+          <div className="md:w-1/2 w-full md:pl-10">
             <div className="mt-3 w-full text-left mb-2 text-2xl italic leading-tight tracking-tight text-white">
               Novartis is one of the world’s leading medicines companies. We use
               innovative science and technology to address some of society’s
