@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import {
@@ -16,9 +16,11 @@ import PhoneInput, {
   formatPhoneNumberIntl,
 } from "react-phone-number-input";
 import "react-phone-number-input/style.css";
+import UserData from "../contexts/UserData";
 
 const Register = (props) => {
   const navigate = useNavigate();
+  const { setStaticMessage } = useContext(UserData);
   useEffect(() => {
     if (checkLoginFromLogin()) {
       navigate("/");
@@ -290,13 +292,93 @@ const Register = (props) => {
                     className="tracking-normal text-gray-500 text-sm font-medium"
                   >
                     By submitting my information, I agree to the{" "}
-                    <a href="#" className="text-black underline cursor-pointer">
+                    <span
+                      onClick={() => {
+                        setStaticMessage({
+                          show: true,
+                          message: (
+                            <div>
+                              You can use our services in a variety of ways to
+                              manage your privacy.<div className="py-2"></div>{" "}
+                              For example, you can sign up for a Google Account
+                              if you want to create and manage content like
+                              emails and photos, or see more relevant search
+                              results.
+                              <div className="py-2"></div> And you can use many
+                              Google services when you’re signed out or without
+                              creating an account at all, like searching on
+                              Google or watching YouTube videos. You can also
+                              choose to browse the web in a private mode, like
+                              Chrome Incognito mode. And across our services,
+                              you can adjust your privacy settings to control
+                              what we collect and how your information is used.{" "}
+                              <div className="py-2"></div>To help explain things
+                              as clearly as possible, we’ve added examples,
+                              explanatory videos, and definitions for key terms.
+                              And if you have any questions about this Privacy
+                              Policy, you can contact us. When you’re not signed
+                              in to a Google Account, we store the information
+                              we collect with unique identifiers tied to the
+                              browser, application, or device you’re using. This
+                              allows us to do things like maintain your
+                              preferences across browsing sessions, such as your
+                              preferred language or whether to show you more
+                              relevant search results or ads based on your
+                              activity.
+                            </div>
+                          ),
+                          isInfo: true,
+                          onAgree: () => {},
+                        });
+                      }}
+                      className="text-black underline cursor-pointer"
+                    >
                       Privacy Policy
-                    </a>
+                    </span>
                     {" and "}
-                    <a href="#" className="text-black underline cursor-pointer">
+                    <span
+                      onClick={() => {
+                        setStaticMessage({
+                          show: true,
+                          message: (
+                            <div>
+                              You can use our services in a variety of ways to
+                              manage your privacy.<div className="py-2"></div>{" "}
+                              For example, you can sign up for a Google Account
+                              if you want to create and manage content like
+                              emails and photos, or see more relevant search
+                              results.
+                              <div className="py-2"></div> And you can use many
+                              Google services when you’re signed out or without
+                              creating an account at all, like searching on
+                              Google or watching YouTube videos. You can also
+                              choose to browse the web in a private mode, like
+                              Chrome Incognito mode. And across our services,
+                              you can adjust your privacy settings to control
+                              what we collect and how your information is used.{" "}
+                              <div className="py-2"></div>To help explain things
+                              as clearly as possible, we’ve added examples,
+                              explanatory videos, and definitions for key terms.
+                              And if you have any questions about this Privacy
+                              Policy, you can contact us. When you’re not signed
+                              in to a Google Account, we store the information
+                              we collect with unique identifiers tied to the
+                              browser, application, or device you’re using. This
+                              allows us to do things like maintain your
+                              preferences across browsing sessions, such as your
+                              preferred language or whether to show you more
+                              relevant search results or ads based on your
+                              activity.
+                            </div>
+                          ),
+                          isInfo: true,
+                          onAgree: () => {},
+                        });
+                      }}
+                      className="text-black underline cursor-pointer"
+                    >
                       Terms of Service
-                    </a>
+                    </span>
                     .
                   </label>
                 </div>
