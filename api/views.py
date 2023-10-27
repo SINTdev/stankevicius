@@ -127,6 +127,47 @@ def initialize_backend():
 initialize_backend()
 
 
+# @api_view(["POST"])
+# @permission_classes([])
+# @authentication_classes([])
+# def checkoutsession(request):
+#     if request.method == "POST":
+#         try:
+#             data = JSONParser().parse(request)
+#             quantity = int(data["amount"])
+#             client = data["client"]
+#             email = data["email"]
+#             user_identifier = int(data["user_identifier"])
+#             payment_method = data["payment_method"]
+
+#             # Create a price object if it doesn't exist
+#             price = get_or_create_price()
+
+#             entry = createCreditEntry(
+#                 {"user": user_identifier, "amount": quantity}, True
+#             )
+
+#             checkout_session = stripe.checkout.Session.create(
+# success_url=client
+# + f'client/credit?entry={str(entry)}&amount={str(data["amount"])}',
+#                 cancel_url=client + "client/credit?cancelled=true",
+#                 mode="payment",
+#                 customer_email=email,
+#                 line_items=[
+#                     {
+#                         "price": price.id,  # Use the price object created above
+#                         "quantity": quantity,
+#                     }
+#                 ],
+#                 metadata={"user_identifier": user_identifier},
+#             )
+#             return JsonResponse({"url": checkout_session.url}, status=200)
+#         except Exception as e:
+#             return JsonResponse(
+#                 {"message": "[SESSION CHECKOUT]: " + str(e)}, status=200
+#             )
+
+
 @api_view(["POST"])
 @permission_classes([])
 @authentication_classes([])
@@ -135,36 +176,96 @@ def checkoutsession(request):
         try:
             data = JSONParser().parse(request)
             quantity = int(data["amount"])
-            client = data["client"]
             email = data["email"]
+            client = data["client"]
             user_identifier = int(data["user_identifier"])
+            payment_method = data[
+                "payment_method"
+            ]  # Use paymentMethod from the frontend
 
             # Create a price object if it doesn't exist
             price = get_or_create_price()
+            customer = get_or_create_customer(
+                email, payment_method["paymentMethod"]["id"]
+            )
 
             entry = createCreditEntry(
                 {"user": user_identifier, "amount": quantity}, True
             )
 
-            checkout_session = stripe.checkout.Session.create(
-                success_url=client
-                + f'client/credit?entry={str(entry)}&amount={str(data["amount"])}',
-                cancel_url=client + "client/credit?cancelled=true",
-                mode="payment",
-                customer_email=email,
-                line_items=[
-                    {
-                        "price": price.id,  # Use the price object created above
-                        "quantity": quantity,
-                    }
-                ],
+            # Create a Payment Intent
+            payment_intent = stripe.PaymentIntent.create(
+                amount=quantity * 100,  # Amount in cents
+                currency="usd",
+                payment_method=payment_method["paymentMethod"][
+                    "id"
+                ],  # Use the paymentMethod from the frontend
+                confirmation_method="manual",
+                setup_future_usage="on_session",
+                confirm=True,
+                customer=customer.id,
+                receipt_email=email,
                 metadata={"user_identifier": user_identifier},
+                return_url=client
+                + f'client/credit?entry={str(entry)}&amount={str(data["amount"])}',
             )
-            return JsonResponse({"url": checkout_session.url}, status=200)
+            print(payment_intent.status)
+            # Check if the payment intent is succeeded
+            if payment_intent.status == "succeeded":
+                return JsonResponse(
+                    {
+                        "isSuccess": True,
+                        "message": "Payment successful",
+                        "entry": entry,
+                    },
+                    status=200,
+                )
+            else:
+                return JsonResponse(
+                    {
+                        "isSuccess": False,
+                        "message": payment_intent.status,
+                    },
+                    status=200,  # Return a 400 status code for failure
+                )
+
         except Exception as e:
+            print(e)
             return JsonResponse(
-                {"message": "[SESSION CHECKOUT]: " + str(e)}, status=200
+                {
+                    "isSuccess": False,
+                    "message": str(e),
+                },
+                status=200,
             )
+
+
+def get_or_create_customer(email, payment_method):
+    customer = None
+    customers = stripe.Customer.list(email=email, limit=1)
+
+    if customers.data:
+        print("[CUSTOMER HUNT]: Found existing customer")
+        customer = customers.data[0]
+
+        # Update the customer's payment method
+        stripe.PaymentMethod.attach(
+            payment_method,
+            customer=customer.id,
+        )
+        customer = stripe.Customer.modify(
+            customer.id,
+            invoice_settings={"default_payment_method": payment_method},
+        )
+    else:
+        print("[CUSTOMER HUNT]: Creating new customer")
+        customer = stripe.Customer.create(
+            email=email,
+            payment_method=payment_method,
+            invoice_settings={"default_payment_method": payment_method},
+        )
+
+    return customer
 
 
 def get_or_create_price():

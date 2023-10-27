@@ -19,6 +19,10 @@ body {
   /* background-image: url("/assets/pattern.webp"); */
 }
 
+.__STRIPE_CSS__ {
+  border-radius: 0px !important;
+}
+
 .background_stripe {
   background-repeat: repeat;
   /* height: 44px; */

@@ -4,12 +4,16 @@ import axios from "axios";
 //   server: "http://127.0.0.1:8000/", // CHANGE WITH YOUR BACKEND LINK (/ is MUST IN END)
 //   admin: "http://127.0.0.1:8000/admin", // CHANGE WITH YOUR BACKEND LINK (/ is MUST IN END)
 //   client: "http://localhost:5173/", // CHANGE WITH YOUR FRONTEND LINK (/ is MUST IN END)
+//   STRIPE_PUBLISHABLE_KEY:
+//     "pk_test_51LyNIZJwTuApoB7M37vATaRSDkaldKdAM1MbOrH38IiOkLWoLr0qNwp0sVyT39r9tSTijyIqsOJZu1ttZaIHyPP000J1pvm6XK",
 // };
 
 export const CONSTANT = {
   server: "http://stankint.pythonanywhere.com/", // CHANGE WITH YOUR BACKEND LINK (/ is MUST IN END)
   admin: "http://stankint.pythonanywhere.com/admin", // CHANGE WITH YOUR BACKEND LINK (/ is MUST IN END)
   client: "http://stankint.pythonanywhere.com/", // CHANGE WITH YOUR FRONTEND LINK (/ is MUST IN END)
+  STRIPE_PUBLISHABLE_KEY:
+    "pk_test_51LyNIZJwTuApoB7M37vATaRSDkaldKdAM1MbOrH38IiOkLWoLr0qNwp0sVyT39r9tSTijyIqsOJZu1ttZaIHyPP000J1pvm6XK",
 };
 
 export const USER_DASHBOARD_MENU = [

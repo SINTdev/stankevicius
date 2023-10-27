@@ -23,28 +23,30 @@ export default function About(props) {
       <Fold className="">
         <Fold inside>
           <div className="flex flex-row w-full">
-            <div className="w-2/7">
-              <span className="_font-bold text-lg">About</span>
-              <span className="border-b-2 w-full mt-1 border-black block"></span>
-              <div className="mt-5 flex flex-col space-y-3 pl-5 _font-bold text-base">
-                <MenuItem
-                  label={"Introduction"}
-                  mode={props?.mode}
-                  value={"introduction"}
-                />{" "}
-                <MenuItem
-                  label={"Our Company"}
-                  mode={props?.mode}
-                  value={"our_company"}
-                />{" "}
-                <MenuItem
-                  label={"CEO Letter"}
-                  mode={props?.mode}
-                  value={"ceo_letter"}
-                />
-              </div>
+            <div className="w-2/12">
+              <span className="sticky top-[7rem]">
+                <span className="_font-bold text-lg">About</span>
+                <span className="border-b-2 w-full mt-1 border-black block"></span>
+                <div className="mt-5 flex flex-col space-y-3 _font-bold text-base">
+                  <MenuItem
+                    label={"Introduction"}
+                    mode={props?.mode}
+                    value={"introduction"}
+                  />{" "}
+                  <MenuItem
+                    label={"Our Company"}
+                    mode={props?.mode}
+                    value={"our_company"}
+                  />{" "}
+                  <MenuItem
+                    label={"CEO Letter"}
+                    mode={props?.mode}
+                    value={"ceo_letter"}
+                  />
+                </div>
+              </span>
             </div>
-            <div className="w-4/5">
+            <div className="w-10/12">
               <div className="ml-20">{props.children}</div>
             </div>
           </div>

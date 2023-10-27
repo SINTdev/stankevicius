@@ -8,12 +8,17 @@ import {
   checkLoginFromLogin,
 } from "../../CONSTANT";
 import InputBox from "../../components/InputBox";
+import PaymentForm from "../../components/PaymentForm";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+const stripePromise = loadStripe(CONSTANT.STRIPE_PUBLISHABLE_KEY);
 
 const CheckoutCredit = (props) => {
   const navigate = useNavigate();
 
   const init__payload = {
     amount: 1,
+    paymentMethod: null,
   };
   const [payload, setPayload] = useState(init__payload);
   const changePayload = (e) => {
@@ -26,13 +31,13 @@ const CheckoutCredit = (props) => {
     });
   };
 
-  useEffect(() => {
-    if (props?.resp?.status === "success") {
-      updateCredits(parseInt(props?.resp?.value));
-    } else if (props?.resp?.status === "cancel") {
-      setMessage("Payment cancelled.", "red-500");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (props?.resp?.status === "success") {
+  //     updateCredits(parseInt(props?.resp?.value));
+  //   } else if (props?.resp?.status === "cancel") {
+  //     setMessage("Payment cancelled.", "red-500");
+  //   }
+  // }, []);
 
   const updateCredits = async (id) => {
     resetMessage();
@@ -56,13 +61,18 @@ const CheckoutCredit = (props) => {
             })
           );
           props?.updateSessionData();
-          navigate("/client/credit");
         }
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
+  let __INIT__PURCHASED__ = {
+    status: false,
+    amount: 0,
+  };
+  const [purchased, setPurchased] = useState(__INIT__PURCHASED__);
 
   const getFormLink = async (e) => {
     e.target.style.pointerEvents = "none";
@@ -71,25 +81,37 @@ const CheckoutCredit = (props) => {
     e.preventDefault();
     resetMessage();
     if (payload?.amount) {
-      await axios
-        .post(CONSTANT.server + `api/checkoutsession`, {
-          amount: payload?.amount,
-          client: CONSTANT.client,
-          email: props?.email,
-          user_identifier: props?.user_identifier,
-        })
-        .then((responce) => {
-          let res = responce.data;
-          console.log(res);
-          if (res.message) {
-            setMessage(res.message, "red-500");
-          } else {
-            window.location.href = res?.url;
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      if (payload?.paymentMethod) {
+        await axios
+          .post(CONSTANT.server + `api/checkoutsession`, {
+            amount: payload?.amount,
+            client: CONSTANT.client,
+            email: props?.email,
+            user_identifier: props?.user_identifier,
+            payment_method: payload?.paymentMethod,
+          })
+          .then((responce) => {
+            let res = responce.data;
+            console.log(res);
+            if (res?.isSuccess) {
+              updateCredits(parseInt(res?.entry));
+              setPurchased({
+                status: true,
+                amount: payload?.amount,
+              });
+              setTimeout(() => {
+                setPurchased(__INIT__PURCHASED__);
+              }, 5000);
+            } else {
+              setMessage(res.message, "red-500");
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
+        setMessage("Invalid payment information.", "red-500");
+      }
     } else {
       setMessage("Invalid amount.", "red-500");
     }
@@ -109,19 +131,19 @@ const CheckoutCredit = (props) => {
 
       <div className="flex flex-col">
         <span className="text-xl text-center _font-bold leading-tight tracking-tight text-black md:text-2xl">
-          {props?.resp?.status === "success"
-            ? `${props?.resp?.amount} Credits Purchased`
+          {purchased?.status
+            ? `${purchased?.amount} Credits Purchased`
             : "Buy Advertising Credits"}
         </span>
         <span className="text-center mt-2">
-          {props?.resp?.status === "success"
+          {purchased?.status
             ? "Payment successful. Credits added to account."
             : "Enter amount of credits."}
         </span>
       </div>
       <div className="flex justify-center items-center">
         <div className="space-y-2 md:space-y-3 w-full md:w-3/5">
-          {props?.resp?.status !== "success" ? (
+          {!purchased?.status ? (
             <>
               <InputBox
                 placeholder={"1"}
@@ -130,10 +152,16 @@ const CheckoutCredit = (props) => {
                 onChange={changePayload}
                 name="amount"
               />
+              <Elements stripe={stripePromise}>
+                <PaymentForm changePayload={changePayload} />
+              </Elements>
               <div className="mt-2"></div>{" "}
               <button
                 onClick={getFormLink}
-                className="w-full text-white tracking-wider bg-black text-sm px-5 py-2.5 text-center"
+                disabled={!payload?.paymentMethod}
+                className={`${
+                  !payload?.paymentMethod && "opacity-50"
+                } w-full text-white tracking-wider bg-black text-sm px-5 py-2.5 text-center`}
               >
                 Purchase Now
               </button>
