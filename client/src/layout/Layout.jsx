@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams, useLocation } from "react-router-dom";
 import UserData from "../contexts/UserData";
 import Navbar from "../components/Navbar";
 import { checkLoginFromNonLogin, CONSTANT } from "../CONSTANT";
@@ -126,6 +126,18 @@ export default function Layout(props) {
     changePushProductChange,
     pushProductChange,
   };
+
+  const location = useLocation();
+
+  useEffect(() => {
+    if (props?.menu) {
+      let scrollTarget = 25 * 16; // 5rem * 16px per rem
+      window.scrollTo({
+        top: scrollTarget,
+        behavior: "smooth",
+      });
+    }
+  }, [location.pathname]);
 
   return (
     <>

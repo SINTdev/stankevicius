@@ -172,6 +172,37 @@ export default function Credit(props) {
                   Buy Advertising Credits
                 </button>
               </span>
+
+              <div className="flex flex-col space-y-4 w-full md:max-w-[65%]">
+                <span>
+                  *Note the price of 1 Advertising Credit is equivalent to 1
+                  U.S. Dollar. You can buy Advertising Credits with your credit
+                  card. To buy Advertising Credits against invoice please
+                  contact support.
+                </span>
+                <div className="w-full text-left text-lg _font-bold leading-tight tracking-tight text-black">
+                  What can you do with Advertising Credits?
+                </div>
+                <span>
+                  You can promote your company’s website within your trade,
+                  promote your trade on Trade Quote bar, and promote your trade
+                  to all subscribers. By promoting your trade you get exposed to
+                  more visibility and it increase your chances to connect to the
+                  business counter-party
+                </span>
+                <span>
+                  Advertising Credits are provided by Stankevicius International
+                  Business Services Limited. Read{" "}
+                  <span className="text-indigo-700 cursor-pointer">
+                    Terms of Use and Purchase Policy of Advertising Credits
+                  </span>{" "}
+                  before purchasing. Read{" "}
+                  <span className="text-indigo-700 cursor-pointer">
+                    Advertising Liabilities, Guidelines and Policy
+                  </span>{" "}
+                  before promoting your trades.
+                </span>
+              </div>
             </div>
           )}
           {filter === "history" && (

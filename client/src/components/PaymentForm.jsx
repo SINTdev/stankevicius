@@ -75,6 +75,7 @@ export default function PaymentForm(props) {
       });
     }
   };
+
   return (
     <>
       {/* <AddressElement options={{ mode: "billing", ...options }} /> */}
@@ -82,7 +83,7 @@ export default function PaymentForm(props) {
         onBlur={fetchPaymentMethod}
         onChange={fetchPaymentMethod}
         options={options}
-        className="__STRIPE_CSS__ border-gray-300 border-2 block px-3 py-3.5 w-full outline-none text-black rounded-none"
+        className={`__STRIPE_CSS__ block border-gray-300 max-h-[3rem] border-2 px-3 py-3.5 w-full outline-none text-black rounded-none`}
       />
     </>
   );

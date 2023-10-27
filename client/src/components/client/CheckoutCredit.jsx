@@ -19,6 +19,7 @@ const CheckoutCredit = (props) => {
   const init__payload = {
     amount: 1,
     paymentMethod: null,
+    accept: false,
   };
   const [payload, setPayload] = useState(init__payload);
   const changePayload = (e) => {
@@ -155,12 +156,35 @@ const CheckoutCredit = (props) => {
               <Elements stripe={stripePromise}>
                 <PaymentForm changePayload={changePayload} />
               </Elements>
+              <div className="flex items-center __CHECK_REG__ space-x-2">
+                <span className="flex items-center">
+                  <input
+                    id="link-checkbox"
+                    type="checkbox"
+                    checked={payload.accept}
+                    onChange={(e) => {
+                      setPayload({
+                        ...payload,
+                        accept: e.target.checked,
+                      });
+                    }}
+                    className="cursor-pointer text-black bg-white border-gray-300 hover:bg-gray-50 focus:ring-0 dark:focus:ring-0 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
+                  />
+                </span>
+                <label
+                  htmlFor="link-checkbox"
+                  className="tracking-normal text-gray-500 text-sm font-medium"
+                >
+                  Agree to Terms of Use and Purchase Policy of Advertising
+                  Credits.
+                </label>
+              </div>
               <div className="mt-2"></div>{" "}
               <button
                 onClick={getFormLink}
-                disabled={!payload?.paymentMethod}
+                disabled={!payload?.paymentMethod || !payload?.accept}
                 className={`${
-                  !payload?.paymentMethod && "opacity-50"
+                  (!payload?.paymentMethod || !payload?.accept) && "opacity-50"
                 } w-full text-white tracking-wider bg-black text-sm px-5 py-2.5 text-center`}
               >
                 Purchase Now

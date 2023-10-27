@@ -135,6 +135,8 @@ export default function Home(props) {
 
     if (focusParam === "list") {
       smoothScrollDown();
+    } else {
+      smoothScrollDown();
     }
   }, []);
 
