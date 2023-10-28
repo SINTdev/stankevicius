@@ -67,7 +67,7 @@ export default function Institutions() {
   return (
     <div className="flex flex-col">
       <div className="mb-3 w-full text-left text-5xl _font-bold leading-tight tracking-tight text-black">
-        Build trust with transparency
+        Market moving business
       </div>
       <div className="w-full text-left text-xl _font-bold leading-relaxed tracking-normal text-black">
         We help institutions to access large quantity of various product supply.
@@ -158,26 +158,26 @@ export default function Institutions() {
                   government
                 </td>
               </tr>
-              <tr className="bg-white border-b-2 border-[#4472c4]">
+              <tr className="bg-white border-b border-black">
                 <td className="pl-2 py-2.5">Kazakhstan</td>
                 <td className="pl-2 py-2.5 border-l border-black">
                   Large product and commodity supplier base, government
                   relations
                 </td>
               </tr>
-              <tr className="bg-white border-b-2 border-[#4472c4]">
+              <tr className="bg-white border-b border-black">
                 <td className="pl-2 py-2.5">China</td>
                 <td className="pl-2 py-2.5 border-l border-black">
                   Large product supplier base, market entry strategy
                 </td>
               </tr>
-              <tr className="bg-white border-b-2 border-[#4472c4]">
+              <tr className="bg-white border-b border-black">
                 <td className="pl-2 py-2.5">Indonesia</td>
                 <td className="pl-2 py-2.5 border-l border-black">
                   Investor relations, market entry strategy, commodity supply
                 </td>
               </tr>
-              <tr className="bg-white border-b-2 border-[#4472c4]">
+              <tr className="bg-white border-b border-black">
                 <td className="pl-2 py-2.5">United States</td>
                 <td className="pl-2 py-2.5 border-l border-black">
                   Large buyer pool, investor relations

@@ -1,5 +1,22 @@
 import React from "react";
 
+const ListCard = (props) => {
+  return (
+    <div className="">
+      <div className="mb-3 w-full text-left text-4xl _font-bold leading-tight tracking-tight text-black">
+        {props?.a}
+      </div>
+      {props?.b?.map((a) => {
+        return (
+          <div className="w-full text-left leading-relaxed tracking-wide text-base text-black">
+            {a}
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
 export default function OurCompany() {
   return (
     <div className="flex flex-col">
@@ -828,6 +845,42 @@ export default function OurCompany() {
           </svg>
         </div>
       </div>
+      <div className="py-4"></div>
+      <div className="mb-3 w-full text-left text-4xl _font-bold leading-tight tracking-tight text-black">
+        Our Values and Behaviors underpin our culture
+      </div>
+      <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
+        We encourage Novartis employees to be{" "}
+        <span className="_font-bold">inspired</span>,{" "}
+        <span className="_font-bold">curious</span> and{" "}
+        <span className="_font-bold">unbossed</span> and to act always with{" "}
+        <span className="_font-bold">integrity</span>.
+      </div>
+      <div className="py-3"></div>
+      <div className="flex flex-row">
+        <div className="block h-1 w-full border-b border-[#4472c4]"></div>
+        <div className="block h-1 w-[5rem] border-b border-transparent"></div>
+        <div className="block h-1 w-full border-b border-[#4472c4]"></div>
+      </div>
+      <div className="py-3"></div>
+      <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
+        <ListCard
+          a="Inspired"
+          b={["Engage our people", "Strive for patients", "Live our purpose"]}
+        />
+        <ListCard a="Curious" b={["Learn", "Be open", "Be self-aware"]} />
+        <ListCard
+          a="Unbossed"
+          b={["Create clarity", "Serve others", "Own your actions"]}
+        />
+        <ListCard
+          a="Integrity"
+          b={["Be honest", "Have courage", "Do what is right"]}
+        />
+      </div>
+      <div className="py-4"></div>
+      <img src="/assets/ceo_bg.png" className="md:w-[80%] w-full" />
+      <span className="text-xs mt-1 tracking-tight">Nicemode Charles, a Novartis researcher in Cambridge, Massachusetts, US</span>
     </div>
   );
 }

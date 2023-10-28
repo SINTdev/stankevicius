@@ -56,7 +56,7 @@ const TypeATableTR = ({ c, i, o, tm }) => {
       >
         {c}
       </th>
-      <td className="px-2 py-2.5 _font-bold">{i}</td>
+      <td className="px-2 py-2.5">{i}</td>
       <td className="px-2 py-2.5">{o}</td>
       <td className="px-2 py-2.5">{tm}</td>
     </tr>
@@ -124,16 +124,22 @@ export default function SmallBusiness() {
         <table className="w-full text-sm text-black">
           <thead className="text-sm text-right text-gray-900 uppercase whitespace-nowrap">
             <tr className="border-b-2 border-[#4472c4]">
-              <th scope="col" className="w-[70%] px-2 py-2.5 text-left">
+              {/* <th scope="col" className="w-[70%] px-2 py-2.5 text-left">
+                Commodity
+              </th> */}
+              <th
+                scope="col"
+                className="px-2 py-2.5 text-[#4472c4] _font-bold text-left font-medium whitespace-nowrap dark:text-white"
+              >
                 Commodity
               </th>
               <th scope="col" className="px-2 py-2.5 _font-bold">
                 Industry
               </th>
-              <th scope="col" className="px-2 py-2.5 font-light">
+              <th scope="col" className="px-2 py-2.5 _font-bold">
                 Origin
               </th>
-              <th scope="col" className="px-2 py-2.5 font-light">
+              <th scope="col" className="px-2 py-2.5 _font-bold">
                 Target Market
               </th>
             </tr>
@@ -163,10 +169,10 @@ export default function SmallBusiness() {
               o="Kazakhstan"
               tm="CIS/GCC"
             />
-            <tr className="bg-white border-b border-[#4472c4]">
+            <tr className="bg-white border-b-2 border-[#4472c4]">
               <th
                 scope="row"
-                className="px-2 py-2.5 text-[#4472c4] _font-bold text-left font-medium whitespace-nowrap dark:text-white"
+                className="px-2 py-2.5 uppercase text-[#4472c4] _font-bold text-left font-medium whitespace-nowrap dark:text-white"
               >
                 Product
               </th>
@@ -402,7 +408,7 @@ export default function SmallBusiness() {
           would be dealing with.
         </li>
         <li>
-          <span className="_font-bold">Pricing:</span> : how far fetched is the
+          <span className="_font-bold">Pricing:</span> how far fetched is the
           price? Is the price average market price, above market price, under
           market price or way under market price.
         </li>
