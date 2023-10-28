@@ -47,7 +47,7 @@ export default function About(props) {
               </span>
             </div>
             <div className="w-full md:w-9/12">
-              <div className="md:ml-10 m-0">{props.children}</div>
+              <div className="md:ml-20 m-0">{props.children}</div>
             </div>
           </div>
         </Fold>

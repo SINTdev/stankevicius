@@ -34,8 +34,22 @@ export default function CreditManagement(props) {
       });
   };
 
+  const [records, setRecords] = useState([]);
+
+  const getRecords = async () => {
+    await axios
+      .get(CONSTANT.server + `api/credits`)
+      .then((responce) => {
+        setRecords(responce.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   useEffect(() => {
     getAllUsers();
+    getRecords();
   }, []);
 
   let __INIT__USER__ADD__CREDIT__ = {
@@ -69,7 +83,7 @@ export default function CreditManagement(props) {
         new_credits: parseInt(userAddCredit?.amount),
       })
       .then((responce) => {
-        setMessage("Updated successfully!", "green-500");
+        setMessage("Credit added successfully!", "green-500");
         setUserAddCredit(__INIT__USER__ADD__CREDIT__);
         setTimeout(() => {
           resetMessage();
@@ -96,11 +110,15 @@ export default function CreditManagement(props) {
             },
             {
               id: "all",
-              name: "All credit purchases (4)",
+              name: `All credit purchases (${records?.length})`,
             },
             {
               id: "30days",
-              name: "30 days purchases (4)",
+              name: `30 days purchases (${
+                records?.filter((a) => {
+                  return a?.isLast30Days;
+                })?.length
+              })`,
             },
           ].map((category, one) => {
             return (
@@ -135,11 +153,15 @@ export default function CreditManagement(props) {
             },
             {
               id: "all",
-              name: "All credit purchases (4)",
+              name: `All credit purchases (${records?.length})`,
             },
             {
               id: "30days",
-              name: "30 days purchases (4)",
+              name: `30 days purchases (${
+                records?.filter((a) => {
+                  return a?.isLast30Days;
+                })?.length
+              })`,
             },
           ]}
         />
@@ -187,21 +209,20 @@ export default function CreditManagement(props) {
           )}
           {filter === "all" && (
             <div className="mt-5 grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-5">
-              <InvoiceCard />
-              <InvoiceCard />
-              <InvoiceCard />
+              {records?.map((a, i) => {
+                return <InvoiceCard key={i} data={a} />;
+              })}
             </div>
           )}
           {filter === "30days" && (
             <div className="mt-5 grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-5">
-              <InvoiceCard />
-              <InvoiceCard />
-              <InvoiceCard />
-              <InvoiceCard />
-              <InvoiceCard />
-              <InvoiceCard />
-              <InvoiceCard />
-              <InvoiceCard />
+              {records
+                .filter((a) => {
+                  return a?.isLast30Days;
+                })
+                ?.map((a, i) => {
+                  return <InvoiceCard key={i} data={a} />;
+                })}
             </div>
           )}
         </div>

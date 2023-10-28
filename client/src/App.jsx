@@ -27,6 +27,7 @@ import SourcingProcurement from "./views/menus/SourcingProcurement";
 import About from "./views/menus/About";
 import OurCompany from "./views/menus/OurCompany";
 import CEOLetter from "./views/menus/CEOLetter";
+import Institutions from "./views/menus/Institutions";
 
 // import CategoryManagement from "./views/corporate/CategoryManagement";
 
@@ -200,7 +201,7 @@ function App() {
             element={
               <Layout {...paramater} menu={true}>
                 <PrivateClients mode="institutions">
-                  <SmallBusiness />
+                  <Institutions />
                 </PrivateClients>
               </Layout>
             }

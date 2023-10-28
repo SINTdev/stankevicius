@@ -2,7 +2,7 @@ import React from "react";
 
 export default function CEOLetter() {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col md:pl-20">
       <div className="mb-3 w-full text-left text-5xl _font-bold leading-tight tracking-tight text-black">
         CEO’s letter
       </div>
@@ -20,10 +20,10 @@ export default function CEOLetter() {
         And so we have decided to invest in technology and data science to
         develop innovative solutions, increase efficiency, better respond to
         thneeds of clients, and ultimately improve the way we conduct global
-        trade today
+        trade today.
       </div>
       <div className="py-4"></div>
-      <img src="/assets/ceo_bg.png" />
+      <img src="/assets/ceo_bg.png" className="md:w-[100%] w-full"/>
       <div className="py-5"></div>
       <div className="mb-5 w-full text-left font-extralight text-3xl italic leading-tight text-[#0460a9]">
         As we look to the future as a technology driven trade consulting firmour

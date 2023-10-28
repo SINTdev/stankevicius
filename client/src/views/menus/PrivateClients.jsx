@@ -34,7 +34,7 @@ export default function PrivateClients(props) {
                     value={"small_business"}
                   />
                   <MenuItem
-                    label={"Insitutions"}
+                    label={"Institutions"}
                     mode={props?.mode}
                     value={"institutions"}
                   />
@@ -42,7 +42,7 @@ export default function PrivateClients(props) {
               </span>
             </div>
             <div className="w-full md:w-9/12">
-              <div className="md:ml-10 m-0">{props.children}</div>
+              <div className="md:ml-20 m-0">{props.children}</div>
             </div>
           </div>
         </Fold>

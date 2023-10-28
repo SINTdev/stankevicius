@@ -295,7 +295,25 @@ def get_or_create_price():
 def credits(request, pk=None):
     if request.method == "GET":
         if pk is None:
-            return JsonResponse([], safe=False)
+            now = timezone.now()
+            last_30_days = now - timedelta(days=30)
+
+            # Retrieve all CreditsPurchasing objects and order them by the timestamp
+            credits = models.CreditsPurchasing.objects.filter(isPaid=True).order_by(
+                "-timestamp"
+            )
+
+            final_data = [
+                {
+                    **serializers.ViewCreditsPurchasingSerializer(credit).data,
+                    "isLast30Days": (
+                        True if credit.timestamp >= last_30_days else False
+                    ),
+                }
+                for credit in credits
+            ]
+
+            return JsonResponse(final_data, safe=False)
         instance = models.CreditsPurchasing.objects.filter(
             user__id=int(pk), isPaid=True
         ).order_by("-timestamp")

@@ -175,7 +175,7 @@ export default function Credit(props) {
                 </button>
               </span>
 
-              <div className="flex flex-col space-y-4 w-full md:max-w-[65%] text-sm">
+              <div className="flex flex-col space-y-4 w-full text-[calc(0.875rem-2px)]">
                 <span>
                   *Note the price of 1 Advertising Credit is equivalent to 1
                   U.S. Dollar. You can buy Advertising Credits with your credit
