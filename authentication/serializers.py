@@ -54,3 +54,9 @@ class ViewUserSerializer(serializers.ModelSerializer):
             "isEmailVerified",
             "timestamp",
         )
+
+
+class ViewAllUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.CustomUsers
+        fields = ("id", "email", "fullName", "credits")

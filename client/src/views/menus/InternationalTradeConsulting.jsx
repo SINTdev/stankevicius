@@ -6,7 +6,7 @@ const MenuItem = ({ label, value, mode }) => {
   return (
     <Link
       to={`/menu/${value}`}
-      className={`cursor-pointer px-5 py-2 border-l-2 hover:bg-[#F1F1F1] hover:border-l-[#221f1f] ${
+      className={`tracking-tight cursor-pointer px-5 py-2 border-l-2 hover:bg-[#F1F1F1] hover:border-l-[#221f1f] ${
         value === mode
           ? "bg-[#F1F1F1] border-l-[#221f1f]"
           : "border-l-transparent"
@@ -23,9 +23,9 @@ export default function InternationalTradeConsulting(props) {
       <Fold className="">
         <Fold inside>
           <div className="flex flex-row w-full px-2">
-            <div className="w-2/12 md:block hidden">
+            <div className="w-3/12 md:block hidden">
               <span className="sticky top-[7rem]">
-                <span className="_font-bold text-lg">
+                <span className="_font-bold text-lg tracking-tight">
                   International Trade Consulting
                 </span>
                 <span className="border-b-2 w-full mt-1 border-black block"></span>
@@ -53,8 +53,8 @@ export default function InternationalTradeConsulting(props) {
                 </div>
               </span>
             </div>
-            <div className="w-full md:w-10/12">
-              <div className="md:ml-20 m-0">{props.children}</div>
+            <div className="w-full md:w-9/12">
+              <div className="md:ml-10 m-0">{props.children}</div>
             </div>
           </div>
         </Fold>

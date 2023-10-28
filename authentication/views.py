@@ -14,6 +14,7 @@ from django.contrib.auth.hashers import check_password, make_password
 import uuid
 import pyotp
 from django.utils import timezone
+from api.views import createCreditEntry
 
 
 @api_view(["POST", "PUT"])
@@ -159,6 +160,17 @@ def verify(request):
             )
 
 
+@api_view(["GET"])
+@permission_classes([])
+@authentication_classes([])
+def allusers(request, pk=None):
+    if request.method == "GET":
+        # GET ALL USERS
+        instance = models.CustomUsers.objects.all()
+        object = serializers.ViewAllUserSerializer(instance, many=True)
+        return JsonResponse(object.data, safe=False)
+
+
 @api_view(["POST", "PUT", "GET", "DELETE"])
 @permission_classes([])
 @authentication_classes([])
@@ -216,6 +228,15 @@ def user(request, pk=None):
                     user.offer = data["offer"]
                 if "countryCode" in data:
                     user.countryCode = data["countryCode"]
+                if "new_credits" in data:
+                    user.credits = user.credits + int(data["new_credits"])
+                    createCreditEntry(
+                        {
+                            "user": user.id,
+                            "amount": int(data["new_credits"]),
+                            "isPaid": True,
+                        }
+                    )
                 if "phoneNumber" in data:
                     user.phoneNumber = data["phoneNumber"]
                 if "newPassword" in data:

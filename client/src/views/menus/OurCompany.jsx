@@ -7,42 +7,42 @@ export default function OurCompany() {
         Our company
       </div>
       <div className="w-full text-left text-xl _font-bold leading-relaxed tracking-normal text-black">
-        Novartis is one of the world’s leading medicines companies. We use
-        innovative science and technology to address some of society’s most
-        challenging healthcare issues. Worldwide, our medicines reached 743
-        million people in 2022.
+        Stankevicius International is one of the world’s most innovative trade
+        consulting companies. We use technology and data to address some of the
+        most challenging business matters in international trade. Worldwide, we
+        have helped clients to protect $10.0 bn in capital against international
+        trade fraud since 2016.
       </div>
       <div className="py-4"></div>
       <div className="mb-3 w-full text-left text-4xl _font-bold leading-tight tracking-tight text-black">
         Our purpose
       </div>
       <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-        Our purpose is to reimagine medicine to improve and extend people’s
-        lives. We use innovative science and technology to address some of
-        society’s most challenging healthcare issues. We discover and develop
-        breakthrough treatments and find new ways to deliver them to as many
-        people as possible. We also aim to reward those who invest their money,
-        time and ideas in our company.
+        Our purpose is to reimagine general trading and improve the process of
+        exercising business in international trade sector. We use our customized
+        technology to filter and process data for simplifying complexities of
+        the trading world. We aim to discover the value within the noisy trade
+        market.
       </div>
       <div className="py-4"></div>
       <div className="mb-3 w-full text-left text-4xl _font-bold leading-tight tracking-tight text-black">
         Our vision
       </div>
       <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-        Our vision is to become the most valued and trusted medicines company in
-        the world.
+        Our vision is to become the most valued and trusted international trade
+        consulting company in the world.
       </div>
       <div className="py-4"></div>
       <div className="mb-3 w-full text-left text-4xl _font-bold leading-tight tracking-tight text-black">
         Our company
       </div>
       <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-        We have two operating divisions: Innovative Medicines, which specializes
-        in patent-protected medicines, and Sandoz, which sells high-quality
-        generics and biosimilars. Innovative Medicines is the larger of our two
-        divisions in terms of consolidated net sales. These divisions are
-        supported by our research and development (R&D) teams, our Operations
-        organization and our corporate functions.
+        Stankevicius International is a trade consulting division under
+        Stankevicius Group with the focus on providing business services to
+        clients including sourcing and procurement, production and
+        manufacturing, shipping and logistics, inspection and quality checks,
+        business auditing, business counter-party due diligence and professional
+        contracting.
       </div>
       <div className="py-4"></div>
       <div className="flex flex-row space-y-3">

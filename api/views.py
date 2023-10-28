@@ -34,6 +34,7 @@ def initialize_backend():
                 password="admin",
                 email="admin@admin.com",
                 name="Admin",
+                credits=999999999999999999,
                 is_staff=True,
                 is_superuser=True,
                 IsEmailVerified=True,

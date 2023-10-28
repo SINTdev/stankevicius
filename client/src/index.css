@@ -18,6 +18,18 @@ body {
 .background_stripe {
   /* background-image: url("/assets/pattern.webp"); */
 }
+/* Add this to your global CSS file or a stylesheet */
+.modal-open {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+body.modal-open {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+}
 
 .__STRIPE_CSS__ {
   border-radius: 0px !important;

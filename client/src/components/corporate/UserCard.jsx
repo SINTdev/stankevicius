@@ -12,6 +12,8 @@ export default function UserCard(props) {
           <span>COMPANY URL:</span>
           <span>LAST LOGIN:</span>
           <span>ACCOUNT CREATED:</span>
+          <span>CURRENT CREDIT:</span>
+          <span>TOTAL SPENDING:</span>
           <span>ACTION:</span>
         </div>
         <div className="w-1/2 flex flex-col">
@@ -32,6 +34,8 @@ export default function UserCard(props) {
             {props?.user?.timestamp &&
               new Date(props?.user?.timestamp)?.toLocaleString()}
           </span>
+          <span>{props?.user?.credits || "0"}</span>
+          <span>{`${props?.user?.credits}$` || "0$"}</span>
           <span
             className="hover:text-gray-500 cursor-pointer"
             onClick={() => {

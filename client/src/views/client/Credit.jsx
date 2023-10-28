@@ -175,7 +175,7 @@ export default function Credit(props) {
                 </button>
               </span>
 
-              <div className="flex flex-col space-y-4 w-full md:max-w-[65%]">
+              <div className="flex flex-col space-y-4 w-full md:max-w-[65%] text-sm">
                 <span>
                   *Note the price of 1 Advertising Credit is equivalent to 1
                   U.S. Dollar. You can buy Advertising Credits with your credit
@@ -196,7 +196,7 @@ export default function Credit(props) {
                   Advertising Credits are provided by Stankevicius International
                   Business Services Limited. Read{" "}
                   <span
-                    className="text-indigo-700 cursor-pointer"
+                    className="text-sky-700 cursor-pointer"
                     onClick={() => {
                       setStaticMessage({
                         show: true,
@@ -238,7 +238,7 @@ export default function Credit(props) {
                   </span>{" "}
                   before purchasing. Read{" "}
                   <span
-                    className="text-indigo-700 cursor-pointer"
+                    className="text-sky-700 cursor-pointer"
                     onClick={() => {
                       setStaticMessage({
                         show: true,

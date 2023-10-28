@@ -1,17 +1,18 @@
 import React from "react";
 import Fold from "../../components/menus/Fold";
+import { Link } from "react-router-dom";
 
-const GrayCards = () => {
+const GrayCards = (props) => {
   return (
     <div className="select-none cursor-pointer bg-[#F1F1F1] py-8 px-5 flex flex-col">
       <div className="w-full text-left font-extralight text-4xl md:text-7xl leading-tight text-[#0460a9]">
-        10.0 bn
+        {props?.one}
       </div>
       <div className="mt-3 w-full text-left mb-2 text-2xl _font-bold leading-tight tracking-tight text-black">
-        Invested in research & development (USD)
+        {props?.two}
       </div>
       <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-        (vs. USD 9.5 bn in 2021)
+        {props?.three}
       </div>
       <div className="py-3"></div>
     </div>
@@ -22,24 +23,34 @@ export default function Introduction() {
   return (
     <div className="flex flex-col w-full">
       <div className="flex w-full flex-col space-y-3 md:space-y-0 items-center md:flex-row whitespace-nowrap">
-        <div className="m-0 w-full md:text-left text-4xl md:text-4xl md:text-7xl text-center _font-bold leading-tight tracking-tight text-black">
-          2022 at a glance
+        <div className="m-0 w-full md:text-left text-4xl md:text-7xl text-center _font-bold leading-tight tracking-tight text-black">
+          Firm at a glance
         </div>
-        <span className="flex items-center">
-          <button
-            onClick={null}
-            className="transition-all duration-300 ease-in-out cursor-pointer w-fit text-black border border-black hover:bg-black hover:text-white bg-transparent text-lg px-8 py-1.5 font-bold text-center"
-          >
-            See all highlights
-          </button>
-        </span>
       </div>
       <div className="py-3"></div>
       <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
-        <GrayCards />
-        <GrayCards />
-        <GrayCards />
-        <GrayCards />
+        <GrayCards
+          one={"10.0 bn"}
+          two="Protected capital from trade fraud"
+          three="(Since 2016)"
+        />
+        <GrayCards
+          one={"500"}
+          two="Consulted clients for global
+trade matters"
+          three="(Since 2016)"
+        />
+        <GrayCards
+          one={"1200+"}
+          two="Relationships with global
+traders and suppliers"
+          three="(Since 2016)"
+        />
+        <GrayCards
+          one={"300.0 M"}
+          two="In facilitated trade transactions"
+          three="(Since 2016)"
+        />
       </div>
       <div className="py-4"></div>
       <Fold className="bg-[#F1F1F1] py-8 px-10">
@@ -48,20 +59,21 @@ export default function Introduction() {
           className="flex flex-col md:flex-row space-x-5 items-center justify-center"
         >
           <div className="py-10 flex flex-col space-y-5 w-full md:w-1/2">
-            <div className="m-0 w-full text-left text-4xl md:text-4xl md:text-7xl _font-bold leading-tight tracking-tight text-black">
+            <div className="m-0 w-full text-left text-4xl md:text-7xl _font-bold leading-tight tracking-tight text-black">
               Who we are
             </div>
             <div className="mt-3 w-full text-left mb-2 text-2xl _font-bold leading-tight tracking-tight text-black">
-              Novartis is one of the world’s leading medicines companies. We use
-              innovative science and technology to address some of society’s
-              most challenging healthcare issues.
+              Stankevicius International is a private trade consulting company.
+              We use technology and data to increase security, prevent
+              international trade fraud and facilitate international trade
+              deals.
             </div>
-            <button
-              onClick={null}
+            <Link
+              to="/menu/our_company"
               className="transition-all duration-300 ease-in-out cursor-pointer w-fit text-black border border-black hover:bg-black hover:text-white bg-transparent text-lg px-8 py-1.5 font-bold text-center"
             >
               Learn more
-            </button>
+            </Link>
           </div>
           <div className="w-full md:w-1/2">
             <svg
@@ -1005,28 +1017,29 @@ export default function Introduction() {
             <div className="m-0 w-full text-left text-4xl md:text-7xl _font-bold leading-tight tracking-tight text-white">
               CEO’s letter
             </div>
-            <img src="https://www.reporting.novartis.com/2022/_assets/gallery/ceo-image.jpg" />
+            <img src="/assets/ceo_bg.png" />
           </div>
           <div className="md:w-1/2 w-full md:pl-10">
             <div className="mt-3 w-full text-left mb-2 text-2xl italic leading-tight tracking-tight text-white">
-              Novartis is one of the world’s leading medicines companies. We use
-              innovative science and technology to address some of society’s
-              most challenging healthcare issues.
+              Stankevicius International is one of the world’s most innovative
+              trade consulting companies. We use technology and data to address
+              some of the most challenging business aspects in international
+              trade.
             </div>
             <div className="py-1"></div>
             <div className="w-full text-left _font-bold text-lg tracking-normal translate-y-1 text-white">
-              Vas Narasimhan
+              Paulius Stankevicius
             </div>
             <div className="w-full text-left text-lg tracking-normal text-white">
               Chief Executive Officer
             </div>
             <div className="py-4"></div>
-            <button
-              onClick={null}
-              className="transition-all duration-300 ease-in-out cursor-pointer w-fit text-white border border-white hover:bg-white hover:text-black bg-transparent text-lg px-8 py-1.5 font-bold text-center"
+            <Link
+              to="/menu/ceo_letter"
+              className="transition-all duration-300 ease-in-out cursor-pointer w-fit text-white border border-white hover:bg-white hover:text-black bg-transparent text-lg px-8 py-2.5 font-bold text-center"
             >
               Read the CEO's letter
-            </button>
+            </Link>
           </div>
         </Fold>
       </Fold>

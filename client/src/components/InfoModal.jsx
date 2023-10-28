@@ -1,7 +1,32 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 const InfoModal = (props) => {
   const { show, message, isInfo, onAgree, onClose } = props;
+
+  const [enable, setEnable] = useState(false);
+  const messageContainerRef = useRef(null);
+
+  const handleScroll = () => {
+    const container = messageContainerRef.current;
+    if (container) {
+      // Calculate the difference between the scroll height and the current scroll position
+      const scrollDifference =
+        container.scrollHeight - container.scrollTop - container.clientHeight;
+      // Set enable to true when scrolled to the bottom
+      if (scrollDifference <= 0) {
+        setEnable(true);
+      }
+    }
+  };
+
+  useEffect(() => {
+    // Add or remove a CSS class to the body to prevent scrolling
+    if (show) {
+      document.body.classList.add("modal-open");
+    } else {
+      document.body.classList.remove("modal-open");
+    }
+  }, [show]);
 
   return (
     <>
@@ -10,29 +35,49 @@ const InfoModal = (props) => {
           {/* Overlay */}
           <div
             className="fixed inset-0 bg-white opacity-70"
-            onClick={onClose}
+            onClick={() => {
+              setEnable(false);
+              onClose();
+            }}
           ></div>
 
           {/* Modal Content */}
           <div className="bg-white p-8 border-2 shadow-2xl z-10 md:min-w-[30%]">
-            <p className="mb-4 max-w-md max-h-[40vh] overflow-auto">
+            <h1 className="_font-bold mb-2 text-[24px] tracking-tight">
+              Privacy Policy
+            </h1>
+            <div
+              className="mb-2 max-w-md max-h-[40vh] overflow-auto"
+              onScroll={handleScroll}
+              ref={messageContainerRef}
+            >
               {message}
-            </p>
+            </div>
             <div className="flex justify-end space-x-4 whitespace-nowrap">
               {!isInfo ? (
                 <button
-                  className="bg-black w-fit text-white px-4 py-2"
+                  className={`${
+                    !enable ? "pointer-events-none opacity-50" : ""
+                  } bg-black w-fit text-white px-4 py-2`}
                   onClick={() => {
                     onAgree();
+                    setEnable(false);
                     onClose();
                   }}
+                  disabled={!enable}
                 >
                   I understand and agree
                 </button>
               ) : (
                 <button
-                  className="bg-black w-fit text-white px-4 py-2"
-                  onClick={onClose}
+                  className={`${
+                    !enable ? "pointer-events-none opacity-50" : ""
+                  } bg-black w-fit text-white px-4 py-2`}
+                  onClick={() => {
+                    setEnable(false);
+                    onClose();
+                  }}
+                  disabled={!enable}
                 >
                   I understand
                 </button>

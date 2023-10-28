@@ -16,6 +16,8 @@ const RenderTR = ({ user, onDelete }) => {
       </td>
       <td className="px-6 py-4">{user?.companyName}</td>
       <td className="px-6 py-4">{user?.companyURL}</td>
+      <td className="px-6 py-4">{user?.credits}</td>
+      <td className="px-6 py-4">{user?.credits}$</td>
       <td className="px-6 py-4">
         {user?.lastLogin && new Date(user?.lastLogin)?.toLocaleString()}
         {!user?.lastLogin && "-"}
@@ -60,6 +62,12 @@ export default function UserTable(props) {
             </th>
             <th scope="col" className="px-6 py-3">
               Company URL
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Current Credit
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Total Spending
             </th>
             <th scope="col" className="px-6 py-3">
               Last Login
