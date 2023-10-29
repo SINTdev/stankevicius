@@ -122,7 +122,7 @@ export default function SmallBusiness() {
           We have access to mainstream market trending commodities and products
         </span>
         <table className="w-full text-sm text-black">
-          <thead className="text-sm text-right text-gray-900 uppercase whitespace-nowrap">
+          <thead className="text-sm text-right text-gray-900 whitespace-nowrap">
             <tr className="border-b-2 border-[#4472c4]">
               {/* <th scope="col" className="w-[70%] px-2 py-2.5 text-left">
                 Commodity
@@ -172,7 +172,7 @@ export default function SmallBusiness() {
             <tr className="bg-white border-b-2 border-[#4472c4]">
               <th
                 scope="row"
-                className="px-2 py-2.5 uppercase text-[#4472c4] _font-bold text-left font-medium whitespace-nowrap dark:text-white"
+                className="px-2 py-2.5 text-[#4472c4] _font-bold text-left font-medium whitespace-nowrap dark:text-white"
               >
                 Product
               </th>

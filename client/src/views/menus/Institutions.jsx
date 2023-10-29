@@ -142,51 +142,51 @@ export default function Institutions() {
               <tr className="bg-white border-b border-black">
                 <td className="pl-2 py-2.5">United Arab Emirates</td>
                 <td className="pl-2 py-2.5 border-l border-black">
-                  Market entry strategy and guidance, government relations
+                  Market entry strategy and guidance, government relations.
                 </td>
               </tr>
               <tr className="bg-white border-b border-black">
                 <td className="pl-2 py-2.5">Bahrain</td>
                 <td className="pl-2 py-2.5 border-l border-black">
-                  Market entry strategy and guidance, government relations
+                  Market entry strategy and guidance, government relations.
                 </td>
               </tr>
               <tr className="bg-white border-b border-black">
                 <td className="pl-2 py-2.5">Saudi Arabia</td>
                 <td className="pl-2 py-2.5 border-l border-black">
                   Market entry strategy and guidance, investor relations,
-                  government
+                  government.
                 </td>
               </tr>
               <tr className="bg-white border-b border-black">
                 <td className="pl-2 py-2.5">Kazakhstan</td>
                 <td className="pl-2 py-2.5 border-l border-black">
                   Large product and commodity supplier base, government
-                  relations
+                  relations.
                 </td>
               </tr>
               <tr className="bg-white border-b border-black">
                 <td className="pl-2 py-2.5">China</td>
                 <td className="pl-2 py-2.5 border-l border-black">
-                  Large product supplier base, market entry strategy
+                  Large product supplier base, market entry strategy.
                 </td>
               </tr>
               <tr className="bg-white border-b border-black">
                 <td className="pl-2 py-2.5">Indonesia</td>
                 <td className="pl-2 py-2.5 border-l border-black">
-                  Investor relations, market entry strategy, commodity supply
+                  Investor relations, market entry strategy, commodity supply.
                 </td>
               </tr>
               <tr className="bg-white border-b border-black">
                 <td className="pl-2 py-2.5">United States</td>
                 <td className="pl-2 py-2.5 border-l border-black">
-                  Large buyer pool, investor relations
+                  Large buyer pool, investor relations.
                 </td>
               </tr>
               <tr className="bg-white border-b-2 border-[#4472c4]">
                 <td className="pl-2 py-2.5">Africa</td>
                 <td className="pl-2 py-2.5 border-l border-black">
-                  Strong government relations, large trading network
+                  Strong government relations, large trading network.
                 </td>
               </tr>
             </tbody>

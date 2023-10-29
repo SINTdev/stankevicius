@@ -24,6 +24,9 @@ import InternationalTradeConsulting from "./views/menus/InternationalTradeConsul
 import PrivateClients from "./views/menus/PrivateClients";
 import SmallBusiness from "./views/menus/SmallBusiness";
 import SourcingProcurement from "./views/menus/SourcingProcurement";
+import ProductionAndManufacturing from "./views/menus/ProductionAndManufacturing";
+import ShippingAndLogistics from "./views/menus/ShippingAndLogistics";
+import Inspection from "./views/menus/Inspection";
 import About from "./views/menus/About";
 import OurCompany from "./views/menus/OurCompany";
 import CEOLetter from "./views/menus/CEOLetter";
@@ -223,7 +226,7 @@ function App() {
             element={
               <Layout {...paramater} menu={true}>
                 <InternationalTradeConsulting mode="production_manufacturing">
-                  <SourcingProcurement />
+                  <ProductionAndManufacturing />
                 </InternationalTradeConsulting>
               </Layout>
             }
@@ -233,7 +236,7 @@ function App() {
             element={
               <Layout {...paramater} menu={true}>
                 <InternationalTradeConsulting mode="shipping_logistics">
-                  <SourcingProcurement />
+                  <ShippingAndLogistics />
                 </InternationalTradeConsulting>
               </Layout>
             }
@@ -243,7 +246,7 @@ function App() {
             element={
               <Layout {...paramater} menu={true}>
                 <InternationalTradeConsulting mode="inspection_quality">
-                  <SourcingProcurement />
+                  <Inspection />
                 </InternationalTradeConsulting>
               </Layout>
             }

@@ -51,535 +51,94 @@ export default function SourcingProcurement() {
   return (
     <div className="flex flex-col">
       <div className="mb-3 w-full text-left text-5xl _font-bold leading-tight tracking-tight text-black">
-        Unleash the power of our people
+        Approaching markets with authority
       </div>
       <div className="w-full text-left text-xl _font-bold leading-relaxed tracking-normal text-black">
-        Culture helps to drive innovation and long-term performance. In 2022, we
-        moved to an integrated company structure to align with our focused
-        strategy, while also putting in place measures to help employees manage
-        through this significant change. We also continued to phase in new ways
-        of working and advanced our efforts to increase workforce diversity.
-      </div>
-      <div className="py-6"></div>
-      <div className="flex flex-col space-y-3 overflow-auto">
-        <span className="_font-bold text-lg tracking-tight">
-          People performance indicators
-        </span>
-        <table className="w-full text-sm text-black">
-          <thead className="text-sm text-right text-gray-900 uppercase">
-            <tr className="border-b-2 border-[#4472c4]">
-              <th scope="col" className="w-[70%] px-2 py-2.5 text-left"></th>
-              <th scope="col" className="px-2 py-2.5 _font-bold">
-                2022
-              </th>
-              <th scope="col" className="px-2 py-2.5 font-light">
-                2021
-              </th>
-              <th scope="col" className="px-2 py-2.5 font-light">
-                2020
-              </th>
-            </tr>
-          </thead>
-          <tbody className="text-right whitespace-nowrap">
-            <tr className="bg-white hover:bg-black hover:text-white border-b border-[#4472c4]">
-              <th
-                scope="row"
-                className="px-2 py-2.5 text-left font-medium whitespace-nowrap dark:text-white"
-              >
-                Headcount 1
-              </th>
-              <td className="px-2 py-2.5 _font-bold">105 533</td>
-              <td className="px-2 py-2.5">105 533</td>
-              <td className="px-2 py-2.5">105 533</td>
-            </tr>
-            <tr className="bg-white hover:bg-black hover:text-white border-b border-[#4472c4]">
-              <th
-                scope="row"
-                className="px-2 py-2.5 text-left font-medium whitespace-nowrap dark:text-white"
-              >
-                Full-time equivalent positions 1
-              </th>
-              <td className="px-2 py-2.5 _font-bold">105 533</td>
-              <td className="px-2 py-2.5">105 533</td>
-              <td className="px-2 py-2.5">105 533</td>
-            </tr>
-            <tr className="bg-white hover:bg-black hover:text-white border-b border-[#4472c4]">
-              <th
-                scope="row"
-                className="px-2 py-2.5 text-left font-medium whitespace-nowrap dark:text-white"
-              >
-                Percentage turnover: voluntary / overall
-              </th>
-              <td className="px-2 py-2.5 _font-bold">105 533</td>
-              <td className="px-2 py-2.5">105 533</td>
-              <td className="px-2 py-2.5">105 533</td>
-            </tr>
-            <tr className="bg-white border-b border-[#4472c4]">
-              <th
-                scope="row"
-                className="px-2 py-2.5 text-[#4472c4] _font-bold text-left font-medium whitespace-nowrap dark:text-white"
-              >
-                Health and safety
-              </th>
-              <td className="px-2 py-2.5 _font-bold"></td>
-              <td className="px-2 py-2.5"></td>
-              <td className="px-2 py-2.5"></td>
-            </tr>{" "}
-            <tr className="bg-white hover:bg-black hover:text-white border-b border-[#4472c4]">
-              <th
-                scope="row"
-                className="px-2 py-2.5 text-left font-medium whitespace-nowrap dark:text-white"
-              >
-                Headcount 1
-              </th>
-              <td className="px-2 py-2.5 _font-bold">105 533</td>
-              <td className="px-2 py-2.5">105 533</td>
-              <td className="px-2 py-2.5">105 533</td>
-            </tr>
-            <tr className="bg-white hover:bg-black hover:text-white border-b border-[#4472c4]">
-              <th
-                scope="row"
-                className="px-2 py-2.5 text-left font-medium whitespace-nowrap dark:text-white"
-              >
-                Full-time equivalent positions 1
-              </th>
-              <td className="px-2 py-2.5 _font-bold">105 533</td>
-              <td className="px-2 py-2.5">105 533</td>
-              <td className="px-2 py-2.5">105 533</td>
-            </tr>
-            <tr className="bg-white hover:bg-black hover:text-white border-b border-[#4472c4]">
-              <th
-                scope="row"
-                className="px-2 py-2.5 text-left font-medium whitespace-nowrap dark:text-white"
-              >
-                Percentage turnover: voluntary / overall
-              </th>
-              <td className="px-2 py-2.5 _font-bold">105 533</td>
-              <td className="px-2 py-2.5">105 533</td>
-              <td className="px-2 py-2.5">105 533</td>
-            </tr>
-          </tbody>
-        </table>
-        <ol class="list-decimal marker:text-xs text-sm pl-4 pt-2">
-          <li>
-            “Headcount” reflects the total number of employees in payroll
-            systems. “Full-time equivalent positions” adjusts headcount for
-            employees working less than 100%.
-          </li>
-          <li>
-            Since 2022, Novartis reports training hours for internal employees
-            only
-          </li>
-          <li>
-            Management defined by Global Job Level Architecture and Novartis Top
-            Leaders
-          </li>
-          <li>Generally non-management employees</li>
-          <li>
-            Data include all work-related injuries and illnesses, whether
-            leading to lost time or not.
-          </li>
-        </ol>
+        We use our global network of traders and global suppliers to assist
+        clients in accessing products and commodities at the best possible rate.
+        Our insider trading network is well established and we have options to
+        source and procure various of products from global markets.
       </div>
       <div className="py-3"></div>
       <div className="mb-3 w-full text-left text-4xl _font-bold leading-tight tracking-tight text-black">
-        Changes to our organizational model
+        Product variety and accessibility
       </div>
       <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-        Executing on our strategy as a focused medicines company requires us to
-        work differently. We reorganized our company to create a more agile and
-        simpler organization that is aligned with our focused strategy and will
-        support innovation, growth and productivity. Regrettably, our
-        Transforming for Growth initiative also entails job losses as we reshape
-        our company to focus on our core Innovative Medicines business.
-      </div>
-      <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-        We recognize that these changes cause considerable uncertainty for many
-        of our employees. To manage the process, we put in place six basic
-        principles:
-      </div>
-      <div className="py-3"></div>
-      <ul class="list-[square] pl-6 marker:text-2xl space-y-3 mb-3">
-        <li>
-          <span className="_font-bold">Fairness in decision-making:</span> all
-          decisions were taken in line with our Code of Ethics and Values and
-          Behaviors.
-        </li>
-        <li>
-          <span className="_font-bold">Fairness in decision-making:</span> where
-          units were merged, we ensured proper balance in terms of both
-          organizational structure and opportunities for leadership positions.
-        </li>
-        <li>
-          <span className="_font-bold">Fairness in decision-making:</span>{" "}
-          throughout the process, we worked to ensure equal opportunities for
-          all employees to maintain our commitment to diversity, equity and
-          inclusion.
-        </li>
-        <li>
-          <span className="_font-bold">Fairness in decision-making:</span> those
-          affected by the changes had access to various support programs to help
-          them transition to new roles, either within or outside Novartis.
-        </li>
-      </ul>{" "}
-      <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-        Our business produces enormous amounts of data, not only from research
-        and development but also from production, distribution and marketing. We
-        are taking advantage of this resource to improve productivity and spur
-        innovation
+        We have been trading various products and heavy commodities since 2016.
+        Our group has been in the industry for nearly a decade managing
+        international trade clients, supervising contracts and providing due
+        diligence checks. We have been long enough in the market to analyze,
+        learn and understand the importance of genuine supply source.
       </div>{" "}
       <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-        Our business produces enormous amounts of data, not only from research
-        and development but also from production, distribution and marketing. We
-        are taking advantage of this resource to improve productivity and spur
-        innovation
-      </div>
-      <div className="py-3"></div>
-      <div className="mb-3 w-full text-left text-4xl _font-bold leading-tight tracking-tight text-black">
-        Investing in our culture
-      </div>
-      <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-        Our Generative Chemistry project, for example, helps scientists at the
-        Novartis Institutes for Biomedical Research (NIBR) speed up the
-        discovery of new high-value medicines. The process for researching and
-        developing new medicines is complex, requiring the evaluation of
-        hundreds of thousands of candidate compounds before a project reaches
-        the clinical trial stage. We use machine learning algorithms to identify
-        new patterns and suggest molecules to synthesize in the lab.
+        Over the years we have been protecting clients against fraud and
+        misconduct, however during this time we have also discovered the
+        promising side of the supply chain business. We are now able to provide
+        a wide inventory of various products and commodities through our
+        internal network. Additionally, we have also developed an{" "}
+        <ReferenceLink label={"Interactive Trade Platform"} /> to help buyers,
+        sellers and regular traders navigate the global market trade business.
       </div>
       <div className="py-3"></div>
       <div className="mb-3 w-full text-left text-4xl leading-tight tracking-tight text-black">
-        Diversity, equity and inclusion (DEI)
+        Negotiating is in our business DNA
       </div>
       <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-        Our Generative Chemistry project, for example, helps scientists at the
-        Novartis Institutes for Biomedical Research (NIBR) speed up the
-        discovery of new high-value medicines. The process for researching and
-        developing new medicines is complex, requiring the evaluation of
-        hundreds of thousands of candidate compounds before a project reaches
-        the clinical trial stage. We use{" "}
-        <ReferenceLink label={"Machine Learning"} /> algorithms to identify new
-        patterns and suggest molecules to synthesize in the lab.
+        Pricing is perhaps the most important element of the entire trade deal
+        and not because of the spending value but because of the indications as
+        different pricing can reveal whether the trade is genuine or not.
       </div>
       <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-        As part of our public pledge to the{" "}
-        <ReferenceLink
-          label={"UN's Equal Pay International Coalition (EPIC)"}
-        />
-        , we are also committed to further improving pay equity and
-        transparency. Based on the latest data available as of December 31,
-        2021, Novartis has a global mean pay gap of +3.1% and a global median
-        pay gap of –3.0%, compared with +3.3% and –2.3%, respectively, in the
-        prior year. While we acknowledge this percentage is influenced by
-        worldwide workforce demographics, our global mean pay gap is
-        significantly ahead of the Bloomberg benchmark of +19% mean for the same
-        period.
-      </div>
-      <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-        Our business produces enormous amounts of data, not only from research
-        and development but also from production, distribution and marketing. We
-        are taking advantage of this resource to improve productivity and spur
-        innovation
-      </div>
-      <div className="py-6"></div>
-      <div className="flex flex-col space-y-3 overflow-auto">
-        <span className="_font-bold text-lg tracking-tight">
-          Diversity, equity and inclusion (DEI) performance indicators
-        </span>
-        <table className="w-full text-sm text-black">
-          <thead className="text-sm text-right text-gray-900 uppercase">
-            <tr className="border-b-2 border-[#4472c4]">
-              <th scope="col" className="w-[70%] pl-6 py-2.5 text-left"></th>
-              <th scope="col" className="pl-6 py-2.5 _font-bold">
-                2022
-              </th>
-              <th scope="col" className="pl-6 py-2.5 font-light">
-                2021
-              </th>
-              <th scope="col" className="pl-6 py-2.5 font-light">
-                2020
-              </th>
-            </tr>
-          </thead>
-          <tbody className="text-right whitespace-nowrap">
-            <tr className="bg-white border-b border-[#4472c4]">
-              <th
-                scope="row"
-                className="pl-2 py-2.5 text-[#4472c4] text-left font-medium whitespace-nowrap dark:text-white"
-              >
-                Gender representation (% female / % male) 1
-              </th>
-              <td className="pl-6 py-2.5 _font-bold"></td>
-              <td className="pl-6 py-2.5"></td>
-              <td className="pl-6 py-2.5"></td>
-            </tr>
-            <tr className="bg-white hover:bg-black hover:text-white border-b border-[#4472c4]">
-              <th
-                scope="row"
-                className="pl-6 py-2.5 text-left font-medium whitespace-nowrap dark:text-white"
-              >
-                Headcount 1
-              </th>
-              <td className="pl-6 py-2.5 _font-bold">105 533</td>
-              <td className="pl-6 py-2.5">105 533</td>
-              <td className="pl-6 py-2.5">105 533</td>
-            </tr>
-            <tr className="bg-white hover:bg-black hover:text-white border-b border-[#4472c4]">
-              <th
-                scope="row"
-                className="pl-6 py-2.5 text-left font-medium whitespace-nowrap dark:text-white"
-              >
-                Full-time equivalent positions 1
-              </th>
-              <td className="pl-6 py-2.5 _font-bold">105 533</td>
-              <td className="pl-6 py-2.5">105 533</td>
-              <td className="pl-6 py-2.5">105 533</td>
-            </tr>
-            <tr className="bg-white hover:bg-black hover:text-white border-b border-[#4472c4]">
-              <th
-                scope="row"
-                className="pl-6 py-2.5 text-left font-medium whitespace-nowrap dark:text-white"
-              >
-                Percentage turnover: voluntary / overall
-              </th>
-              <td className="pl-6 py-2.5 _font-bold">105 533</td>
-              <td className="pl-6 py-2.5">105 533</td>
-              <td className="pl-6 py-2.5">105 533</td>
-            </tr>{" "}
-            <tr className="bg-white hover:bg-black hover:text-white border-b border-[#4472c4]">
-              <th
-                scope="row"
-                className="pl-6 py-2.5 text-left font-medium whitespace-nowrap dark:text-white"
-              >
-                Headcount 1
-              </th>
-              <td className="pl-6 py-2.5 _font-bold">105 533</td>
-              <td className="pl-6 py-2.5">105 533</td>
-              <td className="pl-6 py-2.5">105 533</td>
-            </tr>
-            <tr className="bg-white hover:bg-black hover:text-white border-b border-[#4472c4]">
-              <th
-                scope="row"
-                className="pl-6 py-2.5 text-left font-medium whitespace-nowrap dark:text-white"
-              >
-                Full-time equivalent positions 1
-              </th>
-              <td className="pl-6 py-2.5 _font-bold">105 533</td>
-              <td className="pl-6 py-2.5">105 533</td>
-              <td className="pl-6 py-2.5">105 533</td>
-            </tr>
-            <tr className="bg-white hover:bg-black hover:text-white border-b border-[#4472c4]">
-              <th
-                scope="row"
-                className="pl-6 py-2.5 text-left font-medium whitespace-nowrap dark:text-white"
-              >
-                Percentage turnover: voluntary / overall
-              </th>
-              <td className="pl-6 py-2.5 _font-bold">105 533</td>
-              <td className="pl-6 py-2.5">105 533</td>
-              <td className="pl-6 py-2.5">105 533</td>
-            </tr>
-          </tbody>
-        </table>
-        <ol class="list-decimal marker:text-xs text-sm pl-6 pt-2">
-          <li>
-            “Headcount” reflects the total number of employees in payroll
-            systems. “Full-time equivalent positions” adjusts headcount for
-            employees working less than 100%.
-          </li>
-          <li>
-            Since 2022, Novartis reports training hours for internal employees
-            only
-          </li>
-          <li>
-            Management defined by Global Job Level Architecture and Novartis Top
-            Leaders
-          </li>
-          <li>Generally non-management employees</li>
-          <li>
-            Data include all work-related injuries and illnesses, whether
-            leading to lost time or not.
-          </li>
-        </ol>
+        We assist clients in negotiation process against their counter-parties,
+        traders and involved brokers. At times we may also enter and negotiate
+        against end producers and manufacturers, shipping and logistics vendors,
+        and inspection agents. We tend to negotiate between all the stakeholders
+        that are involved in the business.
       </div>
       <div className="py-3"></div>
-      <div className="border-t-2 border-[#4472c4] py-2">
-        <div className="flex flex-col space-y-3 overflow-auto">
-          <span className="flex flex-row items-center space-x-1">
-            <span className="_font-bold text-lg tracking-tight">
-              Progress against ESG targets
-            </span>
-            <span className="text-lg tracking-tight">People</span>
-          </span>
-          <table className="w-full text-sm text-black">
-            <thead className="text-sm text-left text-[#4472c4]">
-              <tr className="border-b border-black">
-                <th scope="col" className="pl-2 py-2.5">
-                  Target
-                </th>
-                <th scope="col" className="pl-2 py-2.5 border-l border-black">
-                  Progress
-                </th>
-              </tr>
-            </thead>
-            <tbody className="text-left whitespace-nowrap">
-              <tr className="bg-white border-b border-black">
-                <td className="pl-2 py-2.5">
-                  Close the gender pay gap by 2023
-                </td>
-                <td className="pl-2 py-2.5 border-l border-black">
-                  On track: +3.1% mean pay gap as of Dec. 31, 2021
-                </td>
-              </tr>
-              <tr className="bg-white border-b border-black">
-                <td className="pl-2 py-2.5">
-                  Close the gender pay gap by 2023
-                </td>
-                <td className="pl-2 py-2.5 border-l border-black">
-                  On track: +3.1% mean pay gap as of Dec. 31, 2021
-                </td>
-              </tr>
-              <tr className="bg-white border-b border-black">
-                <td className="pl-2 py-2.5">
-                  Close the gender pay gap by 2023
-                </td>
-                <td className="pl-2 py-2.5 border-l border-black">
-                  On track: +3.1% mean pay gap as of Dec. 31, 2021
-                </td>
-              </tr>
-              <tr className="bg-white border-b-2 border-[#4472c4]">
-                <td className="pl-2 py-2.5">
-                  Close the gender pay gap by{" "}
-                  <span className="_font-bold">2023</span>
-                </td>
-                <td className="pl-2 py-2.5 border-l border-black">
-                  On track: 47% of employees with pay transparency to external
-                  benchmarks
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div className="py-3"></div>
-      <div className="mb-3 w-full text-left text-4xl _font-bold leading-tight tracking-tight text-black">
-        Building a data and digital backbone
-      </div>
-      <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-        Our business produces enormous amounts of data, not only from research
-        and development but also from production, distribution and marketing. We
-        are taking advantage of this resource to improve productivity and spur
-        innovation
-      </div>
-      <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-        Our Generative Chemistry project, for example, helps scientists at the
-        Novartis Institutes for Biomedical Research (NIBR) speed up the
-        discovery of new high-value medicines. The process for researching and
-        developing new medicines is complex, requiring the evaluation of
-        hundreds of thousands of candidate compounds before a project reaches
-        the clinical trial stage. We use machine learning algorithms to identify
-        new patterns and suggest molecules to synthesize in the lab.
-      </div>
-      <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-        Our business produces enormous amounts of data, not only from research
-        and development but also from production, distribution and marketing. We
-        are taking advantage of this resource to improve productivity and spur
-        innovation
-      </div>
-      <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-        Our Generative Chemistry project, for example, helps scientists at the
-        Novartis Institutes for Biomedical Research (NIBR) speed up the
-        discovery of new high-value medicines. The process for researching and
-        developing new medicines is complex, requiring the evaluation of
-        hundreds of thousands of candidate compounds before a project reaches
-        the clinical trial stage. We use machine learning algorithms to identify
-        new patterns and suggest molecules to synthesize in the lab.
-      </div>
-      <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-        Our business produces enormous amounts of data, not only from research
-        and development but also from production, distribution and marketing. We
-        are taking advantage of this resource to improve productivity and spur
-        innovation
-      </div>
-      <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-        Our business produces enormous amounts of data, not only from research
-        and development but also from production, distribution and marketing. We
-        are taking advantage of this resource to improve productivity and spur
-        innovation
-      </div>
-      <div className="py-3"></div>
-      <div className="mb-3 w-full text-left text-4xl _font-bold leading-tight tracking-tight text-black">
-        Engaging patients and healthcare professionals
-      </div>
-      <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-        Our business produces enormous amounts of data, not only from research
-        and development but also from production, distribution and marketing. We
-        are taking advantage of this resource to improve productivity and spur
-        innovation
-      </div>
-      <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-        Our Generative Chemistry project, for example, helps scientists at the
-        Novartis Institutes for Biomedical Research (NIBR) speed up the
-        discovery of new high-value medicines. The process for researching and
-        developing new medicines is complex, requiring the evaluation of
-        hundreds of thousands of candidate compounds before a project reaches
-        the clinical trial stage. We use machine learning algorithms to identify
-        new patterns and suggest molecules to synthesize in the lab.
-      </div>{" "}
-      <div className="py-3"></div>
-      <div className="mb-3 w-full text-left font-extralight text-3xl italic leading-tight text-[#0460a9]">
-        More than 250 specialist data scientists are embedded within NIBR
-        project teams to help optimize and accelerate key aspects of our
-        research
-      </div>
-      <div className="py-3"></div>{" "}
-      <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-        At the same time, our Next Generation Engagement program uses a mix of
-        data analysis, behavioral insights and communications technology to
-        achieve the most effective mix of face-to-face and digital
-        communications for healthcare professionals in key markets. For example,
-        we personalized 36% of touchpoints with healthcare professionals for
-        Cosentyx in the US. This personalized approach has led to increased
-        customer engagement and supported sales growth.
-      </div>
-      <div className="py-3"></div>{" "}
       <div className="bg-[#F4F4F4] px-4 py-5">
         <div className="mt-3 w-full text-left mb-2 text-2xl _font-bold leading-tight tracking-tight text-black">
-          Providing a safe and secure working environment
+          Providing access to global market inventory
         </div>
         <div className="flex flex-row space-x-4 justify-center">
           <div className="flex flex-col space-y-6 w-3/5">
             <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-              Our commitment to occupational health and safety is built into our
-              Code of Ethics. In addition, we have strict health and safety
-              controls across our sites that go beyond legal requirements:
+              We have developed a perpetual platform to provide access to global
+              market inventory of various products and commodities. By
+              automating the process of calling for buy and sell requests, we
+              believe Stankevicius International can improve general trading
+              environment on a global scale.
+            </div>{" "}
+            <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
+              As a private trade consulting firm, we have strong relations and
+              network around the world which are only accessible to private
+              clients. However, with the help of technology and data science, we
+              have released an open interactive trade platform to enable buy and
+              sell interactions between buying and selling parties, and also
+              brokers.
+            </div>{" "}
+            <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
+              At the same time, even though most of the features are available
+              to public, we have kept the business confidentiality to the
+              highest level where we intercept the trading activities by
+              ourselves and we supervise each trade request unless:
             </div>
             <ul class="list-[square] pl-6 marker:text-2xl space-y-3 mb-3">
               <li>
-                At all our sites, we conduct regular audits to assess compliance
-                with regulations and internal controls.
+                Trade has been promoted publicly including promoter’s contact
+                details and third party web addresses.
               </li>
               <li>
-                At all our sites, we conduct regular audits to assess compliance
-                with regulations and internal controls.
-              </li>
-              <li>
-                At all our sites, we conduct regular audits to assess compliance
-                with regulations and internal controls.
+                We decide to open a direct communication between all interactive
+                parties without our involvement.
               </li>
             </ul>{" "}
             <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-              At the same time, our Next Generation Engagement program uses a
-              mix of data analysis, behavioral insights and communications
-              technology to achieve the most effective mix of face-to-face and
-              digital communications for healthcare professionals in key
-              markets.
+              International trade markets are huge of opportunities, and as
+              professional trading house, we emphasize that our trading platform
+              will disrupt trade technologies and become the market leading
+              solution.
             </div>{" "}
-            <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-              At the same time, our Next Generation Engagement program uses a
-              mix of data analysis, behavioral insights and communications
-              technology to achieve the most effective mix of face-to-face.
-            </div>
             <div className="py-5"></div>{" "}
           </div>
           <div className="flex flex-col w-2/5 mt-16">
@@ -591,25 +150,21 @@ export default function SourcingProcurement() {
             </div>
             <div className="py-3"></div>{" "}
             <div className="w-full text-left leading-relaxed tracking-wide text-base text-black">
-              UN SDG target 8.8 reads: Protect labor rights and promote safe and
-              secure working environments for all workers, including migrant
-              workers, in particular women migrants, and those in precarious
-              employment.
+              UN SDG 8 goal is to: Promote sustained, inclusive and sustainable
+              economic growth, full and productive employment and decent work
+              for all.
             </div>
             <div className="py-3"></div>{" "}
             <div className="w-full _font-bold text-left leading-relaxed tracking-wide text-base text-black">
-              Please see "
-              <span className="border-b-2 cursor-pointer border-black hover:border-transparent">
-                Measuring our impact
-              </span>
-              " for more information on our impact on the SDGs
+              Stankevicius Group is actively contributing to UN Sustainable
+              Development Goal impact program.
             </div>
           </div>
         </div>
       </div>
       <div className="py-3"></div>{" "}
       <div className="flex flex-col my-3">
-        <img src="https://www.reporting.novartis.com/2022/_assets/gallery/51-working-environment.jpg" />
+        <img src="/assets/sourcing.png" />
       </div>
       <div className="py-3"></div>{" "}
       <div className="bg-[#F4F4F4] px-6 py-4 flex flex-col justify-center">
@@ -617,11 +172,14 @@ export default function SourcingProcurement() {
           Related links and disclosures
         </div>
         <div className="flex flex-col space-y-5">
-          <ReferenceItem label={"Data Privacy Policy"} />
-          <ReferenceItem label={"Novartis Privacy Hub"} />
-          <ReferenceItem label={"Position on Regulatory Data Protection"} />
+          <ReferenceItem label={"Trading Policy"} />
+          <ReferenceItem label={"Safety Trading Regulatory Policy"} />
+          <ReferenceItem label={"Trading Risks"} />
           <ReferenceItem
-            label={"Our Commitment to Ethical and Responsible Use of AI"}
+            label={"Terms of Use and Purchase Policy of Advertising Credits"}
+          />
+          <ReferenceItem
+            label={"Advertising Liabilities, Guidelines and Policy"}
           />
         </div>
         <div className="py-5"></div>{" "}
