@@ -145,7 +145,16 @@ export default function Layout(props) {
 
   const location = useLocation();
 
+  const resetPopups = () => {
+    props?.setIsMenuOpen(false);
+    props?.setIsAccountMenuOpen(false);
+    props?.setIsSearchOpen(false);
+  };
+
   useEffect(() => {
+    if (location.pathname === "/") {
+      resetPopups();
+    }
     if (props?.menu) {
       let scrollTarget = 25 * 16; // 5rem * 16px per rem
       window.scrollTo({
@@ -158,7 +167,7 @@ export default function Layout(props) {
   return (
     <>
       <UserData.Provider value={value}>
-        <InfoModal {...staticMessage} onClose={resetStaticMessage}/>
+        <InfoModal {...staticMessage} onClose={resetStaticMessage} />
         <ModalHandler
           config={globalModals}
           setter={configureModal}
@@ -173,6 +182,7 @@ export default function Layout(props) {
           setSession={setSession}
           updateSessionData={updateSessionData}
           session={session}
+          resetPopups={resetPopups}
           {...props}
         />
         <div className={`${props?.menu ? "mx-0" : "mx-4 lg:mx-10"} mt-24`}>

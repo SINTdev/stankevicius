@@ -61,7 +61,7 @@ export default function OurCompany() {
         business auditing, business counter-party due diligence and professional
         contracting.
       </div>
-      <div className="py-4"></div>
+      {/* <div className="py-4"></div>
       <div className="flex flex-row space-y-3">
         <div className="w-full overflow-hidden">
           <svg
@@ -844,7 +844,7 @@ export default function OurCompany() {
             </g>
           </svg>
         </div>
-      </div>
+      </div> */}
       <div className="py-4"></div>
       <div className="mb-3 w-full text-left text-4xl _font-bold leading-tight tracking-tight text-black">
         Our Values and Behaviors underpin our culture

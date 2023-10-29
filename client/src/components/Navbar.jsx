@@ -107,7 +107,13 @@ export default function Navbar(props) {
       )}
       <nav className="fixed min-h-[4.5rem] flex items-center w-full bg-white border-gray-200 shadow-lg z-30">
         <div className="max-w-screen-xl w-full flex flex-wrap items-center justify-between mx-auto">
-          <Link to="/" className="flex items-center">
+          <Link
+            to="/"
+            className="flex items-center"
+            onClick={() => {
+              props?.resetPopups();
+            }}
+          >
             <img
               src="/assets/logo.png"
               className="h-5 mr-3 ml-2"
@@ -428,7 +434,9 @@ export default function Navbar(props) {
         <div className="absolute flex items-center w-full h-[calc(100%-4.5rem)] mt-[4.5rem] p-10">
           <div className="max-w-screen-xl w-full flex flex-wrap items-center justify-between mx-auto">
             <span className="z-10 font-extrabold text-white md:text-6xl text-4xl -tracking-wider md:flex md:flex-col md:flex-nowrap">
-              <span className="md:whitespace-nowrap md:m-0 mr-2">Delivering clear view</span>
+              <span className="md:whitespace-nowrap md:m-0 mr-2">
+                Delivering clear view
+              </span>
               <span className="md:whitespace-nowrap">in a complex world</span>
             </span>
           </div>
@@ -445,11 +453,7 @@ export default function Navbar(props) {
           controls={false}
           className="source_play md:block hidden"
         >
-          <source
-            src="/assets/bg_video.mp4"
-            type="video/mp4"
-            id="main_bg"
-          />
+          <source src="/assets/bg_video.mp4" type="video/mp4" id="main_bg" />
           Your browser does not support the video tag.
         </video>
       </div>
