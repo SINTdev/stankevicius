@@ -49,8 +49,8 @@ const ReferenceLink = ({ label, to }) => {
 
 const TypeATableTR = ({ o, t, th }) => {
   return (
-    <tr className="bg-white hover:bg-black hover:text-white border-b border-[#4472c4]">
-      <td className="w-[60%] px-2 py-2.5">{o}</td>
+    <tr className="bg-white group hover:bg-black hover:text-white border-b border-[#4472c4]">
+      <td className="w-[60%] sticky bg-white group-hover:bg-black left-0 px-2 py-2.5 _font-bold">{o}</td>
       <td className="px-2 py-2.5">{t}</td>
       <td className="px-2 py-2.5">{th}</td>
     </tr>
@@ -71,101 +71,103 @@ export default function SourcingProcurement() {
         beyond.
       </div>
       <div className="py-6"></div>
-      <div className="flex flex-col space-y-3 overflow-auto">
+      <div className="flex flex-col space-y-3">
         <span className="_font-bold text-lg tracking-tight">
           Thinking of creating a new product? Get to know this information about
           production and manufacturing before you start
         </span>
-        <table className="w-full text-sm text-black">
-          <thead className="text-sm text-left text-gray-900">
-            <tr className="border-b-2 border-[#4472c4]">
-              <th scope="col" className="px-2 py-2.5 _font-bold">
-                Aspect
-              </th>
-              <th scope="col" className="px-2 py-2.5 _font-bold">
-                Production
-              </th>
-              <th scope="col" className="px-2 py-2.5 _font-bold">
-                Manufacturing
-              </th>
-            </tr>
-          </thead>
-          <tbody className="text-left whitespace-nowrap">
-            <TypeATableTR
-              o="Definition"
-              t="The process of creating goods or services."
-              th="The process of converting raw materials into finished products on a large scale."
-            />
-            <TypeATableTR
-              o="Scale"
-              t="Can be small or large scale."
-              th="Typically large-scale operations."
-            />
-            <TypeATableTR
-              o="Customization"
-              t="Limited customization in some cases."
-              th="Often allows for product customization."
-            />
-            <TypeATableTR
-              o="Efficiency"
-              t="May vary in efficiency based on the process."
-              th="Focus on efficiency and lean production methods."
-            />
-            <TypeATableTR
-              o="Automation"
-              t="May involve manual labor and
+        <div className="overflow-auto">
+          <table className="w-full text-sm text-black">
+            <thead className="text-sm text-left text-gray-900">
+              <tr className="border-b-2 border-[#4472c4]">
+                <th scope="col" className="bg-white sticky left-0 h-fit px-2 py-2.5 _font-bold">
+                  Aspect
+                </th>
+                <th scope="col" className="px-2 py-2.5 _font-bold">
+                  Production
+                </th>
+                <th scope="col" className="px-2 py-2.5 _font-bold">
+                  Manufacturing
+                </th>
+              </tr>
+            </thead>
+            <tbody className="text-left whitespace-nowrap">
+              <TypeATableTR
+                o="Definition"
+                t="The process of creating goods or services."
+                th="The process of converting raw materials into finished products on a large scale."
+              />
+              <TypeATableTR
+                o="Scale"
+                t="Can be small or large scale."
+                th="Typically large-scale operations."
+              />
+              <TypeATableTR
+                o="Customization"
+                t="Limited customization in some cases."
+                th="Often allows for product customization."
+              />
+              <TypeATableTR
+                o="Efficiency"
+                t="May vary in efficiency based on the process."
+                th="Focus on efficiency and lean production methods."
+              />
+              <TypeATableTR
+                o="Automation"
+                t="May involve manual labor and
               limited automation."
-              th="Utilizes automation and robotics for efficiency."
-            />
-            <TypeATableTR
-              o="Lead Time"
-              t="Lead times can be longer,
+                th="Utilizes automation and robotics for efficiency."
+              />
+              <TypeATableTR
+                o="Lead Time"
+                t="Lead times can be longer,
               especially for custom items."
-              th="Generally shorter lead times, especially for
+                th="Generally shorter lead times, especially for
               standard products."
-            />
-            <TypeATableTR
-              o="Quality Control"
-              t="Quality control can be more
+              />
+              <TypeATableTR
+                o="Quality Control"
+                t="Quality control can be more
               variable."
-              th="Strict quality control measures are common."
-            />
-            <TypeATableTR
-              o="Cost
+                th="Strict quality control measures are common."
+              />
+              <TypeATableTR
+                o="Cost
               Management"
-              t="Costs may be less predictable and
+                t="Costs may be less predictable and
               may vary."
-              th="Emphasizes cost control and cost reduction."
-            />
-            <TypeATableTR
-              o="Inventory
+                th="Emphasizes cost control and cost reduction."
+              />
+              <TypeATableTR
+                o="Inventory
               Management"
-              t="May have higher inventory levels."
-              th="Often uses Just-In-Time (JIT) inventory
+                t="May have higher inventory levels."
+                th="Often uses Just-In-Time (JIT) inventory
               management."
-            />
-            <TypeATableTR
-              o="Sustainability"
-              t="Sustainability practices can vary
+              />
+              <TypeATableTR
+                o="Sustainability"
+                t="Sustainability practices can vary
               widely."
-              th="Increasing emphasis on sustainable manufacturing
+                th="Increasing emphasis on sustainable manufacturing
               practices."
-            />
-            <TypeATableTR
-              o="Flexibility"
-              t="Limited flexibility in many cases."
-              th="Can adapt to changing production needs more
+              />
+              <TypeATableTR
+                o="Flexibility"
+                t="Limited flexibility in many cases."
+                th="Can adapt to changing production needs more
               easily."
-            />
-            <TypeATableTR
-              o="Regulations"
-              t="Subject to relevant industry
+              />
+              <TypeATableTR
+                o="Regulations"
+                t="Subject to relevant industry
               regulations."
-              th="Subject to industry regulations and compliance
+                th="Subject to industry regulations and compliance
               requirements."
-            />
-          </tbody>
-        </table>
+              />
+            </tbody>
+          </table>
+        </div>
         <ol class="list-decimal marker:text-xs text-sm pl-4 pt-2">
           <li>
             This is a comparison table of differences between production and
@@ -377,10 +379,7 @@ export default function SourcingProcurement() {
           </div>
           <div className="flex flex-col w-2/5 mt-16">
             <div className="w-full text-left font-extralight text-4xl md:text-7xl leading-tight text-[#0460a9]">
-              <img
-                src="https://www.reporting.novartis.com/2022/_assets/gallery/sdg-8.svg"
-                className="h-[100px] w-[100px]"
-              />
+              <img src="/assets/sdg9.png" className="h-[100px] w-[100px]" />
             </div>
             <div className="py-3"></div>{" "}
             <div className="w-full text-left leading-relaxed tracking-wide text-base text-black">
