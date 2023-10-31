@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 // export const CONSTANT = {
 //   server: "http://127.0.0.1:8000/", // CHANGE WITH YOUR BACKEND LINK (/ is MUST IN END)
@@ -101,6 +102,31 @@ export const smoothScrollDown = () => {
     top: scrollTarget,
     behavior: "smooth",
   });
+};
+
+export const MenuRelatedLinkItem = ({ label, to }) => {
+  return (
+    <Link
+      to={`/menu/${to}`}
+      className="cursor-pointer w-fit flex flex-row items-center _font-bold text-left leading-normal tracking-normal text-lg text-black"
+    >
+      {label}{" "}
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth={2}
+        stroke="currentColor"
+        className="w-4 h-4 ml-2 transition-all duration-300 ease-in-out text-black relative top-[1px]"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+        />
+      </svg>
+    </Link>
+  );
 };
 
 export const getUserData = () => {

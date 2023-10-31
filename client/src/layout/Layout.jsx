@@ -159,7 +159,7 @@ export default function Layout(props) {
       let scrollTarget = 25 * 16; // 5rem * 16px per rem
       window.scrollTo({
         top: scrollTarget,
-        behavior: "smooth",
+        behavior: "instant",
       });
     }
   }, [location.pathname]);

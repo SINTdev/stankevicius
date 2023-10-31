@@ -1,6 +1,7 @@
 import React from "react";
 import Fold from "../../components/menus/Fold";
 import { Link } from "react-router-dom";
+import RelatedLinks from "../../components/menus/RelatedLinks";
 
 const MenuItem = ({ label, value, mode }) => {
   return (
@@ -25,7 +26,9 @@ export default function PrivateClients(props) {
           <div className="flex flex-row w-full px-2">
             <div className="w-3/12 md:block hidden">
               <span className="sticky top-[7rem]">
-                <span className="_font-bold text-lg tracking-tight">Private Clients</span>
+                <span className="_font-bold text-lg tracking-tight">
+                  Private Clients
+                </span>
                 <span className="border-b-2 w-full mt-1 border-black block"></span>
                 <div className="mt-5 flex flex-col space-y-3 _font-bold text-base">
                   <MenuItem
@@ -39,6 +42,26 @@ export default function PrivateClients(props) {
                     value={"institutions"}
                   />
                 </div>
+                <RelatedLinks
+                  data={[
+                    {
+                      label: "Sourcing and procurement",
+                      to: "sourcing_procurement",
+                    },
+                    {
+                      label: "Production and manufacturing",
+                      to: "production_manufacturing",
+                    },
+                    {
+                      label: "Shipping and logistics",
+                      to: "shipping_logistics",
+                    },
+                    {
+                      label: "Inspection and quality checks",
+                      to: "inspection_quality",
+                    },
+                  ]}
+                />
               </span>
             </div>
             <div className="w-full md:w-9/12">

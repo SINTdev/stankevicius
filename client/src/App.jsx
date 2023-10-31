@@ -31,6 +31,8 @@ import About from "./views/menus/About";
 import OurCompany from "./views/menus/OurCompany";
 import CEOLetter from "./views/menus/CEOLetter";
 import Institutions from "./views/menus/Institutions";
+import CounterpartyDueDiligence from "./views/menus/CounterpartyDueDiligence";
+import ProfessionalContracting from "./views/menus/ProfessionalContracting";
 
 // import CategoryManagement from "./views/corporate/CategoryManagement";
 
@@ -268,7 +270,7 @@ function App() {
             element={
               <Layout {...paramater} menu={true}>
                 <ContractingandDueDiligence mode="counterparty_due_diligence">
-                  <BusinessAudit />
+                  <CounterpartyDueDiligence />
                 </ContractingandDueDiligence>
               </Layout>
             }
@@ -278,7 +280,7 @@ function App() {
             element={
               <Layout {...paramater} menu={true}>
                 <ContractingandDueDiligence mode="professional_contracting">
-                  <BusinessAudit />
+                  <ProfessionalContracting />
                 </ContractingandDueDiligence>
               </Layout>
             }
