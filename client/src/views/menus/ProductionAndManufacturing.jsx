@@ -389,7 +389,7 @@ export default function SourcingProcurement() {
             </div>
             <div className="py-3"></div>{" "}
             <div className="w-full _font-bold text-left leading-relaxed tracking-wide text-base text-black">
-              Stankevicius Group is activelycontributing to UN Sustainable
+              Stankevicius Group is actively contributing to UN Sustainable
               Development Goal impact program.
             </div>
           </div>

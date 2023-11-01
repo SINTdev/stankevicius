@@ -47,6 +47,16 @@ const ReferenceLink = ({ label, to }) => {
   );
 };
 
+const TypeATableTR = ({ o, t, th }) => {
+  return (
+    <tr className="bg-white group hover:bg-black hover:text-white border-b border-[#4472c4]">
+      <td className="px-2 py-2.5">{o}</td>
+      <td className="px-2 py-2.5">{t}</td>
+      <td className="px-2 py-2.5">{th}</td>
+    </tr>
+  );
+};
+
 export default function SourcingProcurement() {
   return (
     <div className="flex flex-col">
@@ -61,555 +71,245 @@ export default function SourcingProcurement() {
         reveal the real details about the product and its’ features.
       </div>
       <div className="py-6"></div>
-      <div className="flex flex-col space-y-3 overflow-auto">
+      <div className="flex flex-col space-y-3">
         <span className="_font-bold text-lg tracking-tight">
-          People performance indicators
+          Few of the most reputable inspection agencies we work with
         </span>
-        <table className="w-full text-sm text-black">
-          <thead className="text-sm text-right text-gray-900 uppercase">
-            <tr className="border-b-2 border-[#4472c4]">
-              <th scope="col" className="w-[70%] px-2 py-2.5 text-left"></th>
-              <th scope="col" className="px-2 py-2.5 _font-bold">
-                2022
-              </th>
-              <th scope="col" className="px-2 py-2.5 font-light">
-                2021
-              </th>
-              <th scope="col" className="px-2 py-2.5 font-light">
-                2020
-              </th>
-            </tr>
-          </thead>
-          <tbody className="text-right whitespace-nowrap">
-            <tr className="bg-white hover:bg-black hover:text-white border-b border-[#4472c4]">
-              <th
-                scope="row"
-                className="px-2 py-2.5 text-left font-medium whitespace-nowrap dark:text-white"
-              >
-                Headcount 1
-              </th>
-              <td className="px-2 py-2.5 _font-bold">105 533</td>
-              <td className="px-2 py-2.5">105 533</td>
-              <td className="px-2 py-2.5">105 533</td>
-            </tr>
-            <tr className="bg-white hover:bg-black hover:text-white border-b border-[#4472c4]">
-              <th
-                scope="row"
-                className="px-2 py-2.5 text-left font-medium whitespace-nowrap dark:text-white"
-              >
-                Full-time equivalent positions 1
-              </th>
-              <td className="px-2 py-2.5 _font-bold">105 533</td>
-              <td className="px-2 py-2.5">105 533</td>
-              <td className="px-2 py-2.5">105 533</td>
-            </tr>
-            <tr className="bg-white hover:bg-black hover:text-white border-b border-[#4472c4]">
-              <th
-                scope="row"
-                className="px-2 py-2.5 text-left font-medium whitespace-nowrap dark:text-white"
-              >
-                Percentage turnover: voluntary / overall
-              </th>
-              <td className="px-2 py-2.5 _font-bold">105 533</td>
-              <td className="px-2 py-2.5">105 533</td>
-              <td className="px-2 py-2.5">105 533</td>
-            </tr>
-            <tr className="bg-white border-b border-[#4472c4]">
-              <th
-                scope="row"
-                className="px-2 py-2.5 text-[#4472c4] _font-bold text-left font-medium whitespace-nowrap dark:text-white"
-              >
-                Health and safety
-              </th>
-              <td className="px-2 py-2.5 _font-bold"></td>
-              <td className="px-2 py-2.5"></td>
-              <td className="px-2 py-2.5"></td>
-            </tr>{" "}
-            <tr className="bg-white hover:bg-black hover:text-white border-b border-[#4472c4]">
-              <th
-                scope="row"
-                className="px-2 py-2.5 text-left font-medium whitespace-nowrap dark:text-white"
-              >
-                Headcount 1
-              </th>
-              <td className="px-2 py-2.5 _font-bold">105 533</td>
-              <td className="px-2 py-2.5">105 533</td>
-              <td className="px-2 py-2.5">105 533</td>
-            </tr>
-            <tr className="bg-white hover:bg-black hover:text-white border-b border-[#4472c4]">
-              <th
-                scope="row"
-                className="px-2 py-2.5 text-left font-medium whitespace-nowrap dark:text-white"
-              >
-                Full-time equivalent positions 1
-              </th>
-              <td className="px-2 py-2.5 _font-bold">105 533</td>
-              <td className="px-2 py-2.5">105 533</td>
-              <td className="px-2 py-2.5">105 533</td>
-            </tr>
-            <tr className="bg-white hover:bg-black hover:text-white border-b border-[#4472c4]">
-              <th
-                scope="row"
-                className="px-2 py-2.5 text-left font-medium whitespace-nowrap dark:text-white"
-              >
-                Percentage turnover: voluntary / overall
-              </th>
-              <td className="px-2 py-2.5 _font-bold">105 533</td>
-              <td className="px-2 py-2.5">105 533</td>
-              <td className="px-2 py-2.5">105 533</td>
-            </tr>
-          </tbody>
-        </table>
-        <ol class="list-decimal marker:text-xs text-sm pl-4 pt-2">
-          <li>
-            “Headcount” reflects the total number of employees in payroll
-            systems. “Full-time equivalent positions” adjusts headcount for
-            employees working less than 100%.
-          </li>
-          <li>
-            Since 2022, Novartis reports training hours for internal employees
-            only
-          </li>
-          <li>
-            Management defined by Global Job Level Architecture and Novartis Top
-            Leaders
-          </li>
-          <li>Generally non-management employees</li>
-          <li>
-            Data include all work-related injuries and illnesses, whether
-            leading to lost time or not.
-          </li>
-        </ol>
-      </div>
-      <div className="py-3"></div>
-      <div className="mb-3 w-full text-left text-4xl _font-bold leading-tight tracking-tight text-black">
-        Changes to our organizational model
-      </div>
-      <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-        Executing on our strategy as a focused medicines company requires us to
-        work differently. We reorganized our company to create a more agile and
-        simpler organization that is aligned with our focused strategy and will
-        support innovation, growth and productivity. Regrettably, our
-        Transforming for Growth initiative also entails job losses as we reshape
-        our company to focus on our core Innovative Medicines business.
-      </div>
-      <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-        We recognize that these changes cause considerable uncertainty for many
-        of our employees. To manage the process, we put in place six basic
-        principles:
-      </div>
-      <div className="py-3"></div>
-      <ul class="list-[square] pl-6 marker:text-2xl space-y-3 mb-3">
-        <li>
-          <span className="_font-bold">Fairness in decision-making:</span> all
-          decisions were taken in line with our Code of Ethics and Values and
-          Behaviors.
-        </li>
-        <li>
-          <span className="_font-bold">Fairness in decision-making:</span> where
-          units were merged, we ensured proper balance in terms of both
-          organizational structure and opportunities for leadership positions.
-        </li>
-        <li>
-          <span className="_font-bold">Fairness in decision-making:</span>{" "}
-          throughout the process, we worked to ensure equal opportunities for
-          all employees to maintain our commitment to diversity, equity and
-          inclusion.
-        </li>
-        <li>
-          <span className="_font-bold">Fairness in decision-making:</span> those
-          affected by the changes had access to various support programs to help
-          them transition to new roles, either within or outside Novartis.
-        </li>
-      </ul>{" "}
-      <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-        Our business produces enormous amounts of data, not only from research
-        and development but also from production, distribution and marketing. We
-        are taking advantage of this resource to improve productivity and spur
-        innovation
-      </div>{" "}
-      <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-        Our business produces enormous amounts of data, not only from research
-        and development but also from production, distribution and marketing. We
-        are taking advantage of this resource to improve productivity and spur
-        innovation
-      </div>
-      <div className="py-3"></div>
-      <div className="mb-3 w-full text-left text-4xl _font-bold leading-tight tracking-tight text-black">
-        Investing in our culture
-      </div>
-      <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-        Our Generative Chemistry project, for example, helps scientists at the
-        Novartis Institutes for Biomedical Research (NIBR) speed up the
-        discovery of new high-value medicines. The process for researching and
-        developing new medicines is complex, requiring the evaluation of
-        hundreds of thousands of candidate compounds before a project reaches
-        the clinical trial stage. We use machine learning algorithms to identify
-        new patterns and suggest molecules to synthesize in the lab.
-      </div>
-      <div className="py-3"></div>
-      <div className="mb-3 w-full text-left text-4xl leading-tight tracking-tight text-black">
-        Diversity, equity and inclusion (DEI)
-      </div>
-      <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-        Our Generative Chemistry project, for example, helps scientists at the
-        Novartis Institutes for Biomedical Research (NIBR) speed up the
-        discovery of new high-value medicines. The process for researching and
-        developing new medicines is complex, requiring the evaluation of
-        hundreds of thousands of candidate compounds before a project reaches
-        the clinical trial stage. We use{" "}
-        <ReferenceLink label={"Machine Learning"} /> algorithms to identify new
-        patterns and suggest molecules to synthesize in the lab.
-      </div>
-      <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-        As part of our public pledge to the{" "}
-        <ReferenceLink
-          label={"UN's Equal Pay International Coalition (EPIC)"}
-        />
-        , we are also committed to further improving pay equity and
-        transparency. Based on the latest data available as of December 31,
-        2021, Novartis has a global mean pay gap of +3.1% and a global median
-        pay gap of –3.0%, compared with +3.3% and –2.3%, respectively, in the
-        prior year. While we acknowledge this percentage is influenced by
-        worldwide workforce demographics, our global mean pay gap is
-        significantly ahead of the Bloomberg benchmark of +19% mean for the same
-        period.
-      </div>
-      <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-        Our business produces enormous amounts of data, not only from research
-        and development but also from production, distribution and marketing. We
-        are taking advantage of this resource to improve productivity and spur
-        innovation
-      </div>
-      <div className="py-6"></div>
-      <div className="flex flex-col space-y-3 overflow-auto">
-        <span className="_font-bold text-lg tracking-tight">
-          Diversity, equity and inclusion (DEI) performance indicators
-        </span>
-        <table className="w-full text-sm text-black">
-          <thead className="text-sm text-right text-gray-900 uppercase">
-            <tr className="border-b-2 border-[#4472c4]">
-              <th scope="col" className="w-[70%] pl-6 py-2.5 text-left"></th>
-              <th scope="col" className="pl-6 py-2.5 _font-bold">
-                2022
-              </th>
-              <th scope="col" className="pl-6 py-2.5 font-light">
-                2021
-              </th>
-              <th scope="col" className="pl-6 py-2.5 font-light">
-                2020
-              </th>
-            </tr>
-          </thead>
-          <tbody className="text-right whitespace-nowrap">
-            <tr className="bg-white border-b border-[#4472c4]">
-              <th
-                scope="row"
-                className="pl-2 py-2.5 text-[#4472c4] text-left font-medium whitespace-nowrap dark:text-white"
-              >
-                Gender representation (% female / % male) 1
-              </th>
-              <td className="pl-6 py-2.5 _font-bold"></td>
-              <td className="pl-6 py-2.5"></td>
-              <td className="pl-6 py-2.5"></td>
-            </tr>
-            <tr className="bg-white hover:bg-black hover:text-white border-b border-[#4472c4]">
-              <th
-                scope="row"
-                className="pl-6 py-2.5 text-left font-medium whitespace-nowrap dark:text-white"
-              >
-                Headcount 1
-              </th>
-              <td className="pl-6 py-2.5 _font-bold">105 533</td>
-              <td className="pl-6 py-2.5">105 533</td>
-              <td className="pl-6 py-2.5">105 533</td>
-            </tr>
-            <tr className="bg-white hover:bg-black hover:text-white border-b border-[#4472c4]">
-              <th
-                scope="row"
-                className="pl-6 py-2.5 text-left font-medium whitespace-nowrap dark:text-white"
-              >
-                Full-time equivalent positions 1
-              </th>
-              <td className="pl-6 py-2.5 _font-bold">105 533</td>
-              <td className="pl-6 py-2.5">105 533</td>
-              <td className="pl-6 py-2.5">105 533</td>
-            </tr>
-            <tr className="bg-white hover:bg-black hover:text-white border-b border-[#4472c4]">
-              <th
-                scope="row"
-                className="pl-6 py-2.5 text-left font-medium whitespace-nowrap dark:text-white"
-              >
-                Percentage turnover: voluntary / overall
-              </th>
-              <td className="pl-6 py-2.5 _font-bold">105 533</td>
-              <td className="pl-6 py-2.5">105 533</td>
-              <td className="pl-6 py-2.5">105 533</td>
-            </tr>{" "}
-            <tr className="bg-white hover:bg-black hover:text-white border-b border-[#4472c4]">
-              <th
-                scope="row"
-                className="pl-6 py-2.5 text-left font-medium whitespace-nowrap dark:text-white"
-              >
-                Headcount 1
-              </th>
-              <td className="pl-6 py-2.5 _font-bold">105 533</td>
-              <td className="pl-6 py-2.5">105 533</td>
-              <td className="pl-6 py-2.5">105 533</td>
-            </tr>
-            <tr className="bg-white hover:bg-black hover:text-white border-b border-[#4472c4]">
-              <th
-                scope="row"
-                className="pl-6 py-2.5 text-left font-medium whitespace-nowrap dark:text-white"
-              >
-                Full-time equivalent positions 1
-              </th>
-              <td className="pl-6 py-2.5 _font-bold">105 533</td>
-              <td className="pl-6 py-2.5">105 533</td>
-              <td className="pl-6 py-2.5">105 533</td>
-            </tr>
-            <tr className="bg-white hover:bg-black hover:text-white border-b border-[#4472c4]">
-              <th
-                scope="row"
-                className="pl-6 py-2.5 text-left font-medium whitespace-nowrap dark:text-white"
-              >
-                Percentage turnover: voluntary / overall
-              </th>
-              <td className="pl-6 py-2.5 _font-bold">105 533</td>
-              <td className="pl-6 py-2.5">105 533</td>
-              <td className="pl-6 py-2.5">105 533</td>
-            </tr>
-          </tbody>
-        </table>
-        <ol class="list-decimal marker:text-xs text-sm pl-6 pt-2">
-          <li>
-            “Headcount” reflects the total number of employees in payroll
-            systems. “Full-time equivalent positions” adjusts headcount for
-            employees working less than 100%.
-          </li>
-          <li>
-            Since 2022, Novartis reports training hours for internal employees
-            only
-          </li>
-          <li>
-            Management defined by Global Job Level Architecture and Novartis Top
-            Leaders
-          </li>
-          <li>Generally non-management employees</li>
-          <li>
-            Data include all work-related injuries and illnesses, whether
-            leading to lost time or not.
-          </li>
-        </ol>
-      </div>
-      <div className="py-3"></div>
-      <div className="border-t-2 border-[#4472c4] py-2">
-        <div className="flex flex-col space-y-3 overflow-auto">
-          <span className="flex flex-row items-center space-x-1">
-            <span className="_font-bold text-lg tracking-tight">
-              Progress against ESG targets
-            </span>
-            <span className="text-lg tracking-tight">People</span>
-          </span>
+        <div className="overflow-auto">
           <table className="w-full text-sm text-black">
-            <thead className="text-sm text-left text-[#4472c4]">
-              <tr className="border-b border-black">
-                <th scope="col" className="pl-2 py-2.5">
-                  Target
+            <thead className="text-sm text-left text-gray-900">
+              <tr className="border-b-2 border-[#4472c4]">
+                <th scope="col" className="px-2 py-2.5 _font-bold">
+                  Inspection Agency
                 </th>
-                <th scope="col" className="pl-2 py-2.5 border-l border-black">
-                  Progress
+                <th scope="col" className="px-2 py-2.5 font-bold">
+                  Services Offered
+                </th>
+                <th scope="col" className="px-2 py-2.5 font-bold">
+                  Industries Served
                 </th>
               </tr>
             </thead>
             <tbody className="text-left whitespace-nowrap">
-              <tr className="bg-white border-b border-black">
-                <td className="pl-2 py-2.5">
-                  Close the gender pay gap by 2023
-                </td>
-                <td className="pl-2 py-2.5 border-l border-black">
-                  On track: +3.1% mean pay gap as of Dec. 31, 2021
-                </td>
-              </tr>
-              <tr className="bg-white border-b border-black">
-                <td className="pl-2 py-2.5">
-                  Close the gender pay gap by 2023
-                </td>
-                <td className="pl-2 py-2.5 border-l border-black">
-                  On track: +3.1% mean pay gap as of Dec. 31, 2021
-                </td>
-              </tr>
-              <tr className="bg-white border-b border-black">
-                <td className="pl-2 py-2.5">
-                  Close the gender pay gap by 2023
-                </td>
-                <td className="pl-2 py-2.5 border-l border-black">
-                  On track: +3.1% mean pay gap as of Dec. 31, 2021
-                </td>
-              </tr>
-              <tr className="bg-white border-b-2 border-[#4472c4]">
-                <td className="pl-2 py-2.5">
-                  Close the gender pay gap by{" "}
-                  <span className="_font-bold">2023</span>
-                </td>
-                <td className="pl-2 py-2.5 border-l border-black">
-                  On track: 47% of employees with pay transparency to external
-                  benchmarks
-                </td>
-              </tr>
+              <TypeATableTR
+                o="TÜV Rheinland"
+                t="Quality control, testing, and
+certification services"
+                th="Various, including automotive, manufacturing,
+and consumer goods"
+              />
+              <TypeATableTR
+                o="Bureau Veritas"
+                t="Inspection, testing, and
+certification services
+"
+                th="Diverse industries, including energy, consumer
+products, and food safety"
+              />
+              <TypeATableTR
+                o="SGS"
+                t="Inspection, testing, certification,
+and verification"
+                th="Broad range, including agriculture, automotive,
+and electronics"
+              />
+              <TypeATableTR
+                o="Intertek"
+                t="Inspection, testing, and
+certification services
+"
+                th="Multiple sectors, such as chemicals, textiles, and
+food"
+              />
+              <TypeATableTR
+                o="DEKRA"
+                t="Quality assurance, safety, and
+certification services"
+                th="Automotive, industrial, and electrical sectors"
+              />
+              <TypeATableTR
+                o="Eurofins"
+                t="Testing and laboratory services "
+                th="Food and beverage, environmental, and
+pharmaceuticals
+"
+              />
+              <TypeATableTR
+                o="Lloyds Register"
+                t="Inspection, classification, and
+certification services"
+                th="Shipping, marine, and offshore industries"
+              />
+              <TypeATableTR
+                o="UL (Underwriters
+Laboratories)"
+                t="Testing, inspection, and
+              certification"
+                th="Various, including electrical and electronics,
+              healthcare, and sustainability"
+              />
             </tbody>
           </table>
+        </div>
+        <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
+          Note that local inspection agencies may also be reliable and should
+          not be overlooked, especially if they have specific expertise in your
+          region or industry. When working with foreign markets in Asia, local
+          inspection agencies might be more preferable than globally known ones.
         </div>
       </div>
       <div className="py-3"></div>
       <div className="mb-3 w-full text-left text-4xl _font-bold leading-tight tracking-tight text-black">
-        Building a data and digital backbone
+        How we help clients to conduct inspection checks on their products
       </div>
       <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-        Our business produces enormous amounts of data, not only from research
-        and development but also from production, distribution and marketing. We
-        are taking advantage of this resource to improve productivity and spur
-        innovation
+        Here's a step-by-step guide on how we assist clients to arrange and
+        manage product inspections in foreign markets:
       </div>
+      <ul class="list-[square] pl-6 marker:text-2xl space-y-3 mb-3">
+        <li>
+          <span class="_font-bold">Understand Client Requirements:</span> We
+          begin by having a detailed discussion with clients to understand their
+          specific requirements, quality standards, and expectations for the
+          inspection process. This step is crucial to tailor assistance to
+          clients’ needs.
+        </li>
+        <li>
+          <span className="_font-bold">
+            Select an Inspection Agency or Team:
+          </span>{" "}
+          Based on the client's requirements and the nature of the products, we
+          recommend a reliable inspection agency or establish an in-house
+          quality control team. We ensure that the chosen agency or team is
+          well-equipped to handle the inspection.
+        </li>
+        <li>
+          <span className="_font-bold">Inspection Plan Development:</span> We
+          collaborate with the client and the selected inspection agency or team
+          to create a comprehensive inspection plan. The plan should include
+          details like the scope of inspection, inspection stages, criteria, and
+          quality standards to be followed.
+        </li>
+        <li>
+          <span className="_font-bold">Schedule Inspections:</span> We
+          coordinate with the client to schedule inspections at the relevant
+          stages of production or shipment, ensuring that the inspection
+          schedule aligns with the production timeline and shipping
+          arrangements.
+        </li>
+        <li>
+          <span className="_font-bold">Cost Estimates and Budgeting:</span>{" "}
+          Provide the client with a clear breakdown of the costs associated with
+          inspection services, including agency fees, travel expenses, and other
+          related costs.
+        </li>
+        <li>
+          <span className="_font-bold">Documentation and Agreements:</span> We
+          prepare and review the necessary documentation, including agreements
+          with the inspection agency or team. Ensure that roles and
+          responsibilities are clearly defined, and there is a mutual
+          understanding of the inspection process.
+        </li>
+        <li>
+          <span className="_font-bold">Logistics and Coordination:</span> We
+          organize the logistics for inspections, including transportation and
+          accommodation arrangements if the inspections are conducted at the
+          production facility. Ensure that the inspection agency or team has
+          access to all the required information and resources.
+        </li>
+        <li>
+          <span className="_font-bold">On-Site Inspection:</span> If possible,
+          we coordinate client's representatives with the inspection team to be
+          present during inspections. Encourage open communication between the
+          client and the inspection agency to address any concerns promptly.
+        </li>
+        <li>
+          <span className="_font-bold">Reporting and Feedback:</span> Once we
+          receive comprehensive inspection reports from the agency, we review
+          these reports with the client, highlighting any issues, deviations, or
+          corrective actions that may be required.
+        </li>
+        <li>
+          <span className="_font-bold">Client Communication:</span> We
+          facilitate communication between the inspection agency and the client,
+          ensuring that the client is well-informed about the progress of
+          inspections, any quality issues, and the outcomes of the inspection.
+        </li>
+        <li>
+          <span className="_font-bold">Quality Improvement:</span> We work
+          together with the client to develop strategies for quality
+          improvement, should any issues be identified during inspections. We
+          encourage corrective actions and preventive measures to enhance
+          product quality.
+        </li>
+        <li>
+          <span className="_font-bold">Continuous Monitoring:</span> We continue
+          to monitor and support client's quality control efforts, especially if
+          inspections are part of an ongoing process. We recommend continuous
+          improvement and ensure that the inspection process remains effective.
+        </li>
+        <li>
+          <span className="_font-bold">Documentation and Record Keeping:</span>{" "}
+          We maintain records of all communications, agreements, inspection
+          reports, and other relevant documentation. These records are essential
+          for traceability and reference.
+        </li>
+      </ul>{" "}
       <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-        Our Generative Chemistry project, for example, helps scientists at the
-        Novartis Institutes for Biomedical Research (NIBR) speed up the
-        discovery of new high-value medicines. The process for researching and
-        developing new medicines is complex, requiring the evaluation of
-        hundreds of thousands of candidate compounds before a project reaches
-        the clinical trial stage. We use machine learning algorithms to identify
-        new patterns and suggest molecules to synthesize in the lab.
-      </div>
-      <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-        Our business produces enormous amounts of data, not only from research
-        and development but also from production, distribution and marketing. We
-        are taking advantage of this resource to improve productivity and spur
-        innovation
-      </div>
-      <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-        Our Generative Chemistry project, for example, helps scientists at the
-        Novartis Institutes for Biomedical Research (NIBR) speed up the
-        discovery of new high-value medicines. The process for researching and
-        developing new medicines is complex, requiring the evaluation of
-        hundreds of thousands of candidate compounds before a project reaches
-        the clinical trial stage. We use machine learning algorithms to identify
-        new patterns and suggest molecules to synthesize in the lab.
-      </div>
-      <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-        Our business produces enormous amounts of data, not only from research
-        and development but also from production, distribution and marketing. We
-        are taking advantage of this resource to improve productivity and spur
-        innovation
-      </div>
-      <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-        Our business produces enormous amounts of data, not only from research
-        and development but also from production, distribution and marketing. We
-        are taking advantage of this resource to improve productivity and spur
-        innovation
-      </div>
-      <div className="py-3"></div>
-      <div className="mb-3 w-full text-left text-4xl _font-bold leading-tight tracking-tight text-black">
-        Engaging patients and healthcare professionals
-      </div>
-      <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-        Our business produces enormous amounts of data, not only from research
-        and development but also from production, distribution and marketing. We
-        are taking advantage of this resource to improve productivity and spur
-        innovation
-      </div>
-      <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-        Our Generative Chemistry project, for example, helps scientists at the
-        Novartis Institutes for Biomedical Research (NIBR) speed up the
-        discovery of new high-value medicines. The process for researching and
-        developing new medicines is complex, requiring the evaluation of
-        hundreds of thousands of candidate compounds before a project reaches
-        the clinical trial stage. We use machine learning algorithms to identify
-        new patterns and suggest molecules to synthesize in the lab.
+        By assisting clients through the inspection process, we not only ensure
+        the quality of their products but also build trust and strengthen
+        relationships as a reliable partner. We support our clients in
+        navigating the complexities of inspection checks that contribute to
+        clients success in delivering high-quality goods to the market.
       </div>{" "}
-      <div className="py-3"></div>
-      <div className="mb-3 w-full text-left font-extralight text-3xl italic leading-tight text-[#0460a9]">
-        More than 250 specialist data scientists are embedded within NIBR
-        project teams to help optimize and accelerate key aspects of our
-        research
-      </div>
-      <div className="py-3"></div>{" "}
-      <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-        At the same time, our Next Generation Engagement program uses a mix of
-        data analysis, behavioral insights and communications technology to
-        achieve the most effective mix of face-to-face and digital
-        communications for healthcare professionals in key markets. For example,
-        we personalized 36% of touchpoints with healthcare professionals for
-        Cosentyx in the US. This personalized approach has led to increased
-        customer engagement and supported sales growth.
-      </div>
       <div className="py-3"></div>{" "}
       <div className="bg-[#F4F4F4] px-4 py-5">
         <div className="mt-3 w-full text-left mb-2 text-2xl _font-bold leading-tight tracking-tight text-black">
-          Providing a safe and secure working environment
+          Providing a safe and secure business environment
         </div>
         <div className="flex flex-row space-x-4 justify-center">
           <div className="flex flex-col space-y-6 w-3/5">
             <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-              Our commitment to occupational health and safety is built into our
-              Code of Ethics. In addition, we have strict health and safety
-              controls across our sites that go beyond legal requirements:
+              Our mission is to increase safety, reduce risks, and provide more
+              transparency for international trade markets. We utilize
+              technology and data science to automate certain processes that
+              help us to filter genuine business against misconduct
             </div>
-            <ul class="list-[square] pl-6 marker:text-2xl space-y-3 mb-3">
-              <li>
-                At all our sites, we conduct regular audits to assess compliance
-                with regulations and internal controls.
-              </li>
-              <li>
-                At all our sites, we conduct regular audits to assess compliance
-                with regulations and internal controls.
-              </li>
-              <li>
-                At all our sites, we conduct regular audits to assess compliance
-                with regulations and internal controls.
-              </li>
-            </ul>{" "}
             <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-              At the same time, our Next Generation Engagement program uses a
-              mix of data analysis, behavioral insights and communications
-              technology to achieve the most effective mix of face-to-face and
-              digital communications for healthcare professionals in key
-              markets.
+              Ultimately, our goal is to become the enabler for buyers and
+              sellers to successfully facilitate trade business with
+              professional manner following global standards of trade business
+              conduct.
             </div>{" "}
-            <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-              At the same time, our Next Generation Engagement program uses a
-              mix of data analysis, behavioral insights and communications
-              technology to achieve the most effective mix of face-to-face.
-            </div>
             <div className="py-5"></div>{" "}
           </div>
           <div className="flex flex-col w-2/5 mt-16">
             <div className="w-full text-left font-extralight text-4xl md:text-7xl leading-tight text-[#0460a9]">
               <img
-                src="https://www.reporting.novartis.com/2022/_assets/gallery/sdg-8.svg"
+                src="/assets/Sustainable_Development_Goal_17.png"
                 className="h-[100px] w-[100px]"
               />
             </div>
             <div className="py-3"></div>{" "}
             <div className="w-full text-left leading-relaxed tracking-wide text-base text-black">
-              UN SDG target 8.8 reads: Protect labor rights and promote safe and
-              secure working environments for all workers, including migrant
-              workers, in particular women migrants, and those in precarious
-              employment.
+              UN SDG 17 goal is to: Strengthen the means of implementation and
+              revitalize the global partnership for sustainable development,
+              also to keep developing multi-stakeholder partnerships to
+              facilitate knowledge exchange, expertise, technology, and
+              financial resources is recognized as critical to overall success
+              of the SDGs.
             </div>
             <div className="py-3"></div>{" "}
             <div className="w-full _font-bold text-left leading-relaxed tracking-wide text-base text-black">
-              Please see "
-              <span className="border-b-2 cursor-pointer border-black hover:border-transparent">
-                Measuring our impact
-              </span>
-              " for more information on our impact on the SDGs
+              Stankevicius Group is actively contributing to UN Sustainable
+              Development Goal impact program.
             </div>
           </div>
         </div>
       </div>
       <div className="py-3"></div>{" "}
       <div className="flex flex-col my-3">
-        <img src="https://www.reporting.novartis.com/2022/_assets/gallery/51-working-environment.jpg" />
+        <img src="/assets/inspection.png" />
       </div>
       <div className="py-3"></div>{" "}
       <div className="bg-[#F4F4F4] px-6 py-4 flex flex-col justify-center">
@@ -617,11 +317,14 @@ export default function SourcingProcurement() {
           Related links and disclosures
         </div>
         <div className="flex flex-col space-y-5">
-          <ReferenceItem label={"Data Privacy Policy"} />
-          <ReferenceItem label={"Novartis Privacy Hub"} />
-          <ReferenceItem label={"Position on Regulatory Data Protection"} />
+          <ReferenceItem label={"Trading Policy"} />
+          <ReferenceItem label={"Safety Trading Regulatory Policy"} />
+          <ReferenceItem label={"Trading Risks"} />
           <ReferenceItem
-            label={"Our Commitment to Ethical and Responsible Use of AI"}
+            label={"Terms of Use and Purchase Policy of Advertising Credits"}
+          />
+          <ReferenceItem
+            label={"Advertising Liabilities, Guidelines and Policy"}
           />
         </div>
         <div className="py-5"></div>{" "}

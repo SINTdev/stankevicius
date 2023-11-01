@@ -182,15 +182,18 @@ export default function Credit(props) {
                   card. To buy Advertising Credits against invoice please
                   contact support.
                 </span>
-                <div className="w-full text-left text-lg _font-bold leading-tight tracking-tight text-black">
+                {/* <div className="w-full text-left text-lg _font-bold leading-tight tracking-tight text-black">
                   What can you do with Advertising Credits?
-                </div>
+                </div> */}
                 <span>
+                  <span className="_font-bold">
+                    What can you do with Advertising Credits?
+                  </span>{" "}
                   You can promote your company’s website within your trade,
                   promote your trade on Trade Quote bar, and promote your trade
                   to all subscribers. By promoting your trade you get exposed to
                   more visibility and it increase your chances to connect to the
-                  business counter-party
+                  business counter-party.
                 </span>
                 <span>
                   Advertising Credits are provided by Stankevicius International

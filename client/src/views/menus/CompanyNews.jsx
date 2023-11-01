@@ -85,16 +85,13 @@ export default function CompanyNews() {
       <Fold className="">
         <Fold>
           <div className="min-h-[30rem] relative">
-            <img
-              className="md:block hidden"
-              src="https://www.novartis.com/sites/novartis_com/files/styles/banner_image_1920/public/2023-01/desk-newsroon-novartis-news-ig-li.jpg.webp?itok=RQc1k8Rm"
-            />
+            <img className="md:block hidden" src="/assets/news_bg.png" />
             <div className="flex flex-col space-y-5 bg-[#0460a9] relative md:absolute md:bottom-[3rem] md:left-[19rem] md:w-[30%] text-white py-8 px-6">
               <Link
                 to={"#"}
-                className="cursor-pointer flex flex-row items-center w-fit text-left text-4xl _font-bold tracking-normal text-white"
+                className="cursor-pointer flex flex-row items-center w-fit text-left text-xl md:text-2xl lg:text-3xl xl:text-4xl _font-bold tracking-normal text-white"
               >
-                #NovartisNews{" "}
+                @stankeviciusmgm{" "}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -111,13 +108,13 @@ export default function CompanyNews() {
                 </svg>
               </Link>
               <div className="w-full text-left tracking-normal text-base text-white">
-                Tweets from the Media Relations team
+                Get more insights from Stankevicius Media Relations
               </div>
               <Link
                 to={"#"}
                 className="group transition-all flex flex-row items-center duration-300 ease-in-out cursor-pointer w-fit text-white border-2 border-white hover:bg-white hover:text-black bg-transparent text-sm px-8 font-bold py-2.5 text-center"
               >
-                Follow @NovartisNews{" "}
+                Follow Stankevicius on LinkedIn{" "}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
