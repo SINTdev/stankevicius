@@ -1,6 +1,7 @@
 import React from "react";
 import Fold from "../../components/menus/Fold";
 import { Link } from "react-router-dom";
+import RelatedLinks from "../../components/menus/RelatedLinks";
 
 const MenuItem = ({ label, value, mode }) => {
   return (
@@ -46,6 +47,18 @@ export default function ContractingandDueDiligence(props) {
                     value={"professional_contracting"}
                   />
                 </div>
+                <RelatedLinks
+                  data={[
+                    {
+                      label: "Sourcing and procurement",
+                      to: "sourcing_procurement",
+                    },
+                    {
+                      label: "Our company",
+                      to: "our_company",
+                    },
+                  ]}
+                />
               </span>
             </div>
             <div className="w-full md:w-9/12">

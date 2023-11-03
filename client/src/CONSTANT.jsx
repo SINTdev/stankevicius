@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 // export const CONSTANT = {
@@ -105,25 +106,28 @@ export const smoothScrollDown = () => {
 };
 
 export const MenuRelatedLinkItem = ({ label, to }) => {
+  const [hover, setHover] = useState(false);
   return (
     <Link
       to={`/menu/${to}`}
+      onMouseEnter={() => {
+        setHover(true);
+      }}
+      onMouseLeave={() => {
+        setHover(false);
+      }}
       className="cursor-pointer w-fit flex flex-row items-center _font-bold text-left leading-normal tracking-normal text-lg text-black"
     >
       {label}{" "}
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
+        viewBox="0 0 32 32"
         strokeWidth={2}
-        stroke="currentColor"
-        className="w-4 h-4 ml-2 transition-all duration-300 ease-in-out text-black relative top-[1px]"
+        className={`w-4 h-4 ml-2 ${
+          hover && "menu_arrow_animation"
+        } transition-all duration-300 ease-in-out relative top-[0px]`}
       >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
-        />
+        <path d="m31.71 15.29-10-10-1.42 1.42 8.3 8.29H0v2h28.59l-8.29 8.29 1.41 1.41 10-10a1 1 0 0 0 0-1.41z" />
       </svg>
     </Link>
   );

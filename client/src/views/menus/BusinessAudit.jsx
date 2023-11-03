@@ -25,7 +25,7 @@ const ReferenceItem = ({ label }) => {
 const ReferenceLink = ({ label, to }) => {
   return (
     <a href={to || "#"} target="_blank" className="w-fit flex">
-      <div className="cursor-pointer w-fit flex items-center _font-bold leading-normal tracking-normal text-base text-black">
+      <div className="cursor-pointer underline hover:no-underline w-fit flex items-center _font-bold leading-normal tracking-normal text-base text-black">
         {label}{" "}
         <svg
           xmlns="http://www.w3.org/2000/svg"

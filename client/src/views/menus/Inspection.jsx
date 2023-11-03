@@ -50,7 +50,9 @@ const ReferenceLink = ({ label, to }) => {
 const TypeATableTR = ({ o, t, th }) => {
   return (
     <tr className="bg-white group hover:bg-black hover:text-white border-b border-[#4472c4]">
-      <td className="px-2 py-2.5">{o}</td>
+      <td className="w-[60%] sticky bg-white group-hover:bg-black left-0 px-2 py-2.5 _font-bold">
+        {o}
+      </td>
       <td className="px-2 py-2.5">{t}</td>
       <td className="px-2 py-2.5">{th}</td>
     </tr>
@@ -79,7 +81,10 @@ export default function SourcingProcurement() {
           <table className="w-full text-sm text-black">
             <thead className="text-sm text-left text-gray-900">
               <tr className="border-b-2 border-[#4472c4]">
-                <th scope="col" className="px-2 py-2.5 _font-bold">
+                <th
+                  scope="col"
+                  className="bg-white sticky left-0 h-fit px-2 py-2.5 _font-bold"
+                >
                   Inspection Agency
                 </th>
                 <th scope="col" className="px-2 py-2.5 font-bold">
@@ -280,6 +285,17 @@ Laboratories)"
               sellers to successfully facilitate trade business with
               professional manner following global standards of trade business
               conduct.
+            </div>{" "}
+            <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
+              We are dedicated to fostering a secure business environment by
+              assisting clients in arranging product inspection checks in
+              international trade. By diligently examining goods for quality,
+              compliance, and authenticity, we reduce risks associated with
+              substandard products or potential fraudulent activities. This
+              commitment to transparency not only safeguards our clients but
+              also upholds the standards of fair and ethical trade. We believe
+              that by promoting safety and trust, we contribute to the growth
+              and sustainability of international business relationships.
             </div>{" "}
             <div className="py-5"></div>{" "}
           </div>

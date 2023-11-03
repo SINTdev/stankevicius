@@ -55,16 +55,12 @@ export default function InternationalTradeConsulting(props) {
                 <RelatedLinks
                   data={[
                     {
+                      label: "Our company",
+                      to: "our_company",
+                    },
+                    {
                       label: "Business audit",
                       to: "business_audit",
-                    },
-                    {
-                      label: "Business counter-party due diligence",
-                      to: "counterparty_due_diligence",
-                    },
-                    {
-                      label: "Professional contracting",
-                      to: "professional_contracting",
                     },
                   ]}
                 />

@@ -45,20 +45,12 @@ export default function PrivateClients(props) {
                 <RelatedLinks
                   data={[
                     {
+                      label: "Our company",
+                      to: "our_company",
+                    },
+                    {
                       label: "Sourcing and procurement",
                       to: "sourcing_procurement",
-                    },
-                    {
-                      label: "Production and manufacturing",
-                      to: "production_manufacturing",
-                    },
-                    {
-                      label: "Shipping and logistics",
-                      to: "shipping_logistics",
-                    },
-                    {
-                      label: "Inspection and quality checks",
-                      to: "inspection_quality",
                     },
                   ]}
                 />

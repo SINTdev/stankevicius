@@ -136,6 +136,24 @@ export default function SourcingProcurement() {
         submitted freely in our platform, we may not be able to monitor all
         listed trade activities, especially the promoted ones.
       </div>{" "}
+      <div className="py-3"></div>{" "}
+      <div className="bg-[#F4F4F4] px-6 py-4 flex flex-col justify-center">
+        <div className="py-5 w-full text-left text-3xl _font-bold leading-tight tracking-tight text-black">
+          Related links and disclosures
+        </div>
+        <div className="flex flex-col space-y-5">
+          <ReferenceItem label={"Trading Policy"} />
+          <ReferenceItem label={"Safety Trading Regulatory Policy"} />
+          <ReferenceItem label={"Trading Risks"} />
+          <ReferenceItem
+            label={"Terms of Use and Purchase Policy of Advertising Credits"}
+          />
+          <ReferenceItem
+            label={"Advertising Liabilities, Guidelines and Policy"}
+          />
+        </div>
+        <div className="py-5"></div>{" "}
+      </div>
     </div>
   );
 }
