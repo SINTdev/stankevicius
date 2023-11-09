@@ -232,6 +232,9 @@ input[type="search"] {
 .__CHECK_REG__LABEL__ {
   font-size: 0.75rem !important;
 }
+.__NEWS__LABEL__ {
+  font-size: 1rem !important;
+}
 /* 
 .page0-animated-div {
   opacity: 1;
@@ -305,4 +308,51 @@ input[type="search"] {
 .menu_arrow_animation {
   animation: arrowLeftRight 2s ease-in-out 0s infinite;
   animation-play-state: running;
+}
+
+/* TextEditor */
+
+.__TEXTEDITOR__ h2 {
+  margin: 0;
+  font-size: 3.75rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.025em;
+  color: #000;
+  font-weight: 700 !important;
+}
+.__TEXTEDITOR__ h3 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+  color: #000;
+  font-weight: 700 !important;
+}
+.__TEXTEDITOR__ h4 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+  color: #000;
+  font-weight: 700 !important;
+}
+.__TEXTEDITOR__ p {
+  line-height: 1.625;
+  letter-spacing: 0.05em;
+  font-size: 1rem;
+  color: #000;
+}
+
+.__TEXTEDITOR__ p strong {
+  font-weight: 700 !important;
+}
+
+.__TEXTEDITOR__ p a {
+  font-weight: 700 !important;
+  border-bottom: 2px solid #000;
+  cursor: pointer;
+}
+.__TEXTEDITOR__ p a:hover {
+  border-color: transparent;
 }

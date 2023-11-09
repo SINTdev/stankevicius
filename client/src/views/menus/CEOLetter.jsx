@@ -89,10 +89,6 @@ export default function CEOLetter() {
         Sincerely,
       </div>
       <div className="py-4"></div>
-      <img
-        className="w-fit mb-3"
-        src="https://www.reporting.novartis.com/2022/_assets/gallery/signature-ceo.svg"
-      />
 
       <div className="w-full text-left _font-bold text-lg leading-relaxed tracking-normal text-black">
         Paulius Stankevicius

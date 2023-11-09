@@ -68,6 +68,7 @@ class CreditsPurchasingSerializer(serializers.ModelSerializer):
         model = models.CreditsPurchasing
         fields = "__all__"
 
+
 class ViewCreditsPurchasingSerializer(serializers.ModelSerializer):
     user = ViewUserSerializer()
 
@@ -115,3 +116,27 @@ class ViewProductInteractionsSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.ProductInteractions
         fields = "__all__"
+
+
+class NewsReleaseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.NewsRelease
+        fields = "__all__"
+
+
+class ViewNewsReleaseSerializer(serializers.ModelSerializer):
+    user = ViewUserSerializer()
+    thumbnail_url = serializers.SerializerMethodField()
+
+    class Meta:
+        model = models.NewsRelease
+        fields = "__all__"
+
+    def get_thumbnail_url(self, obj):
+        if obj.thumbnail:
+            # Replace "static/news_release_media/" with "assets/"
+            thumbnail_url = obj.thumbnail.url.replace(
+                "static/news_release_media/", "assets/"
+            )
+            return thumbnail_url
+        return None

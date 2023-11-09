@@ -198,6 +198,7 @@ const CheckoutCredit = (props) => {
                             </div>
                           ),
                           isInfo: false,
+                          heading: "Privacy Policy",
                           onAgree: () => {
                             setPayload({
                               ...payload,

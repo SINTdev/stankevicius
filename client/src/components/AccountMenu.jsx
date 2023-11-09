@@ -55,6 +55,22 @@ const AccountMenu = (props) => {
       is_both: false,
     },
     {
+      label: "News",
+      isLink: true,
+      to: "/news",
+      onClick: null,
+      is_staff: true,
+      is_both: true,
+    },
+    {
+      label: "Publish New Release",
+      isLink: true,
+      to: "/publishNewRelease",
+      onClick: null,
+      is_staff: true,
+      is_both: true,
+    },
+    {
       label: "Profile",
       isLink: false,
       to: "/",

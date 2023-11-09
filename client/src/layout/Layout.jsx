@@ -119,6 +119,7 @@ export default function Layout(props) {
   let __INIT__STATIC__MESSAGE__ = {
     show: false,
     message: "",
+    heading: "",
     isInfo: true,
     onAgree: () => {},
   };

@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 
 const InfoModal = (props) => {
-  const { show, message, isInfo, onAgree, onClose } = props;
+  const { show, message, heading, isInfo, onAgree, onClose } = props;
 
   const [enable, setEnable] = useState(false);
   const messageContainerRef = useRef(null);
@@ -18,6 +18,17 @@ const InfoModal = (props) => {
       }
     }
   };
+
+  useEffect(() => {
+    const container = messageContainerRef.current;
+    if (container) {
+      // Calculate the difference between the scrollHeight and the clientHeight
+      const scrollDifference = container.scrollHeight - container.clientHeight;
+
+      // Set enable to true when there's no scroll space
+      setEnable(scrollDifference <= 0);
+    }
+  }, [message]);
 
   useEffect(() => {
     // Add or remove a CSS class to the body to prevent scrolling
@@ -44,7 +55,7 @@ const InfoModal = (props) => {
           {/* Modal Content */}
           <div className="bg-white p-8 border-2 shadow-2xl z-10 md:min-w-[30%]">
             <h1 className="_font-bold mb-2 text-[24px] tracking-tight">
-              Privacy Policy
+              {heading}
             </h1>
             <div
               className="mb-2 max-w-md max-h-[40vh] overflow-auto"

@@ -153,3 +153,41 @@ class CreditsPurchasing(models.Model):
 
     def __str__(self):
         return f"{self.amount} - {self.user.fullName}"
+
+
+import os
+
+
+class NewsRelease(models.Model):
+    TITLE_CHOICES = (
+        ("industry", "Industry Insights (Partner Content)"),
+        ("company", "Stankevicius Company News"),
+        ("featured", "Featured News"),
+    )
+
+    user = models.ForeignKey(
+        CustomUsers,
+        on_delete=models.CASCADE,
+    )
+    slug = models.SlugField(unique=True, blank=True)
+    title = models.CharField(max_length=256)
+    category = models.CharField(
+        max_length=20, choices=TITLE_CHOICES, default="industry"
+    )
+    author = models.CharField(max_length=256, blank=True)
+    thumbnail = models.ImageField(null=True, blank=True, upload_to="static/news_release_media/")
+    content = models.TextField()
+    timestamp = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.title
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            base_slug = slugify(self.title)
+            random_suffix = "".join(
+                random.choices(string.ascii_letters + string.digits, k=8)
+            )
+            self.slug = f"{base_slug}-{random_suffix}"
+
+        super().save(*args, **kwargs)

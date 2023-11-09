@@ -20,4 +20,8 @@ urlpatterns = [
     path("checkoutsession", views.checkoutsession, name="checkoutsession"),
     path("credits", views.credits, name="credits"),
     re_path(r"^credits/(?P<pk>[0-9]+)$", views.credits),
+    path("newsreleases", views.newsreleases, name="newsreleases"),
+    re_path(r"^newsreleases/(?P<pk>[\w-]+)/(?P<user_id>[\w-]+)$", views.newsreleases),
+    re_path(r"^newsreleases/(?P<pk>[0-9]+)$", views.newsreleases),
+    path("allreleasenews", views.allreleasenews, name="allreleasenews"),
 ]

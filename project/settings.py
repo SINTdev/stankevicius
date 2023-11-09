@@ -159,6 +159,7 @@ STATIC_URL = "/assets/"
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "client", "dist", "assets"),  # update the STATICFILES_DIRS
+    os.path.join(BASE_DIR, "static", "news_release_media"),  # update the STATICFILES_DIRS
 )
 
 

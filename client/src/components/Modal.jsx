@@ -1,7 +1,7 @@
 import React from "react";
 
 const Modal = (props) => {
-  const { isOpen, onClose, text, onYes, isCancel } = props;
+  const { isOpen, onClose, text, onYes, isCancel, customAgree } = props;
 
   return (
     <>
@@ -18,10 +18,10 @@ const Modal = (props) => {
             <p className="mb-4 max-w-md">{text}</p>
             <div className="flex justify-center space-x-4">
               <button
-                className="bg-black w-[7rem] text-white px-4 py-2"
+                className="bg-black min-w-[7rem] text-white px-4 py-2"
                 onClick={onYes}
               >
-                {isCancel ? "Agree" : "Ok"}
+                {isCancel ? "Agree" : customAgree || "Confirm"}
               </button>
               <button
                 className="bg-black w-[7rem] text-white px-4 py-2"

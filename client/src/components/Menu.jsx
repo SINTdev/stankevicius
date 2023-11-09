@@ -137,20 +137,20 @@ const Menu = (props) => {
       link: "News & Insights",
       subLinks: [
         {
-          link: "Company News",
-          to: "/menu/company_news",
+          link: "Stankevicius News",
+          to: "/menu/stankevicius_news",
           content: {
             img: "/assets/company_news.jpg",
-            title: "Company News",
+            title: "Stankevicius News",
             desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget bibendum urna. Integer efficitur augue eu cursus suscipit.",
           },
         },
         {
-          link: "Industry Insights",
+          link: "Industry Insights (Partner Content)",
           to: "/menu/industry_insights",
           content: {
             img: "/assets/industry_insights.jpg",
-            title: "Industry Insights",
+            title: "Industry Insights (Partner Content)",
             desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget bibendum urna. Integer efficitur augue eu cursus suscipit.",
           },
         },

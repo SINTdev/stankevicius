@@ -35,6 +35,16 @@ export const USER_DASHBOARD_MENU = [
     isLink: true,
   },
   {
+    label: "News",
+    to: "/news",
+    isLink: true,
+  },
+  {
+    label: "Publish New Release",
+    to: "/publishNewRelease",
+    isLink: true,
+  },
+  {
     label: "Profile",
     to: "profile",
     isLink: false,
@@ -70,6 +80,16 @@ export const CORPORATE_DASHBOARD_MENU = [
   {
     label: "Credit Management",
     to: "/corporate/credit",
+    isLink: true,
+  },
+  {
+    label: "News",
+    to: "/news",
+    isLink: true,
+  },
+  {
+    label: "Publish New Release",
+    to: "/publishNewRelease",
     isLink: true,
   },
   {

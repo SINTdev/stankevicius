@@ -727,3 +727,91 @@ def corporateusers(request):
         ]
 
         return JsonResponse(final_data, safe=False)
+
+
+@api_view(["GET", "POST", "PUT", "DELETE"])
+@permission_classes([])
+@authentication_classes([])
+def newsreleases(request, pk=None, user_id=None):
+    if request.method == "GET":
+        if pk is None:
+            return JsonResponse({"message": "Not valid slug!"}, safe=False)
+        if user_id is None:
+            return JsonResponse({"message": "Not valid session!"}, safe=False)
+        try:
+            instance = models.NewsRelease.objects.get(slug=pk)
+            session = CustomUsers.objects.get(pk=int(user_id))
+            if session.is_staff or session.id == instance.by.id:
+                final_data = serializers.ViewNewsReleaseSerializer(instance).data
+                return JsonResponse(final_data)
+        except Exception as e:
+            print(e)
+        return JsonResponse({"message": "Not valid slug!"}, safe=False)
+
+    if request.method == "POST":
+        serializer = serializers.NewsReleaseSerializer(data=request.data)
+        session = CustomUsers.objects.get(pk=int(request.data["user"]))
+        if session.credits < 20:
+            return JsonResponse(
+                {"message": "Not enough credits!"},
+                status=status.HTTP_200_OK,
+            )
+
+        if serializer.is_valid():
+            obhj = serializer.save()
+            obhj.user.credits = obhj.user.credits - 20
+            obhj.user.save()
+            return JsonResponse(
+                {"content": serializer.data}, status=status.HTTP_201_CREATED
+            )
+        return JsonResponse(
+            {"message": "Not valid data!", "errors": serializer.errors},
+            status=status.HTTP_200_OK,
+        )
+
+    if request.method == "PUT":
+        try:
+            instance = models.NewsRelease.objects.get(pk=pk)
+        except models.NewsRelease.DoesNotExist:
+            return JsonResponse(
+                {"message": "NewsRelease not found"}, status=status.HTTP_404_NOT_FOUND
+            )
+        serializer = serializers.NewsReleaseSerializer(
+            instance, data=request.data, partial=True
+        )
+
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse({"content": serializer.data}, status=status.HTTP_200_OK)
+
+        print(serializer.errors)
+        return JsonResponse(
+            {"message": "Not valid data!", "errors": serializer.errors},
+            status=status.HTTP_200_OK,
+        )
+    if request.method == "DELETE":
+        if pk is None:
+            return JsonResponse({"message": "Not valid slug!"}, safe=False)
+        if user_id is None:
+            return JsonResponse({"message": "Not valid session!"}, safe=False)
+        try:
+            instance = models.NewsRelease.objects.get(slug=pk)
+            session = CustomUsers.objects.get(pk=int(user_id))
+            if session.is_staff or session.id == instance.by.id:
+                instance.delete()
+                return JsonResponse(
+                    {"message": "Release deleted successfully."}, safe=False
+                )
+        except Exception as e:
+            print(e)
+        return JsonResponse({"message": "Not valid slug!"}, safe=False)
+
+
+@api_view(["POST", "GET"])
+@permission_classes([])
+@authentication_classes([])
+def allreleasenews(request):
+    if request.method == "GET":
+        instance = models.NewsRelease.objects.all().order_by("-timestamp")
+        final_data = serializers.ViewNewsReleaseSerializer(instance, many=True).data
+        return JsonResponse(final_data, safe=False)

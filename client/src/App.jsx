@@ -33,6 +33,8 @@ import CEOLetter from "./views/menus/CEOLetter";
 import Institutions from "./views/menus/Institutions";
 import CounterpartyDueDiligence from "./views/menus/CounterpartyDueDiligence";
 import ProfessionalContracting from "./views/menus/ProfessionalContracting";
+import PublishNewRelease from "./views/PublishNewRelease";
+import News from "./views/News";
 
 // import CategoryManagement from "./views/corporate/CategoryManagement";
 
@@ -67,6 +69,30 @@ function App() {
             element={
               <Layout {...paramater}>
                 <AddProduct edit={false} />
+              </Layout>
+            }
+          />
+          <Route
+            path="/news"
+            element={
+              <Layout {...paramater}>
+                <News />
+              </Layout>
+            }
+          />
+          <Route
+            path="/publishNewRelease"
+            element={
+              <Layout {...paramater}>
+                <PublishNewRelease edit={false} />
+              </Layout>
+            }
+          />
+          <Route
+            path="/editNews/:id"
+            element={
+              <Layout {...paramater}>
+                <PublishNewRelease edit={true} />
               </Layout>
             }
           />
@@ -288,7 +314,7 @@ function App() {
           {/* Contracting and Due Diligence End */}
           {/* News and Insights Start */}
           <Route
-            path="/menu/company_news"
+            path="/menu/stankevicius_news"
             element={
               <Layout {...paramater} menu={true}>
                 <CompanyNews />
