@@ -735,7 +735,7 @@ def newsreleases(request, pk=None, user_id=None):
             obhj = serializer.save()
             obhj.user.credits = obhj.user.credits - 20
             obhj.user.save()
-            createCreditEntry({"user": obhj.user.id, "amount": 20, "mode": "news"})
+            createCreditEntry({"user": obhj.user.id, "amount": 20, "mode": "news", "isPaid": True})
             return JsonResponse(
                 {"content": serializer.data}, status=status.HTTP_201_CREATED
             )

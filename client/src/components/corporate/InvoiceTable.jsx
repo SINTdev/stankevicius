@@ -9,7 +9,10 @@ const RenderTR = ({ data }) => {
       >
         {data?.user?.fullName}
       </th>
-      <td className="px-6 py-4 text-center">${data?.amount}</td>
+      <td className="px-6 py-4 text-center">
+        {data?.mode === "credit" ? "Purchased credit" : "Published news"}
+      </td>
+      <td className="px-6 py-4 text-center">{data?.amount}</td>
       <td className="px-6 py-4">
         {data?.timestamp && new Date(data?.timestamp)?.toLocaleString()}
       </td>
@@ -48,7 +51,10 @@ export default function InvoiceTable(props) {
               Full name
             </th>
             <th scope="col" className="px-6 py-3">
-              Purchased credit
+              Type
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Amount of credit
             </th>
             <th scope="col" className="px-6 py-3">
               Purchasing date

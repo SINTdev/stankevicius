@@ -25,15 +25,15 @@ const ReferenceItem = ({ label }) => {
 const ReferenceLink = ({ label, to }) => {
   return (
     <a href={to || "#"} target="_blank" className="w-fit flex">
-      <div className="cursor-pointer underline hover:no-underline w-fit flex items-center _font-bold leading-normal tracking-normal text-base text-black">
-        {label}{" "}
+      <div className="cursor-pointer underline hover:no-underline w-fit items-center _font-bold leading-normal tracking-normal text-base text-black">
+        <span className="">{label}</span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
           strokeWidth={2}
           stroke="currentColor"
-          className="w-4 h-4 ml-1 transition-all duration-300 ease-in-out text-black relative top-[0px]"
+          className="inline w-4 h-4 ml-1 transition-all duration-300 ease-in-out text-black"
         >
           <path
             strokeLinecap="round"

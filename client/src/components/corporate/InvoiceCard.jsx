@@ -5,7 +5,11 @@ export default function InvoiceCard(props) {
     <div className="border border-black overflow-hidden">
       <div className="px-1 py-1.5 bg-black text-white flex flex-row justify-between items-center">
         <span className="text-sm">
-          Purchased credit: ${props?.data?.amount}
+          {props?.data?.mode === "credit"
+            ? "Purchased credit"
+            : "Published news"}
+          : {props?.data?.mode === "credit" && "$"}
+          {props?.data?.amount}
         </span>
         {/* <span className="text-xs">4/08/2023 09:12:02</span> */}
         <span className="text-xs">
@@ -25,7 +29,7 @@ export default function InvoiceCard(props) {
           <span>TOTAL SPENDING:</span>
         </div>
         <div className="w-1/2 flex flex-col">
-        <span>{props?.data?.user?.fullName || "-"}</span>
+          <span>{props?.data?.user?.fullName || "-"}</span>
           <span>{props?.data?.user?.email || "-"}</span>
           <span>
             {props?.data?.user?.countryCode}

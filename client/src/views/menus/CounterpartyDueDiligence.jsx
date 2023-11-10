@@ -23,25 +23,27 @@ const ReferenceItem = ({ label }) => {
   );
 };
 
-const ReferenceLink = ({ label, to }) => {
+const ReferenceLink = ({ label, to, svg = true }) => {
   return (
     <Link to={to || "#"} className="inline-block">
       <div className="border-b-2 hover:border-transparent border-black cursor-pointer w-fit flex items-center _font-bold leading-normal tracking-normal text-base text-black">
         {label}{" "}
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={2}
-          stroke="currentColor"
-          className="w-4 h-4 ml-1 transition-all duration-300 ease-in-out text-black relative top-[0px]"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
-          />
-        </svg>
+        {svg && (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={2}
+            stroke="currentColor"
+            className="w-4 h-4 ml-1 transition-all duration-300 ease-in-out text-black relative top-[0px]"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+            />
+          </svg>
+        )}
       </div>
     </Link>
   );
@@ -93,8 +95,8 @@ export default function BusinessAudit() {
       </div>
       <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
         Business counter-party due diligence is a part of{" "}
-        <ReferenceLink label={"Business Audit"} /> but it can also be performed
-        separately upon client request.
+        <ReferenceLink label={"Business Audit"} to="/menu/business_audit" svg={false} /> but it can also
+        be performed separately upon client request.
       </div>
       <div className="py-3"></div>{" "}
       <div className="bg-[#F4F4F4] px-6 py-4 flex flex-col justify-center">
