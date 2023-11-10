@@ -26,7 +26,7 @@ export default function About(props) {
         <Fold inside>
           <div className="flex flex-row w-full px-2">
             <div className="w-3/12 md:block hidden">
-              <span className="sticky top-[7rem]">
+              <span className="sticky top-[7rem] __STICKY__ALL__">
                 <span className="_font-bold text-lg tracking-tight">About</span>
                 <span className="border-b-2 w-full mt-1 border-black block"></span>
                 <div className="mt-5 flex flex-col space-y-3 _font-bold text-base">

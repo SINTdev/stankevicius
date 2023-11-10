@@ -329,32 +329,6 @@ def credits(request, pk=None):
         return changeStatusToPaid(int(data["id"]))
 
 
-def createCreditEntry(data, returnId=False):
-    serializer = serializers.CreditsPurchasingSerializer(data=data)
-    if serializer.is_valid():
-        instance = serializer.save()
-        if returnId:
-            return instance.id
-        return JsonResponse(
-            {"content": serializer.data}, status=status.HTTP_202_ACCEPTED
-        )
-    print(serializer.errors)
-    return JsonResponse({"message": "Not valid data!"}, status=status.HTTP_202_ACCEPTED)
-
-
-def changeStatusToPaid(id):
-    if id:
-        entry = models.CreditsPurchasing.objects.get(id=int(id))
-        if not entry.isPaid:
-            entry.isPaid = True
-            entry.user.credits = entry.user.credits + entry.amount
-            entry.user.save()
-            entry.save()
-        SerializedData = serializers.ViewUserSerializer(entry.user, many=False)
-        return JsonResponse(SerializedData.data, status=status.HTTP_202_ACCEPTED)
-    return JsonResponse({"message": "Not valid data!"}, status=status.HTTP_202_ACCEPTED)
-
-
 @api_view(["GET", "POST"])
 @permission_classes([])
 @authentication_classes([])
@@ -741,7 +715,7 @@ def newsreleases(request, pk=None, user_id=None):
         try:
             instance = models.NewsRelease.objects.get(slug=pk)
             session = CustomUsers.objects.get(pk=int(user_id))
-            if session.is_staff or session.id == instance.by.id:
+            if session.is_staff or session.id == instance.user.id:
                 final_data = serializers.ViewNewsReleaseSerializer(instance).data
                 return JsonResponse(final_data)
         except Exception as e:
@@ -761,6 +735,7 @@ def newsreleases(request, pk=None, user_id=None):
             obhj = serializer.save()
             obhj.user.credits = obhj.user.credits - 20
             obhj.user.save()
+            createCreditEntry({"user": obhj.user.id, "amount": 20, "mode": "news"})
             return JsonResponse(
                 {"content": serializer.data}, status=status.HTTP_201_CREATED
             )
@@ -797,7 +772,7 @@ def newsreleases(request, pk=None, user_id=None):
         try:
             instance = models.NewsRelease.objects.get(slug=pk)
             session = CustomUsers.objects.get(pk=int(user_id))
-            if session.is_staff or session.id == instance.by.id:
+            if session.is_staff or session.id == instance.user.id:
                 instance.delete()
                 return JsonResponse(
                     {"message": "Release deleted successfully."}, safe=False
@@ -815,3 +790,32 @@ def allreleasenews(request):
         instance = models.NewsRelease.objects.all().order_by("-timestamp")
         final_data = serializers.ViewNewsReleaseSerializer(instance, many=True).data
         return JsonResponse(final_data, safe=False)
+
+
+# Functions
+
+
+def createCreditEntry(data, returnId=False):
+    serializer = serializers.CreditsPurchasingSerializer(data=data)
+    if serializer.is_valid():
+        instance = serializer.save()
+        if returnId:
+            return instance.id
+        return JsonResponse(
+            {"content": serializer.data}, status=status.HTTP_202_ACCEPTED
+        )
+    print(serializer.errors)
+    return JsonResponse({"message": "Not valid data!"}, status=status.HTTP_202_ACCEPTED)
+
+
+def changeStatusToPaid(id):
+    if id:
+        entry = models.CreditsPurchasing.objects.get(id=int(id))
+        if not entry.isPaid:
+            entry.isPaid = True
+            entry.user.credits = entry.user.credits + entry.amount
+            entry.user.save()
+            entry.save()
+        SerializedData = serializers.ViewUserSerializer(entry.user, many=False)
+        return JsonResponse(SerializedData.data, status=status.HTTP_202_ACCEPTED)
+    return JsonResponse({"message": "Not valid data!"}, status=status.HTTP_202_ACCEPTED)

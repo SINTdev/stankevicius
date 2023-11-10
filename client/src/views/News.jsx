@@ -78,6 +78,79 @@ const DropdownButton = (props) => {
   );
 };
 
+const RenderCard = ({ item, index, formatDate, session }) => {
+  const [showText, setShowText] = useState(false);
+  return (
+    <div
+      className="flex flex-row justify-center items-center w-full border-b-2 border-gray-200 py-5"
+      key={index}
+    >
+      {item?.category === "featured" && (
+        <div className="mr-10">
+          <img className="h-[10rem]" src={item?.thumbnail_url} />
+        </div>
+      )}
+      <div className="w-full">
+        <div className="flex flex-row justify-between items-end w-full">
+          <span className="text-xs tracking-normal font-thin text-gray-500">
+            {item?.category === "industry"
+              ? "Industry Insights (Partner Content)"
+              : item?.category === "company"
+              ? "Stankevicius News"
+              : "Featured News"}{" "}
+            / {formatDate(item?.timestamp)}
+          </span>
+          {(session?.personal?.is_staff ||
+            parseInt(item?.user?.id) === parseInt(session?.personal?.id)) && (
+            <span>
+              <DropdownButton
+                label="Action"
+                className="bg-black"
+                options={[
+                  {
+                    label: "Edit",
+                    hide: false,
+                    type: "link",
+                    click: `/editNews/${item?.slug}`,
+                  },
+                  {
+                    label: "Delete",
+                    type: "button",
+                    click: () => {
+                      setModal({
+                        ...modal,
+                        isOpen: true,
+                        content: `You confirm that you want to delete
+                    this release now.`,
+                        onYes: () => {
+                          deleteNews(item?.slug);
+                          setModal(EMPTY_MODAL);
+                        },
+                      });
+                    },
+                  },
+                ]}
+              />
+            </span>
+          )}
+        </div>
+        <div className="mt-2 _font-bold text-2xl tracking-normal w-full">
+          {item?.title}
+        </div>
+        <div
+          dangerouslySetInnerHTML={{ __html: item?.content }}
+          onClick={() => {
+            setShowText(!showText);
+          }}
+          className={`${
+            showText ? "" : "line-clamp-2"
+          } mt-2 cursor-pointer __TEXTEDITOR__ text-base text-gray-700`}
+        ></div>
+      </div>
+    </div>
+  );
+};
+
 export default function News(props) {
   let navigate = useNavigate();
   const { session, setSession } = useContext(UserData);
@@ -167,72 +240,78 @@ export default function News(props) {
     return new Date(date).toLocaleDateString("en-GB", options);
   };
 
-  const renderCard = (item, index) => {
-    return (
-      <div
-        className="flex flex-row justify-center items-center w-full border-b-2 border-gray-200 py-5"
-        key={index}
-      >
-        {item?.category === "featured" && (
-          <div className="mr-10">
-            <img className="h-[10rem]" src={item?.thumbnail_url} />
-          </div>
-        )}
-        <div className="w-full">
-          <div className="flex flex-row justify-between items-end w-full">
-            <span className="text-xs tracking-normal font-thin text-gray-500">
-              {item?.category === "industry"
-                ? "Industry Insights (Partner Content)"
-                : item?.category === "company"
-                ? "Stankevicius News"
-                : "Featured News"}{" "}
-              / {formatDate(item?.timestamp)}
-            </span>
-            {(session?.personal?.is_staff ||
-              parseInt(item?.user?.id) === parseInt(session?.personal?.id)) && (
-              <span>
-                <DropdownButton
-                  label="Action"
-                  className="bg-black"
-                  options={[
-                    {
-                      label: "Edit",
-                      hide: false,
-                      type: "link",
-                      click: `/editNews/${item?.slug}`,
-                    },
-                    {
-                      label: "Delete",
-                      type: "button",
-                      click: () => {
-                        setModal({
-                          ...modal,
-                          isOpen: true,
-                          content: `You confirm that you want to delete
-                      this release now.`,
-                          onYes: () => {
-                            deleteNews(item?.slug);
-                            setModal(EMPTY_MODAL);
-                          },
-                        });
-                      },
-                    },
-                  ]}
-                />
-              </span>
-            )}
-          </div>
-          <div className="mt-2 _font-bold text-2xl tracking-normal w-full">
-            {item?.title}
-          </div>
-          <div
-            dangerouslySetInnerHTML={{ __html: item?.content }}
-            className="mt-2 __TEXTEDITOR__ line-clamp-2 text-base text-gray-700 tracking-normal"
-          ></div>
-        </div>
-      </div>
-    );
-  };
+  // const renderCard = (item, index) => {
+  //   const [showText, setShowText] = useState(false);
+  //   return (
+  //     <div
+  //       className="flex flex-row justify-center items-center w-full border-b-2 border-gray-200 py-5"
+  //       key={index}
+  //     >
+  //       {item?.category === "featured" && (
+  //         <div className="mr-10">
+  //           <img className="h-[10rem]" src={item?.thumbnail_url} />
+  //         </div>
+  //       )}
+  //       <div className="w-full">
+  //         <div className="flex flex-row justify-between items-end w-full">
+  //           <span className="text-xs tracking-normal font-thin text-gray-500">
+  //             {item?.category === "industry"
+  //               ? "Industry Insights (Partner Content)"
+  //               : item?.category === "company"
+  //               ? "Stankevicius News"
+  //               : "Featured News"}{" "}
+  //             / {formatDate(item?.timestamp)}
+  //           </span>
+  //           {(session?.personal?.is_staff ||
+  //             parseInt(item?.user?.id) === parseInt(session?.personal?.id)) && (
+  //             <span>
+  //               <DropdownButton
+  //                 label="Action"
+  //                 className="bg-black"
+  //                 options={[
+  //                   {
+  //                     label: "Edit",
+  //                     hide: false,
+  //                     type: "link",
+  //                     click: `/editNews/${item?.slug}`,
+  //                   },
+  //                   {
+  //                     label: "Delete",
+  //                     type: "button",
+  //                     click: () => {
+  //                       setModal({
+  //                         ...modal,
+  //                         isOpen: true,
+  //                         content: `You confirm that you want to delete
+  //                     this release now.`,
+  //                         onYes: () => {
+  //                           deleteNews(item?.slug);
+  //                           setModal(EMPTY_MODAL);
+  //                         },
+  //                       });
+  //                     },
+  //                   },
+  //                 ]}
+  //               />
+  //             </span>
+  //           )}
+  //         </div>
+  //         <div className="mt-2 _font-bold text-2xl tracking-normal w-full">
+  //           {item?.title}
+  //         </div>
+  //         <div
+  //           dangerouslySetInnerHTML={{ __html: item?.content }}
+  //           onClick={() => {
+  //             setShowData(!showData);
+  //           }}
+  //           className={`${
+  //             showData ? "" : "line-clamp-2"
+  //           } mt-2 __TEXTEDITOR__ text-base text-gray-700 tracking-normal`}
+  //         ></div>
+  //       </div>
+  //     </div>
+  //   );
+  // };
 
   const renderBox = (item, index) => {
     return (
@@ -423,70 +502,87 @@ export default function News(props) {
           <p className="tracking-tight font-thin text-gray-500">
             Showing {showData?.length} results
           </p>
-          <p
-            className={`py-2 select-none px-5 w-fit flex flex-row items-center justify-center hover:bg-gray-200 text-[15px]  transition-all duration-300 ease-in-out cursor-pointer`}
-            onClick={() => {
-              setIsGrid(!isGrid);
-            }}
-          >
-            {isGrid ? (
-              <>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  className="ml-4 w-6 h-6 scale-75 cursor-pointer"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="M0 0h16v7H0V0zm2 2v3h12V2H2zM0 9h16v7H0V9zm2 2v3h12v-3H2z"
-                    fill-rule="evenodd"
-                  />
-                </svg>
-              </>
-            ) : (
-              <>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  xmlns:xlink="http://www.w3.org/1999/xlink"
-                  fill="currentColor"
-                  className="ml-4 w-6 h-6 scale-90 translate-y-[1.5px] cursor-pointer"
-                  viewBox="0 0 24 24"
-                >
-                  <defs></defs>
-                  <g
-                    id="Page-1"
-                    stroke="none"
-                    stroke-width="1"
-                    fill="none"
-                    fill-rule="evenodd"
+          <span className="flex flex-row-reverse">
+            <p
+              className={`py-2 select-none px-5 w-fit flex flex-row items-center justify-center hover:bg-gray-200 text-[15px]  transition-all duration-300 ease-in-out cursor-pointer`}
+              onClick={() => {
+                setIsGrid(!isGrid);
+              }}
+            >
+              {isGrid ? (
+                <>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    className="ml-4 w-6 h-6 scale-75 cursor-pointer"
+                    viewBox="0 0 16 16"
                   >
+                    <path
+                      d="M0 0h16v7H0V0zm2 2v3h12V2H2zM0 9h16v7H0V9zm2 2v3h12v-3H2z"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                </>
+              ) : (
+                <>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    fill="currentColor"
+                    className="ml-4 w-6 h-6 scale-90 translate-y-[1.5px] cursor-pointer"
+                    viewBox="0 0 24 24"
+                  >
+                    <defs></defs>
                     <g
-                      id="Dribbble-Light-Preview"
-                      transform="translate(-59.000000, -240.000000)"
-                      fill="#000000"
+                      id="Page-1"
+                      stroke="none"
+                      stroke-width="1"
+                      fill="none"
+                      fill-rule="evenodd"
                     >
                       <g
-                        id="icons"
-                        transform="translate(56.000000, 160.000000)"
+                        id="Dribbble-Light-Preview"
+                        transform="translate(-59.000000, -240.000000)"
+                        fill="#000000"
                       >
-                        <path
-                          d="M16.65,98 L21.9,98 L21.9,93 L16.65,93 L16.65,98 Z M14.55,100 L24,100 L24,91 L14.55,91 L14.55,100 Z M5.1,98 L10.35,98 L10.35,93 L5.1,93 L5.1,98 Z M3,100 L12.45,100 L12.45,91 L3,91 L3,100 Z M16.65,87 L21.9,87 L21.9,82 L16.65,82 L16.65,87 Z M14.55,89 L24,89 L24,80 L14.55,80 L14.55,89 Z M5.1,87 L10.35,87 L10.35,82 L5.1,82 L5.1,87 Z M3,89 L12.45,89 L12.45,80 L3,80 L3,89 Z"
-                          id="grid_system-[#1520]"
-                        ></path>
+                        <g
+                          id="icons"
+                          transform="translate(56.000000, 160.000000)"
+                        >
+                          <path
+                            d="M16.65,98 L21.9,98 L21.9,93 L16.65,93 L16.65,98 Z M14.55,100 L24,100 L24,91 L14.55,91 L14.55,100 Z M5.1,98 L10.35,98 L10.35,93 L5.1,93 L5.1,98 Z M3,100 L12.45,100 L12.45,91 L3,91 L3,100 Z M16.65,87 L21.9,87 L21.9,82 L16.65,82 L16.65,87 Z M14.55,89 L24,89 L24,80 L14.55,80 L14.55,89 Z M5.1,87 L10.35,87 L10.35,82 L5.1,82 L5.1,87 Z M3,89 L12.45,89 L12.45,80 L3,80 L3,89 Z"
+                            id="grid_system-[#1520]"
+                          ></path>
+                        </g>
                       </g>
                     </g>
-                  </g>
-                </svg>
-              </>
-            )}
-            <span className="ml-1">SHOW {!isGrid ? "GRID" : "LIST"}</span>
-          </p>
+                  </svg>
+                </>
+              )}
+              <span className="ml-1">SHOW {!isGrid ? "GRID" : "LIST"}</span>
+            </p>
+            <p
+              className={`py-2 px-3 hover:bg-gray-200 text-[15px] uppercase whitespace-nowrap transition-all duration-300 ease-in-out cursor-pointer`}
+              onClick={() => {
+                navigate("/publishNewRelease");
+              }}
+            >
+              Publish New Release
+            </p>
+          </span>
         </div>
 
         {!isGrid && (
           <div className="my-5">
             {showData.map((item, index) => {
-              return renderCard(item, index);
+              return (
+                <RenderCard
+                  item={item}
+                  index={index}
+                  formatDate={formatDate}
+                  session={session}
+                />
+              );
             })}
           </div>
         )}

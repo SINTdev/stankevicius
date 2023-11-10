@@ -143,19 +143,22 @@ class ProductInteractions(models.Model):
 
 
 class CreditsPurchasing(models.Model):
+    MODE_CHOICES = (
+        ("credit", "Credit Purchased"),
+        ("news", "Published News Release"),
+    )
+
     user = models.ForeignKey(
         CustomUsers,
         on_delete=models.CASCADE,
     )
     amount = models.PositiveIntegerField(default=1)
     isPaid = models.BooleanField(default=False)
+    mode = models.CharField(max_length=20, choices=MODE_CHOICES, default="credit")
     timestamp = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return f"{self.amount} - {self.user.fullName}"
-
-
-import os
 
 
 class NewsRelease(models.Model):
@@ -175,7 +178,9 @@ class NewsRelease(models.Model):
         max_length=20, choices=TITLE_CHOICES, default="industry"
     )
     author = models.CharField(max_length=256, blank=True)
-    thumbnail = models.ImageField(null=True, blank=True, upload_to="static/news_release_media/")
+    thumbnail = models.ImageField(
+        null=True, blank=True, upload_to="static/news_release_media/"
+    )
     content = models.TextField()
     timestamp = models.DateTimeField(default=timezone.now)
 
