@@ -24,4 +24,5 @@ urlpatterns = [
     re_path(r"^newsreleases/(?P<pk>[\w-]+)/(?P<user_id>[\w-]+)$", views.newsreleases),
     re_path(r"^newsreleases/(?P<pk>[0-9]+)$", views.newsreleases),
     path("allreleasenews", views.allreleasenews, name="allreleasenews"),
+    path("fetchnewsrelease", views.fetchnewsrelease, name="fetchnewsrelease"),
 ]

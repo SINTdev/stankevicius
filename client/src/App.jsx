@@ -36,6 +36,7 @@ import ProfessionalContracting from "./views/menus/ProfessionalContracting";
 import PublishNewRelease from "./views/PublishNewRelease";
 import News from "./views/News";
 import NewsDetail from "./views/NewsDetail";
+import IndustryNews from "./views/menus/IndustryNews";
 
 // import CategoryManagement from "./views/corporate/CategoryManagement";
 
@@ -334,7 +335,7 @@ function App() {
             path="/menu/industry_insights"
             element={
               <Layout {...paramater} menu={true}>
-                <CompanyNews />
+                <IndustryNews />
               </Layout>
             }
           />

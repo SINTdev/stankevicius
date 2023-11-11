@@ -791,6 +791,46 @@ def newsreleases(request, pk=None, user_id=None):
         return JsonResponse({"message": "Not valid slug!"}, safe=False)
 
 
+@api_view(["POST"])
+@permission_classes([])
+@authentication_classes([])
+def fetchnewsrelease(request):
+    if request.method == "POST":
+        data = JSONParser().parse(request)
+        category = data["category"]
+
+        if category:
+            # Fetch last 3 news from the specified category
+            latest_news = models.NewsRelease.objects.filter(category=category).order_by(
+                "-timestamp"
+            )[:3]
+
+            # Fetch max last two featured news
+            featured_news = models.NewsRelease.objects.filter(
+                category="featured"
+            ).order_by("-timestamp")[:2]
+
+            # Serialize the data
+            latest_data = serializers.ViewNewsReleaseSerializer(
+                latest_news, many=True
+            ).data
+            featured_data = serializers.ViewNewsReleaseSerializer(
+                featured_news, many=True
+            ).data
+
+            final_dict = {
+                "latest": latest_data,
+                "featured": featured_data,
+            }
+
+            return JsonResponse(final_dict, status=status.HTTP_200_OK)
+
+        return JsonResponse(
+            {"message": "Define category and query!"},
+            status=status.HTTP_400_BAD_REQUEST,
+        )
+
+
 @api_view(["POST", "GET"])
 @permission_classes([])
 @authentication_classes([])

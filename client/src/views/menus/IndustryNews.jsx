@@ -8,7 +8,7 @@ import { CONSTANT } from "../../CONSTANT";
 import UserData from "../../contexts/UserData";
 import ModalWrapper from "../../components/ModalWrapper";
 import Login from "../../auth/Login";
-export default function CompanyNews() {
+export default function IndustryNews() {
   const { session, updateSessionData } = useContext(UserData);
   let navigate = useNavigate();
   const [payload, setPayload] = useState({
@@ -19,7 +19,7 @@ export default function CompanyNews() {
   const fetchNews = async () => {
     await axios
       .post(CONSTANT.server + `api/fetchnewsrelease`, {
-        category: "company",
+        category: "industry",
       })
       .then((responce) => {
         setPayload(responce?.data);
@@ -55,7 +55,7 @@ export default function CompanyNews() {
           <Fold inside>
             <div className="py-10 flex flex-col space-y-5">
               <div className="w-full text-left mb-2 md:pl-1 text-4xl _font-bold leading-tight tracking-tight text-black">
-                Stankevicius Company News
+                Industry Insights (Partner Content)
               </div>
               <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
                 {payload?.latest?.map((item, one) => {

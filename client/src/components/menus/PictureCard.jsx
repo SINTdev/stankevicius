@@ -1,23 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function PictureCard(props) {
+export default function PictureCard({ item, index }) {
   return (
-    <Link to="#">
+    <Link to={`/news/${item?.slug}`} index={index}>
       <div className="w-full border bg-white hover:border-black transition-all duration-300 ease-in-out border-[#c7c7c7]">
-        <img
-          src={props?.src}
-          className="w-full max-h-[250px]"
-        />
+        <img src={item?.thumbnail_url} className="w-full max-h-[250px]" />
         <div className="py-2 px-3">
           <div className="mt-3 w-full text-left mb-2 md:pl-1 text-2xl _font-bold leading-tight tracking-tight text-black">
-            Novartis in Society Integrated Report 2022
+            {item?.title}
           </div>
-          <div className="mt-3 w-full text-left mb-2 md:pl-1 tracking-normal text-base text-black">
-            The Novartis in Society Integrated Report covers our business,
-            strategy and performance. It highlights progress against our ESG
-            targets and describes how we create value for diverse stakeholders.
-          </div>
+          <div
+            dangerouslySetInnerHTML={{ __html: item?.content }}
+            className="mt-3 w-full text-left mb-2 md:pl-1 tracking-normal text-base text-black"
+          ></div>
         </div>
 
         <div className="py-3"></div>
