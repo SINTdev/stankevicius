@@ -17,8 +17,9 @@ from authentication.models import CustomUsers
 from authentication.serializers import ViewUserSerializer
 from .helpers import email_new_listing, test_email
 from django.utils import timezone
-from datetime import timedelta
+from datetime import timedelta, datetime
 import stripe
+from collections import defaultdict
 
 stripe.api_key = "sk_test_51LyNIZJwTuApoB7Ms8joJ1fORtVdu9sohKVSy1KoZJALIWKCsv7sST3AVYfWpfoEis9gvsPK6JRlZLyFFQhjmKhG00VJdbjvll"
 # test_email()
@@ -708,12 +709,18 @@ def corporateusers(request):
 @authentication_classes([])
 def newsreleases(request, pk=None, user_id=None):
     if request.method == "GET":
+        pass_session = False
         if pk is None:
             return JsonResponse({"message": "Not valid slug!"}, safe=False)
         if user_id is None:
             return JsonResponse({"message": "Not valid session!"}, safe=False)
+        elif int(user_id) == -1:
+            pass_session = True
         try:
             instance = models.NewsRelease.objects.get(slug=pk)
+            if pass_session:
+                final_data = serializers.ViewNewsReleaseSerializer(instance).data
+                return JsonResponse(final_data)
             session = CustomUsers.objects.get(pk=int(user_id))
             if session.is_staff or session.id == instance.user.id:
                 final_data = serializers.ViewNewsReleaseSerializer(instance).data
@@ -735,7 +742,9 @@ def newsreleases(request, pk=None, user_id=None):
             obhj = serializer.save()
             obhj.user.credits = obhj.user.credits - 20
             obhj.user.save()
-            createCreditEntry({"user": obhj.user.id, "amount": 20, "mode": "news", "isPaid": True})
+            createCreditEntry(
+                {"user": obhj.user.id, "amount": 20, "mode": "news", "isPaid": True}
+            )
             return JsonResponse(
                 {"content": serializer.data}, status=status.HTTP_201_CREATED
             )
@@ -789,7 +798,19 @@ def allreleasenews(request):
     if request.method == "GET":
         instance = models.NewsRelease.objects.all().order_by("-timestamp")
         final_data = serializers.ViewNewsReleaseSerializer(instance, many=True).data
-        return JsonResponse(final_data, safe=False)
+        organized_data = defaultdict(list)
+        # Organize news articles by month and year
+        for item in final_data:
+            timestamp = datetime.fromisoformat(item["timestamp"])
+            month_year_key = timestamp.strftime("%B %Y")
+            organized_data[month_year_key].append(item)
+
+        # Convert the organized data to the desired format
+        final_result = [
+            {"label": month_year, "news": news_list}
+            for month_year, news_list in organized_data.items()
+        ]
+        return JsonResponse(final_result, safe=False)
 
 
 # Functions

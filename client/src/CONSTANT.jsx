@@ -83,11 +83,6 @@ export const CORPORATE_DASHBOARD_MENU = [
     isLink: true,
   },
   {
-    label: "Publish New Release",
-    to: "/publishNewRelease",
-    isLink: true,
-  },
-  {
     label: "Profile",
     to: "profile",
     isLink: false,

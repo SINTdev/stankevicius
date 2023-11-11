@@ -79,75 +79,74 @@ const DropdownButton = (props) => {
 };
 
 const RenderCard = ({ item, index, formatDate, session }) => {
-  const [showText, setShowText] = useState(false);
+  // const [showText, setShowText] = useState(false);
   return (
-    <div
-      className="flex flex-row justify-center items-center w-full border-b-2 border-gray-200 py-5"
-      key={index}
-    >
-      {item?.category === "featured" && (
-        <div className="mr-10">
-          <img className="h-[10rem]" src={item?.thumbnail_url} />
-        </div>
-      )}
-      <div className="w-full">
-        <div className="flex flex-row justify-between items-end w-full">
-          <span className="text-xs tracking-normal font-thin text-gray-500">
-            {item?.category === "industry"
-              ? "Industry Insights (Partner Content)"
-              : item?.category === "company"
-              ? "Stankevicius News"
-              : "Featured News"}{" "}
-            / {formatDate(item?.timestamp)}
-          </span>
-          {(session?.personal?.is_staff ||
-            parseInt(item?.user?.id) === parseInt(session?.personal?.id)) && (
-            <span>
-              <DropdownButton
-                label="Action"
-                className="bg-black"
-                options={[
-                  {
-                    label: "Edit",
-                    hide: false,
-                    type: "link",
-                    click: `/editNews/${item?.slug}`,
-                  },
-                  {
-                    label: "Delete",
-                    type: "button",
-                    click: () => {
-                      setModal({
-                        ...modal,
-                        isOpen: true,
-                        content: `You confirm that you want to delete
-                    this release now.`,
-                        onYes: () => {
-                          deleteNews(item?.slug);
-                          setModal(EMPTY_MODAL);
-                        },
-                      });
-                    },
-                  },
-                ]}
-              />
+    <>
+      {" "}
+      <Link
+        className="group cursor-pointer flex flex-row justify-center items-center w-full border-b-2 border-gray-200 py-5"
+        key={index}
+        to={`/news/${item?.slug}`}
+      >
+        {item?.category === "featured" && (
+          <div className="mr-10">
+            <img className="h-[10rem]" src={item?.thumbnail_url} />
+          </div>
+        )}
+        <div className="w-full">
+          <div className="flex flex-row justify-between items-end w-full">
+            <span className="text-xs tracking-normal font-thin text-gray-500">
+              {item?.category === "industry"
+                ? "Industry Insights (Partner Content)"
+                : item?.category === "company"
+                ? "Stankevicius News"
+                : "Featured News"}{" "}
+              / {formatDate(item?.timestamp)}
             </span>
-          )}
+            {(session?.personal?.is_staff ||
+              parseInt(item?.user?.id) === parseInt(session?.personal?.id)) && (
+              <span>
+                <DropdownButton
+                  label="Action"
+                  className="bg-black"
+                  options={[
+                    {
+                      label: "Edit",
+                      hide: false,
+                      type: "link",
+                      click: `/editNews/${item?.slug}`,
+                    },
+                    {
+                      label: "Delete",
+                      type: "button",
+                      click: () => {
+                        setModal({
+                          ...modal,
+                          isOpen: true,
+                          content: `You confirm that you want to delete
+                 this release now.`,
+                          onYes: () => {
+                            deleteNews(item?.slug);
+                            setModal(EMPTY_MODAL);
+                          },
+                        });
+                      },
+                    },
+                  ]}
+                />
+              </span>
+            )}
+          </div>
+          <div className="group-hover:underline mt-2 _font-bold text-2xl tracking-normal w-full">
+            {item?.title}
+          </div>
+          <div
+            dangerouslySetInnerHTML={{ __html: item?.content }}
+            className={`mt-2 line-clamp-2 cursor-pointer leading-6 tracking-normal text-base text-gray-600`}
+          ></div>
         </div>
-        <div className="mt-2 _font-bold text-2xl tracking-normal w-full">
-          {item?.title}
-        </div>
-        <div
-          dangerouslySetInnerHTML={{ __html: item?.content }}
-          onClick={() => {
-            setShowText(!showText);
-          }}
-          className={`${
-            showText ? "" : "line-clamp-2"
-          } mt-2 cursor-pointer __TEXTEDITOR__ text-base text-gray-700`}
-        ></div>
-      </div>
-    </div>
+      </Link>
+    </>
   );
 };
 
@@ -315,9 +314,10 @@ export default function News(props) {
 
   const renderBox = (item, index) => {
     return (
-      <div
-        className="flex flex-col w-full border-2 border-gray-200"
+      <Link
+        className="flex flex-col w-full border border-gray-200 hover:border-gray-400 cursor-pointer"
         key={index}
+        to={`/news/${item?.slug}`}
       >
         {item?.category === "featured" && (
           <div className="">
@@ -377,7 +377,7 @@ export default function News(props) {
             className="mt-2 __TEXTEDITOR__ line-clamp-2 text-base text-gray-700 tracking-normal"
           ></div> */}
         </div>
-      </div>
+      </Link>
     );
   };
 
@@ -529,7 +529,7 @@ export default function News(props) {
                     xmlns="http://www.w3.org/2000/svg"
                     xmlns:xlink="http://www.w3.org/1999/xlink"
                     fill="currentColor"
-                    className="ml-4 w-6 h-6 scale-90 translate-y-[1.5px] cursor-pointer"
+                    className="ml-2 w-6 h-6 scale-90 translate-y-[1.5px] cursor-pointer"
                     viewBox="0 0 24 24"
                   >
                     <defs></defs>
@@ -562,11 +562,19 @@ export default function News(props) {
               <span className="ml-1">SHOW {!isGrid ? "GRID" : "LIST"}</span>
             </p>
             <p
-              className={`py-2 px-3 hover:bg-gray-200 text-[15px] uppercase whitespace-nowrap transition-all duration-300 ease-in-out cursor-pointer`}
+              className={`py-2 px-3 hover:bg-gray-200 flex flex-row items-center justify-center text-[15px] uppercase whitespace-nowrap transition-all duration-300 ease-in-out cursor-pointer`}
               onClick={() => {
                 navigate("/publishNewRelease");
               }}
             >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                className="mr-2 w-6 h-6 scale-75 cursor-pointer"
+              >
+                <path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z" />
+              </svg>
               Publish New Release
             </p>
           </span>
@@ -576,21 +584,50 @@ export default function News(props) {
           <div className="my-5">
             {showData.map((item, index) => {
               return (
-                <RenderCard
-                  item={item}
-                  index={index}
-                  formatDate={formatDate}
-                  session={session}
-                />
+                <>
+                  <div
+                    className={`${
+                      index !== 0 ? "mt-7" : ""
+                    } w-full text-left text-4xl _font-bold leading-tight tracking-tight text-black`}
+                  >
+                    {item?.label}
+                  </div>
+                  {item?.news?.map((one, in2) => {
+                    return (
+                      <RenderCard
+                        item={one}
+                        index={`${index}${in2}`}
+                        formatDate={formatDate}
+                        session={session}
+                      />
+                    );
+                  })}
+                </>
               );
             })}
           </div>
         )}
 
         {isGrid && (
-          <div className="my-5 grid grid-cols-1 md:grid-cols-4 gap-x-10 gap-y-5">
+          <div className="my-5">
             {showData.map((item, index) => {
-              return renderBox(item, index);
+              return (
+                <>
+                  <div
+                    className={`${
+                      index !== 0 ? "mt-7" : ""
+                    } w-full text-left text-4xl _font-bold leading-tight tracking-tight text-black`}
+                  >
+                    {item?.label}
+                  </div>
+                  <div className="my-5 grid grid-cols-1 md:grid-cols-4 gap-x-10 gap-y-5">
+                    {item?.news?.map((one, in2) => {
+                      return renderBox(one, `${index}${in2}`);
+                    })}
+                  </div>
+                  <div className="py-5"></div>
+                </>
+              );
             })}
           </div>
         )}

@@ -35,6 +35,7 @@ import CounterpartyDueDiligence from "./views/menus/CounterpartyDueDiligence";
 import ProfessionalContracting from "./views/menus/ProfessionalContracting";
 import PublishNewRelease from "./views/PublishNewRelease";
 import News from "./views/News";
+import NewsDetail from "./views/NewsDetail";
 
 // import CategoryManagement from "./views/corporate/CategoryManagement";
 
@@ -77,6 +78,14 @@ function App() {
             element={
               <Layout {...paramater}>
                 <News />
+              </Layout>
+            }
+          />
+          <Route
+            path="/news/:slug"
+            element={
+              <Layout {...paramater}>
+                <NewsDetail />
               </Layout>
             }
           />
