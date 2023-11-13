@@ -54,16 +54,10 @@ export default function NewsDetail(props) {
   };
 
   useEffect(() => {
-    if (slug && session?.isLoaded && session?.isLoggedIn) {
+    if (slug) {
       fetchNews();
     }
   }, [slug, session]);
-
-  useEffect(() => {
-    if (checkLoginFromNonLogin()) {
-      navigate("/");
-    }
-  }, [session]);
 
   if (props?.isMenuOpen) {
     return <Menu />;

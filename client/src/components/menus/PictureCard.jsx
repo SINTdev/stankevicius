@@ -12,7 +12,7 @@ export default function PictureCard({ item, index }) {
           </div>
           <div
             dangerouslySetInnerHTML={{ __html: item?.content }}
-            className="mt-3 w-full text-left mb-2 md:pl-1 tracking-normal text-base text-black"
+            className="mt-3 w-full line-clamp-3 text-left mb-2 md:pl-1 tracking-normal text-base text-black"
           ></div>
         </div>
 
