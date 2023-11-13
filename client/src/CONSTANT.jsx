@@ -11,9 +11,9 @@ import { Link } from "react-router-dom";
 // };
 
 export const CONSTANT = {
-  server: "http://stankint.pythonanywhere.com/", // CHANGE WITH YOUR BACKEND LINK (/ is MUST IN END)
-  admin: "http://stankint.pythonanywhere.com/admin", // CHANGE WITH YOUR BACKEND LINK (/ is MUST IN END)
-  client: "http://stankint.pythonanywhere.com/", // CHANGE WITH YOUR FRONTEND LINK (/ is MUST IN END)
+  server: "https://stankint.pythonanywhere.com/", // CHANGE WITH YOUR BACKEND LINK (/ is MUST IN END)
+  admin: "https://stankint.pythonanywhere.com/admin", // CHANGE WITH YOUR BACKEND LINK (/ is MUST IN END)
+  client: "https://stankint.pythonanywhere.com/", // CHANGE WITH YOUR FRONTEND LINK (/ is MUST IN END)
   STRIPE_PUBLISHABLE_KEY:
     "pk_test_51LyNIZJwTuApoB7M37vATaRSDkaldKdAM1MbOrH38IiOkLWoLr0qNwp0sVyT39r9tSTijyIqsOJZu1ttZaIHyPP000J1pvm6XK",
 };
