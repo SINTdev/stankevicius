@@ -31,6 +31,9 @@ export default function NewsDetail(props) {
     title: "",
     content: "",
     timestamp: "",
+    category: "",
+    user: "",
+    author: "",
   };
   const [payload, setPayload] = useState(init__payload);
 
@@ -81,13 +84,28 @@ export default function NewsDetail(props) {
           <div className="w-full text-left text-4xl _font-bold leading-tight tracking-tight text-black">
             {payload?.title}
           </div>
-          <span className="mt-4 block text-sm tracking-normal font-thin text-black">
-            {formatDate(payload?.timestamp)}
+          <span className="mt-4 block text-sm tracking-normal font-thin text-gray-500">
+            {payload?.category === "industry"
+              ? "Industry Insights (Partner Content)"
+              : payload?.category === "company"
+              ? "Stankevicius News"
+              : "Featured News"}{" "}
+            / {formatDate(payload?.timestamp)}
+          </span>
+          <span className="block text-sm tracking-normal font-thin text-gray-500">
+            Published by{" "}
+            <span className="text-black">
+              {payload?.category === "industry"
+                ? payload?.author || payload?.user?.fullName
+                : payload?.category === "company"
+                ? "Admin" || payload?.user?.fullName
+                : payload?.user?.fullName}
+            </span>
           </span>
           <div className="py-2"></div>
           <div
             dangerouslySetInnerHTML={{ __html: payload?.content }}
-            className={`mt-2 leading-6 tracking-normal text-base text-black`}
+            className={`mt-2 leading-6 tracking-normal text-base text-gray-600`}
           ></div>
         </div>
       </div>

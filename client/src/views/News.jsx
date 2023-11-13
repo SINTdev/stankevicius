@@ -22,13 +22,15 @@ const DropdownButton = (props) => {
       {isOpen && (
         <div
           className="w-screen h-screen top-0 left-0 z-10 fixed"
-          onClick={() => {
+          onClick={(e) => {
+            e.stopPropagation();
             setIsOpen(false);
           }}
         ></div>
       )}
       <button
-        onClick={() => {
+        onClick={(e) => {
+          e.stopPropagation();
           setIsOpen(!isOpen);
         }}
         className={`${props?.className} flex flex-row items-center justify-center text-[16px] uppercase font-semibold bg-[#221f1f] text-white min-w-[8rem] py-2`}
@@ -56,6 +58,9 @@ const DropdownButton = (props) => {
               return (
                 <Link
                   to={one?.click}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
                   className={`border m-0 border-black border-t-0 flex flex-row items-center justify-center text-[13px] uppercase font-semibold bg-[#D5D5D5] hover:bg-[#929292] transition-all duration-150 ease-in-out text-white min-w-[8rem] py-1.5`}
                 >
                   {one?.label}
@@ -64,7 +69,8 @@ const DropdownButton = (props) => {
             }
             return (
               <button
-                onClick={() => {
+                onClick={(e) => {
+                  e.stopPropagation();
                   one?.click();
                 }}
                 className={`border m-0 border-black border-t-0 flex flex-row items-center justify-center text-[13px] uppercase font-semibold bg-[#D5D5D5] hover:bg-[#929292] transition-all duration-150 ease-in-out text-white min-w-[8rem] py-1.5`}
@@ -78,15 +84,27 @@ const DropdownButton = (props) => {
   );
 };
 
-const RenderCard = ({ item, index, formatDate, session }) => {
+const RenderCard = ({
+  item,
+  index,
+  formatDate,
+  session,
+  navigate,
+  EMPTY_MODAL,
+  setModal,
+  modal,
+  deleteNews,
+}) => {
   // const [showText, setShowText] = useState(false);
   return (
     <>
-      {" "}
-      <Link
+      <div
         className="group cursor-pointer flex flex-row justify-center items-center w-full border-b-2 border-gray-200 py-5"
         key={index}
-        to={`/news/${item?.slug}`}
+        onClick={(e) => {
+          e.preventDefault();
+          navigate(`/news/${item?.slug}`);
+        }}
       >
         {item?.category === "featured" && (
           <div className="mr-10">
@@ -108,7 +126,7 @@ const RenderCard = ({ item, index, formatDate, session }) => {
               <span>
                 <DropdownButton
                   label="Action"
-                  className="bg-black"
+                  className="bg-black z-50"
                   options={[
                     {
                       label: "Edit",
@@ -145,7 +163,7 @@ const RenderCard = ({ item, index, formatDate, session }) => {
             className={`mt-2 line-clamp-2 cursor-pointer leading-6 tracking-normal text-base text-gray-600`}
           ></div>
         </div>
-      </Link>
+      </div>
     </>
   );
 };
@@ -203,34 +221,70 @@ export default function News(props) {
 
   const [showData, setShowData] = useState(newsList || []);
 
+  // useEffect(() => {
+  //   setShowData(
+  //     newsList
+  //       .filter((item, index) => {
+  //         if (!filter) return true;
+  //         if (filter === "industry") {
+  //           return item?.category === "industry";
+  //         }
+  //         if (filter === "company") {
+  //           return item?.category === "company";
+  //         }
+  //         if (filter === "featured") {
+  //           return item?.category === "featured";
+  //         }
+  //         if (filter === "my") {
+  //           return parseInt(item?.user?.id) === parseInt(session?.personal?.id);
+  //         }
+  //         return true;
+  //       })
+  //       .filter((product, index) => {
+  //         if (!search) return true;
+  //         return (
+  //           product?.author.toLowerCase().includes(search.toLowerCase()) ||
+  //           product?.content.toLowerCase().includes(search.toLowerCase()) ||
+  //           product?.title.toLowerCase().includes(search.toLowerCase())
+  //         );
+  //       })
+  //       .slice(0, show)
+  //   );
+  // }, [filter, search, newsList, show]);
+
   useEffect(() => {
     setShowData(
-      newsList
-        .filter((item, index) => {
-          if (!filter) return true;
-          if (filter === "industry") {
-            return item?.category === "industry";
-          }
-          if (filter === "company") {
-            return item?.category === "company";
-          }
-          if (filter === "featured") {
-            return item?.category === "featured";
-          }
-          if (filter === "my") {
-            return parseInt(item?.user?.id) === parseInt(session?.personal?.id);
-          }
-          return true;
-        })
-        .filter((product, index) => {
-          if (!search) return true;
-          return (
-            product?.author.toLowerCase().includes(search.toLowerCase()) ||
-            product?.content.toLowerCase().includes(search.toLowerCase()) ||
-            product?.title.toLowerCase().includes(search.toLowerCase())
-          );
-        })
-        .slice(0, show)
+      newsList.map((monthData) => ({
+        label: monthData.label,
+        news: monthData.news
+          .filter((item, index) => {
+            if (!filter) return true;
+            if (filter === "industry") {
+              return item?.category === "industry";
+            }
+            if (filter === "company") {
+              return item?.category === "company";
+            }
+            if (filter === "featured") {
+              return item?.category === "featured";
+            }
+            if (filter === "my") {
+              return (
+                parseInt(item?.user?.id) === parseInt(session?.personal?.id)
+              );
+            }
+            return true;
+          })
+          .filter((product, index) => {
+            if (!search) return true;
+            return (
+              product?.author.toLowerCase().includes(search.toLowerCase()) ||
+              product?.content.toLowerCase().includes(search.toLowerCase()) ||
+              product?.title.toLowerCase().includes(search.toLowerCase())
+            );
+          })
+          .slice(0, show),
+      }))
     );
   }, [filter, search, newsList, show]);
 
@@ -239,85 +293,15 @@ export default function News(props) {
     return new Date(date).toLocaleDateString("en-GB", options);
   };
 
-  // const renderCard = (item, index) => {
-  //   const [showText, setShowText] = useState(false);
-  //   return (
-  //     <div
-  //       className="flex flex-row justify-center items-center w-full border-b-2 border-gray-200 py-5"
-  //       key={index}
-  //     >
-  //       {item?.category === "featured" && (
-  //         <div className="mr-10">
-  //           <img className="h-[10rem]" src={item?.thumbnail_url} />
-  //         </div>
-  //       )}
-  //       <div className="w-full">
-  //         <div className="flex flex-row justify-between items-end w-full">
-  //           <span className="text-xs tracking-normal font-thin text-gray-500">
-  //             {item?.category === "industry"
-  //               ? "Industry Insights (Partner Content)"
-  //               : item?.category === "company"
-  //               ? "Stankevicius News"
-  //               : "Featured News"}{" "}
-  //             / {formatDate(item?.timestamp)}
-  //           </span>
-  //           {(session?.personal?.is_staff ||
-  //             parseInt(item?.user?.id) === parseInt(session?.personal?.id)) && (
-  //             <span>
-  //               <DropdownButton
-  //                 label="Action"
-  //                 className="bg-black"
-  //                 options={[
-  //                   {
-  //                     label: "Edit",
-  //                     hide: false,
-  //                     type: "link",
-  //                     click: `/editNews/${item?.slug}`,
-  //                   },
-  //                   {
-  //                     label: "Delete",
-  //                     type: "button",
-  //                     click: () => {
-  //                       setModal({
-  //                         ...modal,
-  //                         isOpen: true,
-  //                         content: `You confirm that you want to delete
-  //                     this release now.`,
-  //                         onYes: () => {
-  //                           deleteNews(item?.slug);
-  //                           setModal(EMPTY_MODAL);
-  //                         },
-  //                       });
-  //                     },
-  //                   },
-  //                 ]}
-  //               />
-  //             </span>
-  //           )}
-  //         </div>
-  //         <div className="mt-2 _font-bold text-2xl tracking-normal w-full">
-  //           {item?.title}
-  //         </div>
-  //         <div
-  //           dangerouslySetInnerHTML={{ __html: item?.content }}
-  //           onClick={() => {
-  //             setShowData(!showData);
-  //           }}
-  //           className={`${
-  //             showData ? "" : "line-clamp-2"
-  //           } mt-2 __TEXTEDITOR__ text-base text-gray-700 tracking-normal`}
-  //         ></div>
-  //       </div>
-  //     </div>
-  //   );
-  // };
-
   const renderBox = (item, index) => {
     return (
-      <Link
+      <div
         className="flex flex-col w-full border border-gray-200 hover:border-gray-400 cursor-pointer"
         key={index}
-        to={`/news/${item?.slug}`}
+        onClick={(e) => {
+          e.preventDefault();
+          navigate(`/news/${item?.slug}`);
+        }}
       >
         {item?.category === "featured" && (
           <div className="">
@@ -377,7 +361,7 @@ export default function News(props) {
             className="mt-2 __TEXTEDITOR__ line-clamp-2 text-base text-gray-700 tracking-normal"
           ></div> */}
         </div>
-      </Link>
+      </div>
     );
   };
 
@@ -583,6 +567,7 @@ export default function News(props) {
         {!isGrid && (
           <div className="my-5">
             {showData.map((item, index) => {
+              if (item?.news?.length <= 0) return;
               return (
                 <>
                   <div
@@ -599,6 +584,11 @@ export default function News(props) {
                         index={`${index}${in2}`}
                         formatDate={formatDate}
                         session={session}
+                        navigate={navigate}
+                        EMPTY_MODAL={EMPTY_MODAL}
+                        setModal={setModal}
+                        modal={modal}
+                        deleteNews={deleteNews}
                       />
                     );
                   })}
@@ -611,6 +601,7 @@ export default function News(props) {
         {isGrid && (
           <div className="my-5">
             {showData.map((item, index) => {
+              if (item?.news?.length <= 0) return;
               return (
                 <>
                   <div

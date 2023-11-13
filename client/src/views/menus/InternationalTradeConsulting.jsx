@@ -25,7 +25,7 @@ export default function InternationalTradeConsulting(props) {
         <Fold inside>
           <div className="flex flex-row w-full px-2">
             <div className="w-3/12 md:block hidden">
-              <span className="sticky top-[7rem] __STICKY__ALL__">
+              <div className="sticky top-[7rem] __STICKY__ALL__">
                 <span className="_font-bold text-lg tracking-tight">
                   International Trade Consulting
                 </span>
@@ -64,7 +64,7 @@ export default function InternationalTradeConsulting(props) {
                     },
                   ]}
                 />
-              </span>
+              </div>
             </div>
             <div className="w-full md:w-9/12">
               <div className="md:ml-20 m-0">{props.children}</div>
