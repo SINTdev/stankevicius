@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function PictureCard({ item, index }) {
+export default function PictureCard({ item, index, onClick }) {
   return (
-    <Link to={`/news/${item?.slug}`} index={index}>
-      <div className="w-full border bg-white hover:border-black max-w-[700px] transition-all duration-300 ease-in-out border-[#c7c7c7]">
+    <div onClick={onClick} index={index}>
+      <div className="w-full border bg-white cursor-pointer hover:border-black max-w-[700px] transition-all duration-300 ease-in-out border-[#c7c7c7]">
         <div className="relative overflow-hidden">
           <img
             src={item?.thumbnail_url}
@@ -27,6 +27,6 @@ export default function PictureCard({ item, index }) {
 
         <div className="py-3"></div>
       </div>
-    </Link>
+    </div>
   );
 }

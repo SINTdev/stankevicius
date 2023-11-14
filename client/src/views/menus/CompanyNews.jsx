@@ -59,7 +59,21 @@ export default function CompanyNews() {
               </div>
               <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
                 {payload?.latest?.map((item, one) => {
-                  return <InfoCard item={item} index={one} />;
+                  return (
+                    <InfoCard
+                      item={item}
+                      index={one}
+                      onClick={() => {
+                        if (session?.isLoaded && session?.isLoggedIn) {
+                          navigate(`/news/${item?.slug}`);
+                        } else {
+                          setLogin({
+                            login: true,
+                          });
+                        }
+                      }}
+                    />
+                  );
                 })}
               </div>
               <button
@@ -102,7 +116,21 @@ export default function CompanyNews() {
             <div className="py-10 flex flex-col space-y-5">
               <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
                 {payload?.featured?.map((item, one) => {
-                  return <PictureCard item={item} index={one} />;
+                  return (
+                    <PictureCard
+                      item={item}
+                      index={one}
+                      onClick={() => {
+                        if (session?.isLoaded && session?.isLoggedIn) {
+                          navigate(`/news/${item?.slug}`);
+                        } else {
+                          setLogin({
+                            login: true,
+                          });
+                        }
+                      }}
+                    />
+                  );
                 })}
               </div>
             </div>

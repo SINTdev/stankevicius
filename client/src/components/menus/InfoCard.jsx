@@ -1,15 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function InfoCard({ item, index, nodate }) {
+export default function InfoCard({ item, index, nodate, onClick }) {
   const formatDate = (date) => {
     const options = { day: "numeric", month: "short", year: "numeric" };
     return new Date(date).toLocaleDateString("en-GB", options);
   };
 
   return (
-    <Link to={`/news/${item?.slug}`} index={index}>
-      <div className="w-full border transition-all duration-300 ease-in-out bg-white hover:border-black border-[#c7c7c7] py-3 px-5">
+    <div onClick={onClick} index={index} className="">
+      <div className="w-full border transition-all cursor-pointer duration-300 ease-in-out bg-white hover:border-black border-[#c7c7c7] py-3 px-5">
         {!nodate && (
           <div className="flex justify-between text-sm">
             <span className="tracking-tight">
@@ -33,6 +33,6 @@ export default function InfoCard({ item, index, nodate }) {
         )}
         <div className="py-3"></div>
       </div>
-    </Link>
+    </div>
   );
 }

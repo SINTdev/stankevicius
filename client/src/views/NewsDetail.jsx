@@ -52,7 +52,11 @@ export default function NewsDetail(props) {
         console.log(error);
       });
   };
-
+  useEffect(() => {
+    if (checkLoginFromNonLogin()) {
+      navigate("/");
+    }
+  }, [session]);
   useEffect(() => {
     if (slug) {
       fetchNews();

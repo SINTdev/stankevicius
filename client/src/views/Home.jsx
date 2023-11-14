@@ -7,6 +7,8 @@ import { CONSTANT, smoothScrollDown } from "../CONSTANT";
 import UserData from "../contexts/UserData";
 import InputBox from "../components/InputBox";
 import { takeActionOnProduct } from "../ACTIONS";
+import ProductCard from "../components/skeleton/ProductCard";
+import Category from "../components/skeleton/Category";
 
 const CountdownComponent = ({ lastActivity, hasMinutesPassed }) => {
   const [countdown, setCountdown] = useState(null);
@@ -146,6 +148,7 @@ export default function Home(props) {
       .post(CONSTANT.server + "api/options", {})
       .then((responce) => {
         setCategories(responce.data);
+        // removeSkeleton("categories");
       })
       .catch((error) => {
         console.log(error);
@@ -158,7 +161,10 @@ export default function Home(props) {
     await axios
       .get(CONSTANT.server + url)
       .then((responce) => {
-        setProductsList(responce.data);
+        setTimeout(() => {
+          setProductsList(responce.data);
+          removeSkeleton("products");
+        }, 1000);
       })
       .catch((error) => {
         console.log(error);
@@ -428,6 +434,20 @@ export default function Home(props) {
   //   );
   // };
 
+  // Skeleton
+
+  const [skeleton, setSkeleton] = useState({
+    categories: false,
+    products: true,
+  });
+
+  const removeSkeleton = (name) => {
+    setSkeleton({
+      ...skeleton,
+      [name]: false,
+    });
+  };
+
   return (
     <div>
       <Modal
@@ -609,6 +629,13 @@ export default function Home(props) {
             >
               All Products
             </p>
+            {skeleton.categories && (
+              <div className="animate-pulse flex flex-row">
+                {[1, 2, 3, 4, 5].map((index) => (
+                  <Category />
+                ))}
+              </div>
+            )}
             {categories.map((category, one) => {
               return (
                 <p
@@ -647,48 +674,58 @@ export default function Home(props) {
         )}
 
         <div className={props?.onlySearch && "mt-10"}>
-          {((props?.onlySearch && search !== "") || !props?.onlySearch) && (
+          {((props?.onlySearch && search !== "") || !props?.onlySearch) &&
+            !skeleton.products && (
+              <p className="tracking-tight font-thin text-gray-500">
+                Showing{" "}
+                {
+                  productsList
+                    .filter((product, index) => {
+                      if (!filter) return true;
+                      return (
+                        parseInt(product?.category?.id) === parseInt(filter)
+                      );
+                    })
+                    .filter((product, index) => {
+                      if (!search) return true;
+                      return (
+                        product?.category?.name
+                          .toLowerCase()
+                          .includes(search.toLowerCase()) ||
+                        product?.contract?.name
+                          .toLowerCase()
+                          .includes(search.toLowerCase()) ||
+                        product?.currency?.name
+                          .toLowerCase()
+                          .includes(search.toLowerCase()) ||
+                        product?.delivery?.name
+                          .toLowerCase()
+                          .includes(search.toLowerCase()) ||
+                        product?.listingDuration?.name
+                          .toLowerCase()
+                          .includes(search.toLowerCase()) ||
+                        product?.measurement?.name
+                          .toLowerCase()
+                          .includes(search.toLowerCase()) ||
+                        product?.origin?.name
+                          .toLowerCase()
+                          .includes(search.toLowerCase()) ||
+                        product?.payment?.name
+                          .toLowerCase()
+                          .includes(search.toLowerCase()) ||
+                        product?.name
+                          .toLowerCase()
+                          .includes(search.toLowerCase())
+                      );
+                    })
+                    .slice(0, show).length
+                }{" "}
+                results
+              </p>
+            )}
+          {skeleton.products && (
             <p className="tracking-tight font-thin text-gray-500">
-              Showing{" "}
-              {
-                productsList
-                  .filter((product, index) => {
-                    if (!filter) return true;
-                    return parseInt(product?.category?.id) === parseInt(filter);
-                  })
-                  .filter((product, index) => {
-                    if (!search) return true;
-                    return (
-                      product?.category?.name
-                        .toLowerCase()
-                        .includes(search.toLowerCase()) ||
-                      product?.contract?.name
-                        .toLowerCase()
-                        .includes(search.toLowerCase()) ||
-                      product?.currency?.name
-                        .toLowerCase()
-                        .includes(search.toLowerCase()) ||
-                      product?.delivery?.name
-                        .toLowerCase()
-                        .includes(search.toLowerCase()) ||
-                      product?.listingDuration?.name
-                        .toLowerCase()
-                        .includes(search.toLowerCase()) ||
-                      product?.measurement?.name
-                        .toLowerCase()
-                        .includes(search.toLowerCase()) ||
-                      product?.origin?.name
-                        .toLowerCase()
-                        .includes(search.toLowerCase()) ||
-                      product?.payment?.name
-                        .toLowerCase()
-                        .includes(search.toLowerCase()) ||
-                      product?.name.toLowerCase().includes(search.toLowerCase())
-                    );
-                  })
-                  .slice(0, show).length
-              }{" "}
-              results
+              Loading data...
             </p>
           )}
         </div>
@@ -700,6 +737,13 @@ export default function Home(props) {
             //   props?.onlySearch && "max-h-[70vh] h-[70vh] overflow-scroll"
             // }
           >
+            {skeleton.products && (
+              <div className="flex flex-col">
+                {[1, 2].map((index) => (
+                  <ProductCard />
+                ))}
+              </div>
+            )}
             {productsList
               .filter((product, index) => {
                 if (!filter) return true;
