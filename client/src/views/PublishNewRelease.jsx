@@ -237,10 +237,10 @@ export default function PublishNewRelease(props) {
         id="main_form_div"
       >
         <div className="w-full">
-          <div className="w-full text-left mb-2 md:pl-1 text-4xl _font-bold leading-tight tracking-tight text-black">
+          <div className="w-full text-left mb-2  text-4xl _font-bold leading-tight tracking-tight text-black">
             {!props?.edit ? "Publish new" : "Update"} release
           </div>
-          <div className="w-full text-left md:pl-1 mb-3 text-xl _font-bold leading-tight tracking-tight text-black">
+          <div className="w-full text-left  mb-3 text-xl _font-bold leading-tight tracking-tight text-black">
             What is the title of your news release?
           </div>
           <div className="w-full flex flex-col md:flex-row">
@@ -336,7 +336,7 @@ export default function PublishNewRelease(props) {
             </div>
           )}
           <span className="mt-8 block"></span>
-          <div className="w-full text-left md:pl-1 mb-3 text-xl _font-bold leading-tight tracking-tight text-black">
+          <div className="w-full text-left  mb-3 text-xl _font-bold leading-tight tracking-tight text-black">
             New publication
           </div>
           <div className="w-full flex flex-col md:flex-row">

@@ -59,7 +59,9 @@ export default function DashboardOptions({ name }) {
             <Link
               to={menu?.to}
               className={`${
-                location.pathname === menu?.to &&
+                (location.pathname === menu?.to ||
+                  (menu?.label === "News" &&
+                    location.pathname === "/publishNewRelease")) &&
                 !globalModals?.category &&
                 !globalModals?.profile &&
                 !globalModals?.security &&

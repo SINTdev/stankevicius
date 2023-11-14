@@ -305,19 +305,23 @@ export default function News(props) {
       >
         {item?.category === "featured" && (
           <div className="">
-            <img className="w-full" src={item?.thumbnail_url} />
+            <img className="w-full object-contain" src={item?.thumbnail_url} />
           </div>
         )}
         <div className="w-full px-4 py-5">
           <div className="flex flex-col space-y-3 w-full">
-            <span className="text-xs tracking-normal font-thin text-gray-500">
-              {item?.category === "industry"
-                ? "Industry Insights (Partner Content)"
-                : item?.category === "company"
-                ? "Stankevicius News"
-                : "Featured News"}{" "}
-              / {formatDate(item?.timestamp)}
-            </span>
+            <div className="flex w-full flex-row justify-between">
+              <span className="w-2/3 text-xs tracking-normal font-thin text-gray-500">
+                {item?.category === "industry"
+                  ? "Industry Insights (Partner Content)"
+                  : item?.category === "company"
+                  ? "Stankevicius News"
+                  : "Featured News"}
+              </span>
+              <span className="text-xs tracking-normal font-thin text-gray-500">
+                {formatDate(item?.timestamp)}
+              </span>
+            </div>
             {(session?.personal?.is_staff ||
               parseInt(item?.user?.id) === parseInt(session?.personal?.id)) && (
               <span>
@@ -450,7 +454,7 @@ export default function News(props) {
 
         <InputBox
           placeholder={"Products"}
-          className="lg:hidden mt-3"
+          className="lg:hidden mt-3 mb-3"
           value={filter}
           onChange={(e) => {
             setFilter(e.target.value);
@@ -482,13 +486,34 @@ export default function News(props) {
           ]}
         />
 
-        <div className="flex flex-row justify-between">
-          <p className="tracking-tight font-thin text-gray-500">
-            Showing {showData?.length} results
+        <div className="flex md:flex-row flex-col md:justify-between">
+          <p className="tracking-tight font-thin text-gray-500 md:text-base text-sm">
+            Showing{" "}
+            {showData?.reduce(
+              (count, monthData) => count + monthData.news.length,
+              0
+            )}{" "}
+            results
           </p>
-          <span className="flex flex-row-reverse">
+          <span className="flex flex-row">
             <p
-              className={`py-2 select-none px-5 w-fit flex flex-row items-center justify-center hover:bg-gray-200 text-[15px]  transition-all duration-300 ease-in-out cursor-pointer`}
+              className={`py-2 md:px-3 px-2 hover:bg-gray-200 flex flex-row items-center justify-center md:text-[15px] text-xs uppercase whitespace-nowrap transition-all duration-300 ease-in-out cursor-pointer`}
+              onClick={() => {
+                navigate("/publishNewRelease");
+              }}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                className="mr-2 w-6 h-6 scale-75 cursor-pointer"
+              >
+                <path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z" />
+              </svg>
+              Publish New Release
+            </p>{" "}
+            <p
+              className={`py-2 select-none md:px-5 px-2 w-fit flex flex-row items-center justify-center hover:bg-gray-200 md:text-[15px] text-xs  transition-all duration-300 ease-in-out cursor-pointer`}
               onClick={() => {
                 setIsGrid(!isGrid);
               }}
@@ -544,22 +569,6 @@ export default function News(props) {
                 </>
               )}
               <span className="ml-1">SHOW {!isGrid ? "GRID" : "LIST"}</span>
-            </p>
-            <p
-              className={`py-2 px-3 hover:bg-gray-200 flex flex-row items-center justify-center text-[15px] uppercase whitespace-nowrap transition-all duration-300 ease-in-out cursor-pointer`}
-              onClick={() => {
-                navigate("/publishNewRelease");
-              }}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-                className="mr-2 w-6 h-6 scale-75 cursor-pointer"
-              >
-                <path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z" />
-              </svg>
-              Publish New Release
             </p>
           </span>
         </div>

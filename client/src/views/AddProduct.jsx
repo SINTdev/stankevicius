@@ -270,10 +270,10 @@ export default function AddProduct(props) {
         id="main_form_div"
       >
         <div className="w-full">
-          <div className="w-full text-left mb-2 md:pl-1 text-4xl _font-bold leading-tight tracking-tight text-black">
+          <div className="w-full text-left mb-2 text-4xl _font-bold leading-tight tracking-tight text-black">
             {!props?.edit ? "Add new" : "Update"} trade
           </div>
-          <div className="w-full text-left md:pl-1 mb-3 text-xl _font-bold leading-tight tracking-tight text-black">
+          <div className="w-full text-left mb-3 text-xl _font-bold leading-tight tracking-tight text-black">
             Product and trade overview information
           </div>
           <div className="w-full flex flex-col md:flex-row">
@@ -379,7 +379,7 @@ export default function AddProduct(props) {
             />
           </div>
           <span className="mt-8 block"></span>
-          <div className="w-full text-left md:pl-1 mb-3 text-xl _font-bold leading-tight tracking-tight text-black">
+          <div className="w-full text-left mb-3 text-xl _font-bold leading-tight tracking-tight text-black">
             Listing validity
           </div>
           <p className="m-1 mt-0 text-sm mb-1 md:w-[calc(25%-8px)] flex flex-row items-center">
@@ -398,7 +398,7 @@ export default function AddProduct(props) {
             />
           </div>
           <span className="mt-8 block"></span>
-          <div className="w-full text-left md:pl-1 mb-3 text-xl _font-bold leading-tight tracking-tight text-black">
+          <div className="w-full text-left mb-3 text-xl _font-bold leading-tight tracking-tight text-black">
             Promotion
           </div>
           <p className="m-1 mt-0 text-sm mb-1 md:w-[calc(25%-8px)] flex flex-row items-center">
