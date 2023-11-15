@@ -26,7 +26,7 @@ export default function ProductCard() {
           <p class="mt-[4px] uppercase text-[.65rem] font-medium text-black lg:text-right h-[4px] animate-pulse"></p>
         </div>
 
-        <div class="w-full flex-grow lg:w-1/2 border-l-8 pt-6 pb-4 lg:py-4 mb-[1.7px] lg:mb-0 relative border-l-red-500 lg:border lg:border-gray-300 px-4 flex flex-col justify-between">
+        <div class="w-full flex-grow lg:w-1/2 border-l-8 pt-6 pb-4 lg:py-4 mb-[1.7px] lg:mb-0 relative border-l-gray-200 lg:border lg:border-gray-300 px-4 flex flex-col justify-between">
           <div class="absolute w-[99%] h-[1px] bg-gray-300 -bottom-[2px] left-1 lg:hidden animate-pulse"></div>
           <div class="text-[14px] flex flex-wrap tracking-tight animate-pulse">
             <div class="mr-2">
