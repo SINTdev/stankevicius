@@ -249,7 +249,7 @@ export default function PublishNewRelease(props) {
               value={payload.title}
               onChange={changePayload}
               name="title"
-              className="my-1 md:w-full md:mx-1"
+              className="my-1 md:w-full "
             />
           </div>
           {session?.personal?.is_staff && (
@@ -274,7 +274,7 @@ export default function PublishNewRelease(props) {
                     name: "Featured News",
                   },
                 ]}
-                className="my-1 md:w-[calc(25%-8px)] md:mx-1"
+                className="my-1 md:w-[calc(25%-8px)] "
               />{" "}
               {payload?.category === "industry" && (
                 <InputBox
@@ -283,11 +283,11 @@ export default function PublishNewRelease(props) {
                   onChange={changePayload}
                   name="author"
                   type="text"
-                  className="my-1 md:w-[calc(25%-8px)] md:mx-1"
+                  className="my-1 md:w-[calc(25%-8px)] "
                 />
               )}
               {payload?.category === "featured" && (
-                <div className="flex items-center justify-center w-full my-1 md:w-[calc(25%-8px)] md:mx-1">
+                <div className="flex items-center justify-center w-full my-1 md:w-[calc(25%-8px)] ">
                   <label
                     htmlFor="dropzone-file"
                     className="flex flex-col overflow-hidden h-12 items-center justify-center w-full border-dashed border-2 border-gray-300 hover:bg-gray-50 outline-none cursor-pointer"
@@ -344,7 +344,7 @@ export default function PublishNewRelease(props) {
           </div>
           {!props?.edit && (
             <div className="mt-5 w-full flex flex-col">
-              <div className="flex items-center __CHECK_REG__ space-x-2">
+              <div className="flex items-baseline md:items-center __CHECK_REG__ space-x-2">
                 <span className="flex items-center">
                   <input
                     id="one-accept"
@@ -386,12 +386,12 @@ export default function PublishNewRelease(props) {
                         });
                       }
                     }}
-                    className="cursor-pointer text-black bg-white border-gray-300 hover:bg-gray-50 focus:ring-0 dark:focus:ring-0 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
+                    className="cursor-pointer translate-y-0.5 md:translate-y-0 text-black bg-white border-gray-300 hover:bg-gray-50 focus:ring-0 dark:focus:ring-0 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
                   />
                 </span>
                 <label
                   htmlFor="one-accept"
-                  className="tracking-normal text-gray-500 text-xl font-medium"
+                  className="tracking-normal leading-5 text-gray-500 text-xl font-medium"
                   // __NEWS__LABEL__
                 >
                   Accept Partner Content Terms & Conditions and Partner Content

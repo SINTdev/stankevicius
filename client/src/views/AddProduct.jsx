@@ -282,7 +282,7 @@ export default function AddProduct(props) {
               value={payload.name}
               onChange={changePayload}
               name="name"
-              className="my-1 md:w-[calc(100%+20px)] md:mx-1"
+              className="my-1 md:w-[calc(100%+20px)] md:mr-1"
             />
             <InputBox
               placeholder={"Action"}
@@ -310,7 +310,7 @@ export default function AddProduct(props) {
               onChange={changePayload}
               name="quantity"
               type="number"
-              className="my-1 md:w-full md:mx-1"
+              className="my-1 md:w-full md:mr-1"
             />
             <InputBox
               placeholder={"Measurement"}
@@ -348,7 +348,7 @@ export default function AddProduct(props) {
               name="payment"
               select={true}
               options={options.payments}
-              className="my-1 md:w-full md:mx-1"
+              className="my-1 md:w-full md:mr-1"
             />
             <InputBox
               placeholder={"Delivery"}
@@ -382,7 +382,7 @@ export default function AddProduct(props) {
           <div className="w-full text-left mb-3 text-xl _font-bold leading-tight tracking-tight text-black">
             Listing validity
           </div>
-          <p className="m-1 mt-0 text-sm mb-1 md:w-[calc(25%-8px)] flex flex-row items-center">
+          <p className="mt-0 text-sm mb-1 md:w-[calc(25%-8px)] flex flex-row items-center">
             How long this listing should be valid?
             <Tooltip text="Select the duration for this trade. Once the trade is expired, it will be automatically removed from the public list." />
           </p>
@@ -394,14 +394,14 @@ export default function AddProduct(props) {
               name="listingDuration"
               select={true}
               options={options.listing_durations}
-              className="my-1 md:w-[calc(25%-8px)] w-full md:mx-1"
+              className="my-1 md:w-[calc(25%-8px)] w-full md:mr-1"
             />
           </div>
           <span className="mt-8 block"></span>
           <div className="w-full text-left mb-3 text-xl _font-bold leading-tight tracking-tight text-black">
             Promotion
           </div>
-          <p className="m-1 mt-0 text-sm mb-1 md:w-[calc(25%-8px)] flex flex-row items-center">
+          <p className="mt-0 text-sm mb-1 md:w-[calc(25%-8px)] flex flex-row items-center">
             Promote to subscribed users?
             <Tooltip text="If you select yes, then upon your submission, the trade information will be sent directly to emails of all the subscribed users. Users will then be able reach out to you directly." />
           </p>
@@ -422,11 +422,11 @@ export default function AddProduct(props) {
                   name: "No",
                 },
               ]}
-              className="my-1 md:w-[calc(25%-8px)] w-full md:mx-1"
+              className="my-1 md:w-[calc(25%-8px)] w-full md:mr-1"
             />
           </div>
           <span className="mt-2 block"></span>
-          <p className="m-1 mt-0 text-sm mb-1 md:w-[calc(25%-8px)] flex flex-row items-center">
+          <p className="mt-0 text-sm mb-1 md:w-[calc(25%-8px)] flex flex-row items-center">
             Promote on Trade Quote bar?
             <Tooltip text="Your trade will appear on the running *Trade Quotes* bar to reach more visibility." />
           </p>
@@ -447,11 +447,11 @@ export default function AddProduct(props) {
                   name: "No",
                 },
               ]}
-              className="my-1 md:w-[calc(25%-8px)] w-full md:mx-1"
+              className="my-1 md:w-[calc(25%-8px)] w-full md:mr-1"
             />
           </div>
           <span className="mt-2 block"></span>
-          <p className="m-1 mt-0 text-sm mb-1 md:w-[calc(25%-8px)] flex flex-row items-center">
+          <p className="mt-0 text-sm mb-1 md:w-[calc(25%-8px)] flex flex-row items-center">
             Promote your company?
             <Tooltip text="Your company's name will be promoted on your trade along with your company's website. Users may reach out to your company directly." />
           </p>

@@ -35,7 +35,7 @@ const DropdownButton = (props) => {
           e.stopPropagation();
           setIsOpen(!isOpen);
         }}
-        className={`${props?.className} flex flex-row items-center justify-center text-[16px] uppercase font-semibold bg-[#221f1f] text-white min-w-[8rem] py-2`}
+        className={`${props?.className} flex flex-row items-center justify-center text-xs md:text-[16px] uppercase font-semibold bg-[#221f1f] text-white min-w-[8rem] py-2`}
       >
         {props?.label}
         <svg
@@ -101,7 +101,7 @@ const RenderCard = ({
   return (
     <>
       <div
-        className="group cursor-pointer flex flex-row justify-center items-center w-full border-b-2 border-gray-200 py-5"
+        className="group cursor-pointer flex flex-col md:flex-row justify-center items-center w-full border-b-2 border-gray-200 py-5"
         key={index}
         onClick={(e) => {
           e.preventDefault();
@@ -109,7 +109,7 @@ const RenderCard = ({
         }}
       >
         {item?.category === "featured" && (
-          <div className="mr-10">
+          <div className="mr-0 mb-2 md:mb-0 md:mr-10">
             <img className="h-[10rem]" src={item?.thumbnail_url} />
           </div>
         )}
