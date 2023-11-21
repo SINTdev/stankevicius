@@ -429,34 +429,44 @@ export default function Navbar(props) {
           </div>
         </div>
       </nav>
-      <div className="background_stripe"></div>
-      <div class="background_video relative select-none">
-        <div className="absolute flex items-center w-full h-[calc(100%-4.5rem)] mt-[4.5rem] p-10">
-          <div className="max-w-screen-xl w-full flex flex-wrap items-center justify-between mx-auto">
-            <span className="z-10 font-extrabold text-white md:text-6xl text-4xl -tracking-wider md:flex md:flex-col md:flex-nowrap">
-              <span className="md:whitespace-nowrap md:m-0 mr-2">
-                Delivering clear view
-              </span>
-              <span className="md:whitespace-nowrap">in a complex world</span>
-            </span>
+      {!props?.novideo && (
+        <>
+          <div className="background_stripe"></div>
+          <div class="background_video relative select-none">
+            <div className="absolute flex items-center w-full h-[calc(100%-4.5rem)] mt-[4.5rem] p-10">
+              <div className="max-w-screen-xl w-full flex flex-wrap items-center justify-between mx-auto">
+                <span className="z-10 font-extrabold text-white md:text-6xl text-4xl -tracking-wider md:flex md:flex-col md:flex-nowrap">
+                  <span className="md:whitespace-nowrap md:m-0 mr-2">
+                    Delivering clear view
+                  </span>
+                  <span className="md:whitespace-nowrap">
+                    in a complex world
+                  </span>
+                </span>
+              </div>
+            </div>
+            <img
+              className="source_play md:hidden flex"
+              src="https://e0.pxfuel.com/wallpapers/195/220/desktop-wallpaper-skyscraper-corporate.jpg"
+            />
+            <video
+              autoPlay={true}
+              loop={true}
+              muted={true}
+              playsInline={true}
+              controls={false}
+              className="source_play md:block hidden"
+            >
+              <source
+                src="/assets/bg_video.mp4"
+                type="video/mp4"
+                id="main_bg"
+              />
+              Your browser does not support the video tag.
+            </video>
           </div>
-        </div>
-        <img
-          className="source_play md:hidden flex"
-          src="https://e0.pxfuel.com/wallpapers/195/220/desktop-wallpaper-skyscraper-corporate.jpg"
-        />
-        <video
-          autoPlay={true}
-          loop={true}
-          muted={true}
-          playsInline={true}
-          controls={false}
-          className="source_play md:block hidden"
-        >
-          <source src="/assets/bg_video.mp4" type="video/mp4" id="main_bg" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
+        </>
+      )}
     </div>
   );
 }

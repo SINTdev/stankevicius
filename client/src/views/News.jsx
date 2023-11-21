@@ -16,6 +16,7 @@ import DashboardOptions from "../components/client/DashboardOptions";
 import { takeActionOnProduct } from "../ACTIONS";
 import ModalWrapper from "../components/ModalWrapper";
 import CategoryManagement from "../components/corporate/CategoryManagement";
+import NewsCard from "../components/skeleton/NewsCard";
 
 const DropdownButton = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -178,7 +179,10 @@ export default function News(props) {
     await axios
       .get(CONSTANT.server + `api/allreleasenews`)
       .then((responce) => {
-        setNewsList(responce.data);
+        setTimeout(() => {
+          setNewsList(responce.data);
+          setLoadN(false);
+        }, 1000);
       })
       .catch((error) => {
         console.log(error);
@@ -389,6 +393,10 @@ export default function News(props) {
 
   const [isGrid, setIsGrid] = useState(false);
 
+  // Loading
+
+  const [loadN, setLoadN] = useState(true);
+
   return (
     <div>
       <Modal
@@ -489,14 +497,21 @@ export default function News(props) {
         />
 
         <div className="flex md:flex-row flex-col md:justify-between">
-          <p className="tracking-tight font-thin text-gray-500 md:text-base text-sm">
-            Showing{" "}
-            {showData?.reduce(
-              (count, monthData) => count + monthData.news.length,
-              0
-            )}{" "}
-            results
-          </p>
+          {loadN ? (
+            <p className="tracking-tight font-thin text-gray-500">
+              Loading data...
+            </p>
+          ) : (
+            <p className="tracking-tight font-thin text-gray-500 md:text-base text-sm">
+              Showing{" "}
+              {showData?.reduce(
+                (count, monthData) => count + monthData.news.length,
+                0
+              )}{" "}
+              results
+            </p>
+          )}
+
           <span className="flex flex-row">
             <p
               className={`py-2 md:px-3 px-2 hover:bg-gray-200 flex flex-row items-center justify-center md:text-[15px] text-xs uppercase whitespace-nowrap transition-all duration-300 ease-in-out cursor-pointer`}
@@ -574,6 +589,17 @@ export default function News(props) {
             </p>
           </span>
         </div>
+        {loadN && (
+          <>
+            <div
+              className={`mt-7 w-full text-left text-4xl _font-bold leading-tight tracking-tight text-black`}
+            >
+              <div className="bg-gray-300 w-[17rem] h-8 rounded animate-pulse"></div>
+            </div>
+            <NewsCard />
+            <NewsCard />
+          </>
+        )}
 
         {!isGrid && (
           <div className="my-5">

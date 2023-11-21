@@ -273,7 +273,7 @@ const Menu = (props) => {
         </div>
       </div>
 
-      <MobileMenu />
+      <MobileMenu navigate={navigate} setIsMenuOpen={props?.setIsMenuOpen} />
     </div>
   );
 };

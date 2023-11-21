@@ -1,20 +1,27 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function PictureCard({ item, index, onClick }) {
+export default function PictureCard({
+  item,
+  index,
+  onClick,
+  nopicture = false,
+}) {
   return (
     <div onClick={onClick} index={index}>
       <div className="w-full border bg-white cursor-pointer hover:border-black max-w-[700px] transition-all duration-300 ease-in-out border-[#c7c7c7]">
-        <div className="relative overflow-hidden">
-          <img
-            src={item?.thumbnail_url}
-            className="absolute blur-lg z-0 w-full max-h-[250px]"
-          />
-          <img
-            src={item?.thumbnail_url}
-            className="object-contain relative w-full max-h-[250px]"
-          />
-        </div>
+        {!nopicture && (
+          <div className="relative overflow-hidden">
+            <img
+              src={item?.thumbnail_url}
+              className="absolute blur-lg z-0 w-full max-h-[250px]"
+            />
+            <img
+              src={item?.thumbnail_url}
+              className="object-contain relative w-full max-h-[250px]"
+            />
+          </div>
+        )}
         <div className="py-2 px-3">
           <div className="mt-3 w-full text-left mb-2 md:pl-1 text-2xl _font-bold leading-tight tracking-tight text-black">
             {item?.title}

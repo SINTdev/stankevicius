@@ -9,37 +9,65 @@ const Footer = () => {
     {
       link: "Navigate Stankevicius",
       subLinks: [
-        "Patients and Caregivers",
-        "Healthcare Professionals",
-        "Researchers",
-        "Job Seekers",
-        "Journalists",
-        "Investors",
-        "Partners",
-        "Suppliers",
+        {
+          link: "Private Clients",
+          to: "/footer/private_clients",
+        },
+        {
+          link: "International Trade Consulting",
+          to: "/footer/international_trade_consulting",
+        },
+        {
+          link: "Contracting and Due Diligence",
+          to: "/footer/contracting_and_due_diligence",
+        },
+        {
+          link: "News & Insights",
+          to: "/footer/news_and_insights",
+        },
       ],
     },
     {
       link: "Topics",
-      subLinks: ["Clinical Trials", "ESG", "SpeakUp"],
+      subLinks: [
+        {
+          link: "Regulatory Guidelines",
+          to: "/footer/regulatory_guidelines",
+        },
+      ],
     },
     {
       link: "Explore",
       subLinks: [
-        "Stankevicius",
-        "Products",
-        "Therapeutic areas",
-        "Diseases",
-        "Stories",
-        "Location",
+        {
+          link: "Learn How to Trade",
+          to: "/footer/learn_how_to_trade",
+        },
+        {
+          link: "Partner Content",
+          to: "/footer/partner_content",
+        },
+        {
+          link: "Advertising Credits",
+          to: "/footer/advertising_credits",
+        },
       ],
     },
     {
-      link: "Stankevicius companies",
+      link: "More From Stankevicius",
       subLinks: [
-        "Sandoz",
-        "Advanced Accelerator Applications",
-        "Gyroscope Therapeutics areas",
+        {
+          link: "Corporate PR and Advertising",
+          to: "/footer/corporate_pr_and_advertising",
+        },
+        {
+          link: "Alternative Investment Banking",
+          to: "/footer/alternative_investment_banking",
+        },
+        {
+          link: "Stankevicius Group",
+          to: "/footer/stankevicius_group",
+        },
       ],
     },
   ]);
@@ -117,9 +145,9 @@ const Footer = () => {
                           item?.subLinks?.map((subLink, index) => {
                             return (
                               <li class="">
-                                <a href="#" class=" hover:underline">
-                                  {subLink}
-                                </a>
+                                <Link to={subLink?.to} class=" hover:underline">
+                                  {subLink?.link}
+                                </Link>
                               </li>
                             );
                           })}
@@ -131,139 +159,26 @@ const Footer = () => {
             </div>
             {/* Desktop View */}
             <div class="grid-cols-2 gap-8  py-6 lg:py-8 md:grid-cols-4 hidden md:grid">
-              <div>
-                <h2 class="mb-6 text-[14px] _font-bold text-gray-900 uppercase">
-                  Navigate Stankevicius
-                </h2>
-                <ul class="  font-light space-y-1 underline">
-                  <li class="">
-                    <a href="#" class=" hover:underline">
-                      Patients and Caregivers
-                    </a>
-                  </li>
-                  <li class="">
-                    <a href="#" class=" hover:underline">
-                      Healthcare Professionals
-                    </a>
-                  </li>
-                  <li class="">
-                    <a href="#" class="hover:underline">
-                      Researchers
-                    </a>
-                  </li>
-                  <li class="">
-                    <a href="#" class="hover:underline">
-                      Job Seekers
-                    </a>
-                  </li>
-                  <li class="">
-                    <a href="#" class="hover:underline">
-                      Investors
-                    </a>
-                  </li>
-                  <li class="">
-                    <a href="#" class="hover:underline">
-                      Journalists
-                    </a>
-                  </li>
-                  <li class="">
-                    <a href="#" class="hover:underline">
-                      Partners
-                    </a>
-                  </li>
-                  <li class="">
-                    <a href="#" class="hover:underline">
-                      Suppliers
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <h2 class="mb-6 text-[14px] _font-bold text-gray-900 uppercase e">
-                  Topics
-                </h2>
-                <ul class=" font-light space-y-1 underline">
-                  <li class="">
-                    <a href="#" class=" hover:underline">
-                      Healthcare Professionals
-                    </a>
-                  </li>
-                  <li class="">
-                    <a href="#" class="hover:underline">
-                      Clinical Trials
-                    </a>
-                  </li>
-                  <li class="">
-                    <a href="#" class="hover:underline">
-                      ESG
-                    </a>
-                  </li>
-                  <li class="">
-                    <a href="#" class="hover:underline">
-                      SpeakUp
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <h2 class="mb-6 text-[14px] _font-bold text-gray-900 uppercase e">
-                  Explore
-                </h2>
-                <ul class=" font-light space-y-1 underline">
-                  <li class="">
-                    <a href="#" class=" hover:underline">
-                      Stankevicius Pipeline
-                    </a>
-                  </li>
-                  <li class="">
-                    <a href="#" class="hover:underline">
-                      Products
-                    </a>
-                  </li>
-                  <li class="">
-                    <a href="#" class="hover:underline">
-                      Therapeutic areas
-                    </a>
-                  </li>
-                  <li class="">
-                    <a href="#" class="hover:underline">
-                      Diseases
-                    </a>
-                  </li>
-                  <li class="">
-                    <a href="#" class="hover:underline">
-                      Stories
-                    </a>
-                  </li>
-                  <li class="">
-                    <a href="#" class="hover:underline">
-                      Locations
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <h2 class="mb-6 text-[14px] _font-bold text-gray-900 uppercase e">
-                  Stankevicius companies
-                </h2>
-                <ul class=" font-light space-y-1 underline">
-                  <li class="">
-                    <a href="#" class=" hover:underline">
-                      Sandoz
-                    </a>
-                  </li>
-                  <li class="">
-                    <a href="#" class="hover:underline">
-                      Advanced Accelerator Applications
-                    </a>
-                  </li>
-                  <li class="">
-                    <a href="#" class="hover:underline">
-                      Gyroscope Therapeutics
-                    </a>
-                  </li>
-                </ul>
-              </div>
+              {footerItems.map((main, index) => {
+                return (
+                  <div>
+                    <h2 class="mb-6 text-[14px] _font-bold text-gray-900 uppercase">
+                      {main?.link}
+                    </h2>
+                    <ul class="  font-light space-y-1 underline">
+                      {main?.subLinks?.map((subLink, index) => {
+                        return (
+                          <li class="">
+                            <Link to={subLink?.to} class=" hover:underline">
+                              {subLink?.link}
+                            </Link>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                );
+              })}
             </div>
 
             <div className="flex flex-col md:flex-row    items-center justify-between">
@@ -320,19 +235,29 @@ const Footer = () => {
             </div>
             <div class=" py-4 space-y-3 md:space-y-0 text-center md:text-left  md:flex md:items-center md:justify-between">
               <div className="flex flex-wrap items-center justify-center gap-2 text-sm">
-                <span className="">Terms of Use</span>
+                <Link to="/footer/terms_of_use">
+                  <span className="">Terms of Use</span>
+                </Link>
                 <span className="">|</span>
-                <span className="">Privacy</span>
+                <Link to="/footer/privacy">
+                  <span className="">Privacy</span>
+                </Link>
                 <span className="">|</span>
-                <span className="">Contacts</span>
+                <Link to="/">
+                  <span className="">Cookies Settings</span>
+                </Link>
                 <span className="">|</span>
-                <span className="">Cookies Settings</span>
+                <Link to="/">
+                  <span className="">Site Map</span>
+                </Link>
                 <span className="">|</span>
-                <span className="">Site Map</span>
+                <Link to="/">
+                  <span className="">Regulatory Guidelines</span>
+                </Link>
                 <span className="">|</span>
-                <span className="">Web Accessibility</span>
-                <span className="">|</span>
-                <span className="">Open Source</span>
+                <Link to={"/"}>
+                  <span className="">Contacts</span>
+                </Link>
               </div>
               <p className="text-sm">
                 This site is intended for a global audience

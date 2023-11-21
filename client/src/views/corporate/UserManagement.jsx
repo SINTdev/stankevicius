@@ -3,6 +3,7 @@ import DashboardOptions from "../../components/client/DashboardOptions";
 import InvoiceCard from "../../components/corporate/InvoiceCard";
 import UserData from "../../contexts/UserData";
 import UserCard from "../../components/corporate/UserCard";
+import UserCardSkeleton from "../../components/skeleton/UserCard";
 import UserTable from "../../components/corporate/UserTable";
 import axios from "axios";
 import { CONSTANT, smoothScrollDown } from "../../CONSTANT";
@@ -19,7 +20,10 @@ export default function UserManagement(props) {
     await axios
       .get(CONSTANT.server + "api/corporateusers")
       .then((responce) => {
-        setUsers(responce?.data);
+        setTimeout(() => {
+          setUsers(responce?.data);
+          setLoadU(false);
+        }, 1000);
       })
       .catch((error) => {
         console.log(error);
@@ -49,6 +53,8 @@ export default function UserManagement(props) {
         console.log(error);
       });
   };
+
+  const [loadU, setLoadU] = useState(true);
 
   return (
     <div>
@@ -251,6 +257,7 @@ export default function UserManagement(props) {
         {isGrid ? (
           <div className="mt-2">
             <div className="mt-5 grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-5">
+              {loadU && [1, 2].map((index) => <UserCardSkeleton />)}
               {users
                 ?.filter((user) => {
                   if (filter === "") {

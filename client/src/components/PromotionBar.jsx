@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { CONSTANT } from "../CONSTANT";
 import InfiniteLooper from "../components/InfiniteLooper";
 import Modal from "../components/Modal";
+import PromotionCard from "../components/skeleton/PromotionCard";
 import UserData from "../contexts/UserData";
 
 const CountdownComponent = ({ lastActivity, hasMinutesPassed }) => {
@@ -258,7 +259,10 @@ export default function PromotionBar(props) {
     await axios
       .get(CONSTANT.server + url)
       .then((responce) => {
-        setProductsList(responce.data);
+        setTimeout(() => {
+          setProductsList(responce.data);
+          setLoadN(false);
+        }, 1000);
       })
       .catch((error) => {
         console.log(error);
@@ -467,6 +471,8 @@ export default function PromotionBar(props) {
     session: session,
   };
 
+  const [loadN, setLoadN] = useState(true);
+
   return (
     <>
       {" "}
@@ -522,7 +528,13 @@ export default function PromotionBar(props) {
           {/* {productsList?.map((product, one) => {
             return <ProductCard product={product} key={one} {...toSendAlong} />;
           })} */}
-
+          {loadN && (
+            <InfiniteLooper speed={13} direction="left">
+              {[1, 2, 3, 4, 5, 6, 7].map((index) => (
+                <PromotionCard />
+              ))}
+            </InfiniteLooper>
+          )}
           {productsList?.length > 0 && (
             <InfiniteLooper speed={13} direction="left">
               {productsList?.map((product, one) => {

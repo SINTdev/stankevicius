@@ -156,7 +156,14 @@ export default function Layout(props) {
     if (location.pathname === "/") {
       resetPopups();
     }
-    if (props?.menu) {
+    if (props?.menu && props?.novideo) {
+      let scrollTarget = 0; // 5rem * 16px per rem
+      window.scrollTo({
+        top: scrollTarget,
+        behavior: "instant",
+      });
+    }
+    else if (props?.menu) {
       let scrollTarget = 25 * 16; // 5rem * 16px per rem
       window.scrollTo({
         top: scrollTarget,
@@ -186,7 +193,11 @@ export default function Layout(props) {
           resetPopups={resetPopups}
           {...props}
         />
-        <div className={`${props?.menu ? "mx-0" : "mx-4 lg:mx-10"} mt-24`}>
+        <div
+          className={`${props?.menu ? "mx-0" : "mx-4 lg:mx-10"} ${
+            !props?.novideo && "mt-24"
+          }`}
+        >
           {props.children}
         </div>
         {props?.isMenuOpen && <Menu setIsMenuOpen={props?.setIsMenuOpen} />}

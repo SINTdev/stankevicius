@@ -14,6 +14,8 @@ import DashboardOptions from "../../components/client/DashboardOptions";
 import { takeActionOnProduct } from "../../ACTIONS";
 import ModalWrapper from "../../components/ModalWrapper";
 import CategoryManagement from "../../components/corporate/CategoryManagement";
+import ProductCard from "../../components/skeleton/ProductCard";
+import Category from "../../components/skeleton/Category";
 
 const DropdownButton = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -87,7 +89,10 @@ export default function Dashboard(props) {
     await axios
       .get(CONSTANT.server + `api/corporateproducts`)
       .then((responce) => {
-        setProductsList(responce.data);
+        setTimeout(() => {
+          setProductsList(responce.data);
+          setLoadP(false);
+        }, 1000);
       })
       .catch((error) => {
         console.log(error);
@@ -701,6 +706,9 @@ export default function Dashboard(props) {
     smoothScrollDown();
   }, []);
 
+  // Loaders
+  const [loadP, setLoadP] = useState(true);
+
   return (
     <div>
       <Modal
@@ -728,6 +736,7 @@ export default function Dashboard(props) {
           />
         </div>
         {/* Desktop View Category Filter */}
+
         <div className="overflow-auto hidden py-2 border-t border-b border-gray-300 lg:flex items-center justify-start space-x-0 md:space-x-2 font-bold mt-7 mb-3">
           {[
             {
@@ -765,6 +774,13 @@ export default function Dashboard(props) {
               </p>
             );
           })}
+          {categories.length <= 0 && (
+            <div className="animate-pulse flex flex-row">
+              {[1, 2, 3, 4, 5].map((index) => (
+                <Category />
+              ))}
+            </div>
+          )}
         </div>
 
         <InputBox
@@ -803,9 +819,15 @@ export default function Dashboard(props) {
         />
 
         <div className="flex flex-row justify-between">
-          <p className="tracking-tight font-thin text-gray-500">
-            Showing {showData?.length} results
-          </p>
+          {loadP ? (
+            <p className="tracking-tight font-thin text-gray-500">
+              Loading data...
+            </p>
+          ) : (
+            <p className="tracking-tight font-thin text-gray-500">
+              Showing {showData?.length} results
+            </p>
+          )}
           <p
             className={`py-2 select-none px-5 w-fit flex flex-row items-center justify-center hover:bg-gray-200 text-[15px]  transition-all duration-300 ease-in-out cursor-pointer`}
             onClick={() => {
@@ -842,6 +864,13 @@ export default function Dashboard(props) {
         </div>
 
         <div className="my-5">
+          {loadP && (
+            <div className="flex flex-col">
+              {[1, 2].map((index) => (
+                <ProductCard />
+              ))}
+            </div>
+          )}
           {showData.map((product, index) => {
             return renderCard(product, index);
           })}

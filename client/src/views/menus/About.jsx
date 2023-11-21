@@ -41,7 +41,7 @@ export default function About(props) {
                     value={"our_company"}
                   />{" "}
                   <MenuItem
-                    label={"CEO Letter"}
+                    label={"CEO's Letter"}
                     mode={props?.mode}
                     value={"ceo_letter"}
                   />

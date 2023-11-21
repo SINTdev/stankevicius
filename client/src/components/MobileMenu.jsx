@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const MobileMenu = () => {
+const MobileMenu = (props) => {
   const [activeLinkIndex, setActiveLinkIndex] = useState(null);
   const [activeSubLinkIndex, setActiveSubLinkIndex] = useState(null);
 
@@ -9,166 +9,80 @@ const MobileMenu = () => {
       link: "About",
       subLinks: [
         {
-          link: "Board of Directors",
-          subLinks: ["Joerg Reinhardt", "Joerg Reinhardt "],
+          link: "Introduction",
+          to: "/menu/introduction",
         },
         {
-          link: "Executive Committee",
-          subLinks: ["Joerg Reinhardt", "Joerg Reinhardt "],
-        },
-        { link: "Strategy" },
-        {
-          link: "Products",
-          subLinks: ["Joerg Reinhardt", "Joerg Reinhardt "],
+          link: "Our Company",
+          to: "/menu/our_company",
         },
         {
-          link: "Innovative Medicines",
-          subLinks: ["Joerg Reinhardt", "Joerg Reinhardt "],
-        },
-        {
-          link: "Therapeutic",
-          subLinks: ["Joerg Reinhardt", "Joerg Reinhardt "],
-        },
-        {
-          link: "Partners",
-          subLinks: ["Joerg Reinhardt", "Joerg Reinhardt "],
-        },
-        {
-          link: "Suppliers",
-          subLinks: ["Joerg Reinhardt", "Joerg Reinhardt "],
+          link: "CEO's Letter",
+          to: "/menu/ceo_letter",
         },
       ],
     },
     {
-      link: "Patients and Caregivers ",
+      link: "Private Clients",
       subLinks: [
         {
-          link: "Innovative Medicines",
+          link: "Small Business",
+          to: "/menu/small_business",
         },
         {
-          link: "Therapeutic",
-        },
-        {
-          link: "Partners",
-          subLinks: ["Joerg Reinhardt", "Joerg Reinhardt "],
-        },
-        {
-          link: "Suppliers",
-          subLinks: ["Joerg Reinhardt", "Joerg Reinhardt "],
+          link: "Institutions",
+          to: "/menu/institutions",
         },
       ],
     },
     {
-      link: "Healthcare Professionals ",
+      link: "International Trade Consulting",
       subLinks: [
         {
-          link: "Partners",
-          subLinks: ["Joerg Reinhardt", "Joerg Reinhardt "],
+          link: "Sourcing and Procurement",
+          to: "/menu/sourcing_procurement",
         },
         {
-          link: "Suppliers",
+          link: "Production and Manufacturing",
+          to: "/menu/production_manufacturing",
+        },
+        {
+          link: "Shipping and Logistics",
+          to: "/menu/shipping_logistics",
+        },
+        {
+          link: "Inspection and Quality Checks",
+          to: "/menu/inspection_quality",
         },
       ],
     },
     {
-      link: "ESG ",
+      link: "Contracting and Due Diligence",
       subLinks: [
         {
-          link: "Executive Committee",
-        },
-
-        {
-          link: "Partners",
+          link: "Business Audit",
+          to: "/menu/business_audit",
         },
         {
-          link: "Suppliers",
-          subLinks: ["Joerg Reinhardt", "Joerg Reinhardt "],
+          link: "Business Counterparty Due Diligence",
+          to: "/menu/counterparty_due_diligence",
+        },
+        {
+          link: "Professional Contracting",
+          to: "/menu/professional_contracting",
         },
       ],
     },
     {
-      link: "Investors ",
+      link: "News & Insights",
       subLinks: [
         {
-          link: "Board of Directors",
-          subLinks: ["Joerg Reinhardt", "Joerg Reinhardt "],
+          link: "Stankevicius News",
+          to: "/menu/stankevicius_news",
         },
         {
-          link: "Executive Committee",
-          subLinks: ["Joerg Reinhardt", "Joerg Reinhardt "],
-        },
-        { link: "Strategy" },
-        {
-          link: "Products",
-          subLinks: ["Joerg Reinhardt", "Joerg Reinhardt "],
-        },
-        {
-          link: "Innovative Medicines",
-          subLinks: ["Joerg Reinhardt", "Joerg Reinhardt "],
-        },
-        {
-          link: "Therapeutic",
-          subLinks: ["Joerg Reinhardt", "Joerg Reinhardt "],
-        },
-        {
-          link: "Partners",
-          subLinks: ["Joerg Reinhardt", "Joerg Reinhardt "],
-        },
-        {
-          link: "Suppliers",
-          subLinks: ["Joerg Reinhardt", "Joerg Reinhardt "],
-        },
-      ],
-    },
-    {
-      link: "News",
-      subLinks: [
-        {
-          link: "Board of Directors",
-          subLinks: ["Joerg Reinhardt", "Joerg Reinhardt "],
-        },
-
-        {
-          link: "Partners",
-          subLinks: ["Joerg Reinhardt", "Joerg Reinhardt "],
-        },
-        {
-          link: "Suppliers",
-          subLinks: ["Joerg Reinhardt", "Joerg Reinhardt "],
-        },
-      ],
-    },
-    {
-      link: "Careers",
-      subLinks: [
-        {
-          link: "Board of Directors",
-          subLinks: ["Joerg Reinhardt", "Joerg Reinhardt "],
-        },
-        {
-          link: "Executive Committee",
-          subLinks: ["Joerg Reinhardt", "Joerg Reinhardt "],
-        },
-        { link: "Strategy" },
-        {
-          link: "Products",
-          subLinks: ["Joerg Reinhardt", "Joerg Reinhardt "],
-        },
-        {
-          link: "Innovative Medicines",
-          subLinks: ["Joerg Reinhardt", "Joerg Reinhardt "],
-        },
-        {
-          link: "Therapeutic",
-          subLinks: ["Joerg Reinhardt", "Joerg Reinhardt "],
-        },
-        {
-          link: "Partners",
-          subLinks: ["Joerg Reinhardt", "Joerg Reinhardt "],
-        },
-        {
-          link: "Suppliers",
-          subLinks: ["Joerg Reinhardt", "Joerg Reinhardt "],
+          link: "Industry Insights (Partner Content)",
+          to: "/menu/industry_insights",
         },
       ],
     },
@@ -225,9 +139,15 @@ const MobileMenu = () => {
                           className="flex items-center justify-between cursor-pointer"
                           onClick={() => handleSubLinkClick(subIndex)}
                         >
-                          <a href="#" className="hover:underline">
+                          <span
+                            onClick={() => {
+                              props?.navigate(subLink.to);
+                              props?.setIsMenuOpen(false);
+                            }}
+                            className="hover:underline"
+                          >
                             {subLink.link}
-                          </a>
+                          </span>
                           {subLink.subLinks && (
                             <svg
                               xmlns="http://www.w3.org/2000/svg"

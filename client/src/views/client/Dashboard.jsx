@@ -11,6 +11,7 @@ import Modal from "../../components/Modal";
 import UserData from "../../contexts/UserData";
 import DashboardOptions from "../../components/client/DashboardOptions";
 import { takeActionOnProduct } from "../../ACTIONS";
+import ProductCard from "../../components/skeleton/ProductCard";
 const DropdownButton = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
@@ -85,7 +86,10 @@ export default function Dashboard(props) {
     await axios
       .get(CONSTANT.server + `api/myproducts/${session.personal?.id}`)
       .then((responce) => {
-        setProductsList(responce.data);
+        setTimeout(() => {
+          setProductsList(responce.data);
+          setLoadP(false);
+        }, 1000);
       })
       .catch((error) => {
         console.log(error);
@@ -481,6 +485,9 @@ export default function Dashboard(props) {
     );
   };
 
+  // Loaders
+  const [loadP, setLoadP] = useState(true);
+
   return (
     <div>
       <Modal
@@ -573,12 +580,25 @@ export default function Dashboard(props) {
         />
 
         <div>
-          <p className="tracking-tight font-thin text-gray-500">
-            Showing {showData?.length} results
-          </p>
+          {loadP ? (
+            <p className="tracking-tight font-thin text-gray-500">
+              Loading data...
+            </p>
+          ) : (
+            <p className="tracking-tight font-thin text-gray-500">
+              Showing {showData?.length} results
+            </p>
+          )}
         </div>
 
         <div className="my-5">
+          {loadP && (
+            <div className="flex flex-col">
+              {[1, 2].map((index) => (
+                <ProductCard />
+              ))}
+            </div>
+          )}
           {showData.map((product, index) => {
             return renderCard(product, index);
           })}

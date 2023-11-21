@@ -22,6 +22,7 @@ import ContractingandDueDiligence from "./views/menus/ContractingandDueDiligence
 import BusinessAudit from "./views/menus/BusinessAudit";
 import InternationalTradeConsulting from "./views/menus/InternationalTradeConsulting";
 import PrivateClients from "./views/menus/PrivateClients";
+import PrivateClientsFooter from "./views/footer/PrivateClients";
 import SmallBusiness from "./views/menus/SmallBusiness";
 import SourcingProcurement from "./views/menus/SourcingProcurement";
 import ProductionAndManufacturing from "./views/menus/ProductionAndManufacturing";
@@ -37,6 +38,10 @@ import PublishNewRelease from "./views/PublishNewRelease";
 import News from "./views/News";
 import NewsDetail from "./views/NewsDetail";
 import IndustryNews from "./views/menus/IndustryNews";
+import RegulatoryGuidelines from "./views/footer/RegulatoryGuidelines";
+import TermsOfUse from "./views/footer/TermsOfUse";
+import Privacy from "./views/footer/Privacy";
+import LearnHowToTrade from "./views/footer/LearnHowToTrade";
 
 // import CategoryManagement from "./views/corporate/CategoryManagement";
 
@@ -341,6 +346,72 @@ function App() {
           />
           {/* News and Insights End */}
           {/* Menu Routes End */}
+          {/* Footer Routes Start */}
+          {/* Navigate STANKEVICIUS Start */}
+          <Route
+            path="/footer/private_clients"
+            element={
+              <Layout {...paramater} menu={true} novideo={true}>
+                <PrivateClientsFooter />
+              </Layout>
+            }
+          />
+          {/* Navigate STANKEVICIUS End */}
+          {/* TOPICS Start */}
+          <Route
+            path="/footer/regulatory_guidelines"
+            element={
+              <Layout {...paramater} menu={true}>
+                <RegulatoryGuidelines />
+              </Layout>
+            }
+          />
+          {/* TOPICS End */}
+          {/* EXPLORE Start */}
+          <Route
+            path="/footer/learn_how_to_trade"
+            element={
+              <Layout {...paramater} menu={true}>
+                <LearnHowToTrade />
+              </Layout>
+            }
+          />
+          <Route
+            path="/footer/partner_content"
+            element={
+              <Layout {...paramater} menu={true}>
+                <LearnHowToTrade />
+              </Layout>
+            }
+          />
+          <Route
+            path="/footer/advertising_credits"
+            element={
+              <Layout {...paramater} menu={true}>
+                <LearnHowToTrade />
+              </Layout>
+            }
+          />
+          {/* EXPLORE End */}
+          {/* MORE FROM STANKEVICIUS Start */}
+          {/* MORE FROM STANKEVICIUS End */}
+          {/* Footer Routes End */}
+          <Route
+            path="/footer/terms_of_use"
+            element={
+              <Layout {...paramater} menu={true}>
+                <TermsOfUse />
+              </Layout>
+            }
+          />
+          <Route
+            path="/footer/privacy"
+            element={
+              <Layout {...paramater} menu={true}>
+                <Privacy />
+              </Layout>
+            }
+          />
           <Route
             path="*"
             element={
