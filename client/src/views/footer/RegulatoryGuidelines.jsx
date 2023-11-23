@@ -3,7 +3,7 @@ import Accordion from "../../components/Accordion";
 
 export default function RegulatoryGuidelines(props) {
   return (
-    <div className="max-w-screen-xl mx-auto p-0 md:p-4">
+    <div className="max-w-screen-xl p-0 md:p-4 md:mx-auto mx-2">
       <div
         className="mt-10 flex justify-center items-center flex-col"
         id="main_form_div"

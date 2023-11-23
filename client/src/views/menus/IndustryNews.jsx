@@ -8,6 +8,7 @@ import { CONSTANT } from "../../CONSTANT";
 import UserData from "../../contexts/UserData";
 import ModalWrapper from "../../components/ModalWrapper";
 import Login from "../../auth/Login";
+import NewsBox from "../../components/skeleton/NewsBox";
 export default function IndustryNews() {
   const { session, updateSessionData } = useContext(UserData);
   let navigate = useNavigate();
@@ -22,7 +23,10 @@ export default function IndustryNews() {
         category: "industry",
       })
       .then((responce) => {
-        setPayload(responce?.data);
+        setTimeout(() => {
+          setPayload(responce?.data);
+          setLoadN(false);
+        }, 1000);
       })
       .catch((error) => {
         console.log(error);
@@ -36,6 +40,8 @@ export default function IndustryNews() {
     login: false,
   };
   const [login, setLogin] = useState(__INIT__);
+
+  const [loadN, setLoadN] = useState(true);
 
   return (
     <>
@@ -58,23 +64,25 @@ export default function IndustryNews() {
                 Industry Insights (Partner Content)
               </div>
               <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
-                {payload?.latest?.map((item, one) => {
-                  return (
-                    <InfoCard
-                      item={item}
-                      index={one}
-                      onClick={() => {
-                        if (session?.isLoaded && session?.isLoggedIn) {
-                          navigate(`/news/${item?.slug}`);
-                        } else {
-                          setLogin({
-                            login: true,
-                          });
-                        }
-                      }}
-                    />
-                  );
-                })}
+                {loadN && [1, 2, 3].map((index) => <NewsBox />)}
+                {!loadN &&
+                  payload?.latest?.map((item, one) => {
+                    return (
+                      <InfoCard
+                        item={item}
+                        index={one}
+                        onClick={() => {
+                          if (session?.isLoaded && session?.isLoggedIn) {
+                            navigate(`/news/${item?.slug}`);
+                          } else {
+                            setLogin({
+                              login: true,
+                            });
+                          }
+                        }}
+                      />
+                    );
+                  })}
               </div>
               <button
                 onClick={() => {
@@ -115,23 +123,25 @@ export default function IndustryNews() {
             </div>
             <div className="py-10 flex flex-col space-y-5">
               <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
-                {payload?.featured?.map((item, one) => {
-                  return (
-                    <PictureCard
-                      item={item}
-                      index={one}
-                      onClick={() => {
-                        if (session?.isLoaded && session?.isLoggedIn) {
-                          navigate(`/news/${item?.slug}`);
-                        } else {
-                          setLogin({
-                            login: true,
-                          });
-                        }
-                      }}
-                    />
-                  );
-                })}
+                {loadN && [1, 2].map((index) => <NewsBox isPicture={true} />)}
+                {!loadN &&
+                  payload?.featured?.map((item, one) => {
+                    return (
+                      <PictureCard
+                        item={item}
+                        index={one}
+                        onClick={() => {
+                          if (session?.isLoaded && session?.isLoggedIn) {
+                            navigate(`/news/${item?.slug}`);
+                          } else {
+                            setLogin({
+                              login: true,
+                            });
+                          }
+                        }}
+                      />
+                    );
+                  })}
               </div>
             </div>
           </Fold>

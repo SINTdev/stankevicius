@@ -5,12 +5,12 @@ import PictureCard from "../../components/menus/PictureCard";
 
 export default function PrivateClients() {
   return (
-    <div className="w-full flex flex-col space-y-8 md:p-0 px-2">
-      <Fold className="">
+    <div className="w-full flex flex-col space-y-8 md:p-0">
+      <Fold className="pt-[4.5rem]">
         <Fold>
-          <div className="min-h-[30rem] relative">
+          <div className="md:min-h-[30rem] relative">
             <img
-              className="md:block hidden"
+              className="block"
               src="https://www.novartis.com/sites/novartiscom/files/styles/banner_image_1920/public/2021-10/male-scientist-lab-about-hero.jpg.webp?itok=CCrgSKTf"
             />
             <div className="flex flex-col space-y-5 bg-[#0460a9] relative md:absolute md:bottom-[3rem] md:left-[19rem] md:w-[30%] text-white py-8 px-6">
@@ -69,7 +69,7 @@ export default function PrivateClients() {
           </div>
         </Fold>
       </Fold> */}
-      <Fold className="bg-white">
+      <Fold className="bg-white px-2">
         <Fold inside className="">
           <div className="py-5 w-full text-left text-xl leading-normal tracking-tight text-black">
             Our purpose is to reimagine medicine to improve and extend people's

@@ -34,7 +34,7 @@ export default function TermsOfUse(props) {
     },
   ]);
   return (
-    <div className="max-w-screen-xl mx-auto p-0 md:p-4">
+    <div className="max-w-screen-xl p-0 md:p-4 mx-2 md:mx-auto">
       <div className="mt-10 flex justify-center items-center flex-col">
         <div className="w-full">
           <div className="w-full text-left text-4xl _font-bold leading-tight tracking-tight text-black">

@@ -190,11 +190,11 @@ const Footer = () => {
                 <i class="fa-brands fa-instagram fa-xl"></i>
               </div>
 
-              <div className="bg-[#0460a9] h-[60px] order-first md:order-last mb-7 md:md-0 flex items-center px-3 w-full md:w-96 lg:w-1/2">
+              <div className="bg-[#0460a9] hover:opacity-95 h-[60px] order-first md:order-last mb-7 md:md-0 flex items-center px-3 w-full md:w-96 lg:w-1/2">
                 <input
                   type="text"
                   placeholder="Search"
-                  className="w-[90%] bg-transparent text-white placeholder:text-white font-bold pl-2"
+                  className="w-[90%] bg-transparent text-white outline-none placeholder:text-white font-bold pl-2"
                 />
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -202,7 +202,7 @@ const Footer = () => {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="w-6 h-6 text-white"
+                  className="w-6 h-6 text-white cursor-pointer"
                 >
                   <path
                     strokeLinecap="round"

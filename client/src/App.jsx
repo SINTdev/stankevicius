@@ -356,6 +356,30 @@ function App() {
               </Layout>
             }
           />
+          <Route
+            path="/footer/international_trade_consulting"
+            element={
+              <Layout {...paramater} menu={true} novideo={true}>
+                <PrivateClientsFooter />
+              </Layout>
+            }
+          />
+          <Route
+            path="/footer/contracting_and_due_diligence"
+            element={
+              <Layout {...paramater} menu={true} novideo={true}>
+                <PrivateClientsFooter />
+              </Layout>
+            }
+          />
+          <Route
+            path="/footer/news_and_insights"
+            element={
+              <Layout {...paramater} menu={true} novideo={true}>
+                <PrivateClientsFooter />
+              </Layout>
+            }
+          />
           {/* Navigate STANKEVICIUS End */}
           {/* TOPICS Start */}
           <Route

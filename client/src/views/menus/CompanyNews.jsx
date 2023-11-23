@@ -8,6 +8,7 @@ import { CONSTANT } from "../../CONSTANT";
 import UserData from "../../contexts/UserData";
 import ModalWrapper from "../../components/ModalWrapper";
 import Login from "../../auth/Login";
+import NewsBox from "../../components/skeleton/NewsBox";
 export default function CompanyNews() {
   const { session, updateSessionData } = useContext(UserData);
   let navigate = useNavigate();
@@ -22,7 +23,10 @@ export default function CompanyNews() {
         category: "company",
       })
       .then((responce) => {
-        setPayload(responce?.data);
+        setTimeout(() => {
+          setPayload(responce?.data);
+          setLoadN(false);
+        }, 1000);
       })
       .catch((error) => {
         console.log(error);
@@ -36,6 +40,8 @@ export default function CompanyNews() {
     login: false,
   };
   const [login, setLogin] = useState(__INIT__);
+
+  const [loadN, setLoadN] = useState(true);
 
   return (
     <>
@@ -58,23 +64,25 @@ export default function CompanyNews() {
                 Stankevicius Company News
               </div>
               <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
-                {payload?.latest?.map((item, one) => {
-                  return (
-                    <InfoCard
-                      item={item}
-                      index={one}
-                      onClick={() => {
-                        if (session?.isLoaded && session?.isLoggedIn) {
-                          navigate(`/news/${item?.slug}`);
-                        } else {
-                          setLogin({
-                            login: true,
-                          });
-                        }
-                      }}
-                    />
-                  );
-                })}
+                {loadN && [1, 2, 3].map((index) => <NewsBox />)}
+                {!loadN &&
+                  payload?.latest?.map((item, one) => {
+                    return (
+                      <InfoCard
+                        item={item}
+                        index={one}
+                        onClick={() => {
+                          if (session?.isLoaded && session?.isLoggedIn) {
+                            navigate(`/news/${item?.slug}`);
+                          } else {
+                            setLogin({
+                              login: true,
+                            });
+                          }
+                        }}
+                      />
+                    );
+                  })}
               </div>
               <button
                 onClick={() => {
@@ -93,21 +101,7 @@ export default function CompanyNews() {
             </div>
           </Fold>
         </Fold>
-        {/* <Fold className="bg-white">
-        <Fold inside className="bg-[#F1F1F1]">
-          <div className="py-10 px-6 flex flex-col space-y-5">
-            <div className="w-full text-left mb-2 md:pl-1 text-3xl _font-bold leading-tight tracking-tight text-black">
-              Novartis provides support to Palestinian victims.
-            </div>
-            <button
-              onClick={null}
-              className="transition-all duration-300 ease-in-out cursor-pointer w-fit text-black border-2 border-black hover:bg-black hover:text-white bg-transparent text-sm px-8 font-bold py-2.5 text-center"
-            >
-              Read more
-            </button>
-          </div>
-        </Fold>
-      </Fold> */}
+
         <Fold className="bg-white">
           <Fold inside>
             <div className="w-full text-left mb-2 md:pl-1 text-4xl _font-bold leading-tight tracking-tight text-black">
@@ -115,57 +109,29 @@ export default function CompanyNews() {
             </div>
             <div className="py-10 flex flex-col space-y-5">
               <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
-                {payload?.featured?.map((item, one) => {
-                  return (
-                    <PictureCard
-                      item={item}
-                      index={one}
-                      onClick={() => {
-                        if (session?.isLoaded && session?.isLoggedIn) {
-                          navigate(`/news/${item?.slug}`);
-                        } else {
-                          setLogin({
-                            login: true,
-                          });
-                        }
-                      }}
-                    />
-                  );
-                })}
+                {loadN && [1, 2].map((index) => <NewsBox isPicture={true} />)}
+                {!loadN &&
+                  payload?.featured?.map((item, one) => {
+                    return (
+                      <PictureCard
+                        item={item}
+                        index={one}
+                        onClick={() => {
+                          if (session?.isLoaded && session?.isLoggedIn) {
+                            navigate(`/news/${item?.slug}`);
+                          } else {
+                            setLogin({
+                              login: true,
+                            });
+                          }
+                        }}
+                      />
+                    );
+                  })}
               </div>
             </div>
           </Fold>
         </Fold>
-        {/* <Fold className="bg-[#F1F1F1]">
-        <Fold inside>
-          <div className="py-10 flex flex-col space-y-5">
-            <div className="w-full text-left mb-2 md:pl-1 text-4xl _font-bold leading-tight tracking-tight text-black">
-              Humanitarian response
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <InfoCard nodate />
-              <InfoCard nodate />
-              <InfoCard nodate />
-            </div>
-            <button
-              onClick={null}
-              className="transition-all duration-300 ease-in-out cursor-pointer w-fit text-black border-2 border-black hover:bg-black hover:text-white bg-transparent text-sm px-8 font-bold py-2.5 text-center"
-            >
-              More statements
-            </button>
-          </div>
-        </Fold>
-      </Fold>
-      <Fold className="bg-white">
-        <Fold inside>
-          <div className="py-10 flex flex-col space-y-5">
-            <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
-              <PictureCard src="https://www.novartis.com/sites/novartis_com/files/styles/cards_50_50/public/2021-10/contacts.jpg.webp?itok=zoU_VG-t" />
-              <PictureCard src="https://www.novartis.com/sites/novartis_com/files/styles/cards_50_50/public/2021-10/contacts.jpg.webp?itok=zoU_VG-t" />
-            </div>
-          </div>
-        </Fold>
-      </Fold> */}
         <Fold className="">
           <Fold>
             <div className="min-h-[30rem] relative">

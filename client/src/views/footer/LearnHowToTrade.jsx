@@ -3,7 +3,7 @@ import Accordion from "../../components/Accordion";
 
 export default function LearnHowToTrade(props) {
   return (
-    <div className="max-w-screen-xl mx-auto p-0 md:p-4">
+    <div className="max-w-screen-xl md:mx-auto mx-2 p-0 md:p-4">
       <div
         className="mt-10 flex justify-center items-center flex-col"
         id="main_form_div"
@@ -49,6 +49,7 @@ export default function LearnHowToTrade(props) {
           <div className="py-2"></div>
           <div className="py-2"></div>
           <Accordion
+            mode="learn"
             items={[
               {
                 title: "Web Team",
