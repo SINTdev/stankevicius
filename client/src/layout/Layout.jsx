@@ -149,8 +149,24 @@ export default function Layout(props) {
   const resetPopups = () => {
     props?.setIsMenuOpen(false);
     props?.setIsAccountMenuOpen(false);
-    props?.setIsSearchOpen(false);
+    let searchParams = new URLSearchParams(location.search);
+    let footerSearch = searchParams.get("footerSearch");
+    let query = searchParams.get("query");
+    if (footerSearch && query) {
+      props?.setIsSearchOpen(true);
+    } else {
+      props?.setIsSearchOpen(false);
+    }
   };
+
+  useEffect(() => {
+    let searchParams = new URLSearchParams(location.search);
+    let footerSearch = searchParams.get("footerSearch");
+    let query = searchParams.get("query");
+    if (footerSearch && query) {
+      props?.setIsSearchOpen(true);
+    }
+  }, [location]);
 
   useEffect(() => {
     if (location.pathname === "/") {
@@ -162,8 +178,7 @@ export default function Layout(props) {
         top: scrollTarget,
         behavior: "instant",
       });
-    }
-    else if (props?.menu) {
+    } else if (props?.menu) {
       let scrollTarget = 25 * 16; // 5rem * 16px per rem
       window.scrollTo({
         top: scrollTarget,
@@ -213,6 +228,7 @@ export default function Layout(props) {
         <SearchMenu
           isSearchOpen={props?.isSearchOpen}
           setIsSearchOpen={props?.setIsSearchOpen}
+          location={location}
         />
         {!props?.isMenuOpen && <Footer />}
       </UserData.Provider>

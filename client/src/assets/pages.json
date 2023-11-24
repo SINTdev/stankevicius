@@ -1,0 +1,218 @@
+[
+  {
+    "title": "Introduction",
+    "description": "",
+    "parentTitle": "About",
+    "location": "/menu/introduction",
+    "keywords": ["Introduction"],
+    "type": "menu"
+  },
+  {
+    "title": "Our Company",
+    "description": "",
+    "parentTitle": "About",
+    "location": "/menu/our_company",
+    "keywords": ["Our", "Company"],
+    "type": "menu"
+  },
+  {
+    "title": "CEO's Letter",
+    "description": "",
+    "parentTitle": "About",
+    "location": "/menu/ceo_letter",
+    "keywords": ["CEO's", "Letter"],
+    "type": "menu"
+  },
+  {
+    "title": "Small Business",
+    "description": "",
+    "parentTitle": "Private Clients",
+    "location": "/menu/small_business",
+    "keywords": ["Small", "Business"],
+    "type": "menu"
+  },
+  {
+    "title": "Institutions",
+    "description": "",
+    "parentTitle": "Private Clients",
+    "location": "/menu/institutions",
+    "keywords": ["Institutions"],
+    "type": "menu"
+  },
+  {
+    "title": "Sourcing and Procurement",
+    "description": "",
+    "parentTitle": "International Trade Consulting",
+    "location": "/menu/sourcing_procurement",
+    "keywords": ["Sourcing", "and", "Procurement"],
+    "type": "menu"
+  },
+  {
+    "title": "Production and Manufacturing",
+    "description": "",
+    "parentTitle": "International Trade Consulting",
+    "location": "/menu/production_manufacturing",
+    "keywords": ["Production", "and", "Manufacturing"],
+    "type": "menu"
+  },
+  {
+    "title": "Shipping and Logistics",
+    "description": "",
+    "parentTitle": "International Trade Consulting",
+    "location": "/menu/shipping_logistics",
+    "keywords": ["Shipping", "and", "Logistics"],
+    "type": "menu"
+  },
+  {
+    "title": "Inspection and Quality Checks",
+    "description": "",
+    "parentTitle": "International Trade Consulting",
+    "location": "/menu/inspection_quality",
+    "keywords": ["Inspection", "and", "Quality", "Checks"],
+    "type": "menu"
+  },
+  {
+    "title": "Business Audit",
+    "description": "",
+    "parentTitle": "Contracting and Due Diligence",
+    "location": "/menu/business_audit",
+    "keywords": ["Business", "Audit"],
+    "type": "menu"
+  },
+  {
+    "title": "Business Counterparty Due Diligence",
+    "description": "",
+    "parentTitle": "Contracting and Due Diligence",
+    "location": "/menu/counterparty_due_diligence",
+    "keywords": ["Business", "Counterparty", "Due", "Diligence"],
+    "type": "menu"
+  },
+  {
+    "title": "Professional Contracting",
+    "description": "",
+    "parentTitle": "Contracting and Due Diligence",
+    "location": "/menu/professional_contracting",
+    "keywords": ["Professional", "Contracting"],
+    "type": "menu"
+  },
+  {
+    "title": "Stankevicius News",
+    "description": "",
+    "parentTitle": "News & Insights",
+    "location": "/menu/stankevicius_news",
+    "keywords": ["Stankevicius", "News"],
+    "type": "menu"
+  },
+  {
+    "title": "Industry Insights (Partner Content)",
+    "description": "",
+    "parentTitle": "News & Insights",
+    "location": "/menu/industry_insights",
+    "keywords": ["Industry", "Insights", "(Partner", "Content)"],
+    "type": "menu"
+  },
+  {
+    "title": "Private Clients",
+    "description": "",
+    "parentTitle": "Navigate Stankevicius",
+    "location": "/footer/private_clients",
+    "keywords": ["Private", "Clients"],
+    "type": "footer"
+  },
+  {
+    "title": "International Trade Consulting",
+    "description": "",
+    "parentTitle": "Navigate Stankevicius",
+    "location": "/footer/international_trade_consulting",
+    "keywords": ["International", "Trade", "Consulting"],
+    "type": "footer"
+  },
+  {
+    "title": "Contracting and Due Diligence",
+    "description": "",
+    "parentTitle": "Navigate Stankevicius",
+    "location": "/footer/contracting_and_due_diligence",
+    "keywords": ["Contracting", "and", "Due", "Diligence"],
+    "type": "footer"
+  },
+  {
+    "title": "News & Insights",
+    "description": "",
+    "parentTitle": "Navigate Stankevicius",
+    "location": "/footer/news_and_insights",
+    "keywords": ["News", "&", "Insights"],
+    "type": "footer"
+  },
+  {
+    "title": "Regulatory Guidelines",
+    "description": "",
+    "parentTitle": "Topics",
+    "location": "/footer/regulatory_guidelines",
+    "keywords": ["Regulatory", "Guidelines"],
+    "type": "footer"
+  },
+  {
+    "title": "Learn How to Trade",
+    "description": "",
+    "parentTitle": "Explore",
+    "location": "/footer/learn_how_to_trade",
+    "keywords": ["Learn", "How", "to", "Trade"],
+    "type": "footer"
+  },
+  {
+    "title": "Partner Content",
+    "description": "",
+    "parentTitle": "Explore",
+    "location": "/footer/partner_content",
+    "keywords": ["Partner", "Content"],
+    "type": "footer"
+  },
+  {
+    "title": "Advertising Credits",
+    "description": "",
+    "parentTitle": "Explore",
+    "location": "/footer/advertising_credits",
+    "keywords": ["Advertising", "Credits"],
+    "type": "footer"
+  },
+  {
+    "title": "Corporate PR and Advertising",
+    "description": "",
+    "parentTitle": "More From Stankevicius",
+    "location": "/footer/corporate_pr_and_advertising",
+    "keywords": ["Corporate", "PR", "and", "Advertising"],
+    "type": "footer"
+  },
+  {
+    "title": "Alternative Investment Banking",
+    "description": "",
+    "parentTitle": "More From Stankevicius",
+    "location": "/footer/alternative_investment_banking",
+    "keywords": ["Alternative", "Investment", "Banking"],
+    "type": "footer"
+  },
+  {
+    "title": "Stankevicius Group",
+    "description": "",
+    "parentTitle": "More From Stankevicius",
+    "location": "/footer/stankevicius_group",
+    "keywords": ["Stankevicius", "Group"],
+    "type": "footer"
+  },
+  {
+    "title": "Terms of Use",
+    "description": "",
+    "parentTitle": "",
+    "location": "/footer/terms_of_use",
+    "keywords": ["Terms", "of", "Use"],
+    "type": "footer"
+  },
+  {
+    "title": "Privacy Policy",
+    "description": "",
+    "parentTitle": "More From Stankevicius",
+    "location": "/footer/privacy",
+    "keywords": ["Privacy", "Policy"],
+    "type": "footer"
+  }
+]

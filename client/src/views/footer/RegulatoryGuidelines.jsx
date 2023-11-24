@@ -12,7 +12,6 @@ export default function RegulatoryGuidelines(props) {
           <div className="w-full text-left text-4xl _font-bold leading-tight tracking-tight text-black">
             Novartis Privacy Hub
           </div>
-
           <div className="py-5"></div>
           <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
             Welcome to the Novartis Privacy Hub.

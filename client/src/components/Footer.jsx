@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PromotionBar from "./PromotionBar";
 
 const Footer = () => {
   const [activeLinkIndex, setActiveLinkIndex] = useState([]);
   const [isFooterVisible, setIsFooterVisible] = useState(false);
+  const [query, setQuery] = useState("");
+  let navigate = useNavigate();
   const [footerItems, setfooterItems] = useState([
     {
       link: "Navigate Stankevicius",
@@ -194,6 +196,20 @@ const Footer = () => {
                 <input
                   type="text"
                   placeholder="Search"
+                  value={query}
+                  onChange={(e) => {
+                    setQuery(e.target.value);
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" && e.target.value !== "") {
+                      console.log(
+                        `${location.pathname}?footerSearch=true&query=${query}`
+                      );
+                      navigate(
+                        `${location.pathname}?footerSearch=true&query=${query}`
+                      );
+                    }
+                  }}
                   className="w-[90%] bg-transparent text-white outline-none placeholder:text-white font-bold pl-2"
                 />
                 <svg

@@ -3,16 +3,12 @@ import React, { useState, useEffect } from "react";
 const RightArrow1 = (props) => {
   return (
     <svg
-      className={props?.className}
+      xmlns="http://www.w3.org/2000/svg"
       height={props.height}
       width={props.width}
-      stroke="currentColor"
-      fill="currentColor"
-      stroke-width="0"
-      viewBox="0 0 256 512"
-      xmlns="http://www.w3.org/2000/svg"
+      className={props?.className}
     >
-      <path d="M246.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-9.2-9.2-22.9-11.9-34.9-6.9s-19.8 16.6-19.8 29.6l0 256c0 12.9 7.8 24.6 19.8 29.6s25.7 2.2 34.9-6.9l128-128z"></path>
+      <path d="m5.016 0-2.51 2.5L0 4.999 5.016 5l5.017-.001L7.525 2.5 5.016 0z" />
     </svg>
   );
 };
@@ -52,11 +48,11 @@ const AccordionItem1 = ({ title, content, index }) => {
         onClick={handleToggle}
       >
         <RightArrow1
-          height={"20px"}
-          width={"20px"}
-          className={`mr-2 ${
-            isExpanded ? "rotate-90" : "rotate-0"
-          } transition-all text-black -translate-y-[1.5px] duration-[300ms] ease-in-out`}
+          height={"10px"}
+          width={"10px"}
+          className={`mr-3 ${
+            isExpanded ? "rotate-180" : "rotate-90"
+          } transition-all scale-150 text-black -translate-y-[2px] duration-[300ms] ease-in-out`}
         />
         <h1 className="select-none _font-bold text-black text-md transition-all duration-300">
           {title}
@@ -64,13 +60,23 @@ const AccordionItem1 = ({ title, content, index }) => {
       </div>
       <div
         className={`${
-          !isExpanded ? "overflow-hidden mt-0" : "mt-10"
+          !isExpanded ? "overflow-hidden mt-0" : ""
         } h-full transition-all ease-in-out duration-300 mb-2`}
       >
         <div
           className={`${!isExpanded ? "h-0 opacity-0" : "h-full opacity-100"}`}
         >
           <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
+            {content}
+          </div>  <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
+            {content}
+          </div>  <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
+            {content}
+          </div>  <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
+            {content}
+          </div>  <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
+            {content}
+          </div>  <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
             {content}
           </div>
         </div>
@@ -104,7 +110,7 @@ const AccordionItem2 = ({ title, content, index }) => {
       </div>
       <div
         className={`${
-          !isExpanded ? "overflow-hidden mt-0" : "mt-10"
+          !isExpanded ? "overflow-hidden mt-0" : ""
         } px-5 h-full transition-all ease-in-out duration-300 mb-2`}
       >
         <div
