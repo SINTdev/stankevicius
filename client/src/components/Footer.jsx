@@ -202,9 +202,6 @@ const Footer = () => {
                   }}
                   onKeyDown={(e) => {
                     if (e.key === "Enter" && e.target.value !== "") {
-                      console.log(
-                        `${location.pathname}?footerSearch=true&query=${query}`
-                      );
                       navigate(
                         `${location.pathname}?footerSearch=true&query=${query}`
                       );
@@ -219,6 +216,13 @@ const Footer = () => {
                   strokeWidth={1.5}
                   stroke="currentColor"
                   className="w-6 h-6 text-white cursor-pointer"
+                  onClick={() => {
+                    if (query !== "") {
+                      navigate(
+                        `${location.pathname}?footerSearch=true&query=${query}`
+                      );
+                    }
+                  }}
                 >
                   <path
                     strokeLinecap="round"
