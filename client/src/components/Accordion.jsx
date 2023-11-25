@@ -43,7 +43,7 @@ const AccordionItem1 = ({ title, content, index }) => {
 
   return (
     <div className={`py-2 ${index === 0 && "border-t"} border-b`}>
-      <div
+      {/* <div
         className="flex flex-row items-center cursor-pointer"
         onClick={handleToggle}
       >
@@ -57,8 +57,35 @@ const AccordionItem1 = ({ title, content, index }) => {
         <h1 className="select-none _font-bold text-black text-md transition-all duration-300">
           {title}
         </h1>
-      </div>
-      <div
+      </div> */}
+      <details>
+        <summary className="select-none cursor-pointer pt-0.5 pb-1.5">
+          <h1 className="select-none inline-block _font-bold text-black text-md transition-all duration-300">
+            {title}
+          </h1>
+        </summary>
+        <div className={`h-full opacity-100`}>
+          <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
+            {content}
+          </div>{" "}
+          <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
+            {content}
+          </div>{" "}
+          <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
+            {content}
+          </div>{" "}
+          <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
+            {content}
+          </div>{" "}
+          <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
+            {content}
+          </div>{" "}
+          <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
+            {content}
+          </div>
+        </div>
+      </details>
+      {/* <div
         className={`${
           !isExpanded ? "overflow-hidden mt-0" : ""
         } h-full transition-all ease-in-out duration-300 mb-2`}
@@ -68,19 +95,24 @@ const AccordionItem1 = ({ title, content, index }) => {
         >
           <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
             {content}
-          </div>  <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
+          </div>{" "}
+          <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
             {content}
-          </div>  <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
+          </div>{" "}
+          <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
             {content}
-          </div>  <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
+          </div>{" "}
+          <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
             {content}
-          </div>  <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
+          </div>{" "}
+          <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
             {content}
-          </div>  <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
+          </div>{" "}
+          <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
             {content}
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

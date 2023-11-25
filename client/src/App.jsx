@@ -11,6 +11,7 @@ import AddProduct from "./views/AddProduct";
 import Home from "./views/Home";
 import Credit from "./views/client/Credit";
 import UserDashboard from "./views/client/Dashboard";
+import PagesSearch from "./views/PagesSearch";
 import Profile from "./views/client/Profile";
 import Security from "./views/client/Security";
 import CreditManagement from "./views/corporate/CreditManagement";
@@ -104,6 +105,14 @@ function App() {
             }
           />
           <Route
+            path="/pages/search"
+            element={
+              <Layout {...paramater} novideo={true}>
+                <PagesSearch />
+              </Layout>
+            }
+          />
+          <Route
             path="/editNews/:id"
             element={
               <Layout {...paramater}>
@@ -142,7 +151,7 @@ function App() {
             path="/client"
             element={
               <Layout {...paramater}>
-                <UserDashboard />
+                <PagesSearch />
               </Layout>
             }
           />

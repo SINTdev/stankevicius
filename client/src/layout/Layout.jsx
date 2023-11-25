@@ -149,24 +149,25 @@ export default function Layout(props) {
   const resetPopups = () => {
     props?.setIsMenuOpen(false);
     props?.setIsAccountMenuOpen(false);
-    let searchParams = new URLSearchParams(location.search);
-    let footerSearch = searchParams.get("footerSearch");
-    let query = searchParams.get("query");
-    if (footerSearch && query) {
-      props?.setIsSearchOpen(true);
-    } else {
-      props?.setIsSearchOpen(false);
-    }
+    props?.setIsSearchOpen(false);
+    // let searchParams = new URLSearchParams(location.search);
+    // let footerSearch = searchParams.get("footerSearch");
+    // let query = searchParams.get("query");
+    // if (footerSearch && query) {
+    //   props?.setIsSearchOpen(true);
+    // } else {
+    //   props?.setIsSearchOpen(false);
+    // }
   };
 
-  useEffect(() => {
-    let searchParams = new URLSearchParams(location.search);
-    let footerSearch = searchParams.get("footerSearch");
-    let query = searchParams.get("query");
-    if (footerSearch && query) {
-      props?.setIsSearchOpen(true);
-    }
-  }, [location]);
+  // useEffect(() => {
+  //   let searchParams = new URLSearchParams(location.search);
+  //   let footerSearch = searchParams.get("footerSearch");
+  //   let query = searchParams.get("query");
+  //   if (footerSearch && query) {
+  //     props?.setIsSearchOpen(true);
+  //   }
+  // }, [location]);
 
   useEffect(() => {
     if (location.pathname === "/") {

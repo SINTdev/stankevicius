@@ -202,8 +202,9 @@ const Footer = () => {
                   }}
                   onKeyDown={(e) => {
                     if (e.key === "Enter" && e.target.value !== "") {
+                      setQuery("");
                       navigate(
-                        `${location.pathname}?footerSearch=true&query=${query}`
+                        `/pages/search/?footerSearch=true&query=${query}`
                       );
                     }
                   }}
@@ -218,8 +219,9 @@ const Footer = () => {
                   className="w-6 h-6 text-white cursor-pointer"
                   onClick={() => {
                     if (query !== "") {
+                      setQuery("");
                       navigate(
-                        `${location.pathname}?footerSearch=true&query=${query}`
+                        `/pages/search/?footerSearch=true&query=${query}`
                       );
                     }
                   }}
