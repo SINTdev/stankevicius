@@ -98,8 +98,8 @@ export default function BusinessAudit() {
         considerations to look after before signing a contract or transacting:
       </div>
       <div className="py-3"></div>{" "}
-      <div className="bg-[#F4F4F4] overflow-auto px-4 py-10 flex flex-row space-x-4 justify-center">
-        <div className="flex flex-col space-y-6 w-3/5">
+      <div className="bg-[#F4F4F4] overflow-auto px-4 py-10 flex md:flex-row flex-col md:space-x-4 space-x-0 justify-center">
+        <div className="flex flex-col space-y-6 w-full md:w-3/5">
           <div className="mt-3 w-full text-left mb-2 text-2xl _font-bold leading-tight tracking-tight text-black">
             Considerations to look after before signing a contract or
             transacting
@@ -225,7 +225,7 @@ export default function BusinessAudit() {
             />
           </span>
         </div>
-        <div className="flex flex-col w-2/5 mt-16">
+        <div className="flex flex-col w-full md:w-2/5 mt-10 md:mt-16">
           <div className="w-full text-left font-extralight text-2xl md:text-4xl leading-tight text-[#0460a9]">
             8 considerations
           </div>

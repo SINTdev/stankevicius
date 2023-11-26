@@ -100,8 +100,8 @@ export default function SourcingProcurement() {
         <div className="mt-3 w-full text-left mb-2 text-2xl _font-bold leading-tight tracking-tight text-black">
           Providing access to global market inventory
         </div>
-        <div className="flex flex-row space-x-4 justify-center">
-          <div className="flex flex-col space-y-6 w-3/5">
+        <div className="flex md:flex-row flex-col md:space-x-4 space-x-0 justify-center">
+          <div className="flex flex-col space-y-6 w-full md:w-3/5">
             <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
               We have developed a perpetual platform to provide access to global
               market inventory of various products and commodities. By
@@ -141,7 +141,7 @@ export default function SourcingProcurement() {
             </div>{" "}
             <div className="py-5"></div>{" "}
           </div>
-          <div className="flex flex-col w-2/5 mt-16">
+          <div className="flex flex-col w-full md:w-2/5 md:mt-16 mt-0">
             <div className="w-full text-left font-extralight text-4xl md:text-7xl leading-tight text-[#0460a9]">
               <img
                 src="https://www.reporting.novartis.com/2022/_assets/gallery/sdg-8.svg"

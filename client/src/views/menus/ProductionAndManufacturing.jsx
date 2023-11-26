@@ -292,8 +292,8 @@ export default function SourcingProcurement() {
           How at Stankevicius International we help clients to manage business
           in global trade
         </div>
-        <div className="flex flex-row space-x-4 justify-center">
-          <div className="flex flex-col space-y-6 w-3/5">
+        <div className="flex md:flex-row flex-col md:space-x-4 space-x-0 justify-center">
+          <div className="flex flex-col space-y-6 w-full md:w-3/5">
             <div className=""></div>{" "}
             <ul class="list-[square] pl-6 marker:text-2xl space-y-3 mb-3">
               <li>
@@ -377,7 +377,7 @@ export default function SourcingProcurement() {
             </div>{" "}
             <div className="py-5"></div>{" "}
           </div>
-          <div className="flex flex-col w-2/5 mt-16">
+          <div className="flex flex-col w-full md:w-2/5 mt-0 md:mt-16">
             <div className="w-full text-left font-extralight text-4xl md:text-7xl leading-tight text-[#0460a9]">
               <img src="/assets/sdg9.png" className="h-[100px] w-[100px]" />
             </div>

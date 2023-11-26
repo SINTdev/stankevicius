@@ -120,17 +120,21 @@ export default function Institutions() {
       </div>
       <div className="py-3"></div>
       <div className="border-t-2 border-[#4472c4] py-2">
-        <div className="flex flex-col space-y-3 overflow-auto">
-          <span className="flex flex-row items-center space-x-1">
-            <span className="_font-bold text-lg tracking-tight">
-              Regions we have an edge in
-            </span>
-            <span className="text-lg tracking-tight">Trading</span>
+        {" "}
+        <span className="flex flex-row items-center space-x-1 mb-1">
+          <span className="_font-bold text-lg tracking-tight">
+            Regions we have an edge in
           </span>
+          <span className="text-lg tracking-tight">Trading</span>
+        </span>
+        <div className="overflow-auto">
           <table className="w-full text-sm text-black">
             <thead className="text-sm text-left text-[#4472c4]">
               <tr className="border-b border-black">
-                <th scope="col" className="pl-2 py-2.5">
+                <th
+                  scope="col"
+                  className="bg-white sticky left-0 pl-2 pr-2 py-2.5"
+                >
                   Country/Region
                 </th>
                 <th scope="col" className="pl-2 py-2.5 border-l border-black">
@@ -140,68 +144,84 @@ export default function Institutions() {
             </thead>
             <tbody className="text-left whitespace-nowrap">
               <tr className="bg-white border-b border-black">
-                <td className="pl-2 py-2.5">United Arab Emirates</td>
+                <td className="pr-2 pl-2 py-2.5 bg-white sticky left-0">
+                  United Arab Emirates
+                </td>
                 <td className="pl-2 py-2.5 border-l border-black">
                   Market entry strategy and guidance, government relations.
                 </td>
               </tr>
               <tr className="bg-white border-b border-black">
-                <td className="pl-2 py-2.5">Bahrain</td>
+                <td className="pr-2 pl-2 py-2.5 bg-white sticky left-0">
+                  Bahrain
+                </td>
                 <td className="pl-2 py-2.5 border-l border-black">
                   Market entry strategy and guidance, government relations.
                 </td>
               </tr>
               <tr className="bg-white border-b border-black">
-                <td className="pl-2 py-2.5">Saudi Arabia</td>
+                <td className="pr-2 pl-2 py-2.5 bg-white sticky left-0">
+                  Saudi Arabia
+                </td>
                 <td className="pl-2 py-2.5 border-l border-black">
                   Market entry strategy and guidance, investor relations,
                   government.
                 </td>
               </tr>
               <tr className="bg-white border-b border-black">
-                <td className="pl-2 py-2.5">Kazakhstan</td>
+                <td className="pr-2 pl-2 py-2.5 bg-white sticky left-0">
+                  Kazakhstan
+                </td>
                 <td className="pl-2 py-2.5 border-l border-black">
                   Large product and commodity supplier base, government
                   relations.
                 </td>
               </tr>
               <tr className="bg-white border-b border-black">
-                <td className="pl-2 py-2.5">China</td>
+                <td className="pr-2 pl-2 py-2.5 bg-white sticky left-0">
+                  China
+                </td>
                 <td className="pl-2 py-2.5 border-l border-black">
                   Large product supplier base, market entry strategy.
                 </td>
               </tr>
               <tr className="bg-white border-b border-black">
-                <td className="pl-2 py-2.5">Indonesia</td>
+                <td className="pr-2 pl-2 py-2.5 bg-white sticky left-0">
+                  Indonesia
+                </td>
                 <td className="pl-2 py-2.5 border-l border-black">
                   Investor relations, market entry strategy, commodity supply.
                 </td>
               </tr>
               <tr className="bg-white border-b border-black">
-                <td className="pl-2 py-2.5">United States</td>
+                <td className="pr-2 pl-2 py-2.5 bg-white sticky left-0">
+                  United States
+                </td>
                 <td className="pl-2 py-2.5 border-l border-black">
                   Large buyer pool, investor relations.
                 </td>
               </tr>
               <tr className="bg-white border-b-2 border-[#4472c4]">
-                <td className="pl-2 py-2.5">Africa</td>
+                <td className="pr-2 pl-2 py-2.5 bg-white sticky left-0">
+                  Africa
+                </td>
                 <td className="pl-2 py-2.5 border-l border-black">
                   Strong government relations, large trading network.
                 </td>
               </tr>
             </tbody>
           </table>
-          <ol class="list-decimal marker:text-xs text-sm pl-4 pt-2">
-            <li>
-              “Country/Region” is the defined area of our strong position in
-              terms of network and connections.
-            </li>
-            <li>
-              “The Edge” is the unique value that region provides and we have
-              access to.
-            </li>
-          </ol>
-        </div>
+        </div>{" "}
+        <ol class="list-decimal marker:text-xs text-sm pl-4 pt-4">
+          <li>
+            “Country/Region” is the defined area of our strong position in terms
+            of network and connections.
+          </li>
+          <li>
+            “The Edge” is the unique value that region provides and we have
+            access to.
+          </li>
+        </ol>
       </div>
       <div className="py-3"></div>
       <div className="mb-3 w-full text-left text-4xl _font-bold leading-tight tracking-tight text-black">
@@ -228,8 +248,9 @@ export default function Institutions() {
         and extract as much value as possible from our ventures together.
       </div>
       <div className="py-3"></div>{" "}
-      <div className="bg-[#F4F4F4] px-4 py-10 flex flex-row space-x-4 justify-center">
-        <div className="flex flex-col space-y-6 w-3/5">
+      
+      <div className="bg-[#F4F4F4] px-4 py-10 flex md:flex-row flex-col md:space-x-4 space-x-0 justify-center">
+        <div className="flex flex-col space-y-6 md:w-3/5 w-full">
           <div className="mt-3 w-full text-left mb-2 text-2xl _font-bold leading-tight tracking-tight text-black">
             Constantly learning system
           </div>
@@ -249,7 +270,7 @@ export default function Institutions() {
             ever before.
           </div>{" "}
         </div>
-        <div className="flex flex-col w-2/5 mt-16">
+        <div className="flex flex-col md:w-2/5 w-full md:mt-16 mt-10">
           <div className="-translate-x-2 w-full text-left font-extralight text-4xl md:text-7xl leading-tight text-[#0460a9]">
             1st
           </div>

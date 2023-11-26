@@ -472,7 +472,7 @@ export default function AddProduct(props) {
                   name: "No",
                 },
               ]}
-              className="my-1 md:w-[calc(25%-8px)] w-full md:mx-1"
+              className="my-1 md:w-[calc(25%-8px)] w-full md:mr-1"
             />
           </div>
           <div className="mt-5 flex flex-row justify-end items-center space-x-2">

@@ -179,7 +179,7 @@ export default function IndustryNews() {
         <Fold className="">
           <Fold>
             <div className="min-h-[30rem] relative">
-              <img className="md:block hidden" src="/assets/news_bg.png" />
+              <img className="block" src="/assets/news_bg.png" />
               <div className="flex flex-col space-y-5 bg-[#0460a9] relative md:absolute md:bottom-[3rem] md:left-[19rem] md:w-[30%] text-white py-8 px-6">
                 <Link
                   to={"#"}
