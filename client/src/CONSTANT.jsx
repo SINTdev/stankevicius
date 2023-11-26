@@ -143,6 +143,10 @@ export const MenuRelatedLinkItem = ({ label, to }) => {
   );
 };
 
+export const getPageMargins = () => {
+  return `@page { margin: 2rem !important; }`;
+};
+
 export const getUserData = () => {
   if (
     sessionStorage.getItem("loggedin") &&

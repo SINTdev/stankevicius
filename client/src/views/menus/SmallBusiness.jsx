@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const ReferenceItem = ({ label }) => {
   return (
-    <div className="cursor-pointer w-fit flex flex-row items-center _font-bold text-left leading-normal tracking-normal text-lg text-black">
+    <div className="cursor-pointer w-fit items-center _font-bold text-left leading-normal tracking-normal text-lg text-black">
       {label}{" "}
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -11,7 +11,7 @@ const ReferenceItem = ({ label }) => {
         viewBox="0 0 24 24"
         strokeWidth={2}
         stroke="currentColor"
-        className="w-4 h-4 ml-2 transition-all duration-300 ease-in-out text-black relative top-[1px]"
+        className="w-4 h-4 ml-2 inline transition-all duration-300 ease-in-out text-black relative -top-[2px]"
       >
         <path
           strokeLinecap="round"
@@ -49,10 +49,10 @@ const ReferenceLink = ({ label, to }) => {
 
 const TypeATableTR = ({ c, i, o, tm }) => {
   return (
-    <tr className="bg-white hover:bg-black hover:text-white border-b border-[#4472c4]">
+    <tr className="bg-white group hover:bg-black hover:text-white border-b border-[#4472c4]">
       <th
         scope="row"
-        className="px-2 py-2.5 text-left font-medium whitespace-nowrap dark:text-white"
+        className="left-0 sticky group-hover:bg-black bg-white px-2 py-2.5 text-left font-medium whitespace-nowrap dark:text-white"
       >
         {c}
       </th>
@@ -117,19 +117,19 @@ export default function SmallBusiness() {
         represents various commodity and product suppliers from Kazakhstan.
       </div>
       <div className="py-3"></div>
-      <div className="flex flex-col space-y-3 overflow-auto overflow-auto">
-        <span className="_font-bold text-lg tracking-tight">
-          We have access to mainstream market trending commodities and products
-        </span>
+      <span className="_font-bold text-lg tracking-tight mb-1">
+        We have access to mainstream market trending commodities and products
+      </span>
+      <div className="overflow-auto">
         <table className="w-full text-sm text-black">
-          <thead className="text-sm text-right text-gray-900 whitespace-nowrap">
+          <thead className="text-sm text-right text-gray-900">
             <tr className="border-b-2 border-[#4472c4]">
               {/* <th scope="col" className="w-[70%] px-2 py-2.5 text-left">
                 Commodity
               </th> */}
               <th
                 scope="col"
-                className="px-2 py-2.5 text-[#4472c4] _font-bold text-left font-medium whitespace-nowrap dark:text-white"
+                className="px-2 py-2.5 bg-white sticky left-0 text-[#4472c4] _font-bold text-left font-medium whitespace-nowrap dark:text-white"
               >
                 Commodity
               </th>
@@ -172,7 +172,7 @@ export default function SmallBusiness() {
             <tr className="bg-white border-b-2 border-[#4472c4]">
               <th
                 scope="row"
-                className="px-2 py-2.5 text-[#4472c4] _font-bold text-left font-medium whitespace-nowrap dark:text-white"
+                className="px-2 py-2.5 bg-white sticky left-0 text-[#4472c4] _font-bold text-left font-medium whitespace-nowrap dark:text-white"
               >
                 Product
               </th>
@@ -200,23 +200,23 @@ export default function SmallBusiness() {
             />
           </tbody>
         </table>
-        <ol class="list-decimal marker:text-xs text-sm pl-4 pt-2">
-          <li>“Commodity” reflects to the name of the heavy commodity.</li>
-          <li>“Product” reflects to an actual physical or liquid product.</li>
-          <li>
-            Industry is where the particular commodity or product is being used
-            in.
-          </li>
-          <li>
-            Origin is the country where the commodity or product is made in.
-          </li>
-          <li>
-            These above mentioned commodities and products are supplied by
-            eligible and vetted suppliers that have a target market for specific
-            countries and regions.
-          </li>
-        </ol>
       </div>{" "}
+      <ol class="list-decimal marker:text-xs text-sm pl-4 pt-3">
+        <li>“Commodity” reflects to the name of the heavy commodity.</li>
+        <li>“Product” reflects to an actual physical or liquid product.</li>
+        <li>
+          Industry is where the particular commodity or product is being used
+          in.
+        </li>
+        <li>
+          Origin is the country where the commodity or product is made in.
+        </li>
+        <li>
+          These above mentioned commodities and products are supplied by
+          eligible and vetted suppliers that have a target market for specific
+          countries and regions.
+        </li>
+      </ol>
       <div className="py-3"></div>
       {/* <div className="mb-3 w-full text-left text-4xl _font-bold leading-tight tracking-tight text-black">
         Access to medicines
@@ -460,17 +460,17 @@ export default function SmallBusiness() {
       </div>
       <div className="py-3"></div>
       <div className="border-t-2 border-[#4472c4] py-2">
-        <div className="flex flex-col space-y-3 overflow-auto">
-          <span className="flex flex-row items-center space-x-1">
-            <span className="_font-bold text-lg tracking-tight">
-              How do we read
-            </span>
-            <span className="text-lg tracking-tight">Pricing Data</span>
+        <span className="flex flex-row items-center space-x-1">
+          <span className="_font-bold text-lg tracking-tight">
+            How do we read
           </span>
+          <span className="text-lg tracking-tight">Pricing Data</span>
+        </span>
+        <div className="mt-2 overflow-auto">
           <table className="w-full text-sm text-black">
             <thead className="text-sm text-left text-[#4472c4]">
               <tr className="border-b border-black">
-                <th scope="col" className="pl-2 py-2.5">
+                <th scope="col" className="pl-2 py-2.5 sticky bg-white left-0">
                   Trade Offers
                 </th>
                 <th scope="col" className="pl-2 py-2.5 border-l border-black">
@@ -480,27 +480,27 @@ export default function SmallBusiness() {
             </thead>
             <tbody className="text-left whitespace-nowrap">
               <tr className="bg-white border-b border-black">
-                <td className="pl-2 py-2.5">Under market price</td>
+                <td className="pl-2 py-2.5 pr-2 sticky bg-white left-0">Under market price</td>
                 <td className="pl-2 py-2.5 border-l border-black">
                   Reasonable but to what extent? Large quantity order? Payment
                   term influence?
                 </td>
               </tr>
               <tr className="bg-white border-b border-black">
-                <td className="pl-2 py-2.5">Heavily discounted price</td>
+                <td className="pl-2 py-2.5 pr-2 sticky bg-white left-0">Heavily discounted price</td>
                 <td className="pl-2 py-2.5 border-l border-black">
                   Possible phishing scenario, trying to hook on low price.
                   Requires more clarity.
                 </td>
               </tr>
               <tr className="bg-white border-b border-black">
-                <td className="pl-2 py-2.5">Over market price</td>
+                <td className="pl-2 py-2.5 pr-2 sticky bg-white left-0">Over market price</td>
                 <td className="pl-2 py-2.5 border-l border-black">
                   Actually low supply or pretending?
                 </td>
               </tr>
               <tr className="bg-white border-b-2 border-[#4472c4]">
-                <td className="pl-2 py-2.5">Avg. market price</td>
+                <td className="pl-2 py-2.5 pr-2 sticky bg-white left-0">Avg. market price</td>
                 <td className="pl-2 py-2.5 border-l border-black">
                   Reasonable if logistics make sense.
                 </td>

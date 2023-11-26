@@ -25,6 +25,10 @@ export default function PagesSearch(props) {
         query: query,
       });
     }
+    window.scrollTo({
+      top: 0,
+      behavior: "instant",
+    });
     return () => {
       setFooter(__INIT__);
     };
@@ -88,7 +92,7 @@ export default function PagesSearch(props) {
   }
   return (
     <div className="max-w-screen-xl mx-auto p-0 md:p-4">
-      <div className="mt-24 flex justify-center items-center flex-col">
+      <div className="md:mt-24 mt-0 py-24 md:py-0 flex justify-center items-center flex-col">
         <div className="w-full">
           <div className="w-full text-left text-4xl _font-bold leading-tight tracking-tight text-black">
             Search Pages
@@ -133,13 +137,7 @@ export default function PagesSearch(props) {
                       ?.includes(footer?.query?.toLowerCase())
                   );
                 }).map((a, b) => {
-                  return (
-                    <RenderCard
-                      item={a}
-                      index={b}
-                      navigate={navigate}
-                    />
-                  );
+                  return <RenderCard item={a} index={b} navigate={navigate} />;
                 })}
             </div>
           </div>

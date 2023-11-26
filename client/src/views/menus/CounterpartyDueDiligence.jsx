@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const ReferenceItem = ({ label }) => {
   return (
-    <div className="cursor-pointer w-fit flex flex-row items-center _font-bold text-left leading-normal tracking-normal text-lg text-black">
+    <div className="cursor-pointer w-fit items-center _font-bold text-left leading-normal tracking-normal text-lg text-black">
       {label}{" "}
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -11,7 +11,7 @@ const ReferenceItem = ({ label }) => {
         viewBox="0 0 24 24"
         strokeWidth={2}
         stroke="currentColor"
-        className="w-4 h-4 ml-2 transition-all duration-300 ease-in-out text-black relative top-[1px]"
+        className="w-4 h-4 ml-2 inline transition-all duration-300 ease-in-out text-black relative -top-[2px]"
       >
         <path
           strokeLinecap="round"
@@ -52,7 +52,7 @@ const ReferenceLink = ({ label, to, svg = true }) => {
 export default function BusinessAudit() {
   return (
     <div className="flex flex-col">
-      <div className="mb-3 w-full text-left text-6xl _font-bold leading-tight tracking-tight text-black">
+      <div className="mb-3 w-full text-left md:text-6xl text-4xl  _font-bold leading-tight tracking-tight text-black">
         Validating background checks on your business counter-party
       </div>
       <div className="w-full text-left text-xl _font-bold leading-relaxed tracking-normal text-black">

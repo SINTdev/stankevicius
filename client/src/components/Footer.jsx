@@ -183,8 +183,8 @@ const Footer = () => {
               })}
             </div>
 
-            <div className="flex flex-col md:flex-row    items-center justify-between">
-              <div className="flex-items-center space-x-4">
+            <div className="flex flex-col md:flex-row md:items-center items-start justify-between">
+              <div className="space-x-4">
                 <i class="fa-brands fa-twitter fa-xl"></i>
                 <i class="fa-brands fa-linkedin-in fa-xl"></i>
                 <i class="fa-brands fa-youtube fa-xl"></i>
@@ -234,7 +234,7 @@ const Footer = () => {
                 </svg>
               </div>
             </div>
-            <div class=" py-1  flex items-center justify-center space-x-3 md:space-x-0 md:justify-between text-sn">
+            <div class=" py-1  flex md:flex-row flex-col md:items-center md:justify-between space-y-2 md:mt-0 mt-2 md:space-y-0 md:space-x-0">
               <p className="font-bold text-sm text-black">@2023 STANKEVICIUS</p>
               <div className="flex items-center space-x-1 font-bold text-sm text-black">
                 <svg
@@ -255,8 +255,8 @@ const Footer = () => {
                 <p className="text-sm">Stankevicius Site Directory</p>
               </div>
             </div>
-            <div class=" py-4 space-y-3 md:space-y-0 text-center md:text-left  md:flex md:items-center md:justify-between">
-              <div className="flex flex-wrap items-center justify-center gap-2 text-sm">
+            <div class=" py-4 space-y-3 md:space-y-0 text-left  md:flex md:items-center md:justify-between">
+              <div className="flex flex-wrap items-center md:justify-center justify-start gap-2 text-sm">
                 <Link to="/footer/terms_of_use">
                   <span className="">Terms of Use</span>
                 </Link>

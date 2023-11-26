@@ -237,7 +237,7 @@ export default function Navbar(props) {
               }}
             >
               <span className="sr-only">Open main menu</span>
-              {isNavbarOpen ? (
+              {!props?.isMenuOpen ? (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"

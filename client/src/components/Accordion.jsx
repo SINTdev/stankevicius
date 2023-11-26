@@ -58,8 +58,8 @@ const AccordionItem1 = ({ title, content, index }) => {
           {title}
         </h1>
       </div> */}
-      <details>
-        <summary className="select-none cursor-pointer pt-0.5 pb-1.5">
+      <details className="">
+        <summary className="overflow-auto select-none whitespace-nowrap cursor-pointer pt-0.5 pb-1.5">
           <h1 className="select-none inline-block _font-bold text-black text-md transition-all duration-300">
             {title}
           </h1>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const ReferenceItem = ({ label }) => {
   return (
-    <div className="cursor-pointer w-fit flex flex-row items-center _font-bold text-left leading-normal tracking-normal text-lg text-black">
+    <div className="cursor-pointer w-fit items-center _font-bold text-left leading-normal tracking-normal text-lg text-black">
       {label}{" "}
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -11,7 +11,7 @@ const ReferenceItem = ({ label }) => {
         viewBox="0 0 24 24"
         strokeWidth={2}
         stroke="currentColor"
-        className="w-4 h-4 ml-2 transition-all duration-300 ease-in-out text-black relative top-[1px]"
+        className="w-4 h-4 ml-2 inline transition-all duration-300 ease-in-out text-black relative -top-[2px]"
       >
         <path
           strokeLinecap="round"

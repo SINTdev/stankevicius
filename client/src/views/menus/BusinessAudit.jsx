@@ -2,15 +2,15 @@ import React from "react";
 
 const ReferenceItem = ({ label }) => {
   return (
-    <div className="cursor-pointer w-fit flex flex-row items-center _font-bold text-left leading-normal tracking-normal text-lg text-black">
-      {label}{" "}
+    <div className="cursor-pointer w-fit items-center _font-bold text-left leading-normal tracking-normal text-lg text-black">
+      {label}
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
         strokeWidth={2}
         stroke="currentColor"
-        className="w-4 h-4 ml-2 transition-all duration-300 ease-in-out text-black relative top-[1px]"
+        className="w-4 h-4 ml-2 inline transition-all duration-300 ease-in-out text-black relative -top-[2px]"
       >
         <path
           strokeLinecap="round"
@@ -49,7 +49,7 @@ const ReferenceLink = ({ label, to }) => {
 export default function BusinessAudit() {
   return (
     <div className="flex flex-col">
-      <div className="mb-3 w-full text-left text-6xl _font-bold leading-tight tracking-tight text-black">
+      <div className="mb-3 w-full text-left text-4xl md:text-6xl _font-bold leading-tight tracking-tight text-black">
         Understanding the motive of transactions
       </div>
       <div className="w-full text-left text-xl _font-bold leading-relaxed tracking-normal text-black">
@@ -98,7 +98,7 @@ export default function BusinessAudit() {
         considerations to look after before signing a contract or transacting:
       </div>
       <div className="py-3"></div>{" "}
-      <div className="bg-[#F4F4F4] px-4 py-10 flex flex-row space-x-4 justify-center">
+      <div className="bg-[#F4F4F4] overflow-auto px-4 py-10 flex flex-row space-x-4 justify-center">
         <div className="flex flex-col space-y-6 w-3/5">
           <div className="mt-3 w-full text-left mb-2 text-2xl _font-bold leading-tight tracking-tight text-black">
             Considerations to look after before signing a contract or
@@ -226,7 +226,7 @@ export default function BusinessAudit() {
           </span>
         </div>
         <div className="flex flex-col w-2/5 mt-16">
-          <div className="w-full text-left font-extralight text-3xl md:text-4xl leading-tight text-[#0460a9]">
+          <div className="w-full text-left font-extralight text-2xl md:text-4xl leading-tight text-[#0460a9]">
             8 considerations
           </div>
           <div className="w-full flex flex-row items-center _font-bold text-left leading-relaxed tracking-wide text-base text-black">

@@ -1,13 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Accordion from "../../components/Accordion";
+import Fold from "../../components/menus/Fold";
+import { getPageMargins } from "../../CONSTANT";
+import SavingOptions from "../../components/SavingOptions";
 
 export default function LearnHowToTrade(props) {
+  const component = useRef();
   return (
     <div className="max-w-screen-xl md:mx-auto mx-2 p-0 md:p-4">
       <div
         className="mt-10 flex justify-center items-center flex-col"
         id="main_form_div"
+        ref={component}
       >
+        <style>{getPageMargins()}</style>
         <div className="w-full">
           <div className="w-full text-left text-4xl _font-bold leading-tight tracking-tight text-black">
             Open Source
@@ -61,8 +67,36 @@ export default function LearnHowToTrade(props) {
               },
             ]}
           />
+          <div className="py-2"></div>
+          <Fold className="bg-white">
+            <Fold inside className="bg-[#F1F1F1] py-6 px-5">
+              <div className="flex flex-col">
+                <div className="w-full text-left text-2xl _font-bold leading-tight tracking-tight text-black">
+                  Open Source Science
+                </div>
+                <div className="mt-4 w-full text-left text-md leading-tight tracking-tight text-black">
+                  Novartis is pioneering new open-source informatics tools for
+                  drug discovery. Learn more about these Open Source Science
+                  projects and get involved on GitHub.
+                </div>
+                <div className="py-2"></div>
+                <button
+                  onClick={null}
+                  className="transition-all duration-300 ease-in-out cursor-pointer w-fit text-black border-2 border-black hover:bg-black hover:text-white bg-transparent text-sm px-8 font-bold py-2.5 text-center"
+                >
+                  Learn more
+                </button>
+              </div>
+            </Fold>
+          </Fold>
         </div>
       </div>
+      <SavingOptions
+        className="mt-10"
+        desc="Example desc"
+        title="Learn How to Trade"
+        component={component}
+      />
     </div>
   );
 }

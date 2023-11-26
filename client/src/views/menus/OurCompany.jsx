@@ -20,7 +20,7 @@ const ListCard = (props) => {
 export default function OurCompany() {
   return (
     <div className="flex flex-col">
-      <div className="mb-3 w-full text-left text-6xl _font-bold leading-tight tracking-tight text-black">
+      <div className="mb-3 w-full text-left md:text-6xl text-4xl  _font-bold leading-tight tracking-tight text-black">
         Our company
       </div>
       <div className="w-full text-left text-xl _font-bold leading-relaxed tracking-normal text-black">
