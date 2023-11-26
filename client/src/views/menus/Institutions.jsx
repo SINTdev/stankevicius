@@ -249,7 +249,7 @@ export default function Institutions() {
       </div>
       <div className="py-3"></div>{" "}
       
-      <div className="bg-[#F4F4F4] px-4 py-10 flex md:flex-row flex-col md:space-x-4 space-x-0 justify-center">
+      <div className="bg-[#F4F4F4] px-4 py-10 flex md:flex-row flex-col-reverse md:space-x-4 space-x-0 justify-center">
         <div className="flex flex-col space-y-6 md:w-3/5 w-full">
           <div className="mt-3 w-full text-left mb-2 text-2xl _font-bold leading-tight tracking-tight text-black">
             Constantly learning system
@@ -270,7 +270,7 @@ export default function Institutions() {
             ever before.
           </div>{" "}
         </div>
-        <div className="flex flex-col md:w-2/5 w-full md:mt-16 mt-10">
+        <div className="flex flex-col md:w-2/5 w-full md:mt-16 my-10">
           <div className="-translate-x-2 w-full text-left font-extralight text-4xl md:text-7xl leading-tight text-[#0460a9]">
             1st
           </div>

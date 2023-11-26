@@ -59,11 +59,21 @@ const AccordionItem1 = ({ title, content, index }) => {
         </h1>
       </div> */}
       <details className="">
-        <summary className="overflow-auto select-none whitespace-nowrap cursor-pointer pt-0.5 pb-1.5">
-          <h1 className="select-none inline-block _font-bold text-black text-md transition-all duration-300">
+        {/* <summary className="overflow-auto select-none whitespace-nowrap cursor-pointer pt-0.5 pb-1.5">
+          <h1 className="select-none whitespace-pre-wrap inline-block _font-bold text-black text-md transition-all duration-300">
+            {title}
+          </h1>
+        </summary> */}
+        <summary
+          onClick={handleToggle}
+          className="flex outline-none items-center overflow-auto select-none whitespace-nowrap cursor-pointer pt-0.5 pb-1.5"
+        >
+          <span className={`mr-2 ${isExpanded ? "rotate-90":""}`}>▶</span>
+          <h1 className="select-none whitespace-pre-wrap inline-block font-bold text-black text-md transition-all duration-300">
             {title}
           </h1>
         </summary>
+
         <div className={`h-full opacity-100`}>
           <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
             {content}

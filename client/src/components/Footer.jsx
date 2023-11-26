@@ -9,7 +9,33 @@ const Footer = () => {
   let navigate = useNavigate();
   const [footerItems, setfooterItems] = useState([
     {
-      link: "Navigate Stankevicius",
+      link: "About Us",
+      subLinks: [
+        {
+          link: "About",
+          to: "/footer/about",
+        },
+        {
+          link: "News and Insights",
+          to: "/footer/news_and_insights",
+        },
+        {
+          link: "Business Contacts",
+          to: "/footer/business_contacts",
+        },
+        {
+          link: "Regulatory Guidelines",
+          to: "/footer/regulatory_guidelines",
+        },
+        {
+          link: "Stankevicius Group",
+          to: "/footer/stankevicius_group",
+          icon: true,
+        },
+      ],
+    },
+    {
+      link: "Business",
       subLinks: [
         {
           link: "Private Clients",
@@ -23,23 +49,10 @@ const Footer = () => {
           link: "Contracting and Due Diligence",
           to: "/footer/contracting_and_due_diligence",
         },
-        {
-          link: "News & Insights",
-          to: "/footer/news_and_insights",
-        },
       ],
     },
     {
-      link: "Topics",
-      subLinks: [
-        {
-          link: "Regulatory Guidelines",
-          to: "/footer/regulatory_guidelines",
-        },
-      ],
-    },
-    {
-      link: "Explore",
+      link: "Learn",
       subLinks: [
         {
           link: "Learn How to Trade",
@@ -65,10 +78,6 @@ const Footer = () => {
         {
           link: "Alternative Investment Banking",
           to: "/footer/alternative_investment_banking",
-        },
-        {
-          link: "Stankevicius Group",
-          to: "/footer/stankevicius_group",
         },
       ],
     },
@@ -183,8 +192,8 @@ const Footer = () => {
               })}
             </div>
 
-            <div className="flex flex-col md:flex-row md:items-center items-start justify-between">
-              <div className="space-x-4">
+            <div className="flex flex-col md:flex-row items-center justify-between">
+              <div className="space-x-4 md:py-0 py-5">
                 <i class="fa-brands fa-twitter fa-xl"></i>
                 <i class="fa-brands fa-linkedin-in fa-xl"></i>
                 <i class="fa-brands fa-youtube fa-xl"></i>
@@ -234,9 +243,21 @@ const Footer = () => {
                 </svg>
               </div>
             </div>
-            <div class=" py-1  flex md:flex-row flex-col md:items-center md:justify-between space-y-2 md:mt-0 mt-2 md:space-y-0 md:space-x-0">
-              <p className="font-bold text-sm text-black">@2023 STANKEVICIUS</p>
-              <div className="flex items-center space-x-1 font-bold text-sm text-black">
+            <div class=" py-1  flex md:flex-row flex-col items-center md:justify-between space-y-2 md:mt-0 mt-2 md:space-y-0 md:space-x-0">
+              <p className="font-bold text-sm flex flex-row items-center text-black">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  width={15}
+                  height={15}
+                  className="mr-1"
+                >
+                  <path fill="none" d="M0 0h24v24H0z" />
+                  <path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm0 2c-4.42 0-8 3.58-8 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm0 3c1.82 0 3.413.973 4.288 2.428l-1.714 1.029A3 3 0 1 0 12 15a2.998 2.998 0 0 0 2.573-1.456l1.715 1.028A4.999 4.999 0 0 1 7 12c0-2.76 2.24-5 5-5z" />
+                </svg>
+                2023 STANKEVICIUS
+              </p>
+              <div className="hidden md:flex items-center space-x-1 font-bold text-sm text-black">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -255,8 +276,8 @@ const Footer = () => {
                 <p className="text-sm">Stankevicius Site Directory</p>
               </div>
             </div>
-            <div class=" py-4 space-y-3 md:space-y-0 text-left  md:flex md:items-center md:justify-between">
-              <div className="flex flex-wrap items-center md:justify-center justify-start gap-2 text-sm">
+            <div class="md:py-4 py-2 space-y-3 md:space-y-0 md:text-left text-center  md:flex md:items-center md:justify-between">
+              <div className="flex flex-wrap items-center justify-center gap-2 text-sm">
                 <Link to="/footer/terms_of_use">
                   <span className="">Terms of Use</span>
                 </Link>
@@ -280,6 +301,24 @@ const Footer = () => {
                 <Link to={"/"}>
                   <span className="">Contacts</span>
                 </Link>
+              </div>
+              <div className="md:pt-0 pt-3 md:hidden w-full flex items-center justify-center space-x-1 font-bold text-sm text-black">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-4 h-4"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"
+                  />
+                </svg>
+
+                <p className="text-sm">Stankevicius Site Directory</p>
               </div>
               <p className="text-sm">
                 This site is intended for a global audience

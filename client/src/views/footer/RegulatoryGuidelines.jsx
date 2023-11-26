@@ -31,7 +31,7 @@ export default function RegulatoryGuidelines(props) {
           <Accordion
             items={[
               {
-                title: "Our approach and commitment to data privacy",
+                title: "Our approach and commitment to data privacy commitment to data privacy",
                 content: <span>Testing</span>,
               },
               {

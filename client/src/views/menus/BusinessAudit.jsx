@@ -98,7 +98,7 @@ export default function BusinessAudit() {
         considerations to look after before signing a contract or transacting:
       </div>
       <div className="py-3"></div>{" "}
-      <div className="bg-[#F4F4F4] overflow-auto px-4 py-10 flex md:flex-row flex-col md:space-x-4 space-x-0 justify-center">
+      <div className="bg-[#F4F4F4] overflow-auto px-4 py-10 flex md:flex-row flex-col-reverse md:space-x-4 space-x-0 justify-center">
         <div className="flex flex-col space-y-6 w-full md:w-3/5">
           <div className="mt-3 w-full text-left mb-2 text-2xl _font-bold leading-tight tracking-tight text-black">
             Considerations to look after before signing a contract or

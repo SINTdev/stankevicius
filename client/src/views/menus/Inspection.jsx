@@ -271,7 +271,7 @@ certification services"
         <div className="mt-3 w-full text-left mb-2 text-2xl _font-bold leading-tight tracking-tight text-black">
           Providing a safe and secure business environment
         </div>
-        <div className="flex md:flex-row flex-col md:space-x-4 space-x-0 justify-center">
+        <div className="flex md:flex-row flex-col-reverse md:space-x-4 space-x-0 justify-center">
           <div className="flex flex-col space-y-6 w-full md:w-3/5">
             <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
               Our mission is to increase safety, reduce risks, and provide more
@@ -298,7 +298,7 @@ certification services"
             </div>{" "}
             <div className="py-5"></div>{" "}
           </div>
-          <div className="flex flex-col w-full md:w-2/5 mt-0 md:mt-16">
+          <div className="flex flex-col w-full md:w-2/5 md:mt-16 my-10">
             <div className="w-full text-left font-extralight text-4xl md:text-7xl leading-tight text-[#0460a9]">
               <img
                 src="/assets/Sustainable_Development_Goal_17.png"
