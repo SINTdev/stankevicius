@@ -163,7 +163,7 @@ const RenderCard = ({
           </div>
           <div
             dangerouslySetInnerHTML={{ __html: item?.content }}
-            className={`mt-2 line-clamp-2 cursor-pointer leading-6 tracking-normal text-base text-gray-600`}
+            className={`mt-2 line-clamp-3 max-h-[4.5rem] overflow-hidden cursor-pointer leading-6 tracking-normal text-base text-gray-600`}
           ></div>
         </div>
       </div>

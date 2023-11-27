@@ -1,14 +1,15 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import Fold from "../../components/menus/Fold";
 import InfoCard from "../../components/menus/InfoCard";
 import PictureCard from "../../components/menus/PictureCard";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { CONSTANT } from "../../CONSTANT";
+import { CONSTANT, getPageMargins } from "../../CONSTANT";
 import UserData from "../../contexts/UserData";
 import ModalWrapper from "../../components/ModalWrapper";
 import Login from "../../auth/Login";
 import NewsBox from "../../components/skeleton/NewsBox";
+import SavingOptions from "../../components/SavingOptions";
 export default function CompanyNews() {
   const { session, updateSessionData } = useContext(UserData);
   let navigate = useNavigate();
@@ -17,6 +18,7 @@ export default function CompanyNews() {
     featured: [],
   });
 
+  const component = useRef();
   const fetchNews = async () => {
     await axios
       .post(CONSTANT.server + `api/fetchnewsrelease`, {
@@ -56,7 +58,11 @@ export default function CompanyNews() {
           updateSessionData={updateSessionData}
         />
       </ModalWrapper>
-      <div className="w-full flex flex-col space-y-8 md:p-0 px-2">
+      <div
+        className="w-full flex flex-col space-y-8 md:p-0 px-2"
+        ref={component}
+      >
+        <style>{getPageMargins()}</style>
         <Fold className="bg-[#F1F1F1]">
           <Fold inside>
             <div className="py-10 flex flex-col space-y-5">
@@ -134,7 +140,7 @@ export default function CompanyNews() {
         </Fold>
         <Fold className="">
           <Fold>
-            <div className="min-h-[30rem] relative">
+            <div className="min-h-full md:min-h-[30rem] relative">
               <img className="block" src="/assets/news_bg.png" />
               <div className="flex flex-col space-y-5 bg-[#0460a9] relative md:absolute md:bottom-[3rem] md:left-[19rem] md:w-[30%] text-white py-8 px-6">
                 <Link
@@ -185,6 +191,16 @@ export default function CompanyNews() {
           </Fold>
         </Fold>
       </div>
+      <Fold className="bg-white md:px-0 px-2">
+        <Fold inside>
+          <SavingOptions
+            className="mt-10"
+            desc="Example desc"
+            title="Stankevicius Company News"
+            component={component}
+          />
+        </Fold>
+      </Fold>
     </>
   );
 }

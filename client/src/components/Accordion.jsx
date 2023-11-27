@@ -7,8 +7,9 @@ const RightArrow1 = (props) => {
       height={props.height}
       width={props.width}
       className={props?.className}
+      viewBox="0 0 24 24"
     >
-      <path d="m5.016 0-2.51 2.5L0 4.999 5.016 5l5.017-.001L7.525 2.5 5.016 0z" />
+      <path d="M24 22h-24l12-20z" />
     </svg>
   );
 };
@@ -43,32 +44,48 @@ const AccordionItem1 = ({ title, content, index }) => {
 
   return (
     <div className={`py-2 ${index === 0 && "border-t"} border-b`}>
-      {/* <div
+      <div
         className="flex flex-row items-center cursor-pointer"
         onClick={handleToggle}
       >
-        <RightArrow1
-          height={"10px"}
-          width={"10px"}
-          className={`mr-3 ${
-            isExpanded ? "rotate-180" : "rotate-90"
-          } transition-all scale-150 text-black -translate-y-[2px] duration-[300ms] ease-in-out`}
-        />
+        <div>
+          <RightArrow1
+            height={"13px"}
+            width={"13px"}
+            className={`mr-3 ${
+              isExpanded ? "rotate-180" : "rotate-90"
+            } transition-all text-black -translate-y-[1px] duration-[300ms] ease-in-out`}
+          />
+        </div>
+
         <h1 className="select-none _font-bold text-black text-md transition-all duration-300">
           {title}
         </h1>
-      </div> */}
-      <details className="">
-        {/* <summary className="overflow-auto select-none whitespace-nowrap cursor-pointer pt-0.5 pb-1.5">
+      </div>
+      {/* <details className="">
+        <summary className="overflow-auto select-none whitespace-nowrap cursor-pointer pt-0.5 pb-1.5">
           <h1 className="select-none whitespace-pre-wrap inline-block _font-bold text-black text-md transition-all duration-300">
             {title}
           </h1>
-        </summary> */}
+        </summary>
         <summary
           onClick={handleToggle}
           className="flex outline-none items-center overflow-auto select-none whitespace-nowrap cursor-pointer pt-0.5 pb-1.5"
         >
-          <span className={`mr-2 ${isExpanded ? "rotate-90":""}`}>▶</span>
+          <span
+            className={`md:block hidden mr-2 ${isExpanded ? "rotate-90" : ""}`}
+          >
+            ▶
+          </span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={24}
+            height={24}
+            viewBox="0 0 24 24"
+          >
+            <path d="M24 22h-24l12-20z" />
+          </svg>
+
           <h1 className="select-none whitespace-pre-wrap inline-block font-bold text-black text-md transition-all duration-300">
             {title}
           </h1>
@@ -94,8 +111,8 @@ const AccordionItem1 = ({ title, content, index }) => {
             {content}
           </div>
         </div>
-      </details>
-      {/* <div
+      </details> */}
+      <div
         className={`${
           !isExpanded ? "overflow-hidden mt-0" : ""
         } h-full transition-all ease-in-out duration-300 mb-2`}
@@ -122,7 +139,7 @@ const AccordionItem1 = ({ title, content, index }) => {
             {content}
           </div>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 };
