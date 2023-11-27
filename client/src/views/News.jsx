@@ -99,6 +99,28 @@ const RenderCard = ({
   deleteNews,
 }) => {
   // const [showText, setShowText] = useState(false);
+
+  function truncateContent(content) {
+    let truncatedContent = "";
+  
+    if (content) {
+      if (content.length > 250) {
+        truncatedContent = content.substring(0, 250).trim();
+        // Check if the last character is part of a word
+        if (/\s/.test(content.charAt(249))) {
+          // Remove incomplete word at the end
+          truncatedContent = truncatedContent.slice(0, truncatedContent.lastIndexOf(" "));
+        }
+        truncatedContent += " ...";
+      } else {
+        truncatedContent = content;
+      }
+    }
+  
+    return truncatedContent;
+  }
+  
+
   return (
     <>
       <div
@@ -162,8 +184,8 @@ const RenderCard = ({
             {item?.title}
           </div>
           <div
-            dangerouslySetInnerHTML={{ __html: item?.content }}
-            className={`mt-2 line-clamp-3 max-h-[4.5rem] overflow-hidden cursor-pointer leading-6 tracking-normal text-base text-gray-600`}
+            dangerouslySetInnerHTML={{ __html: truncateContent(item?.content) }}
+            className={`mt-2 cursor-pointer leading-6 tracking-normal text-base text-gray-600`}
           ></div>
         </div>
       </div>
