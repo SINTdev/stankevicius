@@ -16,7 +16,7 @@ const Footer = () => {
           to: "/footer/about",
         },
         {
-          link: "News and Insights",
+          link: "News & Insights",
           to: "/footer/news_and_insights",
         },
         {

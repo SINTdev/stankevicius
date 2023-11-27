@@ -240,7 +240,7 @@ export default function IndustryNews() {
           <SavingOptions
             className="mt-10"
             desc="Example desc"
-            title="Stankevicius Company News"
+            title="Industry News"
             component={component}
           />
         </Fold>

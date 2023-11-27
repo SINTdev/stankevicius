@@ -99,27 +99,31 @@ const RenderCard = ({
   deleteNews,
 }) => {
   // const [showText, setShowText] = useState(false);
-
   function truncateContent(content) {
     let truncatedContent = "";
-  
+    let wordLimit = 40; // Default word limit for non-mobile screens
+
+    if (window.innerWidth <= 768) {
+      wordLimit = 15; // Adjust word limit for mobile screens
+    }
+
     if (content) {
-      if (content.length > 250) {
-        truncatedContent = content.substring(0, 250).trim();
-        // Check if the last character is part of a word
-        if (/\s/.test(content.charAt(249))) {
-          // Remove incomplete word at the end
-          truncatedContent = truncatedContent.slice(0, truncatedContent.lastIndexOf(" "));
-        }
-        truncatedContent += " ...";
+      const words = content.split(" ");
+      if (words.length > wordLimit) {
+        truncatedContent = words.slice(0, wordLimit).join(" ") + " ...";
       } else {
         truncatedContent = content;
       }
     }
-  
+
     return truncatedContent;
   }
-  
+
+  useEffect(() => {
+    setContent(truncateContent(item?.content));
+  }, [window]);
+
+  const [content, setContent] = useState(truncateContent(item?.content));
 
   return (
     <>
@@ -184,7 +188,7 @@ const RenderCard = ({
             {item?.title}
           </div>
           <div
-            dangerouslySetInnerHTML={{ __html: truncateContent(item?.content) }}
+            dangerouslySetInnerHTML={{ __html: content }}
             className={`mt-2 cursor-pointer leading-6 tracking-normal text-base text-gray-600`}
           ></div>
         </div>

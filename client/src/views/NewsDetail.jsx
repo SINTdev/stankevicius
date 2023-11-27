@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   CONSTANT,
@@ -6,6 +6,7 @@ import {
   resetMessage,
   checkLoginFromNonLogin,
   smoothScrollDown,
+  getPageMargins,
 } from "../CONSTANT";
 import InputBox from "../components/InputBox";
 
@@ -17,6 +18,7 @@ import Menu from "../components/Menu";
 import DashboardOptions from "../components/client/DashboardOptions";
 import TextEditor from "../components/TextEditor";
 import Modal from "../components/Modal";
+import SavingOptions from "../components/SavingOptions";
 
 export default function NewsDetail(props) {
   const { session, setSession, setStaticMessage } = useContext(UserData);
@@ -36,6 +38,8 @@ export default function NewsDetail(props) {
     author: "",
   };
   const [payload, setPayload] = useState(init__payload);
+
+  const component = useRef();
 
   const fetchNews = async () => {
     await axios
@@ -121,7 +125,9 @@ export default function NewsDetail(props) {
         <div
           className="mt-10 flex justify-center items-center flex-col"
           id="main_form_div"
+          ref={component}
         >
+          <style>{getPageMargins()}</style>
           <div className="w-full">
             <div className="w-full text-left text-4xl _font-bold leading-tight tracking-tight text-black">
               {payload?.title}
@@ -152,6 +158,12 @@ export default function NewsDetail(props) {
           </div>
         </div>
       )}
+      <SavingOptions
+        className="mt-10"
+        desc="Example desc"
+        title={payload?.title}
+        component={component}
+      />
     </div>
   );
 }
