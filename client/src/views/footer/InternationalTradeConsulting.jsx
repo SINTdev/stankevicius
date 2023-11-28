@@ -11,7 +11,7 @@ export default function PrivateClients() {
           <div className="md:min-h-[30rem] relative">
             <img
               className="block max-h-[30rem] w-full"
-              src="/assets/shipping logistics.jpg"
+              src="/assets/international trade consulting bg.jpg"
             />
             <div className="flex flex-col space-y-5 bg-[#0460a9] relative md:absolute md:bottom-[3rem] md:left-[19rem] md:w-[30%] text-white py-8 px-6">
               <Link
@@ -40,6 +40,7 @@ export default function PrivateClients() {
                 {
                   thumbnail_url: "/assets/sourcing procurement.jpg",
                   title: "Sourcing and Procurement",
+                  to: "/menu/sourcing_procurement",
                   content: `We use our global network of traders and
                   global suppliers to assist clients in
                   accessing products and commodities at the
@@ -48,6 +49,7 @@ export default function PrivateClients() {
                 {
                   thumbnail_url: "/assets/production and manufacturing.jpg",
                   title: "Production and Manufacturing",
+                  to: "/menu/production_manufacturing",
                   content: `We help clients to locate international
                   producers and manufacturers for clients’
                   customized needs. Everything from textile to
@@ -57,6 +59,7 @@ export default function PrivateClients() {
                 {
                   thumbnail_url: "/assets/shipping logistics.jpg",
                   title: "Shipping and Logistics",
+                  to: "/menu/shipping_logistics",
                   content: `As a long-term trading consultant over the
                   years we have established strong
                   relationships with private logistics companies.
@@ -67,6 +70,7 @@ export default function PrivateClients() {
                 {
                   thumbnail_url: "/assets/inspection.jpg",
                   title: "Inspection and Quality Checks",
+                  to: "/menu/inspection_quality",
                   content: `When dealing in international trade, we
                   support clients with security
                   supervision and safety protocols. We

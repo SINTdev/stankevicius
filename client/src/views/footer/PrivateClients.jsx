@@ -9,7 +9,7 @@ export default function PrivateClients() {
       <Fold className="pt-[4.5rem]">
         <Fold>
           <div className="md:min-h-[30rem] relative">
-            <img className="block max-h-[30rem] w-full" src="/assets/private clients bg.jpg" />
+            <img className="block max-h-[30rem] w-full" src="/assets/private clients.jpg" />
             <div className="flex flex-col space-y-5 bg-[#0460a9] relative md:absolute md:bottom-[3rem] md:left-[19rem] md:w-[30%] text-white py-8 px-6">
               <Link
                 to={"#"}
@@ -79,8 +79,9 @@ export default function PrivateClients() {
               {[
                 {
                   thumbnail_url:
-                    "/assets/small business.png",
+                    "/assets/small business.jpg",
                   title: "Small Business",
+                  to: "/menu/small_business",
                   content: `We help small businesses to navigate
                     complex international trade markets by
                     providing professional advice and market
@@ -88,8 +89,9 @@ export default function PrivateClients() {
                 },
                 {
                   thumbnail_url:
-                    "/assets/institutions.png",
+                    "/assets/institutions.jpg",
                   title: "Institutions",
+                  to: "/menu/institutions",
                   content: `We help institutions to access large quantity of
                     various product supply. We use our network to
                     tap into global markets and source various
@@ -99,6 +101,7 @@ export default function PrivateClients() {
                   thumbnail_url:
                     "/assets/our company.jpg",
                   title: "Our Company",
+                  to: "/menu/our_company",
                   content: `We use technology and data to address
                     some of the most challenging business
                     matters in international trade.`,

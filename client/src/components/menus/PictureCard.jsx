@@ -8,8 +8,8 @@ export default function PictureCard({
   nopicture = false,
 }) {
   return (
-    <div onClick={onClick} index={index}>
-      <div className="w-full border bg-white cursor-pointer hover:border-black max-w-[700px] transition-all duration-300 ease-in-out border-[#c7c7c7]">
+    <Link className="" to={item?.to} onClick={onClick} index={index}>
+      <div className="w-full sm:w-2/3 md:w-full lg:w-full xl:w-full mx-auto border bg-white cursor-pointer hover:border-black max-w-[700px] transition-all duration-300 ease-in-out border-[#c7c7c7]">
         {!nopicture && (
           <div className="relative overflow-hidden">
             <img
@@ -34,6 +34,6 @@ export default function PictureCard({
 
         <div className="py-3"></div>
       </div>
-    </div>
+    </Link>
   );
 }

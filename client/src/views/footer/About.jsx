@@ -38,6 +38,7 @@ export default function PrivateClients() {
                 {
                   thumbnail_url: "/assets/intro.png",
                   title: "Introduction",
+                  to: "/menu/introduction",
                   content: `Vigilance helps safeguard against
                   fraudulent activities, reinforcing the need for
                   ethical and transparent dealings in the
@@ -47,6 +48,7 @@ export default function PrivateClients() {
                 {
                   thumbnail_url: "/assets/comp.jpg",
                   title: "Our Company",
+                  to: "/menu/our_company",
                   content: `We use technology and data to address some
                   of the most challenging business matters in
                   international trade. Worldwide, we have
@@ -56,6 +58,7 @@ export default function PrivateClients() {
                 {
                   thumbnail_url: "/assets/ceo.png",
                   title: "CEO’s Letter",
+                  to: "/menu/ceo_letter",
                   content: `As we look to the future as a technology
                   driven trade consulting firm our dedication to
                   innovation and excellence will drive us

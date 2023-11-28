@@ -37,8 +37,9 @@ export default function PrivateClients() {
             <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
               {[
                 {
-                  thumbnail_url: "/assets/audit.png",
+                  thumbnail_url: "/assets/audit.jpg",
                   title: "Business Audit",
+                  to: "/menu/business_audit",
                   content: `Vigilance helps safeguard against
                   fraudulent activities, reinforcing the need for
                   ethical and transparent dealings in the
@@ -48,6 +49,7 @@ export default function PrivateClients() {
                 {
                   thumbnail_url: "/assets/business due diligence.jpg",
                   title: "Business Counterparty Due Diligence",
+                  to: "/menu/counterparty_due_diligence",
                   content: `Business counter-party due diligence is the
                   process of thoroughly investigating the
                   background, financial stability, and integrity of
@@ -56,6 +58,7 @@ export default function PrivateClients() {
                 {
                   thumbnail_url: "/assets/prof contracting.jpg",
                   title: "Professional Contracting",
+                  to: "/menu/professional_contracting",
                   content: `Secure and professional contracts are the
                   bedrock of international trade, providing the
                   framework for smooth and trustworthy

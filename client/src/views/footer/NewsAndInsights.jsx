@@ -37,13 +37,15 @@ export default function PrivateClients() {
             <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
               {[
                 {
-                  thumbnail_url: "/assets/stankevicius news.png",
+                  thumbnail_url: "/assets/stankevicius news.jpg",
                   title: "Stankevicius News",
+                  to: "/menu/stankevicius_news",
                   content: `Discover all recent company news
                   published by Stankevicius.`,
                 },
                 {
                   thumbnail_url: "/assets/partner content.jpg",
+                  to: "/menu/industry_insights",
                   title: "Industry Insights (Partner Content)",
                   content: `Explore industry insights through our partner
                   content program.`,

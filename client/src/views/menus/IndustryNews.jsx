@@ -235,7 +235,7 @@ export default function IndustryNews() {
           </Fold>
         </Fold>
       </div>{" "}
-      <Fold className="bg-white md:px-0 px-2">
+      {/* <Fold className="bg-white md:px-0 px-2">
         <Fold inside>
           <SavingOptions
             className="mt-10"
@@ -244,7 +244,7 @@ export default function IndustryNews() {
             component={component}
           />
         </Fold>
-      </Fold>
+      </Fold> */}
     </>
   );
 }
