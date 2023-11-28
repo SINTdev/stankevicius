@@ -9,19 +9,16 @@ export default function PrivateClients() {
       <Fold className="pt-[4.5rem]">
         <Fold>
           <div className="md:min-h-[30rem] relative">
-            <img
-              className="block"
-              src="https://www.novartis.com/sites/novartiscom/files/styles/banner_image_1920/public/2021-10/male-scientist-lab-about-hero.jpg.webp?itok=CCrgSKTf"
-            />
+            <img className="block max-h-[30rem] w-full" src="/assets/private clients bg.jpg" />
             <div className="flex flex-col space-y-5 bg-[#0460a9] relative md:absolute md:bottom-[3rem] md:left-[19rem] md:w-[30%] text-white py-8 px-6">
               <Link
                 to={"#"}
                 className="cursor-pointer flex flex-row items-center w-fit text-left text-xl md:text-2xl lg:text-3xl xl:text-4xl _font-bold tracking-normal text-white"
               >
-                About Novartis
+                Private Clients
               </Link>
               <div className="w-full text-left tracking-normal text-base text-white">
-                Learn about our company and people
+                Who we serve and how
               </div>
             </div>
           </div>
@@ -72,28 +69,43 @@ export default function PrivateClients() {
       <Fold className="bg-white px-2">
         <Fold inside className="">
           <div className="py-5 w-full text-left text-xl leading-normal tracking-tight text-black">
-            Our purpose is to reimagine medicine to improve and extend people's
-            lives. We use innovative science and technology to address some of
-            society's most challenging healthcare issues. We discover and
-            develop breakthrough treatments and find new ways to deliver them to
-            as many people as possible. We also aim to reward those who invest
-            their money, time and ideas in our company.
+            Our mission is to reimagine product trading to make trade business
+            processes easier and smoother. We use data and technology to address
+            some of the industry’s most challenging trade matters. We work with
+            diversified client base to deliver them quality solutions.
           </div>
           <div className="py-10 flex flex-col space-y-5">
             <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
-              {[1, 2, 3].map((item, one) => {
+              {[
+                {
+                  thumbnail_url:
+                    "/assets/small business.png",
+                  title: "Small Business",
+                  content: `We help small businesses to navigate
+                    complex international trade markets by
+                    providing professional advice and market
+                    entry guidance.`,
+                },
+                {
+                  thumbnail_url:
+                    "/assets/institutions.png",
+                  title: "Institutions",
+                  content: `We help institutions to access large quantity of
+                    various product supply. We use our network to
+                    tap into global markets and source various
+                    products and commodities.`,
+                },
+                {
+                  thumbnail_url:
+                    "/assets/our company.jpg",
+                  title: "Our Company",
+                  content: `We use technology and data to address
+                    some of the most challenging business
+                    matters in international trade.`,
+                },
+              ].map((item, one) => {
                 return (
-                  <PictureCard
-                    item={{
-                      thumbnail_url:
-                        "https://www.novartis.com/sites/novartiscom/files/styles/cards_1_3/public/2021-10/scientist-portrait.jpg.webp?itok=5GbsAFrM",
-                      title: "Strategy",
-                      content:
-                        "Our strategy is to build a leading, focused medicines company powered by advanced therapy platforms and data science.",
-                    }}
-                    index={one}
-                    onClick={() => {}}
-                  />
+                  <PictureCard item={item} index={one} onClick={() => {}} />
                 );
               })}
             </div>

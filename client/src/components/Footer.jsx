@@ -153,12 +153,12 @@ const Footer = () => {
                       </svg>
                     </div>
                     <div className="space-y-1">
-                      <ul class=" font-light space-y-1 underline">
+                      <ul class=" font-light space-y-1">
                         {activeLinkIndex.includes(index) &&
                           item?.subLinks?.map((subLink, index) => {
                             return (
-                              <li class="">
-                                <Link to={subLink?.to} class=" hover:underline">
+                              <li class="underline decoration-gray-400 hover:decoration-black">
+                                <Link to={subLink?.to} class="">
                                   {subLink?.link}
                                   {subLink?.icon && (
                                     <svg
@@ -194,11 +194,11 @@ const Footer = () => {
                     <h2 class="mb-6 text-[14px] _font-bold text-gray-900 uppercase">
                       {main?.link}
                     </h2>
-                    <ul class="  font-light space-y-1 underline">
+                    <ul class="  font-light space-y-1">
                       {main?.subLinks?.map((subLink, index) => {
                         return (
-                          <li class="">
-                            <Link to={subLink?.to} class=" hover:underline">
+                          <li class="underline decoration-gray-400 hover:decoration-black">
+                            <Link to={subLink?.to}>
                               {subLink?.link}
                             </Link>
                             {subLink?.icon && (
@@ -326,14 +326,6 @@ const Footer = () => {
                 <span className="">|</span>
                 <Link to="/">
                   <span className="">Site Map</span>
-                </Link>
-                <span className="">|</span>
-                <Link to="/">
-                  <span className="">Regulatory Guidelines</span>
-                </Link>
-                <span className="">|</span>
-                <Link to={"/"}>
-                  <span className="">Contacts</span>
                 </Link>
               </div>
               <div className="md:pt-0 pt-3 md:hidden w-full flex items-center justify-center space-x-1 font-bold text-sm text-black">

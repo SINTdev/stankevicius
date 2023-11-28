@@ -43,6 +43,11 @@ import RegulatoryGuidelines from "./views/footer/RegulatoryGuidelines";
 import TermsOfUse from "./views/footer/TermsOfUse";
 import Privacy from "./views/footer/Privacy";
 import LearnHowToTrade from "./views/footer/LearnHowToTrade";
+import InternationalTradeConsultingFooter from "./views/footer/InternationalTradeConsulting";
+import ContractingAndDueDiligenceFooter from "./views/footer/ContractingAndDueDiligence";
+import NewsAndInsights from "./views/footer/NewsAndInsights";
+import AboutFooter from "./views/footer/About";
+import BusinessContacts from "./views/footer/BusinessContacts";
 
 // import CategoryManagement from "./views/corporate/CategoryManagement";
 
@@ -145,7 +150,6 @@ function App() {
             }
           />
           <Route path="/admin" element={<TakeMeToAdmin />} />
-
           {/* Client Routes Start */}
           <Route
             path="/client"
@@ -181,7 +185,6 @@ function App() {
           /> */}
           {/* Client Routes End */}
           {/* Corporate Routes Start */}
-
           <Route
             path="/corporate"
             element={
@@ -356,7 +359,41 @@ function App() {
           {/* News and Insights End */}
           {/* Menu Routes End */}
           {/* Footer Routes Start */}
-          {/* Navigate STANKEVICIUS Start */}
+          {/* About Us Start */}
+          <Route
+            path="/footer/about"
+            element={
+              <Layout {...paramater} menu={true} novideo={true}>
+                <AboutFooter />
+              </Layout>
+            }
+          />
+          <Route
+            path="/footer/news_and_insights"
+            element={
+              <Layout {...paramater} menu={true} novideo={true}>
+                <NewsAndInsights />
+              </Layout>
+            }
+          />
+          <Route
+            path="/footer/business_contacts"
+            element={
+              <Layout {...paramater} menu={true} novideo={true}>
+                 <BusinessContacts />
+              </Layout>
+            }
+          />
+          <Route
+            path="/footer/regulatory_guidelines"
+            element={
+              <Layout {...paramater} menu={true}>
+                <RegulatoryGuidelines />
+              </Layout>
+            }
+          />
+          {/* About Us End */}
+          {/* Business Start */}
           <Route
             path="/footer/private_clients"
             element={
@@ -369,7 +406,7 @@ function App() {
             path="/footer/international_trade_consulting"
             element={
               <Layout {...paramater} menu={true} novideo={true}>
-                <PrivateClientsFooter />
+                <InternationalTradeConsultingFooter />
               </Layout>
             }
           />
@@ -377,30 +414,12 @@ function App() {
             path="/footer/contracting_and_due_diligence"
             element={
               <Layout {...paramater} menu={true} novideo={true}>
-                <PrivateClientsFooter />
+                <ContractingAndDueDiligenceFooter />
               </Layout>
             }
           />
-          <Route
-            path="/footer/news_and_insights"
-            element={
-              <Layout {...paramater} menu={true} novideo={true}>
-                <PrivateClientsFooter />
-              </Layout>
-            }
-          />
-          {/* Navigate STANKEVICIUS End */}
-          {/* TOPICS Start */}
-          <Route
-            path="/footer/regulatory_guidelines"
-            element={
-              <Layout {...paramater} menu={true}>
-                <RegulatoryGuidelines />
-              </Layout>
-            }
-          />
-          {/* TOPICS End */}
-          {/* EXPLORE Start */}
+          {/* Business End */}
+          {/* Learn Start */}
           <Route
             path="/footer/learn_how_to_trade"
             element={
@@ -425,7 +444,7 @@ function App() {
               </Layout>
             }
           />
-          {/* EXPLORE End */}
+          {/* Learn End */}
           {/* MORE FROM STANKEVICIUS Start */}
           {/* MORE FROM STANKEVICIUS End */}
           {/* Footer Routes End */}
