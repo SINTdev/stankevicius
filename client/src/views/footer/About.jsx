@@ -1,4 +1,4 @@
-import React from "react";
+  import React from "react";
 import Fold from "../../components/menus/Fold";
 import { Link } from "react-router-dom";
 import PictureCard from "../../components/menus/PictureCard";
@@ -36,7 +36,7 @@ export default function PrivateClients() {
             <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
               {[
                 {
-                  thumbnail_url: "/assets/intro.png",
+                  thumbnail_url: "/assets/intro.jpg",
                   title: "Introduction",
                   to: "/menu/introduction",
                   content: `Vigilance helps safeguard against
@@ -56,7 +56,7 @@ export default function PrivateClients() {
                   against international trade fraud since 2016.`,
                 },
                 {
-                  thumbnail_url: "/assets/ceo.png",
+                  thumbnail_url: "/assets/ceo.jpg",
                   title: "CEO’s Letter",
                   to: "/menu/ceo_letter",
                   content: `As we look to the future as a technology
