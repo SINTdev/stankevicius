@@ -9,7 +9,7 @@ export default function PictureCard({
 }) {
   return (
     <Link className="" to={item?.to} onClick={onClick} index={index}>
-      <div className="w-full sm:w-2/3 md:w-full lg:w-full xl:w-full mx-auto border bg-white cursor-pointer hover:border-black max-w-[700px] transition-all duration-300 ease-in-out border-[#c7c7c7]">
+      <div className="w-full h-full sm:w-2/3 md:w-full lg:w-full xl:w-full mx-auto border bg-white cursor-pointer hover:border-black max-w-[700px] transition-all duration-300 ease-in-out border-[#c7c7c7]">
         {!nopicture && (
           <div className="relative overflow-hidden">
             <img

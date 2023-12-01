@@ -87,15 +87,17 @@ export default function PrivateClients() {
           </div>
           <div className="flex md:flex-row w-full flex-col items-center">
             <div className="w-full md:w-1/2 flex items-center justify-center">
-              <div className="w-full text-left mb-2 md:pl-1 text-4xl _font-bold leading-tight tracking-tight text-black">
-                Our vision is to become the most valued and trusted medicines
-                company in the world
+              <div className="w-full text-left mb-2 md:pr-4 text-4xl _font-bold leading-tight tracking-tight text-black">
+                Our vision is to become the most
+valued and trusted, tech enhanced
+trade consulting company in the
+world
               </div>
             </div>
             <div className="w-full md:w-1/2 flex items-center justify-center">
               <img
                 src={
-                  "https://www.novartis.com/sites/novartiscom/files/styles/cards_1_3/public/2021-10/scientist-portrait.jpg.webp?itok=5GbsAFrM"
+                  "/assets/tech_bg2.jpg"
                 }
                 className="w-full"
               />
@@ -106,18 +108,41 @@ export default function PrivateClients() {
           <div className="py-3"></div>
           <div>
             <div className="w-full text-left mb-2 md:pl-1 text-4xl _font-bold leading-tight tracking-tight text-black">
-              Supporting units
+              About Stankevicius International
             </div>
             <div className="py-3"></div>
             <div className="my-5 grid md:grid-cols-3 grid-cols-1 gap-4">
-              {[1, 2, 3].map((item, one) => {
+              {[
+                {
+                  title: "Introduction",
+                  content: `Vigilance helps safeguard against
+                  fraudulent activities, reinforcing the need for
+                  ethical and transparent dealings in the
+                  global marketplace to prevent financial
+                  losses and legal entanglements.`,
+                },
+                {
+                  title: "Our company",
+                  content: `We use technology and data to address some
+                  of the most challenging business matters in
+                  international trade. Worldwide, we have
+                  helped clients to protect $10.0 bn in capital
+                  against international trade fraud since 2016.`,
+                },
+                {
+                  title: "CEO’s Letter",
+                  content: `As we look to the future as a technology
+                  driven trade consulting firm our dedication to
+                  innovation and excellence will drive us
+                  forward.`,
+                },
+              ].map((item, one) => {
                 return (
                   <PictureCard
                     item={{
                       thumbnail_url: "",
-                      title: "Strategy",
-                      content:
-                        "Our strategy is to build a leading, focused medicines company powered by advanced therapy platforms and data science.",
+                      title: item?.title,
+                      content: item?.content,
                     }}
                     nopicture={true}
                     index={one}
@@ -131,18 +156,37 @@ export default function PrivateClients() {
           <div className="py-3"></div>
           <div>
             <div className="w-full text-left mb-2 md:pl-1 text-4xl _font-bold leading-tight tracking-tight text-black">
-              Novartis companies
+              More from Stankevicius
             </div>
             <div className="py-3"></div>
             <div className="my-5 grid md:grid-cols-3 grid-cols-1 gap-4">
-              {[1, 2, 3].map((item, one) => {
+              {[
+                {
+                  title: "PR and Advertising",
+                  content: `We use media and advertising to
+                  build brands, names and
+                  influence in global markets.`,
+                },
+                {
+                  title: "Alternative Investment Banking",
+                  content: `Our financial services arm
+                  provides private equity solutions
+                  and brokerage in public markets.`,
+                },
+                {
+                  title: "Stankevicius Group",
+                  content: `Stankevicius Group is a mainstream industry
+                  professional service provider and business
+                  broker. Learn more what we do and how we
+                  can help you.`,
+                },
+              ].map((item, one) => {
                 return (
                   <PictureCard
                     item={{
                       thumbnail_url: "",
-                      title: "Strategy",
-                      content:
-                        "Our strategy is to build a leading, focused medicines company powered by advanced therapy platforms and data science.",
+                      title: item?.title,
+                      content: item?.content,
                     }}
                     nopicture={true}
                     index={one}

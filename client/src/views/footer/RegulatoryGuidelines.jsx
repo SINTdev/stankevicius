@@ -15,15 +15,14 @@ export default function RegulatoryGuidelines(props) {
         <style>{getPageMargins()}</style>
         <div className="w-full">
           <div className="w-full text-left text-4xl _font-bold leading-tight tracking-tight text-black">
-            Novartis Privacy Hub
+            Regulatory Guidelines
           </div>
           <div className="py-5"></div>
           <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-            Welcome to the Novartis Privacy Hub.
-          </div>
-          <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-            On this site you can read our privacy notices, get in contact with
-            us, and learn about our approach and commitment to data privacy.
+            On this site you can read our regulatory guidelines, and learn about
+            our policies. It is important you understand the risks and
+            liabilities for your own security before engaging in international
+            trade via Stankevicius web platform.
           </div>
 
           <div className="py-2"></div>
@@ -31,23 +30,24 @@ export default function RegulatoryGuidelines(props) {
           <Accordion
             items={[
               {
-                title: "Our approach and commitment to data privacy commitment to data privacy",
+                title: "Trading Policy",
                 content: <span>Testing</span>,
               },
               {
-                title: "Our approach and commitment to data privacy",
+                title: "Safety Trading Regulatory Policy",
                 content: <span>Testing</span>,
               },
               {
-                title: "Our approach and commitment to data privacy",
+                title: "Trading Risks",
                 content: <span>Testing</span>,
               },
               {
-                title: "Our approach and commitment to data privacy",
+                title:
+                  "Terms of Use and Purchase Policy of Advertising Credits",
                 content: <span>Testing</span>,
               },
               {
-                title: "Our approach and commitment to data privacy",
+                title: "Advertising Liabilities, Guidelines and Policy",
                 content: <span>Testing</span>,
               },
             ]}

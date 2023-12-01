@@ -1,4 +1,4 @@
-  import React from "react";
+import React from "react";
 import Fold from "../../components/menus/Fold";
 import { Link } from "react-router-dom";
 import PictureCard from "../../components/menus/PictureCard";
@@ -73,15 +73,17 @@ export default function PrivateClients() {
           </div>
           <div className="flex md:flex-row w-full flex-col items-center">
             <div className="w-full md:w-1/2 flex items-center justify-center">
-              <div className="w-full text-left mb-2 md:pl-1 text-4xl _font-bold leading-tight tracking-tight text-black">
-                Our vision is to become the most valued and trusted medicines
-                company in the world
+              <div className="w-full text-left mb-2 md:pr-4 text-4xl _font-bold leading-tight tracking-tight text-black">
+                Our vision is to become the most
+valued and trusted, tech enhanced
+trade consulting company in the
+world
               </div>
             </div>
             <div className="w-full md:w-1/2 flex items-center justify-center">
               <img
                 src={
-                  "https://www.novartis.com/sites/novartiscom/files/styles/cards_1_3/public/2021-10/scientist-portrait.jpg.webp?itok=5GbsAFrM"
+                  "/assets/tech_bg2.jpg"
                 }
                 className="w-full"
               />
@@ -92,18 +94,45 @@ export default function PrivateClients() {
           <div className="py-3"></div>
           <div>
             <div className="w-full text-left mb-2 md:pl-1 text-4xl _font-bold leading-tight tracking-tight text-black">
-              Supporting units
+              Our business
             </div>
             <div className="py-3"></div>
             <div className="my-5 grid md:grid-cols-3 grid-cols-1 gap-4">
-              {[1, 2, 3].map((item, one) => {
+              {[
+                {
+                  title: "Private Clients",
+                  content: `Our mission is to reimagine
+                product trading to make trade
+                business processes easier
+                and smoother. We use data
+                and technology to address
+                some of the industry’s most
+                challenging trade matters.`,
+                },
+                {
+                  title: "International Trade Consulting",
+                  content: `We provide complete
+                  solutions for international
+                  trade business. We know
+                  how to navigate challenges
+                  in global markets and how to
+                  tackle obstacles in daily
+                  operations.`,
+                },
+                {
+                  title: "Contracting and Due Diligence",
+                  content: `We help clients to increase
+                  security when engaging in
+                  international business with
+                  foreign companies.`,
+                },
+              ].map((item, one) => {
                 return (
                   <PictureCard
                     item={{
                       thumbnail_url: "",
-                      title: "Strategy",
-                      content:
-                        "Our strategy is to build a leading, focused medicines company powered by advanced therapy platforms and data science.",
+                      title: item?.title,
+                      content: item?.content,
                     }}
                     nopicture={true}
                     index={one}
@@ -117,18 +146,37 @@ export default function PrivateClients() {
           <div className="py-3"></div>
           <div>
             <div className="w-full text-left mb-2 md:pl-1 text-4xl _font-bold leading-tight tracking-tight text-black">
-              Novartis companies
+              More from Stankevicius
             </div>
             <div className="py-3"></div>
             <div className="my-5 grid md:grid-cols-3 grid-cols-1 gap-4">
-              {[1, 2, 3].map((item, one) => {
+              {[
+                {
+                  title: "PR and Advertising",
+                  content: `We use media and advertising to
+                  build brands, names and
+                  influence in global markets.`,
+                },
+                {
+                  title: "Alternative Investment Banking",
+                  content: `Our financial services arm
+                  provides private equity solutions
+                  and brokerage in public markets.`,
+                },
+                {
+                  title: "Stankevicius Group",
+                  content: `Stankevicius Group is a mainstream industry
+                  professional service provider and business
+                  broker. Learn more what we do and how we
+                  can help you.`,
+                },
+              ].map((item, one) => {
                 return (
                   <PictureCard
                     item={{
                       thumbnail_url: "",
-                      title: "Strategy",
-                      content:
-                        "Our strategy is to build a leading, focused medicines company powered by advanced therapy platforms and data science.",
+                      title: item?.title,
+                      content: item?.content,
                     }}
                     nopicture={true}
                     index={one}
