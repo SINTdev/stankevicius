@@ -74,19 +74,12 @@ export default function PrivateClients() {
           <div className="flex md:flex-row w-full flex-col items-center">
             <div className="w-full md:w-1/2 flex items-center justify-center">
               <div className="w-full text-left mb-2 md:pr-4 text-4xl _font-bold leading-tight tracking-tight text-black">
-                Our vision is to become the most
-valued and trusted, tech enhanced
-trade consulting company in the
-world
+                Our vision is to become the most valued and trusted, tech
+                enhanced trade consulting company in the world
               </div>
             </div>
             <div className="w-full md:w-1/2 flex items-center justify-center">
-              <img
-                src={
-                  "/assets/tech_bg2.jpg"
-                }
-                className="w-full"
-              />
+              <img src={"/assets/tech_bg2.jpg"} className="w-full" />
             </div>
           </div>
           <div className="py-3"></div>
@@ -101,6 +94,7 @@ world
               {[
                 {
                   title: "Introduction",
+                  to: "/menu/introduction",
                   content: `Vigilance helps safeguard against
                   fraudulent activities, reinforcing the need for
                   ethical and transparent dealings in the
@@ -109,6 +103,7 @@ world
                 },
                 {
                   title: "Our company",
+                  to: "/menu/our_company",
                   content: `We use technology and data to address some
                   of the most challenging business matters in
                   international trade. Worldwide, we have
@@ -117,6 +112,7 @@ world
                 },
                 {
                   title: "CEO’s Letter",
+                  to: "/menu/ceo_letter",
                   content: `As we look to the future as a technology
                   driven trade consulting firm our dedication to
                   innovation and excellence will drive us
@@ -126,9 +122,8 @@ world
                 return (
                   <PictureCard
                     item={{
+                      ...item,
                       thumbnail_url: "",
-                      title: item?.title,
-                      content: item?.content,
                     }}
                     nopicture={true}
                     index={one}
@@ -149,18 +144,24 @@ world
               {[
                 {
                   title: "PR and Advertising",
+                  to: "stankeviciusmgm.com",
+                  external: true,
                   content: `We use media and advertising to
                   build brands, names and
                   influence in global markets.`,
                 },
                 {
                   title: "Alternative Investment Banking",
+                  to: "stankevicius.com",
+                  external: true,
                   content: `Our financial services arm
                   provides private equity solutions
                   and brokerage in public markets.`,
                 },
                 {
                   title: "Stankevicius Group",
+                  to: "stankeviciusgroup.com",
+                  external: true,
                   content: `Stankevicius Group is a mainstream industry
                   professional service provider and business
                   broker. Learn more what we do and how we
@@ -170,9 +171,8 @@ world
                 return (
                   <PictureCard
                     item={{
+                      ...item,
                       thumbnail_url: "",
-                      title: item?.title,
-                      content: item?.content,
                     }}
                     nopicture={true}
                     index={one}

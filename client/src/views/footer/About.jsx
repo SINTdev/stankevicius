@@ -74,19 +74,12 @@ export default function PrivateClients() {
           <div className="flex md:flex-row w-full flex-col items-center">
             <div className="w-full md:w-1/2 flex items-center justify-center">
               <div className="w-full text-left mb-2 md:pr-4 text-4xl _font-bold leading-tight tracking-tight text-black">
-                Our vision is to become the most
-valued and trusted, tech enhanced
-trade consulting company in the
-world
+                Our vision is to become the most valued and trusted, tech
+                enhanced trade consulting company in the world
               </div>
             </div>
             <div className="w-full md:w-1/2 flex items-center justify-center">
-              <img
-                src={
-                  "/assets/tech_bg2.jpg"
-                }
-                className="w-full"
-              />
+              <img src={"/assets/tech_bg2.jpg"} className="w-full" />
             </div>
           </div>
           <div className="py-3"></div>
@@ -101,6 +94,7 @@ world
               {[
                 {
                   title: "Private Clients",
+                  to: "/footer/private_clients",
                   content: `Our mission is to reimagine
                 product trading to make trade
                 business processes easier
@@ -111,6 +105,7 @@ world
                 },
                 {
                   title: "International Trade Consulting",
+                  to: "/footer/international_trade_consulting",
                   content: `We provide complete
                   solutions for international
                   trade business. We know
@@ -121,6 +116,7 @@ world
                 },
                 {
                   title: "Contracting and Due Diligence",
+                  to: "/footer/contracting_and_due_diligence",
                   content: `We help clients to increase
                   security when engaging in
                   international business with
@@ -130,9 +126,8 @@ world
                 return (
                   <PictureCard
                     item={{
+                      ...item,
                       thumbnail_url: "",
-                      title: item?.title,
-                      content: item?.content,
                     }}
                     nopicture={true}
                     index={one}
@@ -153,18 +148,24 @@ world
               {[
                 {
                   title: "PR and Advertising",
+                  to: "https://stankeviciusmgm.com",
+                  external: true,
                   content: `We use media and advertising to
                   build brands, names and
                   influence in global markets.`,
                 },
                 {
                   title: "Alternative Investment Banking",
+                  to: "https://stankevicius.com",
+                  external: true,
                   content: `Our financial services arm
                   provides private equity solutions
                   and brokerage in public markets.`,
                 },
                 {
                   title: "Stankevicius Group",
+                  to: "https://stankeviciusgroup.com",
+                  external: true,
                   content: `Stankevicius Group is a mainstream industry
                   professional service provider and business
                   broker. Learn more what we do and how we
@@ -174,9 +175,8 @@ world
                 return (
                   <PictureCard
                     item={{
+                      ...item,
                       thumbnail_url: "",
-                      title: item?.title,
-                      content: item?.content,
                     }}
                     nopicture={true}
                     index={one}

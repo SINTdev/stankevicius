@@ -23,15 +23,6 @@ const Footer = () => {
           link: "Business Contacts",
           to: "/footer/business_contacts",
         },
-        {
-          link: "Regulatory Guidelines",
-          to: "/footer/regulatory_guidelines",
-        },
-        {
-          link: "Stankevicius Group",
-          to: "/footer/stankevicius_group",
-          icon: true,
-        },
       ],
     },
     {
@@ -66,19 +57,28 @@ const Footer = () => {
           link: "Advertising Credits",
           to: "/footer/advertising_credits",
         },
+        {
+          link: "Regulatory Guidelines",
+          to: "/footer/regulatory_guidelines",
+        },
       ],
     },
     {
       link: "More From Stankevicius",
       subLinks: [
         {
-          link: "Corporate PR and Advertising",
-          to: "/footer/corporate_pr_and_advertising",
+          link: "PR and Advertising",
+          to: "https://stankeviciusmgm.com",
           icon: true,
         },
         {
           link: "Alternative Investment Banking",
-          to: "/footer/alternative_investment_banking",
+          to: "https://stankevicius.com",
+          icon: true,
+        },
+        {
+          link: "Stankevicius Group",
+          to: "https://stankeviciusgroup.com",
           icon: true,
         },
       ],
@@ -158,7 +158,11 @@ const Footer = () => {
                           item?.subLinks?.map((subLink, index) => {
                             return (
                               <li class="underline decoration-gray-400 hover:decoration-black">
-                                <Link to={subLink?.to} class="">
+                                <Link
+                                  to={subLink?.to}
+                                  target={subLink?.icon && "_blank"}
+                                  class=""
+                                >
                                   {subLink?.link}
                                   {subLink?.icon && (
                                     <svg
@@ -198,7 +202,10 @@ const Footer = () => {
                       {main?.subLinks?.map((subLink, index) => {
                         return (
                           <li class="underline decoration-gray-400 hover:decoration-black">
-                            <Link to={subLink?.to}>
+                            <Link
+                              to={subLink?.to}
+                              target={subLink?.icon && "_blank"}
+                            >
                               {subLink?.link}
                             </Link>
                             {subLink?.icon && (

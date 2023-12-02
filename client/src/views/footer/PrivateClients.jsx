@@ -27,48 +27,7 @@ export default function PrivateClients() {
           </div>
         </Fold>
       </Fold>
-      {/* <Fold className="bg-[#F1F1F1]">
-        <Fold inside>
-          <div className="py-10 flex flex-col space-y-5">
-            <div className="w-full text-left mb-2 md:pl-1 text-4xl _font-bold leading-tight tracking-tight text-black">
-              Industry Insights (Partner Content)
-            </div>
-            <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
-              {payload?.latest?.map((item, one) => {
-                return (
-                  <InfoCard
-                    item={item}
-                    index={one}
-                    onClick={() => {
-                      if (session?.isLoaded && session?.isLoggedIn) {
-                        navigate(`/news/${item?.slug}`);
-                      } else {
-                        setLogin({
-                          login: true,
-                        });
-                      }
-                    }}
-                  />
-                );
-              })}
-            </div>
-            <button
-              onClick={() => {
-                if (session?.isLoaded && session?.isLoggedIn) {
-                  navigate("/news");
-                } else {
-                  setLogin({
-                    login: true,
-                  });
-                }
-              }}
-              className="transition-all duration-300 ease-in-out cursor-pointer w-fit text-black border-2 border-black hover:bg-black hover:text-white bg-transparent text-sm px-8 font-bold py-2.5 text-center"
-            >
-              All news
-            </button>
-          </div>
-        </Fold>
-      </Fold> */}
+
       <Fold className="bg-white px-2">
         <Fold inside className="">
           <div className="py-5 w-full text-left text-xl leading-normal tracking-tight text-black">
@@ -136,6 +95,7 @@ export default function PrivateClients() {
               {[
                 {
                   title: "Introduction",
+                  to: "/menu/introduction",
                   content: `Vigilance helps safeguard against
                   fraudulent activities, reinforcing the need for
                   ethical and transparent dealings in the
@@ -144,6 +104,7 @@ export default function PrivateClients() {
                 },
                 {
                   title: "Our company",
+                  to: "/menu/our_company",
                   content: `We use technology and data to address some
                   of the most challenging business matters in
                   international trade. Worldwide, we have
@@ -152,6 +113,7 @@ export default function PrivateClients() {
                 },
                 {
                   title: "CEO’s Letter",
+                  to: "/menu/ceo_letter",
                   content: `As we look to the future as a technology
                   driven trade consulting firm our dedication to
                   innovation and excellence will drive us
@@ -161,9 +123,8 @@ export default function PrivateClients() {
                 return (
                   <PictureCard
                     item={{
+                      ...item,
                       thumbnail_url: "",
-                      title: item?.title,
-                      content: item?.content,
                     }}
                     nopicture={true}
                     index={one}
@@ -184,18 +145,24 @@ export default function PrivateClients() {
               {[
                 {
                   title: "PR and Advertising",
+                  to: "https://stankeviciusmgm.com",
+                  external: true,
                   content: `We use media and advertising to
                   build brands, names and
                   influence in global markets.`,
                 },
                 {
                   title: "Alternative Investment Banking",
+                  to: "https://stankevicius.com",
+                  external: true,
                   content: `Our financial services arm
                   provides private equity solutions
                   and brokerage in public markets.`,
                 },
                 {
                   title: "Stankevicius Group",
+                  to: "https://stankeviciusgroup.com",
+                  external: true,
                   content: `Stankevicius Group is a mainstream industry
                   professional service provider and business
                   broker. Learn more what we do and how we
@@ -205,9 +172,8 @@ export default function PrivateClients() {
                 return (
                   <PictureCard
                     item={{
+                      ...item,
                       thumbnail_url: "",
-                      title: item?.title,
-                      content: item?.content,
                     }}
                     nopicture={true}
                     index={one}
