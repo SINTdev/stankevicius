@@ -144,7 +144,7 @@ export default function PrivateClients() {
               {[
                 {
                   title: "PR and Advertising",
-                  to: "stankeviciusmgm.com",
+                  to: "https://stankeviciusmgm.com",
                   external: true,
                   content: `We use media and advertising to
                   build brands, names and
@@ -152,7 +152,7 @@ export default function PrivateClients() {
                 },
                 {
                   title: "Alternative Investment Banking",
-                  to: "stankevicius.com",
+                  to: "https://stankevicius.com",
                   external: true,
                   content: `Our financial services arm
                   provides private equity solutions
@@ -160,7 +160,7 @@ export default function PrivateClients() {
                 },
                 {
                   title: "Stankevicius Group",
-                  to: "stankeviciusgroup.com",
+                  to: "https://stankeviciusgroup.com",
                   external: true,
                   content: `Stankevicius Group is a mainstream industry
                   professional service provider and business
