@@ -16,54 +16,229 @@ export default function LearnHowToTrade(props) {
         <style>{getPageMargins()}</style>
         <div className="w-full">
           <div className="w-full text-left text-4xl _font-bold leading-tight tracking-tight text-black">
-            Open Source
+            Learn how to trade
           </div>
 
           <div className="py-5"></div>
           <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-            Novartis uses the open-source Drupal content management framework
-            for many key websites, including our flagship global site
-            Novartis.com, main country sites, portals for healthcare
-            professionals, and certain product and disease awareness sites.
+            Stankevicius International GO trading platform is designed to bring
+            global trade market together and increase business engagement and
+            lead generation for value businesses that have authentic business
+            operations, access to global supply chains and capability to execute
+            trade deals internationally.
           </div>
-          <div className="py-1"></div>
+          <div className="py-2"></div>
+          <h1 className="_font-bold text-black text-md m-0 p-0">
+            How to add new trade?
+          </h1>
+          <ul className="my-2 pl-10 w-full list-decimal text-left leading-relaxed tracking-wide text-base text-black">
+            <li>User has to be logged in</li>
+            <li>Go to Acount Client menu and select Add New Trade</li>
+            <li>Fill up product and trade overview information</li>
+            <li>
+              Select limited listing validity for how long should your trade be
+              available in the platform (7-30 days)
+            </li>
+            <li>
+              Select Promotion if you wish to promote your trade or your
+              business. For more information about promotions read Advertising
+              Credits.
+            </li>
+          </ul>
+          <div className="py-2"></div>
+          <h1 className="_font-bold text-black text-md m-0 p-0">
+            Engaging in the trade to sell
+          </h1>
           <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-            Drupal is a powerful and flexible platform which gives Novartis the
-            foundations for great audience-focused digital experiences covering
-            company information, campaigns, tools and services. Our commitment
-            to Drupal and the open-source community began in 2014 when corporate
-            websites began migrating to Drupal 7.
+            If you see others requesting to buy a specific product or in
+            otherwords, you see a buying trade, that means an opportunity to
+            sell, and if you have an offer for that trade you can click SELL. A
+            popup will appear to confirm your SELL order. Confirm the popup, and
+            our team from Stankevicius International will engage with you.
           </div>
-          <div className="py-1"></div>
+          <div className="py-2"></div>
+          <h1 className="_font-bold text-black text-md m-0 p-0">
+            Engaging in the trade to buy
+          </h1>
           <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-            In October 2021 Novartis.com relaunched on Drupal 9, joining pilot
-            sites including Novartis Foundation and Novartis Campus on the
-            platform. The Drupal 9 upgrades also included a fresh new design
-            system, audience-first navigation, content improvements and a
-            renewed commitment to accessibility. In the months following country
-            corporate sites and generics division site Sandoz.com also migrated
-            to Drupal 9.
+            If you see others proposing to sell a specific product or in
+            otherwords, you see a selling trade, that means an opportunity to
+            buy, and if you have such requirement for that trade you can click
+            BUY. A popup will appear to confirm your BUY order. Confirm the
+            popup, and our team from Stankevicius International will engage with
+            you.
           </div>
-          <div className="py-1"></div>
+          <div className="py-2"></div>
+          <h1 className="_font-bold text-black text-md m-0 p-0">
+            How to get more visibility for your company?
+          </h1>
           <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-            The corporate web portfolio was upgraded to Drupal 10 in September
-            2023. Novartis continues to be an active supporter of the Drupal
-            open-source community including sponsorship of DrupalCon Lille in
-            October 2023.
+            When you are adding a new trade, you have an option to promote your
+            company within the trade. In the Add New Trade, under Promotion
+            section, select Yes to Promote Your Company question. This is a
+            setting that will promote your company name with your company
+            website. Make sure to fill up your complete profile before running
+            this promotion, otherwise your company promotion will not be
+            visible.
           </div>
-
+          <div className="py-2"></div>
+          <h1 className="_font-bold text-black text-md m-0 p-0">
+            How to get more visibility for your trade?
+          </h1>
+          <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
+            When you are adding a new trade, you have an option to promote your
+            trade in the Trade Quote bar. In the Add New Trade, under Promotion
+            section, select Yes to Promote on Trade Quote bar. This is a setting
+            that will promote your trade throughout the entire Stankevicius
+            International platform.
+          </div>
+          <div className="py-2"></div>
+          <h1 className="_font-bold text-black text-md m-0 p-0">
+            How to get more engagement for your trade?
+          </h1>
+          <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
+            When you are adding a new trade, you have an option to promote your
+            trade to subscribed users. In the Add New Trade, under Promotion
+            section, select Yes to Promote to Subscribed Users. This is a
+            setting that will promote your trade with your full profile details
+            including your personal contact information and company information.
+            Make sure to fill up your complete your profile before running this
+            promotion for exposure maximum benefit.
+          </div>
+          <div className="py-2"></div>
+          <h1 className="_font-bold text-black text-md m-0 p-0">
+            How to engage in trade safely?
+          </h1>
+          <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
+            We encourage all users to initiate all trades through our
+            Stankevicius International GO trading platform and avoid contacting
+            third party companies directly by yourself. We provide advertising
+            option for users to promote their company information and contacts
+            for due diligence purposes so that business counter-party would have
+            certain knowledge and understanding about the business that is
+            running the trade. However, we highly recommend to initiate all BUY
+            and SELL requests through Stankevicius International GO trading
+            platform only to avoid risk. Before trading and engaging with third
+            party companies, please visit Regulatory Guidelines to learn more
+            about trading safety, risks, liabilities and our trading policies.
+          </div>
           <div className="py-2"></div>
           <div className="py-2"></div>
           <Accordion
             mode="learn"
             items={[
               {
-                title: "Web Team",
-                content: <span>Testing</span>,
+                title: "Partner Content",
+                content: (
+                  <span>
+                    Users can publish business news material on Stankevicius
+                    International GO trading platform to promote their business,
+                    increase brand awareness and gain new leads. Users can
+                    publish different types of business related content such as
+                    company news, partnership announcements, new product
+                    releases, marketing materials, CEO interviews, and other
+                    extensive variety of promotional business material.
+                    <div className="py-2"></div>
+                    <h1 className="_font-bold text-black text-md m-0 p-0">
+                      How to publish news?
+                    </h1>
+                    <ul className="my-2 pl-10 w-full list-decimal text-left leading-relaxed tracking-wide text-base text-black">
+                      <li>User has to be logged in</li>
+                      <li>Go to Account Client menu and select News</li>
+                      <li>Find and click on Publish New Release</li>
+                      <li>Write the title of the news release</li>
+                      <li>Write the publication</li>
+                      <li>
+                        Accept Partner Content Terms & Conditions and Partner
+                        Content Guidelines
+                      </li>
+                      <li>
+                        Accept the publishing fee. Read Advertising Credits for
+                        more information.
+                      </li>
+                      <li>Click Publish to Industry Insights</li>
+                      <li>
+                        Your news publication will immediately get published
+                        under Indistry Insights.
+                      </li>
+                    </ul>
+                  </span>
+                ),
               },
               {
-                title: "Developers",
-                content: <span>Testing</span>,
+                title: "Advertising Credits",
+                content: (
+                  <span>
+                    Users can use Advertising Credits on Stankevicius
+                    International GO trading platform to promote their
+                    businesses, and increase visibility and engagement rate for
+                    the trades. Advertising Credits are provided by Stankevicius
+                    International Business Services Limited. Read Terms of Use
+                    and Purchase Policy of Advertisign Credits before
+                    purchasing. Read Advertising Liabilities, Guidelines and
+                    Policy before promoting your trades.{" "}
+                    <div className="py-2"></div>
+                    <h1 className="_font-bold text-black text-md m-0 p-0">
+                      How to buy Advertising Credits?
+                    </h1>
+                    <ul className="my-2 pl-10 w-full list-decimal text-left leading-relaxed tracking-wide text-base text-black">
+                      <li>User has to be logged in</li>
+                      <li>Go to Account Client menu and select Credit</li>
+                      <li>
+                        You will see your current Advertising Credit balance
+                      </li>
+                      <li>Click on to Buy Advertising Credits</li>
+                      <li>Add number of credits you want to buy</li>
+                      <li>Add your card information</li>
+                      <li>
+                        Agree to Terms of Use and Purchase Policy of Advertising
+                        Credits
+                      </li>
+                      <li>Click Purchase Now</li>
+                      <li>
+                        Advertising Credits will be added to your account
+                        immediately
+                      </li>
+                      <li>
+                        If you occur an error while purchasing the credits,
+                        please contact support
+                      </li>
+                    </ul>
+                    <div className="py-2"></div>
+                    <h1 className="_font-bold text-black text-md m-0 p-0">
+                      What are Advertising Credits used for?
+                    </h1>
+                    Advertising Credits allow users to:
+                    <ul className="my-2 pl-10 w-full list-decimal text-left leading-relaxed tracking-wide text-base text-black">
+                      <li>
+                        Promote their company name with a link inside active
+                        trade
+                      </li>
+                      <li>Promote the trade on Trade Quotes bar</li>
+                      <li>
+                        Promote the trade email for all users who have
+                        subscribed to promotional material
+                      </li>
+                      <li>
+                        Publish content in the News section of this platform.
+                        Read Partner Content for more information.
+                      </li>
+                    </ul>
+                    <div className="py-2"></div>
+                    <h1 className="_font-bold text-black text-md m-0 p-0">
+                      How to use Advertising Credits?
+                    </h1>
+                    When user is adding a new trade, under Add New Trade page,
+                    in the end of the page there is a Promotion section. Users
+                    can select different types of promotions for that particular
+                    trade.
+                    <div className="py-2"></div>Additionally, in the News
+                    section, users can choose to Publish New Release to promote
+                    personal business content.
+                    <div className="py-2"></div>To perform any promotion related
+                    activities, users have to use Advertising Credits.
+                  </span>
+                ),
               },
             ]}
           />

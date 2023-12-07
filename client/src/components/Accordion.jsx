@@ -123,21 +123,6 @@ const AccordionItem1 = ({ title, content, index }) => {
           <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
             {content}
           </div>{" "}
-          <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-            {content}
-          </div>{" "}
-          <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-            {content}
-          </div>{" "}
-          <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-            {content}
-          </div>{" "}
-          <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-            {content}
-          </div>{" "}
-          <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-            {content}
-          </div>
         </div>
       </div>
     </div>

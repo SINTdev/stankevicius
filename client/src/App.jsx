@@ -48,6 +48,7 @@ import ContractingAndDueDiligenceFooter from "./views/footer/ContractingAndDueDi
 import NewsAndInsights from "./views/footer/NewsAndInsights";
 import AboutFooter from "./views/footer/About";
 import BusinessContacts from "./views/footer/BusinessContacts";
+import Dashboard from "./views/client/Dashboard";
 
 // import CategoryManagement from "./views/corporate/CategoryManagement";
 
@@ -155,7 +156,7 @@ function App() {
             path="/client"
             element={
               <Layout {...paramater}>
-                <PagesSearch />
+                <Dashboard />
               </Layout>
             }
           />
@@ -380,7 +381,7 @@ function App() {
             path="/footer/business_contacts"
             element={
               <Layout {...paramater} menu={true} novideo={true}>
-                 <BusinessContacts />
+                <BusinessContacts />
               </Layout>
             }
           />
