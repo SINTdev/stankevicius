@@ -133,12 +133,15 @@ export default function RegulatoryGuidelines(props) {
                     guarantee or insure any transactions. Stankevicius
                     International may only provide consulting services to
                     clients who choose to consult for professional advice.
-                    <span className="block py-3" />
-                    <h1 className="_font-bold text-black text-md m-0 p-0">
-                      Partner Content Terms & Conditions and Partner Content
-                      Guidelines
-                    </h1>
                     <span className="block py-1" />
+                  </span>
+                ),
+              },
+              {
+                title:
+                  "Partner Content Terms & Conditions and Partner Content Guidelines",
+                content: (
+                  <span>
                     Partner Content is relates to news publishing on
                     Stankevicius International GO trading platform. Users can
                     publish business news related content which can be

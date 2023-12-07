@@ -43,6 +43,8 @@ import RegulatoryGuidelines from "./views/footer/RegulatoryGuidelines";
 import TermsOfUse from "./views/footer/TermsOfUse";
 import Privacy from "./views/footer/Privacy";
 import LearnHowToTrade from "./views/footer/LearnHowToTrade";
+import PartnerContent from "./views/footer/PartnerContent";
+import AdvertisingCredits from "./views/footer/AdvertisingCredits";
 import InternationalTradeConsultingFooter from "./views/footer/InternationalTradeConsulting";
 import ContractingAndDueDiligenceFooter from "./views/footer/ContractingAndDueDiligence";
 import NewsAndInsights from "./views/footer/NewsAndInsights";
@@ -433,7 +435,7 @@ function App() {
             path="/footer/partner_content"
             element={
               <Layout {...paramater} menu={true}>
-                <LearnHowToTrade />
+                <PartnerContent />
               </Layout>
             }
           />
@@ -441,7 +443,7 @@ function App() {
             path="/footer/advertising_credits"
             element={
               <Layout {...paramater} menu={true}>
-                <LearnHowToTrade />
+                <AdvertisingCredits />
               </Layout>
             }
           />

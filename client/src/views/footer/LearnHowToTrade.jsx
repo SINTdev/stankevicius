@@ -3,6 +3,7 @@ import Accordion from "../../components/Accordion";
 import Fold from "../../components/menus/Fold";
 import { getPageMargins } from "../../CONSTANT";
 import SavingOptions from "../../components/SavingOptions";
+import { Link } from "react-router-dom";
 
 export default function LearnHowToTrade(props) {
   const component = useRef();
@@ -28,105 +29,132 @@ export default function LearnHowToTrade(props) {
             trade deals internationally.
           </div>
           <div className="py-2"></div>
-          <h1 className="_font-bold text-black text-md m-0 p-0">
-            How to add new trade?
-          </h1>
-          <ul className="my-2 pl-10 w-full list-decimal text-left leading-relaxed tracking-wide text-base text-black">
-            <li>User has to be logged in</li>
-            <li>Go to Acount Client menu and select Add New Trade</li>
-            <li>Fill up product and trade overview information</li>
-            <li>
-              Select limited listing validity for how long should your trade be
-              available in the platform (7-30 days)
-            </li>
-            <li>
-              Select Promotion if you wish to promote your trade or your
-              business. For more information about promotions read Advertising
-              Credits.
-            </li>
-          </ul>
-          <div className="py-2"></div>
-          <h1 className="_font-bold text-black text-md m-0 p-0">
-            Engaging in the trade to sell
-          </h1>
-          <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-            If you see others requesting to buy a specific product or in
-            otherwords, you see a buying trade, that means an opportunity to
-            sell, and if you have an offer for that trade you can click SELL. A
-            popup will appear to confirm your SELL order. Confirm the popup, and
-            our team from Stankevicius International will engage with you.
-          </div>
-          <div className="py-2"></div>
-          <h1 className="_font-bold text-black text-md m-0 p-0">
-            Engaging in the trade to buy
-          </h1>
-          <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-            If you see others proposing to sell a specific product or in
-            otherwords, you see a selling trade, that means an opportunity to
-            buy, and if you have such requirement for that trade you can click
-            BUY. A popup will appear to confirm your BUY order. Confirm the
-            popup, and our team from Stankevicius International will engage with
-            you.
-          </div>
-          <div className="py-2"></div>
-          <h1 className="_font-bold text-black text-md m-0 p-0">
-            How to get more visibility for your company?
-          </h1>
-          <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-            When you are adding a new trade, you have an option to promote your
-            company within the trade. In the Add New Trade, under Promotion
-            section, select Yes to Promote Your Company question. This is a
-            setting that will promote your company name with your company
-            website. Make sure to fill up your complete profile before running
-            this promotion, otherwise your company promotion will not be
-            visible.
-          </div>
-          <div className="py-2"></div>
-          <h1 className="_font-bold text-black text-md m-0 p-0">
-            How to get more visibility for your trade?
-          </h1>
-          <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-            When you are adding a new trade, you have an option to promote your
-            trade in the Trade Quote bar. In the Add New Trade, under Promotion
-            section, select Yes to Promote on Trade Quote bar. This is a setting
-            that will promote your trade throughout the entire Stankevicius
-            International platform.
-          </div>
-          <div className="py-2"></div>
-          <h1 className="_font-bold text-black text-md m-0 p-0">
-            How to get more engagement for your trade?
-          </h1>
-          <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-            When you are adding a new trade, you have an option to promote your
-            trade to subscribed users. In the Add New Trade, under Promotion
-            section, select Yes to Promote to Subscribed Users. This is a
-            setting that will promote your trade with your full profile details
-            including your personal contact information and company information.
-            Make sure to fill up your complete your profile before running this
-            promotion for exposure maximum benefit.
-          </div>
-          <div className="py-2"></div>
-          <h1 className="_font-bold text-black text-md m-0 p-0">
-            How to engage in trade safely?
-          </h1>
-          <div className="my-3 w-full text-left leading-relaxed tracking-wide text-base text-black">
-            We encourage all users to initiate all trades through our
-            Stankevicius International GO trading platform and avoid contacting
-            third party companies directly by yourself. We provide advertising
-            option for users to promote their company information and contacts
-            for due diligence purposes so that business counter-party would have
-            certain knowledge and understanding about the business that is
-            running the trade. However, we highly recommend to initiate all BUY
-            and SELL requests through Stankevicius International GO trading
-            platform only to avoid risk. Before trading and engaging with third
-            party companies, please visit Regulatory Guidelines to learn more
-            about trading safety, risks, liabilities and our trading policies.
-          </div>
-          <div className="py-2"></div>
           <div className="py-2"></div>
           <Accordion
             mode="learn"
             items={[
+              {
+                title: "How to add new trade?",
+                content: (
+                  <span>
+                    <ul className="my-2 pl-10 w-full list-decimal text-left leading-relaxed tracking-wide text-base text-black">
+                      <li>User has to be logged in</li>
+                      <li>Go to Acount Client menu and select Add New Trade</li>
+                      <li>Fill up product and trade overview information</li>
+                      <li>
+                        Select limited listing validity for how long should your
+                        trade be available in the platform (7-30 days)
+                      </li>
+                      <li>
+                        Select Promotion if you wish to promote your trade or
+                        your business. For more information about promotions
+                        read{" "}
+                        <Link
+                          className="text-sky-700 underline cursor-pointer"
+                          to="/footer/advertising_credits"
+                        >
+                          Advertising Credits
+                        </Link>
+                        .
+                      </li>
+                    </ul>
+                  </span>
+                ),
+              },
+              {
+                title: "Engaging in the trade to sell",
+                content: (
+                  <span>
+                    If you see others requesting to buy a specific product or in
+                    otherwords, you see a buying trade, that means an
+                    opportunity to sell, and if you have an offer for that trade
+                    you can click SELL. A popup will appear to confirm your SELL
+                    order. Confirm the popup, and our team from Stankevicius
+                    International will engage with you.
+                  </span>
+                ),
+              },
+              {
+                title: "Engaging in the trade to buy",
+                content: (
+                  <span>
+                    If you see others proposing to sell a specific product or in
+                    otherwords, you see a selling trade, that means an
+                    opportunity to buy, and if you have such requirement for
+                    that trade you can click BUY. A popup will appear to confirm
+                    your BUY order. Confirm the popup, and our team from
+                    Stankevicius International will engage with you.
+                  </span>
+                ),
+              },
+              {
+                title: "How to get more visibility for your company?",
+                content: (
+                  <span>
+                    When you are adding a new trade, you have an option to
+                    promote your company within the trade. In the Add New Trade,
+                    under Promotion section, select Yes to Promote Your Company
+                    question. This is a setting that will promote your company
+                    name with your company website. Make sure to fill up your
+                    complete profile before running this promotion, otherwise
+                    your company promotion will not be visible.
+                  </span>
+                ),
+              },
+              {
+                title: "How to get more visibility for your trade?",
+                content: (
+                  <span>
+                    When you are adding a new trade, you have an option to
+                    promote your trade in the Trade Quote bar. In the Add New
+                    Trade, under Promotion section, select Yes to Promote on
+                    Trade Quote bar. This is a setting that will promote your
+                    trade throughout the entire Stankevicius International
+                    platform.
+                  </span>
+                ),
+              },
+              {
+                title: "How to get more engagement for your trade?",
+                content: (
+                  <span>
+                    When you are adding a new trade, you have an option to
+                    promote your trade to subscribed users. In the Add New
+                    Trade, under Promotion section, select Yes to Promote to
+                    Subscribed Users. This is a setting that will promote your
+                    trade with your full profile details including your personal
+                    contact information and company information. Make sure to
+                    fill up your complete your profile before running this
+                    promotion for exposure maximum benefit.
+                  </span>
+                ),
+              },
+              {
+                title: "How to engage in trade safely?",
+                content: (
+                  <span>
+                    We encourage all users to initiate all trades through our
+                    Stankevicius International GO trading platform and avoid
+                    contacting third party companies directly by yourself. We
+                    provide advertising option for users to promote their
+                    company information and contacts for due diligence purposes
+                    so that business counter-party would have certain knowledge
+                    and understanding about the business that is running the
+                    trade. However, we highly recommend to initiate all BUY and
+                    SELL requests through Stankevicius International GO trading
+                    platform only to avoid risk. Before trading and engaging
+                    with third party companies, please visit{" "}
+                    <Link
+                      className="text-sky-700 underline cursor-pointer"
+                      to="/footer/regulatory_guidelines"
+                    >
+                      Regulatory Guidelines
+                    </Link>{" "}
+                    to learn more about trading safety, risks, liabilities and
+                    our trading policies.
+                  </span>
+                ),
+              },
               {
                 title: "Partner Content",
                 content: (
@@ -149,12 +177,24 @@ export default function LearnHowToTrade(props) {
                       <li>Write the title of the news release</li>
                       <li>Write the publication</li>
                       <li>
-                        Accept Partner Content Terms & Conditions and Partner
-                        Content Guidelines
+                        Accept{" "}
+                        <Link
+                          className="text-sky-700 underline cursor-pointer"
+                          to="/footer/partner_content"
+                        >
+                          Partner Content Terms & Conditions and Partner Content
+                          Guidelines
+                        </Link>
                       </li>
                       <li>
-                        Accept the publishing fee. Read Advertising Credits for
-                        more information.
+                        Accept the publishing fee. Read{" "}
+                        <Link
+                          className="text-sky-700 underline cursor-pointer"
+                          to="/footer/advertising_credits"
+                        >
+                          Advertising Credits
+                        </Link>{" "}
+                        for more information.
                       </li>
                       <li>Click Publish to Industry Insights</li>
                       <li>
@@ -173,11 +213,21 @@ export default function LearnHowToTrade(props) {
                     International GO trading platform to promote their
                     businesses, and increase visibility and engagement rate for
                     the trades. Advertising Credits are provided by Stankevicius
-                    International Business Services Limited. Read Terms of Use
-                    and Purchase Policy of Advertisign Credits before
-                    purchasing. Read Advertising Liabilities, Guidelines and
-                    Policy before promoting your trades.{" "}
-                    <div className="py-2"></div>
+                    International Business Services Limited. Read{" "}
+                    <Link
+                      className="text-sky-700 underline cursor-pointer"
+                      to="/footer/advertising_credits"
+                    >
+                      Terms of Use and Purchase Policy of Advertisign Credits
+                    </Link>{" "}
+                    before purchasing. Read{" "}
+                    <Link
+                      className="text-sky-700 underline cursor-pointer"
+                      to="/footer/advertising_credits"
+                    >
+                      Advertising Liabilities, Guidelines and Policy
+                    </Link>{" "}
+                    before promoting your trades. <div className="py-2"></div>
                     <h1 className="_font-bold text-black text-md m-0 p-0">
                       How to buy Advertising Credits?
                     </h1>
@@ -191,8 +241,14 @@ export default function LearnHowToTrade(props) {
                       <li>Add number of credits you want to buy</li>
                       <li>Add your card information</li>
                       <li>
-                        Agree to Terms of Use and Purchase Policy of Advertising
-                        Credits
+                        Agree to{" "}
+                        <Link
+                          className="text-sky-700 underline cursor-pointer"
+                          to="/footer/advertising_credits"
+                        >
+                          Terms of Use and Purchase Policy of Advertising
+                          Credits
+                        </Link>
                       </li>
                       <li>Click Purchase Now</li>
                       <li>
@@ -221,7 +277,14 @@ export default function LearnHowToTrade(props) {
                       </li>
                       <li>
                         Publish content in the News section of this platform.
-                        Read Partner Content for more information.
+                        Read{" "}
+                        <Link
+                          className="text-sky-700 underline cursor-pointer"
+                          to="/footer/partner_content"
+                        >
+                          Partner Content
+                        </Link>{" "}
+                        for more information.
                       </li>
                     </ul>
                     <div className="py-2"></div>
