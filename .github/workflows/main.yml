@@ -18,10 +18,9 @@ jobs:
           key: ${{ secrets.PRIVATE_KEY }}
           port: 22
           script: |
-            export PATH="$PATH:~/.nvm/versions/node/v20.9.0/bin"
             cd ~/Projects/stankevicius/
             git pull origin main
             source env/bin/activate
             pip install -r requirements.txt
             python manage.py migrate
-            pm2 restart 0
+            npx pm2 restart 0
