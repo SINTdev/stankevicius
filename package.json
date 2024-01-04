@@ -1,5 +1,5 @@
 {
-  "author": "ShayanHussainSB <shayanhussain48@gmail.com>",
+  "author": "ShayanHussainSB <shayanhussain48@gmail.com> ",
   "dependencies": {
     "@stripe/react-stripe-js": "^2.3.1",
     "@stripe/stripe-js": "^2.1.10"
